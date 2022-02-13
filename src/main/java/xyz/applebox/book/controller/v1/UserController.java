@@ -1,4 +1,4 @@
-package xyz.applebox.book.controller;
+package xyz.applebox.book.controller.v1;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
