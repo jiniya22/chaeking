@@ -9,18 +9,23 @@ import javax.persistence.*;
 public class Book extends BaseEntity {
 
     @Column(nullable = false, length = 150)
-    private String title;
+    private String name;
 
     @Column(length = 50)
     private String author;
 
     private int price;
 
-//    @Column(length = 20)
-//    private String publisher;
+    @Column(length = 100)
+    private String publisher;
+
+    @Column(length = 100)
+    private String isbn;
 
     @Column(length = 300)
     private String imageUrl;
 
+    @Column(columnDefinition = "TEXT")
+    private String detailInfo;
 //    private String status;
 }

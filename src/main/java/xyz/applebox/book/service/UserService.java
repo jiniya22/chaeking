@@ -22,7 +22,7 @@ public class UserService {
         User user = User.builder()
                 .email(req.getEmail())
                 .name(req.getName())
-                .birthDate(req.getBirthDate())
+                .birthDate(req.getBirth_date())
                 .sex(req.getSex())
                 .password(req.getPassword()).build();
         userRepository.save(user);
