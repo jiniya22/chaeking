@@ -8,11 +8,11 @@
         <version>2.5.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>xyz.applebox</groupId>
-    <artifactId>book-api</artifactId>
+    <groupId>com.chaeking</groupId>
+    <artifactId>chaeking-api</artifactId>
     <version>1.0.0</version>
-    <name>book-api</name>
-    <description>book-api</description>
+    <name>chaeking-api</name>
+    <description>chaeking-api</description>
     <properties>
         <java.version>17</java.version>
     </properties>
@@ -100,7 +100,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.5.3</version>
                 <configuration>
-                    <finalName>book-api</finalName>
+                    <finalName>chaeking-api</finalName>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
