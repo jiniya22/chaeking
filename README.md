@@ -1,6 +1,6 @@
-# Book API
+# Chaeking API
 
-Book API using Spring Boot 2
+Chaeking API using Spring Boot 2
 
 <img src="https://img.shields.io/static/v1?label=Java&message=17.0.1&color=007396&logo=java">
 

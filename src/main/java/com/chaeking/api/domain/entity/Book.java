@@ -1,10 +1,13 @@
 package com.chaeking.api.domain.entity;
 
-import lombok.Getter;
+import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Book extends BaseEntity {
 
@@ -27,5 +30,22 @@ public class Book extends BaseEntity {
 
     @Column(columnDefinition = "TEXT")
     private String detailInfo;
+
 //    private String status;
+
+    @Temporal(TemporalType.DATE)
+    private Date publicationDate;
+
+    @Builder
+    public Book(String name, String author, int price, String publisher, String isbn, String imageUrl,
+                String detailInfo, Date publicationDate) {
+        this.name = name;
+        this.author = author;
+        this.price = price;
+        this.publisher = publisher;
+        this.isbn = isbn;
+        this.imageUrl = imageUrl;
+        this.detailInfo = detailInfo;
+        this.publicationDate = publicationDate;
+    }
 }
