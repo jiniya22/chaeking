@@ -13,10 +13,6 @@ import java.time.LocalDateTime;
 @Where(clause = "active = 1")
 public abstract class BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @Setter
     @ColumnDefault("1")
     private boolean active;

@@ -11,6 +11,10 @@ import java.util.Date;
 @Entity
 public class Book extends BaseEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Column(nullable = false, length = 150)
     private String name;
 
