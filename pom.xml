@@ -29,6 +29,12 @@
             </activation>
         </profile>
         <profile>
+            <id>staging</id>
+            <properties>
+                <env>staging</env>
+            </properties>
+        </profile>
+        <profile>
             <id>prod</id>
             <properties>
                 <env>prod</env>
