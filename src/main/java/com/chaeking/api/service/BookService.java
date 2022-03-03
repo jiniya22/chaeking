@@ -16,6 +16,12 @@ import org.springframework.transaction.annotation.Transactional;
 public class BookService {
     private final BookRepository bookRepository;
 
+    public Book select(Long bookId) {
+        Book book = bookRepository.findById(bookId)
+                .orElseThrow(() -> new InvalidInputException("조회되는 book 정보가 없습니다(book_id Error)"));
+        return book;
+    }
+
     @Transactional
     public BookDto.BookRes insert(BookDto.BookReq req) {
         if(StringUtils.isBlank(req.getName()))
@@ -36,8 +42,7 @@ public class BookService {
     }
 
     public BookDto.BookRes book(long bookId) {
-        BookDto.BookRes res = bookRepository.findById(bookId).map(BookDto.BookRes::new)
-                .orElseThrow(() -> new InvalidInputException("조회되는 book 정보가 없습니다."));
+        BookDto.BookRes res = new BookDto.BookRes(select(bookId));
         return res;
     }
 

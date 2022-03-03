@@ -1,17 +1,24 @@
 package com.chaeking.api.service;
 
 import com.chaeking.api.domain.dto.data.BaseDto;
+import com.chaeking.api.domain.entity.Tag;
 import com.chaeking.api.repository.TagRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 @Service
 public class TagService {
     private final TagRepository tagRepository;
+
+    public List<Tag> select(List<Long> tagIds) {
+        return tagRepository.findAllById(tagIds);
+    }
 
     public List<BaseDto> tags() {
         return tagRepository.findAll()

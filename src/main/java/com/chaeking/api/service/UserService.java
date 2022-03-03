@@ -1,5 +1,6 @@
 package com.chaeking.api.service;
 
+import com.chaeking.api.domain.entity.Book;
 import com.chaeking.api.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,12 @@ import com.chaeking.api.domain.entity.User;
 @Service
 public class UserService {
     private final UserRepository userRepository;
+
+    public User select(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new InvalidInputException("일치하는 사용자가 없습니다(X-Chaeking-User-Id Error)"));
+        return user;
+    }
 
     @Transactional
     public BaseResponse save(UserDto req) {
