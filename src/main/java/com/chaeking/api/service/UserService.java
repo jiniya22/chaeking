@@ -23,15 +23,15 @@ public class UserService {
 
     @Transactional
     public BaseResponse save(UserDto req) {
-        if(userRepository.existsByEmail(req.getEmail()))
+        if(userRepository.existsByEmail(req.email()))
             throw new InvalidInputException("등록된 이메일 입니다.");
 
         User user = User.builder()
-                .email(req.getEmail())
-                .name(req.getName())
-                .birthDate(req.getBirth_date())
-                .sex(req.getSex())
-                .password(req.getPassword()).build();
+                .email(req.email())
+                .name(req.name())
+                .birthDate(req.birth_date())
+                .sex(req.sex())
+                .password(req.password()).build();
         userRepository.save(user);
 
         return new BaseResponse();

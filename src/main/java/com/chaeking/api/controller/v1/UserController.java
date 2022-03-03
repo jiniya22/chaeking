@@ -12,12 +12,9 @@ import com.chaeking.api.domain.dto.data.UserDto;
 import com.chaeking.api.domain.dto.response.BaseResponse;
 
 @Tag(name = "user", description = "사용자")
-@RequiredArgsConstructor
 @RestController
 @RequestMapping("/v1/users")
-public class UserController {
-
-    private final UserService userService;
+public record UserController(UserService userService) {
 
     @Operation(summary = "사용자 등록(= 회원 가입)")
     @PostMapping("")

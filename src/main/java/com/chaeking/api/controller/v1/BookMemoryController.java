@@ -9,12 +9,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "book-memory", description = "북 메모리(이미 읽은 책, 읽고 싶은책)")
-@RequiredArgsConstructor
 @RestController
 @RequestMapping("/v1/bookMemories")
-public class BookMemoryController {
-
-    private final BookMemoryService bookMemoryService;
+public record BookMemoryController(BookMemoryService bookMemoryService) {
 
     @Operation(summary = "이미 읽은 책 등록")
     @PostMapping("/complete")

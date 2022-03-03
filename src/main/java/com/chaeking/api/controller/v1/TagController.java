@@ -13,12 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @Tag(name = "tag", description = "태그")
-@RequiredArgsConstructor
 @RestController
 @RequestMapping("/v1/tags")
-public class TagController {
-
-    private final TagService tagService;
+public record TagController(TagService tagService) {
 
     @Operation(summary = "태그 목록")
     @GetMapping("")

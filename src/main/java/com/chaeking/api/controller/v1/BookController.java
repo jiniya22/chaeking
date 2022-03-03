@@ -11,11 +11,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "book", description = "책")
-@RequiredArgsConstructor
 @RestController
 @RequestMapping("/v1/books")
-public class BookController {
-    private final BookService bookService;
+public record BookController(BookService bookService) {
 
     @Operation(summary = "책 등록")
     @PostMapping("")
