@@ -13,18 +13,23 @@ public class BookMemoryDto {
 
     @Data
     public static class BookMemoryWishReq {
-        private Long bookId;
         private String memo;
     }
 
     @Data
-    public static class BookMemoryWishRes extends BookMemoryWishReq {
-        private long id;
+    public static class BookMemoryWishNewReq extends BookMemoryWishReq {
+        private Long bookId;
     }
 
     @Data
-    public static class BookMemoryCompleteReq extends BookMemoryWishReq {
+    public static class BookMemoryCompleteReq {
+        private String memo;
         private List<Long> tagIds = new ArrayList<>();
         private double rate;
+    }
+
+    @Data
+    public static class BookMemoryCompleteNewReq extends BookMemoryCompleteReq {
+        private Long bookId;
     }
 }
