@@ -1,6 +1,6 @@
 package com.chaeking.api.util;
 
-public class MessageUtils {
+public final class MessageUtils {
     public static final String SUCCESS = "success";
     public static final String FAIL = "fail";
 

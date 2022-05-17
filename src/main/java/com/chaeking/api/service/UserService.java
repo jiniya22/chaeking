@@ -1,14 +1,13 @@
 package com.chaeking.api.service;
 
-import com.chaeking.api.domain.entity.Book;
-import com.chaeking.api.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import com.chaeking.api.config.exception.InvalidInputException;
 import com.chaeking.api.domain.dto.data.UserDto;
 import com.chaeking.api.domain.dto.response.BaseResponse;
 import com.chaeking.api.domain.entity.User;
+import com.chaeking.api.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service

@@ -12,10 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @Tag(name = "tag", description = "태그")
 @RestController
 @RequestMapping("/v1/tags")
-public record TagController(TagService tagService) {
+public final class TagController {
+
+    private final TagService tagService;
 
     @Operation(summary = "태그 목록")
     @GetMapping("")

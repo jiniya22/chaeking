@@ -11,10 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.chaeking.api.domain.dto.data.UserDto;
 import com.chaeking.api.domain.dto.response.BaseResponse;
 
+@RequiredArgsConstructor
 @Tag(name = "user", description = "사용자")
 @RestController
 @RequestMapping("/v1/users")
-public record UserController(UserService userService) {
+public final class UserController {
+
+    private final UserService userService;
 
     @Operation(summary = "사용자 등록(= 회원 가입)")
     @PostMapping("")

@@ -8,12 +8,15 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+@RequiredArgsConstructor
 @Tag(name = "book-memory", description = "북 메모리(이미 읽은 책, 읽고 싶은책)")
 @RestController
 @RequestMapping("/v1/bookMemories")
-public record BookMemoryController(BookMemoryService bookMemoryService) {
+public final class BookMemoryController {
+    private final BookMemoryService bookMemoryService;
 
     @Operation(summary = "이미 읽은 책 등록")
     @PostMapping("/complete")

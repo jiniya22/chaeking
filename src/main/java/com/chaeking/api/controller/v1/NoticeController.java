@@ -17,10 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @Tag(name = "setting-system", description = "세팅-시스템(공지사항, FAQ, 이용약관 등)")
 @RestController
 @RequestMapping("/v1/notices")
-public record NoticeController(NoticeService noticeService) {
+public final class NoticeController {
+
+    private final NoticeService noticeService;
 
     @Operation(summary = "공지사항 목록")
     @GetMapping("")
