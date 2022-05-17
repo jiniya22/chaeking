@@ -1,7 +1,7 @@
 package com.chaeking.api.controller.v1;
 
-import com.chaeking.api.domain.dto.data.BookMemoryDto;
-import com.chaeking.api.domain.dto.response.BaseResponse;
+import com.chaeking.api.domain.value.BookMemoryDto;
+import com.chaeking.api.domain.value.response.BaseResponse;
 import com.chaeking.api.service.BookMemoryService;
 import com.chaeking.api.util.DescriptionUtils;
 import io.swagger.v3.oas.annotations.Operation;
@@ -25,7 +25,7 @@ public final class BookMemoryController {
             @RequestHeader(name = "X-User-Id") Long userId,
             @RequestBody BookMemoryDto.BookMemoryCompleteNewReq req) {
         bookMemoryService.insertBookMemoryComplete(userId, req);
-        return new BaseResponse();
+        return BaseResponse.of();
     }
 
     @Operation(summary = "이미 읽은 책 수정")
@@ -37,7 +37,7 @@ public final class BookMemoryController {
             @PathVariable(name = "bookMemoryCompleteId") Long bookMemoryCompleteId,
             @RequestBody BookMemoryDto.BookMemoryCompleteReq req) {
         bookMemoryService.modifyBookMemoryComplete(userId, bookMemoryCompleteId, req);
-        return new BaseResponse();
+        return BaseResponse.of();
     }
 
     @Operation(summary = "이미 읽은 책 삭제")
@@ -48,7 +48,7 @@ public final class BookMemoryController {
             @Parameter(name = "bookMemoryCompleteId", description = DescriptionUtils.ID_BOOK_MEMORY_COMPLETE, in = ParameterIn.PATH)
             @PathVariable(name = "bookMemoryCompleteId") Long bookMemoryCompleteId) {
         bookMemoryService.deleteBookMemoryComplete(userId, bookMemoryCompleteId);
-        return new BaseResponse();
+        return BaseResponse.of();
     }
 
     @Operation(summary = "읽고 싶은 책 등록")
@@ -58,7 +58,7 @@ public final class BookMemoryController {
             @RequestHeader(name = "X-User-Id") Long userId,
             @RequestBody BookMemoryDto.BookMemoryWishNewReq req) {
         bookMemoryService.insertBookMemoryWish(userId, req);
-        return new BaseResponse();
+        return BaseResponse.of();
     }
 
     @Operation(summary = "읽고 싶은 책 수정")
@@ -70,7 +70,7 @@ public final class BookMemoryController {
             @PathVariable(name = "bookMemoryWishId") Long bookMemoryWishId,
             @RequestBody BookMemoryDto.BookMemoryWishReq req) {
         bookMemoryService.modifyBookMemoryWish(userId, bookMemoryWishId, req);
-        return new BaseResponse();
+        return BaseResponse.of();
     }
 
     @Operation(summary = "읽고 싶은 책 삭제")
@@ -81,6 +81,6 @@ public final class BookMemoryController {
             @Parameter(name = "bookMemoryWishId", description = DescriptionUtils.ID_BOOK_MEMORY_WISH, in = ParameterIn.PATH)
             @PathVariable(name = "bookMemoryWishId") Long bookMemoryWishId) {
         bookMemoryService.deleteBookMemoryWish(userId, bookMemoryWishId);
-        return new BaseResponse();
+        return BaseResponse.of();
     }
 }

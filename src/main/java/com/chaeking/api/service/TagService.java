@@ -1,6 +1,6 @@
 package com.chaeking.api.service;
 
-import com.chaeking.api.domain.dto.data.BaseDto;
+import com.chaeking.api.domain.value.BaseDto;
 import com.chaeking.api.domain.entity.Tag;
 import com.chaeking.api.repository.TagRepository;
 import lombok.RequiredArgsConstructor;

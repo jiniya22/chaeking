@@ -1,4 +1,4 @@
-package com.chaeking.api.domain.dto.data;
+package com.chaeking.api.domain.value;
 
 import lombok.Data;
 import lombok.Getter;

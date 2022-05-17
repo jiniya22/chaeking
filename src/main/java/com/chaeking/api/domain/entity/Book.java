@@ -3,6 +3,7 @@ package com.chaeking.api.domain.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -37,12 +38,11 @@ public class Book extends BaseEntity {
 
 //    private String status;
 
-    @Temporal(TemporalType.DATE)
-    private Date publicationDate;
+    private LocalDate publicationDate;
 
     @Builder
     public Book(String name, String author, int price, String publisher, String isbn, String imageUrl,
-                String detailInfo, Date publicationDate) {
+                String detailInfo, LocalDate publicationDate) {
         this.name = name;
         this.author = author;
         this.price = price;

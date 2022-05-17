@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.chaeking.api.domain.dto.data.UserDto;
-import com.chaeking.api.domain.dto.response.BaseResponse;
+import com.chaeking.api.domain.value.UserDto;
+import com.chaeking.api.domain.value.response.BaseResponse;
 
 @RequiredArgsConstructor
 @Tag(name = "user", description = "사용자")

@@ -1,4 +1,4 @@
-package com.chaeking.api.domain.dto.data;
+package com.chaeking.api.domain.value;
 
 import com.chaeking.api.domain.enumerate.Sex;
 import io.swagger.v3.oas.annotations.media.Schema;

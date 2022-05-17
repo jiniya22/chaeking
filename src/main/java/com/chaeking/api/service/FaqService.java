@@ -1,6 +1,6 @@
 package com.chaeking.api.service;
 
-import com.chaeking.api.domain.dto.data.BoardDto;
+import com.chaeking.api.domain.value.BoardValue;
 import com.chaeking.api.repository.FaqRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -14,10 +14,10 @@ import java.util.stream.Collectors;
 public class FaqService {
     private final FaqRepository faqRepository;
 
-    public List<BoardDto> faqs(Pageable pageable) {
+    public List<BoardValue.Res.Simple> faqs(Pageable pageable) {
         return faqRepository.findAll(pageable)
                 .stream()
-                .map(m -> new BoardDto(m.getId(), m.getTitle(), m.getContent()))
+                .map(m -> new BoardValue.Res.Simple(m.getId(), m.getTitle(), m.getContent()))
                 .collect(Collectors.toList());
     }
 }

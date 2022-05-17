@@ -1,7 +1,7 @@
 package com.chaeking.api.controller.v1;
 
-import com.chaeking.api.domain.dto.data.BaseDto;
-import com.chaeking.api.domain.dto.response.CommonResponse;
+import com.chaeking.api.domain.value.BaseDto;
+import com.chaeking.api.domain.value.response.DataResponse;
 import com.chaeking.api.service.TagService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -22,8 +22,8 @@ public final class TagController {
 
     @Operation(summary = "태그 목록")
     @GetMapping("")
-    public CommonResponse<List<BaseDto>> tags() {
+    public DataResponse<List<BaseDto>> tags() {
         List<BaseDto> data = tagService.tags();
-        return new CommonResponse<>(data);
+        return DataResponse.of(data);
     }
 }

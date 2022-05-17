@@ -1,7 +1,7 @@
 package com.chaeking.api.service;
 
 import com.chaeking.api.config.exception.InvalidInputException;
-import com.chaeking.api.domain.dto.data.BookMemoryDto;
+import com.chaeking.api.domain.value.BookMemoryDto;
 import com.chaeking.api.domain.entity.*;
 import com.chaeking.api.repository.BookMemoryCompleteRepository;
 import com.chaeking.api.repository.BookMemoryWishRepository;
