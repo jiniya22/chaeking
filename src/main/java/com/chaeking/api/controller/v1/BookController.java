@@ -10,6 +10,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Calendar;
+
 @RequiredArgsConstructor
 @Tag(name = "book", description = "책")
 @RestController
@@ -31,6 +33,7 @@ public final class BookController {
             @Parameter(name = "bookId", description = "책 id", in = ParameterIn.PATH, required = true)
             @PathVariable(name = "bookId") long bookId) {
         BookValue.Res.Detail data = bookService.book(bookId);
+        Calendar cal = Calendar.getInstance();
         return DataResponse.of(data);
     }
 }

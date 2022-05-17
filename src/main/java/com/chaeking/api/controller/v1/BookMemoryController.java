@@ -1,6 +1,7 @@
 package com.chaeking.api.controller.v1;
 
-import com.chaeking.api.domain.value.BookMemoryDto;
+import com.chaeking.api.domain.value.BookMemoryCompleteValue;
+import com.chaeking.api.domain.value.BookMemoryWishValue;
 import com.chaeking.api.domain.value.response.BaseResponse;
 import com.chaeking.api.service.BookMemoryService;
 import com.chaeking.api.util.DescriptionUtils;
@@ -23,7 +24,7 @@ public final class BookMemoryController {
     public BaseResponse insertBookMemoryComplete(
             @Parameter(name = "X-User-Id", description = DescriptionUtils.ID_USER, in = ParameterIn.HEADER)
             @RequestHeader(name = "X-User-Id") Long userId,
-            @RequestBody BookMemoryDto.BookMemoryCompleteNewReq req) {
+            @RequestBody BookMemoryCompleteValue.Req.Creation req) {
         bookMemoryService.insertBookMemoryComplete(userId, req);
         return BaseResponse.of();
     }
@@ -35,7 +36,7 @@ public final class BookMemoryController {
             @RequestHeader(name = "X-User-Id") Long userId,
             @Parameter(name = "bookMemoryCompleteId", description = DescriptionUtils.ID_BOOK_MEMORY_COMPLETE, in = ParameterIn.PATH)
             @PathVariable(name = "bookMemoryCompleteId") Long bookMemoryCompleteId,
-            @RequestBody BookMemoryDto.BookMemoryCompleteReq req) {
+            @RequestBody BookMemoryCompleteValue.Req.Modification req) {
         bookMemoryService.modifyBookMemoryComplete(userId, bookMemoryCompleteId, req);
         return BaseResponse.of();
     }
@@ -56,7 +57,7 @@ public final class BookMemoryController {
     public BaseResponse insertBookMemoryWish(
             @Parameter(name = "X-User-Id", description = DescriptionUtils.ID_USER, in = ParameterIn.HEADER)
             @RequestHeader(name = "X-User-Id") Long userId,
-            @RequestBody BookMemoryDto.BookMemoryWishNewReq req) {
+            @RequestBody BookMemoryWishValue.Req.Creation req) {
         bookMemoryService.insertBookMemoryWish(userId, req);
         return BaseResponse.of();
     }
@@ -68,7 +69,7 @@ public final class BookMemoryController {
             @RequestHeader(name = "X-User-Id") Long userId,
             @Parameter(name = "bookMemoryWishId", description = DescriptionUtils.ID_BOOK_MEMORY_WISH, in = ParameterIn.PATH)
             @PathVariable(name = "bookMemoryWishId") Long bookMemoryWishId,
-            @RequestBody BookMemoryDto.BookMemoryWishReq req) {
+            @RequestBody BookMemoryWishValue.Req.Modification req) {
         bookMemoryService.modifyBookMemoryWish(userId, bookMemoryWishId, req);
         return BaseResponse.of();
     }

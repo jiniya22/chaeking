@@ -2,17 +2,12 @@ package com.chaeking.api.domain.value;
 
 import com.chaeking.api.domain.entity.Book;
 import com.chaeking.api.util.DateUtils;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.time.LocalDate;
 import java.util.Optional;
 
-@Getter
-@Setter
 public final class BookValue {
 
     public final static class Req {
