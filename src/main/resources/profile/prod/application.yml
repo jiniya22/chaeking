@@ -1,13 +1,13 @@
 spring:
   application:
-    name: book
+    name: chaeking
   profiles:
     active: prod
   config:
     import: classpath:/chaeking.yml
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: "jdbc:mariadb://localhost:3306/book?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&tinyInt1isBit=false"
+    url: "jdbc:mariadb://applebox.xyz:3306/book?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&tinyInt1isBit=false"
     username: test
     password: test
     hikari:
@@ -36,7 +36,7 @@ springdoc:
   default-consumes-media-type: application/json
   default-produces-media-type: application/json
   swagger-ui:
-    operations-sorter: method
+    operations-sorter: alpha
     tags-sorter: alpha
     path: /swagger-ui.html
     disable-swagger-default-url: true

@@ -4,10 +4,14 @@ import com.chaeking.api.config.exception.InvalidInputException;
 import com.chaeking.api.domain.value.BookValue;
 import com.chaeking.api.domain.entity.Book;
 import com.chaeking.api.repository.BookRepository;
+import com.chaeking.api.util.DateUtils;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDate;
+import java.util.Optional;
 
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -33,8 +37,9 @@ public class BookService {
                 .author(req.author())
                 .imageUrl(req.image_url())
                 .publisher(req.publisher())
-                .detailInfo(req.detail_info()).build();
-//                .publicationDate(DateUtils.stringToDate(req.publication_date()))
+                .detailInfo(req.detail_info())
+                .publicationDate(Optional.ofNullable(req.publication_date())
+                        .map(m -> LocalDate.parse(m, DateUtils.DATE_FORMATTER)).orElse(null)).build();
         bookRepository.save(book);
 
         return new BookValue.Res.Detail(book);

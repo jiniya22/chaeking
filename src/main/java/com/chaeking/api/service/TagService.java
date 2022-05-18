@@ -1,6 +1,6 @@
 package com.chaeking.api.service;
 
-import com.chaeking.api.domain.value.BaseDto;
+import com.chaeking.api.domain.value.BaseValue;
 import com.chaeking.api.domain.entity.Tag;
 import com.chaeking.api.repository.TagRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,10 +20,10 @@ public class TagService {
         return tagRepository.findAllById(tagIds);
     }
 
-    public List<BaseDto> tags() {
+    public List<BaseValue> tags() {
         return tagRepository.findAll()
                 .stream()
-                .map(m -> new BaseDto(m.getId(), m.getName()))
+                .map(m -> new BaseValue(m.getId(), m.getName()))
                 .collect(Collectors.toList());
     }
 }

@@ -1,6 +1,6 @@
 spring:
   application:
-    name: book
+    name: chaeking
   profiles:
     active: local
   config:
@@ -28,7 +28,7 @@ spring:
     open-in-view: false
     show-sql: true
 server:
-  port: 8082
+  port: 8080
 
 springdoc:
   api-docs:
@@ -36,7 +36,7 @@ springdoc:
   default-consumes-media-type: application/json
   default-produces-media-type: application/json
   swagger-ui:
-    operations-sorter: method
+    operations-sorter: alpha
     tags-sorter: alpha
     path: /swagger-ui.html
     disable-swagger-default-url: true
