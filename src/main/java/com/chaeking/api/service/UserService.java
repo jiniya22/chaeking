@@ -14,25 +14,22 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
     private final UserRepository userRepository;
 
-    public User select(Long userId) {
-        User user = userRepository.findById(userId)
+    User select(long userId) {
+        return userRepository.findById(userId)
                 .orElseThrow(() -> new InvalidInputException("일치하는 사용자가 없습니다(X-Chaeking-User-Id Error)"));
-        return user;
     }
 
     @Transactional
     public BaseResponse save(UserValue.Req.Creation req) {
         if(userRepository.existsByEmail(req.email()))
             throw new InvalidInputException("등록된 이메일 입니다.");
-
-        User user = User.builder()
-                .email(req.email())
-                .name(req.name())
-                .birthDate(req.birth_date())
-                .sex(req.sex())
-                .password(req.password()).build();
-        userRepository.save(user);
+        userRepository.save(User.of(req));
 
         return BaseResponse.of();
     }
+
+    public UserValue.Res.Detail selectDetail(long userId) {
+        return UserValue.Res.Detail.of(select(userId));
+    }
+
 }
