@@ -5,12 +5,12 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.5.3</version>
+        <version>2.6.7</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.chaeking</groupId>
     <artifactId>chaeking-api</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <name>chaeking-api</name>
     <description>chaeking-api</description>
     <properties>
@@ -82,7 +82,7 @@
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
-            <version>1.6.5</version>
+            <version>1.6.8</version>
         </dependency>
     </dependencies>
 
@@ -104,7 +104,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.5.3</version>
                 <configuration>
                     <finalName>chaeking-api</finalName>
                     <excludes>

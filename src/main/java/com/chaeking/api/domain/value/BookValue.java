@@ -1,7 +1,7 @@
 package com.chaeking.api.domain.value;
 
 import com.chaeking.api.domain.entity.Book;
-import com.chaeking.api.util.DateUtils;
+import com.chaeking.api.util.DateTimeUtils;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -38,7 +38,7 @@ public final class BookValue {
         ) {
             public Detail(Book b) {
                 this(b.getId(), b.getName(), b.getAuthor(), b.getPrice(), b.getPublisher(),
-                        Optional.ofNullable(b.getPublicationDate()).map(m -> m.format(DateUtils.DATE_FORMATTER)).orElse(null),
+                        Optional.ofNullable(b.getPublicationDate()).map(m -> m.format(DateTimeUtils.DATE_FORMATTER)).orElse(null),
                         b.getIsbn(), b.getImageUrl(), b.getDetailInfo());
             }
         }

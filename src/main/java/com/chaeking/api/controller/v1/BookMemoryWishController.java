@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
-@Tag(name = "book-memory", description = "북 메모리(이미 읽은 책, 읽고 싶은책)")
+@Tag(name = "book-memory-wish", description = "북 메모리(읽고 싶은책)")
 @RestController
 @RequestMapping("/v1/bookMemories/wish")
 public final class BookMemoryWishController {

@@ -19,7 +19,7 @@ public class NoticeService {
     public List<BoardValue.Res.Simple> notices(Pageable pageable) {
         return noticeRepository.findAll(pageable)
                 .stream()
-                .map(m -> new BoardValue.Res.Simple(m.getId(), m.getTitle(), m.getContent()))
+                .map(BoardValue.Res.Simple::of)
                 .collect(Collectors.toList());
     }
 }
