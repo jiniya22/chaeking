@@ -55,7 +55,7 @@ public class User extends BaseEntity {
         return User.builder()
                 .email(c.email())
                 .name(c.name())
-                .birthDate(c.birthDate())
+                .birthDate(Optional.ofNullable(c.birthDate()).map(m -> LocalDate.parse(m, DateTimeUtils.DATE_FORMATTER)).orElse(null))
                 .sex(c.sex())
                 .password(c.password()).build();
     }

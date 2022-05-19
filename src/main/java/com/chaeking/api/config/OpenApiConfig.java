@@ -15,8 +15,7 @@ import java.util.List;
 @Component
 public class OpenApiConfig {
     @Bean
-    public OpenAPI openAPI(@Value("${chaeking.version}") String appVersion,
-                           @Value("${chaeking.url}") String url, @Value("${spring.profiles.active}") String active) {
+    public OpenAPI openAPI(@Value("${chaeking.version}") String appVersion, @Value("${chaeking.url}") String url, @Value("${spring.profiles.active}") String active) {
         Info info = new Info().title("Chaeking API - " + active).version(appVersion)
                 .description("책킹 API입니다.")
                 .contact(new Contact().name("jini").url("https://blog.jiniworld.me/").email("jini@chaeking.com"))
