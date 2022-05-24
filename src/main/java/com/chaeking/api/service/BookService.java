@@ -20,15 +20,14 @@ public class BookService {
     private final BookRepository bookRepository;
 
     public Book select(Long bookId) {
-        Book book = bookRepository.findById(bookId)
+        return bookRepository.findById(bookId)
                 .orElseThrow(() -> new InvalidInputException("조회되는 book 정보가 없습니다(book_id Error)"));
-        return book;
     }
 
     @Transactional
     public BookValue.Res.Detail insert(BookValue.Req.Creation req) {
         if(StringUtils.isBlank(req.name()))
-            throw new InvalidInputException("name은 필수 입력값입니다.");
+            throw new InvalidInputException("name 은 필수 입력값입니다.");
 
         Book book = Book.builder()
                 .name(req.name())
@@ -38,7 +37,7 @@ public class BookService {
                 .imageUrl(req.image_url())
                 .publisher(req.publisher())
                 .detailInfo(req.detail_info())
-                .publicationDate(Optional.ofNullable(req.publication_date())
+                .publicationDate(Optional.ofNullable(req.publicationDate())
                         .map(m -> LocalDate.parse(m, DateTimeUtils.DATE_FORMATTER)).orElse(null)).build();
         bookRepository.save(book);
 
@@ -46,8 +45,7 @@ public class BookService {
     }
 
     public BookValue.Res.Detail book(long bookId) {
-        BookValue.Res.Detail res = new BookValue.Res.Detail(select(bookId));
-        return res;
+        return new BookValue.Res.Detail(select(bookId));
     }
 
 }
