@@ -1,5 +1,6 @@
 package com.chaeking.api.controller.v1;
 
+import com.chaeking.api.domain.value.Ttt;
 import com.chaeking.api.domain.value.UserValue;
 import com.chaeking.api.domain.value.response.BaseResponse;
 import com.chaeking.api.domain.value.response.DataResponse;
@@ -32,5 +33,12 @@ public final class UserController {
     @GetMapping("/{userId}")
     public DataResponse<UserValue.Res.Detail> selectOne(@Parameter(description = DescriptionUtils.ID_USER) @PathVariable("userId") long userId) {
         return DataResponse.of(userService.selectDetail(userId));
+    }
+
+    @Operation(summary = "테스트")
+    @PostMapping("/test")
+    public DataResponse<Ttt> test(@RequestBody @Valid Ttt req) {
+        System.out.println(req);
+        return DataResponse.of(req);
     }
 }

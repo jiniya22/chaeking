@@ -1,41 +1,33 @@
 package com.chaeking.api.config;
 
-import com.chaeking.api.config.provider.LocalDateSerializer;
-import com.fasterxml.jackson.databind.MapperFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.chaeking.api.config.module.SerializeModule;
+import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 import io.swagger.v3.core.jackson.ModelResolver;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
-
 @Component
 public final class WebConfig {
 
     @Bean
-    public ObjectMapper objectMapper() {
-        SimpleModule simpleModule = new SimpleModule();
-        simpleModule.addDeserializer(LocalDate.class, new LocalDateSerializer());
-
-        return new ObjectMapper()
-//                .registerModule(new JavaTimeModule())
-                .setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE)
-                .registerModules(simpleModule);
+    public ObjectMapper jsonMapper() {
+        return JsonMapper.builder()
+                .propertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE)
+                .enable(SerializationFeature.INDENT_OUTPUT)
+                .enable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY)
+                .disable(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES)
+                .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
+                .addModule(SerializeModule.dateTimeModule)
+                .addModule(SerializeModule.recordNamingStrategyPatchModule)
+                .build();
     }
+
     @Bean
-    public ModelResolver modelResolver(@Qualifier("objectMapper") ObjectMapper objectMapper) {
-        ModelResolver m = new ModelResolver(objectMapper);
+    public ModelResolver modelResolver(@Qualifier("jsonMapper") ObjectMapper jsonMapper) {
+        ModelResolver m = new ModelResolver(jsonMapper);
         return m;
     }
-
-//    @Bean
-//    public ModelResolver modelResolver(ObjectMapper objectMapper) {
-//        return new ModelResolver(objectMapper.setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE));
-//    }
 
 }
