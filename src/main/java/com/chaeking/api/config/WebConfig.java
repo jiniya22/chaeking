@@ -17,6 +17,8 @@ public final class WebConfig {
                 .propertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE)
                 .enable(SerializationFeature.INDENT_OUTPUT)
                 .enable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY)
+                .enable(SerializationFeature.WRITE_ENUMS_USING_TO_STRING)
+                .enable(DeserializationFeature.READ_ENUMS_USING_TO_STRING)
                 .disable(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES)
                 .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
                 .addModule(SerializeModule.dateTimeModule)

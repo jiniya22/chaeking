@@ -5,6 +5,7 @@ import com.chaeking.api.domain.value.response.BaseResponse;
 import com.chaeking.api.util.MessageUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageConversionException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -14,7 +15,7 @@ import javax.validation.ValidationException;
 @ControllerAdvice
 public class ExceptionAdvice {
 
-    @ExceptionHandler({InvalidInputException.class, ValidationException.class})
+    @ExceptionHandler({InvalidInputException.class, ValidationException.class, HttpMessageConversionException.class})
     protected ResponseEntity<BaseResponse> invalidInputException(RuntimeException e) {
         return ResponseEntity.badRequest()
                 .body(BaseResponse.of(e.getMessage()));
