@@ -93,7 +93,7 @@ public class SerializeModule {
 
         @Override
         public void serialize(LocalDate value, JsonGenerator gen, SerializerProvider provider) throws IOException {
-            gen.writeString(value.format(DateTimeUtils.DATE_FORMATTER));
+            gen.writeString(value.format(DateTimeUtils.FORMATTER_DATE));
         }
     }
     static class LocalDateDeserializer extends StdDeserializer<LocalDate> {
@@ -106,7 +106,7 @@ public class SerializeModule {
 
         @Override
         public LocalDate deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
-            return LocalDate.parse(p.getText(), DateTimeUtils.DATE_FORMATTER);
+            return LocalDate.parse(p.getText(), DateTimeUtils.FORMATTER_DATE);
         }
     }
 
@@ -120,7 +120,7 @@ public class SerializeModule {
 
         @Override
         public void serialize(LocalTime value, JsonGenerator gen, SerializerProvider provider) throws IOException {
-            gen.writeString(value.format(DateTimeUtils.TIME_FORMATTER));
+            gen.writeString(value.format(DateTimeUtils.FORMATTER_TIME));
         }
     }
     static class LocalTimeDeserializer extends StdDeserializer<LocalTime> {
@@ -133,7 +133,7 @@ public class SerializeModule {
 
         @Override
         public LocalTime deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
-            return LocalTime.parse(p.getText(), DateTimeUtils.TIME_FORMATTER);
+            return LocalTime.parse(p.getText(), DateTimeUtils.FORMATTER_TIME);
         }
     }
 
@@ -147,7 +147,7 @@ public class SerializeModule {
 
         @Override
         public void serialize(LocalDateTime value, JsonGenerator gen, SerializerProvider provider) throws IOException {
-            gen.writeString(value.format(DateTimeUtils.DATETIME_FORMATTER));
+            gen.writeString(value.format(DateTimeUtils.FORMATTER_DATETIME));
         }
     }
     static class LocalDateTimeDeserializer extends StdDeserializer<LocalDateTime> {
@@ -160,7 +160,7 @@ public class SerializeModule {
 
         @Override
         public LocalDateTime deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
-            return LocalDateTime.parse(p.getText(), DateTimeUtils.DATETIME_FORMATTER);
+            return LocalDateTime.parse(p.getText(), DateTimeUtils.FORMATTER_DATETIME);
         }
     }
 }

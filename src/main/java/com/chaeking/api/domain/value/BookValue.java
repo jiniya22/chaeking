@@ -41,7 +41,7 @@ public final class BookValue {
         ) {
             public Detail(Book b) {
                 this(b.getId(), b.getName(), b.getAuthor(), b.getPrice(), b.getPublisher(),
-                        Optional.ofNullable(b.getPublicationDate()).map(m -> m.format(DateTimeUtils.DATE_FORMATTER)).orElse(null),
+                        Optional.ofNullable(b.getPublicationDate()).map(m -> m.format(DateTimeUtils.FORMATTER_DATE)).orElse(null),
                         b.getIsbn(), b.getImageUrl(), b.getDetailInfo());
             }
         }

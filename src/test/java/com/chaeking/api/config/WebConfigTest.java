@@ -18,7 +18,7 @@ class WebConfigTest {
     @Test
     void serializeTest() {
 //        UserValue.Req.Creation user1 = new UserValue.Req.Creation("jini@jiniworld.me", "123", "지니", LocalDate.of(1992, 11, 11), Sex.F);
-        UserValue.Req.Creation user1 = new UserValue.Req.Creation("jini@jiniworld.me", "123", "지니", "1992-11-11", Sex.F);
+        UserValue.Req.Creation user1 = new UserValue.Req.Creation("jini@jiniworld.me", "123", "지니", "1992-11-11", "F");
         try {
             System.out.println(objectMapper.writeValueAsString(user1));
         } catch (JsonProcessingException e) {

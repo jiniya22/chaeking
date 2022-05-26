@@ -38,7 +38,7 @@ public class BookService {
                 .publisher(req.publisher())
                 .detailInfo(req.detail_info())
                 .publicationDate(Optional.ofNullable(req.publicationDate())
-                        .map(m -> LocalDate.parse(m, DateTimeUtils.DATE_FORMATTER)).orElse(null)).build();
+                        .map(m -> LocalDate.parse(m, DateTimeUtils.FORMATTER_DATE)).orElse(null)).build();
         bookRepository.save(book);
 
         return new BookValue.Res.Detail(book);

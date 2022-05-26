@@ -3,8 +3,11 @@ package com.chaeking.api.util;
 import java.time.format.DateTimeFormatter;
 
 public final class DateTimeUtils {
-    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss");
-    public static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    static final String DEFAULT_PATTERN_DATE = "yyyy-MM-dd";
+    static final String DEFAULT_PATTERN_TIME = "HH:mm:ss";
+    static final String DEFAULT_PATTERN_DATETIME = "yyyy-MM-dd HH:mm:ss";
 
+    public static final DateTimeFormatter FORMATTER_DATE = DateTimeFormatter.ofPattern(DEFAULT_PATTERN_DATE);
+    public static final DateTimeFormatter FORMATTER_TIME = DateTimeFormatter.ofPattern(DEFAULT_PATTERN_TIME);
+    public static final DateTimeFormatter FORMATTER_DATETIME = DateTimeFormatter.ofPattern(DEFAULT_PATTERN_DATETIME);
 }

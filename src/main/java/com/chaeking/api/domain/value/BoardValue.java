@@ -12,7 +12,7 @@ public class BoardValue {
         @Schema(name = "BoardSimple")
         public record Simple(long id, String title, String createdOn) {
             public static Simple of(BaseBoard b) {
-                return new Simple(b.getId(), b.getTitle(), Optional.ofNullable(b.getCreatedAt()).map(m -> m.format(DateTimeUtils.DATE_FORMATTER)).orElse(null));
+                return new Simple(b.getId(), b.getTitle(), Optional.ofNullable(b.getCreatedAt()).map(m -> m.format(DateTimeUtils.FORMATTER_DATE)).orElse(null));
             }
         }
 
