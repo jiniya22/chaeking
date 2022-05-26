@@ -2,6 +2,7 @@ package com.chaeking.api.domain.value;
 
 import com.chaeking.api.domain.entity.Book;
 import com.chaeking.api.util.DateTimeUtils;
+import com.chaeking.api.util.RegexpUtils;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.validation.constraints.NotBlank;
@@ -18,10 +19,10 @@ public final class BookValue {
                 @NotBlank @Size(max = 300) String author,
                 int price,
                 @NotBlank @Size(max = 300) String publisher,
-                @NotBlank @Pattern(regexp = "^(19[0-9][0-9]|20\\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$") String publicationDate,
+                @NotBlank @Pattern(regexp = RegexpUtils.DATE) String publicationDate,
                 @Size(max = 20) String isbn,
-                @Size(max = 500) String image_url,
-                String detail_info
+                @Size(max = 500) String imageUrl,
+                String detailInfo
         ) {
         }
     }

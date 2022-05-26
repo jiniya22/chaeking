@@ -34,9 +34,9 @@ public class BookService {
                 .isbn(req.isbn())
                 .price(req.price())
                 .author(req.author())
-                .imageUrl(req.image_url())
+                .imageUrl(req.imageUrl())
                 .publisher(req.publisher())
-                .detailInfo(req.detail_info())
+                .detailInfo(req.detailInfo())
                 .publicationDate(Optional.ofNullable(req.publicationDate())
                         .map(m -> LocalDate.parse(m, DateTimeUtils.FORMATTER_DATE)).orElse(null)).build();
         bookRepository.save(book);
