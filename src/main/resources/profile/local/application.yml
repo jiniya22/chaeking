@@ -7,7 +7,7 @@ spring:
     import: classpath:/chaeking.yml
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: "jdbc:mariadb://localhost:3306/book?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&tinyInt1isBit=false"
+    url: "jdbc:mariadb://localhost:3306/book"
     username: test
     password: test
     hikari:
@@ -41,5 +41,7 @@ springdoc:
     path: /swagger-ui.html
     disable-swagger-default-url: true
     doc-expansion: none
+    syntax-highlight:
+      theme: nord
   paths-to-match:
     - /v1/**

@@ -41,5 +41,7 @@ springdoc:
     path: /swagger-ui.html
     disable-swagger-default-url: true
     doc-expansion: none
+    syntax-highlight:
+      theme: nord
   paths-to-match:
     - /v1/**
