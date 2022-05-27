@@ -25,9 +25,10 @@ public final class BookMemoryWishController {
     @Operation(summary = "읽고 싶은 책 목록")
     @GetMapping("")
     public DataResponse<List<BookMemoryWishValue.Res.Simple>> selectAll(
+            @Parameter(description = DescriptionUtils.ID_USER) @RequestHeader(name = "X-User-Id") Long userId,
             @RequestParam(value = "page", required = false, defaultValue = "0") int page,
             @RequestParam(value = "size", required = false, defaultValue = "10") int size) {
-        return DataResponse.of(bookMemoryWishService.selectAll(PageRequest.of(page, size, Sort.by(Sort.Order.desc("id")))));
+        return DataResponse.of(bookMemoryWishService.selectAll(userId, PageRequest.of(page, size, Sort.by(Sort.Order.desc("id")))));
     }
 
     @Operation(summary = "읽고 싶은 책 등록")

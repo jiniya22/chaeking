@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.Lob;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,8 +24,9 @@ public class BookMemoryWishService {
     private final UserService userService;
     private final BookMemoryWishRepository bookMemoryWishRepository;
 
-    public List<BookMemoryWishValue.Res.Simple> selectAll(Pageable pageable) {
-        return bookMemoryWishRepository.findAll(pageable).stream()
+    public List<BookMemoryWishValue.Res.Simple> selectAll(Long userId, Pageable pageable) {
+        User user = userService.select(userId);
+        return bookMemoryWishRepository.findAllByUser(user, pageable).stream()
                 .map(BookMemoryWishValue.Res.Simple::of).collect(Collectors.toList());
     }
 

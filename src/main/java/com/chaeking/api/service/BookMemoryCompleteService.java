@@ -26,8 +26,9 @@ public class BookMemoryCompleteService {
     private final TagService tagService;
     private final BookMemoryCompleteRepository bookMemoryCompleteRepository;
 
-    public List<BookMemoryCompleteValue.Res.Simple> selectAll(Pageable pageable) {
-        return bookMemoryCompleteRepository.findAll(pageable)
+    public List<BookMemoryCompleteValue.Res.Simple> selectAll(Long userId, Pageable pageable) {
+        User user = userService.select(userId);
+        return bookMemoryCompleteRepository.findAllByUser(user, pageable)
                 .stream()
                 .map(BookMemoryCompleteValue.Res.Simple::of)
                 .collect(Collectors.toList());

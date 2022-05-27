@@ -25,9 +25,10 @@ public final class BookMemoryCompleteController {
     @Operation(summary = "이미 읽은 책 목록")
     @GetMapping("")
     public DataResponse<List<BookMemoryCompleteValue.Res.Simple>> selectAll(
+            @Parameter(description = DescriptionUtils.ID_USER) @RequestHeader(name = "X-User-Id") Long userId,
             @RequestParam(value = "page", required = false, defaultValue = "0") int page,
             @RequestParam(value = "size", required = false, defaultValue = "10") int size) {
-        return DataResponse.of(bookMemoryCompleteService.selectAll(PageRequest.of(page, size, Sort.by(Sort.Order.desc("id")))));
+        return DataResponse.of(bookMemoryCompleteService.selectAll(userId, PageRequest.of(page, size, Sort.by(Sort.Order.desc("id")))));
     }
 
     @Operation(summary = "이미 읽은 책 등록")
