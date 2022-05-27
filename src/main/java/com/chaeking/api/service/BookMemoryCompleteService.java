@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 @Service
-public class BookMemoryComplateService {
+public class BookMemoryCompleteService {
     private final BookService bookService;
     private final UserService userService;
     private final TagService tagService;

@@ -30,8 +30,8 @@ public final class UserController {
     }
 
     @Operation(summary = "사용자 조회")
-    @GetMapping("/{userId}")
-    public DataResponse<UserValue.Res.Detail> selectOne(@Parameter(description = DescriptionUtils.ID_USER) @PathVariable("userId") long userId) {
+    @GetMapping("/{user_id}")
+    public DataResponse<UserValue.Res.Detail> selectOne(@Parameter(description = DescriptionUtils.ID_USER) @PathVariable("user_id") long userId) {
         return DataResponse.of(userService.selectDetail(userId));
     }
 

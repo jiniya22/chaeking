@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @Tag(name = "book-memory-wish", description = "북 메모리(읽고 싶은책)")
 @RestController
-@RequestMapping("/v1/bookMemories/wish")
+@RequestMapping("/v1/book-memories/wish")
 public final class BookMemoryWishController {
     private final BookMemoryWishService bookMemoryWishService;
 
@@ -27,20 +27,20 @@ public final class BookMemoryWishController {
     }
 
     @Operation(summary = "읽고 싶은 책 수정")
-    @PutMapping("/{bookMemoryWishId}")
+    @PutMapping("/{book_memory_wish_id}")
     public BaseResponse modify(
             @Parameter(description = DescriptionUtils.ID_USER) @RequestHeader(name = "X-User-Id") Long userId,
-            @Parameter(description = DescriptionUtils.ID_BOOK_MEMORY_WISH) @PathVariable(name = "bookMemoryWishId") Long bookMemoryWishId,
+            @Parameter(description = DescriptionUtils.ID_BOOK_MEMORY_WISH) @PathVariable(name = "book_memory_wish_id") Long bookMemoryWishId,
             @RequestBody BookMemoryWishValue.Req.Modification req) {
         bookMemoryWishService.modify(userId, bookMemoryWishId, req);
         return BaseResponse.of();
     }
 
     @Operation(summary = "읽고 싶은 책 삭제")
-    @DeleteMapping("/{bookMemoryWishId}")
+    @DeleteMapping("/{book_memory_wish_id}")
     public BaseResponse delete(
             @Parameter(description = DescriptionUtils.ID_USER) @RequestHeader(name = "X-User-Id") Long userId,
-            @Parameter(description = DescriptionUtils.ID_BOOK_MEMORY_WISH) @PathVariable(name = "bookMemoryWishId") Long bookMemoryWishId) {
+            @Parameter(description = DescriptionUtils.ID_BOOK_MEMORY_WISH) @PathVariable(name = "book_memory_wish_id") Long bookMemoryWishId) {
         bookMemoryWishService.delete(userId, bookMemoryWishId);
         return BaseResponse.of();
     }

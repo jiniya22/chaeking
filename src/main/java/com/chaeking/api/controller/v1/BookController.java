@@ -28,9 +28,9 @@ public final class BookController {
     }
 
     @Operation(summary = "책 상세조회")
-    @GetMapping("/{bookId}")
+    @GetMapping("/{book_id}")
     public DataResponse<BookValue.Res.Detail> selectAll(
-            @Parameter(description = "책 id") @PathVariable(name = "bookId") long bookId) {
+            @Parameter(description = "책 id") @PathVariable(name = "book_id") long bookId) {
         BookValue.Res.Detail data = bookService.book(bookId);
         Calendar cal = Calendar.getInstance();
         return DataResponse.of(data);
