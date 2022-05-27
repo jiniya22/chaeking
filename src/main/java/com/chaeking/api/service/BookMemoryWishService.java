@@ -8,8 +8,12 @@ import com.chaeking.api.domain.value.BookMemoryWishValue;
 import com.chaeking.api.repository.BookMemoryWishRepository;
 import com.chaeking.api.util.MessageUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -18,6 +22,11 @@ public class BookMemoryWishService {
     private final BookService bookService;
     private final UserService userService;
     private final BookMemoryWishRepository bookMemoryWishRepository;
+
+    public List<BookMemoryWishValue.Res.Simple> selectAll(Pageable pageable) {
+        return bookMemoryWishRepository.findAll(pageable).stream()
+                .map(BookMemoryWishValue.Res.Simple::of).collect(Collectors.toList());
+    }
 
     @Transactional
     public void insert(Long userId, BookMemoryWishValue.Req.Creation value) {

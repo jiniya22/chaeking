@@ -1,15 +1,20 @@
 package com.chaeking.api.service;
 
 import com.chaeking.api.config.exception.InvalidInputException;
+import com.chaeking.api.domain.value.BoardValue;
 import com.chaeking.api.domain.value.BookMemoryCompleteValue;
 import com.chaeking.api.domain.entity.*;
+import com.chaeking.api.domain.value.BookMemoryWishValue;
 import com.chaeking.api.repository.BookMemoryCompleteRepository;
 import com.chaeking.api.util.MessageUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Transactional(readOnly = true)
@@ -20,6 +25,13 @@ public class BookMemoryCompleteService {
     private final UserService userService;
     private final TagService tagService;
     private final BookMemoryCompleteRepository bookMemoryCompleteRepository;
+
+    public List<BookMemoryCompleteValue.Res.Simple> selectAll(Pageable pageable) {
+        return bookMemoryCompleteRepository.findAll(pageable)
+                .stream()
+                .map(BookMemoryCompleteValue.Res.Simple::of)
+                .collect(Collectors.toList());
+    }
 
     @Transactional
     public void insert(Long userId, BookMemoryCompleteValue.Req.Creation req) {
