@@ -32,9 +32,9 @@ public class LogInterceptor implements HandlerInterceptor {
         if (request != null) {
             clientIp = request.getHeader("X-FORWARDED-FOR");
             if (Strings.isBlank(clientIp))  clientIp = request.getRemoteAddr();
-            if (Strings.isBlank(clientIp) || "unknown".equalsIgnoreCase(clientIp))	clientIp = request.getHeader("Proxy-Client-clientIp");
-            if (Strings.isBlank(clientIp) || "unknown".equalsIgnoreCase(clientIp))	clientIp = request.getHeader("WL-Proxy-Client-clientIp");
-            if (Strings.isBlank(clientIp) || "unknown".equalsIgnoreCase(clientIp))	clientIp = request.getHeader("HTTP_CLIENT_clientIp");
+            if (Strings.isBlank(clientIp) || "unknown".equalsIgnoreCase(clientIp))	clientIp = request.getHeader("PROXY-CLIENT-IP");
+            if (Strings.isBlank(clientIp) || "unknown".equalsIgnoreCase(clientIp))	clientIp = request.getHeader("WL-PROXY-CLIENT-IP");
+            if (Strings.isBlank(clientIp) || "unknown".equalsIgnoreCase(clientIp))	clientIp = request.getHeader("HTTP_CLIENT_IP");
             if (Strings.isBlank(clientIp) || "unknown".equalsIgnoreCase(clientIp))	clientIp = request.getHeader("HTTP_X_FORWARDED_FOR");
             if (Strings.isBlank(clientIp) || "unknown".equalsIgnoreCase(clientIp))	clientIp = request.getRemoteAddr();
         }
