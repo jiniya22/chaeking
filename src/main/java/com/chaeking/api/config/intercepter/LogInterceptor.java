@@ -12,8 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 @Slf4j
 @Component
 public class LogInterceptor implements HandlerInterceptor {
-
-    private static final String LOG_FORMAT = "====== log interceptor %s called : %s \"%s\" [%s]";
+    private static final String LOG_FORMAT = "====== %s called\t: %s \"%s\" [%s]";
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {

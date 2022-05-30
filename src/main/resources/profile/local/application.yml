@@ -21,14 +21,26 @@ spring:
     database-platform: org.hibernate.dialect.MariaDB103Dialect
     properties:
       hibernate:
-        format_sql: true
+        format_sql: false
         hbm2ddl.auto: update
         implicit_naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
         physical_naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
     open-in-view: false
     show-sql: true
+
+  devtools:
+    add-properties: false
+
 server:
   port: 8080
+  tomcat:
+    basedir: .
+    remote-ip-header: X-Forwarded-For
+    protocol-header: X-Forwarded-Proto
+    accesslog:
+      enabled: true
+      directory: logs
+      pattern: "%{yyyy-MM-dd HH:mm:ss}t %{X-Forwarded-For}i(%h) %l %u \"%r\" %s %b"
 
 springdoc:
   api-docs:
@@ -47,6 +59,7 @@ springdoc:
     - /v1/**
 
 logging:
+  file: logs/check.log
   exception-conversion-word: '%wEx'
   pattern:
     console: '%d{yyyy-MM-dd HH:mm:ss.SSS} %clr(${LOG_LEVEL_PATTERN:%-5p}){green} %clr([%22thread]){magenta} %clr(%-40.40logger{39}){cyan} %clr(: %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}){faint}'

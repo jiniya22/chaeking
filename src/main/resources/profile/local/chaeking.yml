@@ -1,3 +1,6 @@
 chaeking:
   version: '@project.version@'
   url: http://localhost:${server.port}
+
+  flag:
+    common-request-logging-filter: true
