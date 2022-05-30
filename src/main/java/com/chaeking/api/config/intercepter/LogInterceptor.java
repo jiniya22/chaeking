@@ -13,19 +13,16 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class LogInterceptor implements HandlerInterceptor {
 
-    private static final String LOG_FORMAT_1 = "====== log interceptor %s called [%s]";
-    private static final String LOG_FORMAT_2 = "======= Request URI: (%s) %s";
+    private static final String LOG_FORMAT = "====== log interceptor %s called : %s \"%s\" [%s]";
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        log.info(String.format(LOG_FORMAT_1, "preHandle", getClientIp(request)));
-        log.info(String.format(LOG_FORMAT_2, request.getMethod(), request.getRequestURI()));
         return HandlerInterceptor.super.preHandle(request, response, handler);
     }
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        log.info(String.format(LOG_FORMAT_1, "postHandle", getClientIp(request)));
+        log.info(String.format(LOG_FORMAT, "postHandle", request.getMethod(), request.getRequestURI(), getClientIp(request)));
         HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
     }
 
