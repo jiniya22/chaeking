@@ -1,6 +1,7 @@
 package com.chaeking.api.config;
 
 import com.chaeking.api.config.exception.InvalidInputException;
+import com.chaeking.api.config.exception.ServerErrorException;
 import com.chaeking.api.domain.value.response.BaseResponse;
 import com.chaeking.api.domain.value.response.ErrorResponse;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,12 @@ public class ExceptionAdvice {
     protected ResponseEntity<ErrorResponse> handleException(MethodArgumentNotValidException e) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(ErrorResponse.of(e.getBindingResult().getFieldErrors().stream().map(ErrorResponse.ErrorMessage::new).collect(Collectors.toList())));
+    }
+
+    @ExceptionHandler(ServerErrorException.class)
+    protected ResponseEntity<BaseResponse> serverErrorException(ServerErrorException e) {
+        return ResponseEntity.internalServerError()
+                .body(BaseResponse.of(e.getMessage()));
     }
 
 }

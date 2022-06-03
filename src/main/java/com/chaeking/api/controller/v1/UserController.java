@@ -1,5 +1,6 @@
 package com.chaeking.api.controller.v1;
 
+import com.chaeking.api.domain.value.TokenValue;
 import com.chaeking.api.domain.value.Ttt;
 import com.chaeking.api.domain.value.UserValue;
 import com.chaeking.api.domain.value.response.BaseResponse;
@@ -29,13 +30,20 @@ public final class UserController {
         return res;
     }
 
+    @Operation(summary = "로그인")
+    @PostMapping("/login")
+    public DataResponse<TokenValue> login(@RequestBody @Valid UserValue.Req.Login req) {
+        TokenValue res = userService.login(req);
+        return DataResponse.of(res);
+    }
+
     @Operation(summary = "사용자 조회")
     @GetMapping("/{user_id}")
     public DataResponse<UserValue.Res.Detail> selectOne(@Parameter(description = DescriptionUtils.ID_USER) @PathVariable("user_id") long userId) {
         return DataResponse.of(userService.selectDetail(userId));
     }
 
-    @Operation(summary = "테스트")
+    @Operation(summary = "(삭제 예정) 테스트")
     @PostMapping("/test")
     public DataResponse<Ttt> test(@RequestBody @Valid Ttt req) {
         System.out.println(req);
