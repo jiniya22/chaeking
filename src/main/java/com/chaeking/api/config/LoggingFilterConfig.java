@@ -26,6 +26,7 @@ public class LoggingFilterConfig {
     @Bean
     public FilterRegistrationBean<CommonsRequestLoggingFilter> loggingFilter() {
         FilterRegistrationBean<CommonsRequestLoggingFilter> registrationBean = new FilterRegistrationBean<>(commonsRequestLoggingFilter());
+        registrationBean.addUrlPatterns("/v1/*");
         return registrationBean;
     }
 
