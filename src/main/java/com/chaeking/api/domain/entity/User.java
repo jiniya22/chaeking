@@ -3,6 +3,8 @@ package com.chaeking.api.domain.entity;
 import com.chaeking.api.domain.enumerate.Sex;
 import com.chaeking.api.domain.value.UserValue;
 import com.chaeking.api.util.DateTimeUtils;
+import com.chaeking.api.util.cipher.AESCipher;
+import com.chaeking.api.util.cipher.SHA256Cipher;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
@@ -52,11 +54,12 @@ public class User extends BaseEntity {
     }
     
     public static User of(UserValue.Req.Creation c) {
+        String pw = AESCipher.decrypt(c.password(), c.secretKey());
         return User.builder()
                 .email(c.email())
                 .name(c.name())
                 .birthDate(Optional.ofNullable(c.birthDate()).map(m -> LocalDate.parse(m, DateTimeUtils.FORMATTER_DATE)).orElse(null))
                 .sex(Sex.valueOf(c.sex()))
-                .password(c.password()).build();
+                .password(SHA256Cipher.convertHash(pw)).build();
     }
 }

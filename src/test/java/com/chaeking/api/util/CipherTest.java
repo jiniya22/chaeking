@@ -1,6 +1,7 @@
 package com.chaeking.api.util;
 
 import com.chaeking.api.util.cipher.AESCipher;
+import com.chaeking.api.util.cipher.SHA256Cipher;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,14 +11,15 @@ class CipherTest {
     @Test
     void aesCipherTest() {
         String secretKey = "A37aXdxH6gwTySajLe8eZWNvyC2yuZVB";
-        String s1 = AESCipher.encrypt("jini", secretKey);
-        System.out.println(s1);         // 99kOO+SV6fqcGIJVjVuBsA==
+        String password = AESCipher.encrypt("222", secretKey);
+        System.out.println(password);         // 99kOO+SV6fqcGIJVjVuBsA==
 
-        String s2 = AESCipher.decrypt(s1, secretKey);
+        String s2 = AESCipher.decrypt(password, secretKey);
         System.out.println(s2);         // jini
 
-        String s3 = AESCipher.encrypt(null, secretKey);
-        System.out.println(s3);         // 99kOO+SV6fqcGIJVjVuBsA==
+        System.out.println(SHA256Cipher.convertHash(s2));
+        System.out.println(SHA256Cipher.convertHash(s2));
+        System.out.println(SHA256Cipher.convertHash(s2));
     }
 
 }

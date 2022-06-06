@@ -22,7 +22,9 @@ public final class UserController {
 
     private final UserService userService;
 
-    @Operation(summary = "사용자 등록(= 회원 가입)")
+    @Operation(summary = "사용자 등록(= 회원 가입)",
+            description = "<ul><li>secret_key: uuid 나 32자 이상의 난수값</li>" +
+                    "<li>password: secret_key 를 이용하여 비밀번호를 AES 암호화한 값</li></ul>")
     @PostMapping("")
     public BaseResponse save(@RequestBody @Valid UserValue.Req.Creation req) {
         BaseResponse res = userService.save(req);

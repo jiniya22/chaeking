@@ -27,13 +27,13 @@ public class AESCipher {
             return encryptedData;
         } catch (Exception e) {
             System.out.println(e);
-            throw new InvalidInputException(String.format("암호화 중 에러가 발생되었습니다. : %s", e.getMessage()));
+            throw new InvalidInputException(String.format("AES 암호화 중 에러가 발생되었습니다. : %s", e.getMessage()));
         }
     }
 
     public static String decrypt(String data, String secretKey) {
         if(Strings.isBlank(data))
-            throw new InvalidInputException("null 또는 빈문자열을 허용하지 않습니다.");
+            throw new InvalidInputException("AES 복호화 대상은 null 또는 빈문자열을 허용하지 않습니다.");
         if(Strings.isBlank(secretKey) || secretKey.length() < 32)
             throw new InvalidInputException("secret_key 는 최소 32 자 이상이어야 합니다.");
 
@@ -46,7 +46,7 @@ public class AESCipher {
             return decryptedData;
         } catch (Exception e) {
             System.out.println(e);
-            throw new InvalidInputException(String.format("복호화 중 에러가 발생되었습니다. : %s", e.getMessage()));
+            throw new InvalidInputException(String.format("AES 복호화 중 에러가 발생되었습니다. : %s", e.getMessage()));
         }
     }
 
