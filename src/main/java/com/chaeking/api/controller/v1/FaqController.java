@@ -24,7 +24,7 @@ public final class FaqController {
 
     @Operation(summary = "FAQ(자주묻는 질문) 목록")
     @GetMapping("")
-    public DataResponse<List<BoardValue.Res.Simple>> notices(
+    public DataResponse<List<BoardValue.Res.Simple>> faqs(
             @RequestParam(value = "page", required = false, defaultValue = "0") int page,
             @RequestParam(value = "size", required = false, defaultValue = "10") int size) {
         List<BoardValue.Res.Simple> data = faqService.faqs(PageRequest.of(page, size, Sort.by(Sort.Order.desc("id"))));
