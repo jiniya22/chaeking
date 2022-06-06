@@ -3,6 +3,7 @@ package com.chaeking.api.domain.value;
 import com.chaeking.api.domain.entity.User;
 import com.chaeking.api.domain.enumerate.Sex;
 import com.chaeking.api.util.DateTimeUtils;
+import com.chaeking.api.util.JWTUtils;
 import com.chaeking.api.util.RegexpUtils;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.hibernate.validator.constraints.Length;
@@ -37,6 +38,16 @@ public final class UserValue {
                         u.getName(),
                         Optional.ofNullable(u.getBirthDate()).map(m -> m.format(DateTimeUtils.FORMATTER_DATE)).orElse(null),
                         u.getSex());
+            }
+        }
+
+        @Schema(name = "UserToken")
+        public record Token(
+                @Schema(description = "사용자 id") Long userId,
+                String accessToken,
+                String refreshToken) {
+            public final static Token of(User u) {
+                return new Token(u.getId(), JWTUtils.createAccessToken(u), JWTUtils.createRefreshToken(u));
             }
         }
     }

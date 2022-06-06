@@ -1,6 +1,5 @@
 package com.chaeking.api.controller.v1;
 
-import com.chaeking.api.domain.value.TokenValue;
 import com.chaeking.api.domain.value.Ttt;
 import com.chaeking.api.domain.value.UserValue;
 import com.chaeking.api.domain.value.response.BaseResponse;
@@ -30,10 +29,14 @@ public final class UserController {
         return res;
     }
 
-    @Operation(summary = "로그인")
+    @Operation(summary = "로그인",
+            description = "email 과 password 를 이용하여 로그인합니다.<br>" +
+                    "로그인 성공시, user_id 와 access_token, refresh_token 을 리턴해줍니다.<br>" +
+                    "<ul><li>secret_key: uuid 나 32자 이상의 난수값</li>" +
+                    "<li>password: secret_key 를 이용하여 비밀번호를 AES 암호화한 값</li></ul>")
     @PostMapping("/login")
-    public DataResponse<TokenValue> login(@RequestBody @Valid UserValue.Req.Login req) {
-        TokenValue res = userService.login(req);
+    public DataResponse<UserValue.Res.Token> login(@RequestBody @Valid UserValue.Req.Login req) {
+        UserValue.Res.Token res = userService.login(req);
         return DataResponse.of(res);
     }
 

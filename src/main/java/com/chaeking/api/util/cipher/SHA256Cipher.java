@@ -8,7 +8,7 @@ import java.security.NoSuchAlgorithmException;
 public class SHA256Cipher {
     static String ALGORITHM = "SHA-256";
 
-    public static String getEncSHA256(String input) {
+    public static String convertHash(String input) {
         try {
             MessageDigest mDigest = MessageDigest.getInstance(ALGORITHM);
             mDigest.update(input.getBytes());
