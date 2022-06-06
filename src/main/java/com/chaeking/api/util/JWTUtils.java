@@ -13,14 +13,14 @@ public class JWTUtils {
 
     public static String createAccessToken(User user) {
         return JWT.create()
-                .withSubject(user.getEmail())
+                .withSubject(user.getId().toString())
                 .withClaim("exp", Instant.now().getEpochSecond() + ACCESS_TIME)
                 .sign(ALGORITHM);
     }
 
     public static String createRefreshToken(User user) {
         return JWT.create()
-                .withSubject(user.getEmail())
+                .withSubject(user.getId().toString())
                 .withClaim("exp", Instant.now().getEpochSecond() + REFRESH_TIME)
                 .sign(ALGORITHM);
     }
