@@ -1,5 +1,6 @@
 package com.chaeking.api.config;
 
+import com.chaeking.api.config.filter.AccessTokenCheckFilter;
 import com.chaeking.api.config.filter.LoginFilter;
 import com.chaeking.api.config.module.SerializeModule;
 import com.chaeking.api.service.UserService;
@@ -18,6 +19,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 @RequiredArgsConstructor
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -35,14 +37,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         LoginFilter loginFilter = new LoginFilter(authenticationManager(), userService, jsonMapper());
-//        JWTCheckFilter checkFilter = new JWTCheckFilter(authenticationManager(), userService);
+        AccessTokenCheckFilter accessTokenCheckFilter = new AccessTokenCheckFilter(authenticationManager(), userService);
         http
                 .csrf().disable()
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 .addFilterAt(loginFilter, UsernamePasswordAuthenticationFilter.class)
-//                .addFilterAt(checkFilter, BasicAuthenticationFilter.class)
+                .addFilterAt(accessTokenCheckFilter, BasicAuthenticationFilter.class)
         ;
     }
 
