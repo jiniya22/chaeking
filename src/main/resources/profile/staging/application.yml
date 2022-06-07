@@ -57,6 +57,7 @@ springdoc:
       theme: nord
   paths-to-match:
     - /v1/**
+    - /test/**
 
 logging:
   file: logs/chaeking-api.log
