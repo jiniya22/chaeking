@@ -24,8 +24,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class LoginFilter extends UsernamePasswordAuthenticationFilter {
-    private ObjectMapper jsonMapper;
-    private UserService userService;
+    private final ObjectMapper jsonMapper;
+    private final UserService userService;
 
     public LoginFilter(AuthenticationManager authenticationManager, UserService userService, ObjectMapper jsonMapper) {
         super(authenticationManager);

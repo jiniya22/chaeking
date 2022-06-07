@@ -38,16 +38,16 @@ public class AuthController {
         return res;
     }
 
-//    @Operation(summary = "로그인",
-//            description = "email 과 password 를 이용하여 로그인합니다.<br>" +
-//                    "로그인 성공시, user_id 와 access_token, refresh_token 을 리턴해줍니다.<br>" +
-//                    "<ul><li>secret_key: uuid 나 32자 이상의 난수값</li>" +
-//                    "<li>password: secret_key 를 이용하여 비밀번호를 AES 암호화한 값</li></ul>")
-//    @PostMapping("/login")
-//    public DataResponse<UserValue.Res.Token> login(@RequestBody @Valid UserValue.Req.Login req) {
-//        UserValue.Res.Token res = userService.login(req);
-//        return DataResponse.of(res);
-//    }
+    @Operation(summary = "로그인",
+            description = "email 과 password 를 이용하여 로그인합니다.<br>" +
+                    "로그인 성공시, user_id 와 access_token, refresh_token 을 리턴해줍니다.<br>" +
+                    "<ul><li>secret_key: uuid 나 32자 이상의 난수값</li>" +
+                    "<li>password: secret_key 를 이용하여 비밀번호를 AES 암호화한 값</li></ul>")
+    @PostMapping("/login")
+    public DataResponse<UserValue.Res.Token> login(@RequestBody @Valid UserValue.Req.Login req) {
+        UserValue.Res.Token res = userService.login(req);
+        return DataResponse.of(res);
+    }
 
     @PreAuthorize("isAuthenticated()")
     @Operation(summary = "회원 정보 조회")
