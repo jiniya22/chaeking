@@ -26,12 +26,11 @@ public class AESCipher {
             final String encryptedData = new String(Base64.getEncoder().encode(c.doFinal(data.getBytes())), "UTF-8");
             return encryptedData;
         } catch (Exception e) {
-            System.out.println(e);
             throw new InvalidInputException(String.format("AES 암호화 중 에러가 발생되었습니다. : %s", e.getMessage()));
         }
     }
 
-    public static String decrypt(String data, String secretKey) {
+    public static String decrypt(String data, String secretKey) throws InvalidInputException {
         if(Strings.isBlank(data))
             throw new InvalidInputException("AES 복호화 대상은 null 또는 빈문자열을 허용하지 않습니다.");
         if(Strings.isBlank(secretKey) || secretKey.length() < 32)
@@ -45,7 +44,6 @@ public class AESCipher {
             final String decryptedData = new String(c.doFinal(Base64.getDecoder().decode(data.getBytes("UTF-8"))));
             return decryptedData;
         } catch (Exception e) {
-            System.out.println(e);
             throw new InvalidInputException(String.format("AES 복호화 중 에러가 발생되었습니다. : %s", e.getMessage()));
         }
     }

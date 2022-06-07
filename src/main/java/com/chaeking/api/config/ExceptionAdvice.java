@@ -1,5 +1,6 @@
 package com.chaeking.api.config;
 
+import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.chaeking.api.config.exception.InvalidInputException;
 import com.chaeking.api.config.exception.ServerErrorException;
 import com.chaeking.api.domain.value.response.BaseResponse;
@@ -18,7 +19,7 @@ import java.util.stream.Collectors;
 public class ExceptionAdvice {
 
     @ExceptionHandler({InvalidInputException.class, ValidationException.class, HttpMessageConversionException.class})
-    protected ResponseEntity<BaseResponse> invalidInputException(RuntimeException e) {
+    protected ResponseEntity<BaseResponse> handleException(RuntimeException e) {
         return ResponseEntity.badRequest()
                 .body(BaseResponse.of(e.getMessage()));
     }
@@ -30,8 +31,14 @@ public class ExceptionAdvice {
     }
 
     @ExceptionHandler(ServerErrorException.class)
-    protected ResponseEntity<BaseResponse> serverErrorException(ServerErrorException e) {
+    protected ResponseEntity<BaseResponse> handleException(ServerErrorException e) {
         return ResponseEntity.internalServerError()
+                .body(BaseResponse.of(e.getMessage()));
+    }
+
+    @ExceptionHandler(TokenExpiredException.class)
+    protected ResponseEntity<BaseResponse> handleException(TokenExpiredException e) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body(BaseResponse.of(e.getMessage()));
     }
 
