@@ -1,4 +1,4 @@
-package com.chaeking.api.controller.test;
+package com.chaeking.api.controller.temp;
 
 import com.chaeking.api.domain.value.UserValue;
 import com.chaeking.api.util.DescriptionUtils;
@@ -16,9 +16,9 @@ import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
-@Tag(name = "test", description = "(테스트) 암호화")
+@Tag(name = "temp", description = "(테스트용) 암호화")
 @RestController
-@RequestMapping("/test/cipher")
+@RequestMapping("/temp/cipher")
 public class CipherController {
 
     @Operation(summary = "AES Cipher Test")
