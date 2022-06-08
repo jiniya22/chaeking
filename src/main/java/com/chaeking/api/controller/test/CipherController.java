@@ -25,7 +25,7 @@ public class CipherController {
     @PostMapping("/aes")
     public UserValue.Req.Login aesTest(@RequestBody @Valid TestCipherReq req) {
         String password = AESCipher.encrypt(req.password(), req.secretKey());
-        return new UserValue.Req.Login(req.email(), req.password(), req.secretKey());
+        return new UserValue.Req.Login(req.email(), password, req.secretKey());
     }
 
     public record TestCipherReq(

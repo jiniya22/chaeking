@@ -1,5 +1,6 @@
 package com.chaeking.api.domain.entity;
 
+import com.chaeking.api.config.SecurityConfig;
 import com.chaeking.api.domain.enumerate.Sex;
 import com.chaeking.api.domain.value.UserValue;
 import com.chaeking.api.util.DateTimeUtils;
@@ -67,7 +68,7 @@ public class User extends BaseEntity implements UserDetails {
                 .name(c.name())
                 .birthDate(Optional.ofNullable(c.birthDate()).map(m -> LocalDate.parse(m, DateTimeUtils.FORMATTER_DATE)).orElse(null))
                 .sex(Sex.valueOf(c.sex()))
-                .password(c.password()).build();
+                .password(SecurityConfig.passwordEncoder.encode(originalPassword)).build();
     }
 
     public void initializeAuthorities() {
