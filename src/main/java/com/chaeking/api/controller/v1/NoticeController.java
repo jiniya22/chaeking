@@ -19,7 +19,7 @@ import java.util.List;
 @Tag(name = "setting-system", description = "세팅-시스템(공지사항, FAQ, 이용약관 등)")
 @RestController
 @RequestMapping("/v1/notices")
-public final class NoticeController {
+public class NoticeController {
 
     private final NoticeService noticeService;
 

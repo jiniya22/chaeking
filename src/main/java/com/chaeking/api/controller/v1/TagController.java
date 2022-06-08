@@ -16,7 +16,7 @@ import java.util.List;
 @Tag(name = "tag", description = "태그")
 @RestController
 @RequestMapping("/v1/tags")
-public final class TagController {
+public class TagController {
 
     private final TagService tagService;
 

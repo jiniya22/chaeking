@@ -15,7 +15,7 @@ import java.util.Calendar;
 @Tag(name = "book", description = "책")
 @RestController
 @RequestMapping("/v1/books")
-public final class BookController {
+public class BookController {
 
     private final BookService bookService;
 

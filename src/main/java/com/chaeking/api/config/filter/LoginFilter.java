@@ -8,6 +8,7 @@ import com.chaeking.api.service.UserService;
 import com.chaeking.api.util.JWTUtils;
 import com.chaeking.api.util.cipher.AESCipher;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.SneakyThrows;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -34,18 +35,12 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         setFilterProcessesUrl("/v1/auth/login");
     }
 
+    @SneakyThrows(IOException.class)
     @Transactional
     @Override
-    public Authentication attemptAuthentication(
-            HttpServletRequest request,
-            HttpServletResponse response) throws AuthenticationException
-    {
-        UserValue.Req.Login userLogin = null;
-        try {
-            userLogin = jsonMapper.readValue(request.getInputStream(), UserValue.Req.Login.class);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
+            throws AuthenticationException {
+        UserValue.Req.Login userLogin = jsonMapper.readValue(request.getInputStream(), UserValue.Req.Login.class);
         String refreshToken = request.getHeader("refresh_token");
         if(Strings.isBlank(refreshToken)) {
             String pw = AESCipher.decrypt(userLogin.password(), userLogin.secretKey());
@@ -53,14 +48,12 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
                     userLogin.email(), pw, null
             );
             return getAuthenticationManager().authenticate(token);
-        }else{
+        } else {
             TokenValue.Verify verify = JWTUtils.verify(refreshToken);
-            if(verify.success()){
+            if(verify.success()) {
                 User user = userService.loadUserByUsername(verify.username());
-                return new UsernamePasswordAuthenticationToken(
-                        user, user.getAuthorities()
-                );
-            } else{
+                return new UsernamePasswordAuthenticationToken(user, user.getAuthorities());
+            } else {
                 throw new TokenExpiredException("refresh_token was expired");
             }
         }
@@ -74,7 +67,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
             Authentication authResult) throws IOException
     {
         User user = (User) authResult.getPrincipal();
-        UserValue.Res.Token token = UserValue.Res.Token.of(user);
+        TokenValue.Token token = TokenValue.Token.of(user);
         response.setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
         response.getOutputStream().write(jsonMapper.writeValueAsBytes(token));
     }

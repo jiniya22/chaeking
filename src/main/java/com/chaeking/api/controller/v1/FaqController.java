@@ -19,7 +19,7 @@ import java.util.List;
 @Tag(name = "setting-system", description = "세팅-시스템(공지사항, FAQ, 이용약관 등)")
 @RestController
 @RequestMapping("/v1/faqs")
-public final class FaqController {
+public class FaqController {
     private final FaqService faqService;
 
     @Operation(summary = "FAQ(자주묻는 질문) 목록")

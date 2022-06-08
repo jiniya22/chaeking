@@ -28,13 +28,13 @@ public class AccessTokenCheckFilter extends BasicAuthenticationFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         String bearer = request.getHeader(HttpHeaders.AUTHORIZATION);
-        if(bearer == null || !bearer.startsWith("Bearer ")){
+        if(bearer == null || !bearer.startsWith("Bearer ")) {
             chain.doFilter(request, response);
             return;
         }
         String token = bearer.substring("Bearer ".length());
         TokenValue.Verify result = JWTUtils.verify(token);
-        if(result.success()){
+        if(result.success()) {
             User user = userService.loadUserByUsername(result.username());
             UsernamePasswordAuthenticationToken userToken = new UsernamePasswordAuthenticationToken(
                     user.getUsername(), null, user.getAuthorities()
@@ -42,8 +42,8 @@ public class AccessTokenCheckFilter extends BasicAuthenticationFilter {
             SecurityContextHolder.getContext().setAuthentication(userToken);
             response.setHeader("X-Chaeking-User-Id", user.getId().toString());
             chain.doFilter(request, response);
-        }else{
-            throw new TokenExpiredException("Token is not valid");
+        } else {
+            throw new TokenExpiredException("access_token was expired");
         }
     }
 }

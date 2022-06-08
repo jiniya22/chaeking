@@ -105,7 +105,7 @@ public class SerializeModule {
         }
 
         @Override
-        public LocalDate deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public LocalDate deserialize(JsonParser p, DeserializationContext c) throws IOException {
             return LocalDate.parse(p.getText(), DateTimeUtils.FORMATTER_DATE);
         }
     }
@@ -132,7 +132,7 @@ public class SerializeModule {
         }
 
         @Override
-        public LocalTime deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public LocalTime deserialize(JsonParser p, DeserializationContext c) throws IOException {
             return LocalTime.parse(p.getText(), DateTimeUtils.FORMATTER_TIME);
         }
     }
@@ -159,7 +159,7 @@ public class SerializeModule {
         }
 
         @Override
-        public LocalDateTime deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public LocalDateTime deserialize(JsonParser p, DeserializationContext c) throws IOException {
             return LocalDateTime.parse(p.getText(), DateTimeUtils.FORMATTER_DATETIME);
         }
     }

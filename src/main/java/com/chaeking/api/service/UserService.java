@@ -3,16 +3,14 @@ package com.chaeking.api.service;
 import com.chaeking.api.config.SecurityConfig;
 import com.chaeking.api.config.exception.InvalidInputException;
 import com.chaeking.api.domain.entity.User;
+import com.chaeking.api.domain.value.TokenValue;
 import com.chaeking.api.domain.value.UserValue;
 import com.chaeking.api.domain.value.response.BaseResponse;
 import com.chaeking.api.repository.UserRepository;
 import com.chaeking.api.util.cipher.AESCipher;
-import com.chaeking.api.util.cipher.SHA256Cipher;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,11 +39,11 @@ public class UserService implements UserDetailsService {
         return UserValue.Res.Detail.of(select(userId));
     }
 
-    public UserValue.Res.Token login(UserValue.Req.Login req) {
+    public TokenValue.Token login(UserValue.Req.Login req) {
         String pw = AESCipher.decrypt(req.password(), req.secretKey());
         User user = userRepository.findByEmail(req.email()).orElseThrow(() -> new InvalidInputException("이메일이 유효하지 않습니다."));
         if(SecurityConfig.passwordEncoder.matches(pw, user.getPassword())) {
-            return UserValue.Res.Token.of(user);
+            return TokenValue.Token.of(user);
         }
         throw new InvalidInputException("입력하신 회원정보가 잘못되었습니다.");
     }
