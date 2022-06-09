@@ -4,6 +4,7 @@ import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.chaeking.api.domain.entity.User;
 import com.chaeking.api.domain.value.TokenValue;
 import com.chaeking.api.domain.value.UserValue;
+import com.chaeking.api.domain.value.response.BaseResponse;
 import com.chaeking.api.service.UserService;
 import com.chaeking.api.util.JWTUtils;
 import com.chaeking.api.util.cipher.AESCipher;
@@ -11,6 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -43,11 +45,18 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         UserValue.Req.Login userLogin = jsonMapper.readValue(request.getInputStream(), UserValue.Req.Login.class);
         String refreshToken = request.getHeader("refresh_token");
         if(Strings.isBlank(refreshToken)) {
-            String pw = AESCipher.decrypt(userLogin.password(), userLogin.secretKey());
-            UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
-                    userLogin.email(), pw, null
-            );
-            return getAuthenticationManager().authenticate(token);
+            try {
+                String pw = AESCipher.decrypt(userLogin.password(), userLogin.secretKey());
+                UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
+                        userLogin.email(), pw, null
+                );
+                return getAuthenticationManager().authenticate(token);
+            } catch(Exception e) {
+                BaseResponse errorResponse = BaseResponse.of("access_token was expired");
+                response.setStatus(HttpStatus.BAD_REQUEST.value());
+                response.getOutputStream().write(jsonMapper.writeValueAsBytes(errorResponse));
+                return null;
+            }
         } else {
             TokenValue.Verify verify = JWTUtils.verify(refreshToken);
             if(verify.success()) {

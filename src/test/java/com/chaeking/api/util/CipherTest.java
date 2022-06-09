@@ -5,15 +5,18 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
+import org.springframework.util.CollectionUtils;
+
+import java.util.HashSet;
+import java.util.Set;
 
 class CipherTest {
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     @DisplayName("1. AES 암호화 테스트")
     @Test
     void aesCipherTest() {
+        PasswordEncoder passwordEncoder = new Pbkdf2PasswordEncoder();
         String secretKey = "A37aXdxH6gwTySajLe8eZWNvyC2yuZVB";
         String password = AESCipher.encrypt("222", secretKey);
         System.out.println(password);         // 99kOO+SV6fqcGIJVjVuBsA==
@@ -34,10 +37,8 @@ class CipherTest {
     @DisplayName("1. ")
     @Test
     void test1() {
-        Object tt = 33.652;
-        if(tt instanceof Number n) {
-            Long l = n.longValue();
-            System.out.println(l);
-        }
+        Set<String> test = new HashSet<>();
+        System.out.println(CollectionUtils.isEmpty(test));
+        System.out.println(CollectionUtils.isEmpty(test));
     }
 }

@@ -2,14 +2,9 @@ package com.chaeking.api.config;
 
 import com.chaeking.api.config.filter.AccessTokenCheckFilter;
 import com.chaeking.api.config.filter.LoginFilter;
-import com.chaeking.api.config.module.SerializeModule;
 import com.chaeking.api.service.UserService;
-import com.fasterxml.jackson.databind.*;
-import com.fasterxml.jackson.databind.json.JsonMapper;
-import io.swagger.v3.core.jackson.ModelResolver;
-import lombok.RequiredArgsConstructor;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -21,23 +16,21 @@ import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
-@RequiredArgsConstructor
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    private final UserService userService;
-
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new Pbkdf2PasswordEncoder();
-//    }
-
     public static PasswordEncoder passwordEncoder = new Pbkdf2PasswordEncoder();
+    private final UserService userService;
+    private final ObjectMapper jsonMapper;
+    public SecurityConfig(UserService userService, @Qualifier("jsonMapper") ObjectMapper jsonMapper) {
+        this.userService = userService;
+        this.jsonMapper = jsonMapper;
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        LoginFilter loginFilter = new LoginFilter(authenticationManager(), userService, jsonMapper());
-        AccessTokenCheckFilter accessTokenCheckFilter = new AccessTokenCheckFilter(authenticationManager(), userService);
+        LoginFilter loginFilter = new LoginFilter(authenticationManager(), userService, jsonMapper);
+        AccessTokenCheckFilter accessTokenCheckFilter = new AccessTokenCheckFilter(authenticationManager(), userService, jsonMapper);
         http
                 .csrf().disable()
                 .sessionManagement(session ->
@@ -48,30 +41,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         ;
     }
 
-    @Bean
-    public ObjectMapper jsonMapper() {
-        return JsonMapper.builder()
-                .propertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE)
-                .enable(SerializationFeature.INDENT_OUTPUT)
-                .enable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY)
-                .enable(SerializationFeature.WRITE_ENUMS_USING_TO_STRING)
-                .enable(DeserializationFeature.READ_ENUMS_USING_TO_STRING)
-                .disable(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES)
-                .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
-                .addModule(SerializeModule.dateTimeModule)
-                .addModule(SerializeModule.recordNamingStrategyPatchModule)
-                .build();
-    }
 
-    @Bean
-    public ModelResolver modelResolver(@Qualifier("jsonMapper") ObjectMapper jsonMapper) {
-        ModelResolver m = new ModelResolver(jsonMapper);
-        return m;
-    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userService).passwordEncoder(passwordEncoder);
+        auth
+                .userDetailsService(userService)
+                .passwordEncoder(passwordEncoder);
     }
 
 }
