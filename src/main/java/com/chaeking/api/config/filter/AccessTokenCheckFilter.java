@@ -1,6 +1,7 @@
 package com.chaeking.api.config.filter;
 
 import com.auth0.jwt.exceptions.JWTDecodeException;
+import com.chaeking.api.config.WebConfig;
 import com.chaeking.api.domain.entity.User;
 import com.chaeking.api.domain.value.TokenValue;
 import com.chaeking.api.domain.value.response.BaseResponse;
@@ -23,12 +24,10 @@ import java.io.IOException;
 
 public class AccessTokenCheckFilter extends BasicAuthenticationFilter {
     private final UserService userService;
-    private final ObjectMapper jsonMapper;
 
-    public AccessTokenCheckFilter(AuthenticationManager authenticationManager, UserService userService, ObjectMapper jsonMapper) {
+    public AccessTokenCheckFilter(AuthenticationManager authenticationManager, UserService userService) {
         super(authenticationManager);
         this.userService = userService;
-        this.jsonMapper = jsonMapper;
     }
 
     @Override
@@ -60,6 +59,6 @@ public class AccessTokenCheckFilter extends BasicAuthenticationFilter {
             reason = e.getMessage();
         }
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
-        response.getOutputStream().write(jsonMapper.writeValueAsBytes(BaseResponse.of(reason)));
+        response.getOutputStream().write(WebConfig.jsonMapper().writeValueAsBytes(BaseResponse.of(reason)));
     }
 }

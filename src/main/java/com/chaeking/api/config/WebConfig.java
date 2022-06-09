@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class WebConfig {
     @Bean
-    public ObjectMapper jsonMapper() {
+    public static ObjectMapper jsonMapper() {
         return JsonMapper.builder()
                 .propertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE)
                 .enable(SerializationFeature.INDENT_OUTPUT)
