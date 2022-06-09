@@ -22,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class AccessTokenCheckFilter extends BasicAuthenticationFilter {
-    private UserService userService;
-    private ObjectMapper jsonMapper;
+    private final UserService userService;
+    private final ObjectMapper jsonMapper;
 
     public AccessTokenCheckFilter(AuthenticationManager authenticationManager, UserService userService, ObjectMapper jsonMapper) {
         super(authenticationManager);

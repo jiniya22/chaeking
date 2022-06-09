@@ -1,6 +1,7 @@
 package com.chaeking.api.config;
 
 import com.chaeking.api.config.filter.AccessTokenCheckFilter;
+import com.chaeking.api.config.filter.ApiOriginFilter;
 import com.chaeking.api.config.filter.LoginFilter;
 import com.chaeking.api.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.security.web.header.HeaderWriterFilter;
 
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
@@ -29,19 +31,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        LoginFilter loginFilter = new LoginFilter(authenticationManager(), userService, jsonMapper);
-        AccessTokenCheckFilter accessTokenCheckFilter = new AccessTokenCheckFilter(authenticationManager(), userService, jsonMapper);
         http
                 .csrf().disable()
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
-                .addFilterAt(loginFilter, UsernamePasswordAuthenticationFilter.class)
-                .addFilterAt(accessTokenCheckFilter, BasicAuthenticationFilter.class)
+                .addFilterAfter(new ApiOriginFilter(), HeaderWriterFilter.class)
+                .addFilterAt(new LoginFilter(authenticationManager(), userService, jsonMapper), UsernamePasswordAuthenticationFilter.class)
+                .addFilterAt(new AccessTokenCheckFilter(authenticationManager(), userService, jsonMapper), BasicAuthenticationFilter.class)
         ;
     }
-
-
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
