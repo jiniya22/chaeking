@@ -16,7 +16,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
-@Tag(name = "temp", description = "(테스트용) 암호화")
+@Tag(name = "temp", description = "(테스트용) 암호화, 네이버 책검색")
 @RestController
 @RequestMapping("/temp/cipher")
 public class CipherController {

@@ -4,8 +4,6 @@ import com.chaeking.api.config.filter.AccessTokenCheckFilter;
 import com.chaeking.api.config.filter.ApiOriginFilter;
 import com.chaeking.api.config.filter.LoginFilter;
 import com.chaeking.api.service.UserService;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;

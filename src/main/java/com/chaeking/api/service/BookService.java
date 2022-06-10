@@ -3,10 +3,14 @@ package com.chaeking.api.service;
 import com.chaeking.api.config.exception.InvalidInputException;
 import com.chaeking.api.domain.value.BookValue;
 import com.chaeking.api.domain.entity.Book;
+import com.chaeking.api.domain.value.naver.NaverBookValue;
 import com.chaeking.api.repository.BookRepository;
 import com.chaeking.api.util.DateTimeUtils;
+import com.chaeking.api.util.resttemplate.NaverApiRestTemplate;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +22,7 @@ import java.util.Optional;
 @Service
 public class BookService {
     private final BookRepository bookRepository;
+    private final NaverApiRestTemplate naverApiRestTemplate;
 
     public Book select(Long bookId) {
         return bookRepository.findById(bookId)
@@ -48,4 +53,12 @@ public class BookService {
         return new BookValue.Res.Detail(select(bookId));
     }
 
+    public NaverBookValue.Res.BookBasic searchNaverBasic(String name, String sort) {
+        String query = "?query=" + name +"&sort=" + sort;
+        ResponseEntity<NaverBookValue.Res.BookBasic> responseEntity = naverApiRestTemplate.get("/v1/search/book.json" + query, null, NaverBookValue.Res.BookBasic.class);
+        if (HttpStatus.OK.equals(responseEntity.getStatusCode())) {
+            return responseEntity.getBody();
+        }   // FIXME
+        return null;
+    }
 }

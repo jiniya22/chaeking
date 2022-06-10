@@ -4,3 +4,8 @@ chaeking:
 
   flag:
     common-request-logging-filter: false
+
+  book-search:
+    naver:
+      api-url: https://openapi.naver.com
+      client-id: JwTr3m0A_XUOCZXobAGW
