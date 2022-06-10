@@ -7,9 +7,8 @@ import com.chaeking.api.domain.value.TokenValue;
 import com.chaeking.api.domain.value.response.BaseResponse;
 import com.chaeking.api.service.UserService;
 import com.chaeking.api.util.JWTUtils;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.chaeking.api.util.MessageUtils;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -39,7 +38,7 @@ public class AccessTokenCheckFilter extends BasicAuthenticationFilter {
             return;
         }
         String token = bearer.substring("Bearer ".length());
-        String reason = null;
+        String reason;
         try {
             TokenValue.Verify result = JWTUtils.verify(token);
             if(result.success()) {
@@ -50,15 +49,16 @@ public class AccessTokenCheckFilter extends BasicAuthenticationFilter {
                 SecurityContextHolder.getContext().setAuthentication(userToken);
                 response.setHeader("X-Chaeking-User-Id", user.getId().toString());
                 chain.doFilter(request, response);
+                return;
             } else {
-                reason = "access_token 이 유효하지 않습니다.";
+                reason = MessageUtils.UNAUTHORIZED_AUTHORIZATION_INVALID;
             }
         } catch (JWTDecodeException e) {
-            reason = "access_token 의 형식이 올바르지 않습니다.";
+            reason =  MessageUtils.UNAUTHORIZED_AUTHORIZATION_FORMAT_ERROR;
         } catch (Exception e) {
             reason = e.getMessage();
         }
-        response.setStatus(HttpStatus.UNAUTHORIZED.value());
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);    // token 이 유효하지 않을 때
         response.getOutputStream().write(WebConfig.jsonMapper().writeValueAsBytes(BaseResponse.of(reason)));
     }
 }

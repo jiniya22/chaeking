@@ -1,13 +1,15 @@
 package com.chaeking.api.config;
 
-import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.chaeking.api.config.exception.InvalidInputException;
 import com.chaeking.api.config.exception.ServerErrorException;
 import com.chaeking.api.domain.value.response.BaseResponse;
 import com.chaeking.api.domain.value.response.ErrorResponse;
+import com.chaeking.api.util.BasicUtils;
+import com.chaeking.api.util.MessageUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConversionException;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -36,10 +38,15 @@ public class ExceptionAdvice {
                 .body(BaseResponse.of(e.getMessage()));
     }
 
-    @ExceptionHandler(TokenExpiredException.class)
-    protected ResponseEntity<BaseResponse> handleException(TokenExpiredException e) {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                .body(BaseResponse.of(e.getMessage()));
+    @ExceptionHandler(AccessDeniedException.class)
+    protected ResponseEntity<BaseResponse> handleException(AccessDeniedException e) {
+        Long userId = BasicUtils.getUserId();
+        if(userId == null)
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(BaseResponse.of(MessageUtils.UNAUTHORIZED_AUTHORIZATION_EMPTY));
+
+        return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                .body(BaseResponse.of(MessageUtils.FORBIDDEN));
     }
 
 }
