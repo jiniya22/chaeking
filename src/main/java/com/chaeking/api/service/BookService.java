@@ -3,9 +3,11 @@ package com.chaeking.api.service;
 import com.chaeking.api.config.exception.InvalidInputException;
 import com.chaeking.api.domain.entity.Book;
 import com.chaeking.api.domain.value.BookValue;
+import com.chaeking.api.domain.value.naver.KakaoBookValue;
 import com.chaeking.api.domain.value.naver.NaverBookValue;
 import com.chaeking.api.repository.BookRepository;
 import com.chaeking.api.util.DateTimeUtils;
+import com.chaeking.api.util.resttemplate.KakaoApiRestTemplate;
 import com.chaeking.api.util.resttemplate.NaverApiRestTemplate;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
@@ -23,6 +25,7 @@ import java.util.Optional;
 public class BookService {
     private final BookRepository bookRepository;
     private final NaverApiRestTemplate naverApiRestTemplate;
+    private final KakaoApiRestTemplate kakaoApiRestTemplate;
 
     public Book select(Long bookId) {
         return bookRepository.findById(bookId)
@@ -53,12 +56,26 @@ public class BookService {
         return new BookValue.Res.Detail(select(bookId));
     }
 
-    public NaverBookValue.Res.BookBasic searchNaverBasic(String name, String sort) {
+    public NaverBookValue.Res.BookBasic searchNaverBookBasic(String name, String sort) {
         String query = "?query=" + name +"&sort=" + sort;
         ResponseEntity<NaverBookValue.Res.BookBasic> responseEntity = naverApiRestTemplate.get("/v1/search/book.json" + query, null, NaverBookValue.Res.BookBasic.class);
         if (HttpStatus.OK.equals(responseEntity.getStatusCode())) {
             NaverBookValue.Res.BookBasic result = responseEntity.getBody();
             result.getItems().forEach(i -> {
+                Book b = bookRepository.findByIsbn(i.getIsbn()).orElse(Book.of(i));
+                bookRepository.save(b);
+            });
+            return result;
+        }
+        return null;
+    }
+
+    public KakaoBookValue.Res.BookBasic searchKakaoBook(String search, String target, String sort) {
+        String query = "?query=" + search +"&target=" + target +"&sort=" + sort;
+        ResponseEntity<KakaoBookValue.Res.BookBasic> responseEntity = kakaoApiRestTemplate.get("/v3/search/book" + query, null, KakaoBookValue.Res.BookBasic.class);
+        if (HttpStatus.OK.equals(responseEntity.getStatusCode())) {
+            KakaoBookValue.Res.BookBasic result = responseEntity.getBody();
+            result.getDocuments().forEach(i -> {
                 Book b = bookRepository.findByIsbn(i.getIsbn()).orElse(Book.of(i));
                 bookRepository.save(b);
             });

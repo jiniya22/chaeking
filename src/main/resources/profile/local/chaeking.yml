@@ -9,3 +9,6 @@ chaeking:
     naver:
       api-url: https://openapi.naver.com
       client-id: GumRhXrYufSutD5kESbh
+
+    kakao:
+      api-url: https://dapi.kakao.com

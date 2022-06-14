@@ -1,5 +1,6 @@
 package com.chaeking.api.domain.entity;
 
+import com.chaeking.api.domain.value.naver.KakaoBookValue;
 import com.chaeking.api.domain.value.naver.NaverBookValue;
 import com.chaeking.api.util.DateTimeUtils;
 import lombok.*;
@@ -69,5 +70,17 @@ public class Book extends BaseEntity {
                 .detailInfo(i.getDescription())
                 .build();
     }
-
+    public static Book of(KakaoBookValue.Res.BookBasic.Document d) {
+        return Book.builder()
+                .name(d.getTitle())
+//                .author(d.getAuthor())
+                .price(d.getPrice())
+                .publisher(d.getPublisher())
+                .publicationDate(Optional.ofNullable(d.getDatetime())
+                        .map(m -> LocalDate.parse(m.replaceAll("\\D", "").substring(0,8), DateTimeUtils.FORMATTER_DATE_SIMPLE)).orElse(null))
+                .isbn(d.getIsbn())
+                .imageUrl(d.getThumbnail())
+                .detailInfo(d.getDescription())
+                .build();
+    }
 }
