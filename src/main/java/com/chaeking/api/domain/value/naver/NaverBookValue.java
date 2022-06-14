@@ -23,11 +23,12 @@ public class NaverBookValue {
             public static class Item {
                 private String title;
                 private String link;
-                private String images;
+                private String image;
                 private String author;
-                private String price;
+                private int price;
                 //        private String discount;
                 private String publisher;
+                private String pubdate;
                 private String isbn;
                 private String description;
             }

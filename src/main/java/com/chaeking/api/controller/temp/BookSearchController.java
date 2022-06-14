@@ -22,7 +22,7 @@ public class BookSearchController {
 
     private final BookService bookService;
 
-    @Operation(summary = "네이버 책 기본 검색",
+    @Operation(summary = "네이버 책 기본 검색 및 저장",
             description = """
                     <ul>
                         <li>정렬 옵션

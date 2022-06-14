@@ -1,11 +1,14 @@
 package com.chaeking.api.domain.entity;
 
+import com.chaeking.api.domain.value.naver.NaverBookValue;
+import com.chaeking.api.util.DateTimeUtils;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Optional;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -52,4 +55,19 @@ public class Book extends BaseEntity {
         this.detailInfo = detailInfo;
         this.publicationDate = publicationDate;
     }
+
+    public static Book of(NaverBookValue.Res.BookBasic.Item i) {
+        return Book.builder()
+                .name(i.getTitle())
+                .author(i.getAuthor())
+                .price(i.getPrice())
+                .publisher(i.getPublisher())
+                .publicationDate(Optional.ofNullable(i.getPubdate()).filter(f -> f != null && f.length() == 8)
+                        .map(m -> LocalDate.parse(m, DateTimeUtils.FORMATTER_DATE_SIMPLE)).orElse(null))
+                .isbn(i.getIsbn())
+                .imageUrl(i.getImage())
+                .detailInfo(i.getDescription())
+                .build();
+    }
+
 }

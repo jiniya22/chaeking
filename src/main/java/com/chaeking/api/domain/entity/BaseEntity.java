@@ -3,6 +3,8 @@ package com.chaeking.api.domain.entity;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
@@ -10,6 +12,8 @@ import java.time.LocalDateTime;
 
 @Getter
 @MappedSuperclass
+@DynamicInsert
+@DynamicUpdate
 @Where(clause = "active = 1")
 public abstract class BaseEntity {
 

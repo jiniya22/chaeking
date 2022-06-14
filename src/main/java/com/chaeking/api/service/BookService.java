@@ -1,8 +1,8 @@
 package com.chaeking.api.service;
 
 import com.chaeking.api.config.exception.InvalidInputException;
-import com.chaeking.api.domain.value.BookValue;
 import com.chaeking.api.domain.entity.Book;
+import com.chaeking.api.domain.value.BookValue;
 import com.chaeking.api.domain.value.naver.NaverBookValue;
 import com.chaeking.api.repository.BookRepository;
 import com.chaeking.api.util.DateTimeUtils;
@@ -57,8 +57,13 @@ public class BookService {
         String query = "?query=" + name +"&sort=" + sort;
         ResponseEntity<NaverBookValue.Res.BookBasic> responseEntity = naverApiRestTemplate.get("/v1/search/book.json" + query, null, NaverBookValue.Res.BookBasic.class);
         if (HttpStatus.OK.equals(responseEntity.getStatusCode())) {
-            return responseEntity.getBody();
-        }   // FIXME
+            NaverBookValue.Res.BookBasic result = responseEntity.getBody();
+            result.getItems().forEach(i -> {
+                Book b = bookRepository.findByIsbn(i.getIsbn()).orElse(Book.of(i));
+                bookRepository.save(b);
+            });
+            return result;
+        }
         return null;
     }
 }
