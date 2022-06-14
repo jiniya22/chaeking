@@ -70,5 +70,4 @@ logging:
     org:
       springframework:
         web:
-          filter:
-            CommonsRequestLoggingFilter: debug
+          servlet: error

@@ -2,6 +2,7 @@ package com.chaeking.api.config.intercepter;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.util.Strings;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -12,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 @Slf4j
 @Component
 public class LogInterceptor implements HandlerInterceptor {
-    private static final String LOG_FORMAT = "====== %s called\t: %s \"%s\" [%s]";
+    private static final String LOG_FORMAT = "====== %s called (%s) : %s \"%s\" [%s]";
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -21,7 +22,7 @@ public class LogInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        log.info(String.format(LOG_FORMAT, "postHandle", request.getMethod(), request.getRequestURI(), getClientIp(request)));
+        log.info(String.format(LOG_FORMAT, "postHandle", HttpStatus.valueOf(response.getStatus()), request.getMethod(), request.getRequestURI(), getClientIp(request)));
         HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
     }
 

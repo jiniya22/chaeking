@@ -36,7 +36,7 @@ public class BookSearchController {
                     """
     )
     @GetMapping("")
-    public DataResponse<NaverBookValue.Res.BookBasic> aesTest(
+    public DataResponse<NaverBookValue.Res.BookBasic> searchNaverBasic(
             @Parameter(description = "책 이름") @RequestParam @NotBlank String name,
             @Parameter(description = "정렬 옵션") @RequestParam(defaultValue = "sim") String sort) {
         NaverBookValue.Res.BookBasic res = bookService.searchNaverBasic(name, sort);
