@@ -8,6 +8,7 @@ import com.chaeking.api.domain.value.UserValue;
 import com.chaeking.api.domain.value.response.BaseResponse;
 import com.chaeking.api.service.UserService;
 import com.chaeking.api.util.JWTUtils;
+import com.chaeking.api.util.MessageUtils;
 import com.chaeking.api.util.cipher.AESCipher;
 import lombok.SneakyThrows;
 import org.apache.logging.log4j.util.Strings;
@@ -40,17 +41,17 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
             throws AuthenticationException {
-        UserValue.Req.Login userLogin = WebConfig.jsonMapper().readValue(request.getInputStream(), UserValue.Req.Login.class);
-        String refreshToken = request.getHeader("refresh_token");
+        String refreshToken = request.getHeader("X-Refresh-Token");
         if(Strings.isBlank(refreshToken)) {
             try {
+                UserValue.Req.Login userLogin = WebConfig.jsonMapper().readValue(request.getInputStream(), UserValue.Req.Login.class);
                 String pw = AESCipher.decrypt(userLogin.password(), userLogin.secretKey());
                 UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
                         userLogin.email(), pw, null
                 );
                 return getAuthenticationManager().authenticate(token);
             } catch(Exception e) {
-                BaseResponse errorResponse = BaseResponse.of("access_token was expired");
+                BaseResponse errorResponse = BaseResponse.of(MessageUtils.INVALID_USER_EMAIL_OR_PASSWORD);
                 response.setStatus(HttpStatus.BAD_REQUEST.value());
                 response.getOutputStream().write(WebConfig.jsonMapper().writeValueAsBytes(errorResponse));
                 return null;

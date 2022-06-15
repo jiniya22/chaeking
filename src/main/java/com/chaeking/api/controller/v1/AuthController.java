@@ -37,8 +37,10 @@ public class AuthController {
                     "<ul><li>secret_key: uuid 나 32자 이상의 난수값</li>" +
                     "<li>password: secret_key 를 이용하여 비밀번호를 AES 암호화한 값</li></ul>")
     @PostMapping("/login")
-    public DataResponse<TokenValue.Token> login(@RequestBody @Valid UserValue.Req.Login req) {
-        return DataResponse.of(userService.login(req));
+    public DataResponse<TokenValue.Token> login(
+            @RequestHeader(value = "X-Refresh-Token", required = false) String refreshToken,
+            @RequestBody(required = false) UserValue.Req.Login req) {
+        return DataResponse.of(userService.login(refreshToken, req));
     }
 
     @PreAuthorize("isAuthenticated()")
