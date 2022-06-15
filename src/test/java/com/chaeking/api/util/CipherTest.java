@@ -37,8 +37,6 @@ class CipherTest {
     @DisplayName("1. ")
     @Test
     void test1() {
-        Set<String> test = new HashSet<>();
-        System.out.println(CollectionUtils.isEmpty(test));
-        System.out.println(CollectionUtils.isEmpty(test));
+        System.out.println(System.getenv("X-Naver-Client-Secret"));
     }
 }
