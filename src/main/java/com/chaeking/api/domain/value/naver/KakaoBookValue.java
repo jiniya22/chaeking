@@ -15,7 +15,7 @@ public class KakaoBookValue {
             private List<Document> documents = new ArrayList<>();
 
             @Data
-            @Schema(name = "NaverBookBasic")
+            @Schema(name = "KakaoBookBasic")
             public static class Document {
                 private String title;
                 private String thumbnail;
@@ -27,7 +27,7 @@ public class KakaoBookValue {
                 private String datetime;
                 private String isbn;
                 private String url;
-                private String description;
+                private String contents;
             }
 
 //            @Data

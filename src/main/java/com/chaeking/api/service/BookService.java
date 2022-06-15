@@ -77,6 +77,7 @@ public class BookService {
             KakaoBookValue.Res.BookBasic result = responseEntity.getBody();
             result.getDocuments().forEach(i -> {
                 Book b = bookRepository.findByIsbn(i.getIsbn()).orElse(Book.of(i));
+                b.update(i);
                 bookRepository.save(b);
             });
             return result;

@@ -42,10 +42,13 @@ public class Book extends BaseEntity {
 
 //    private String status;
 
+    @Column(length = 500)
+    private String link;
+
     private LocalDate publicationDate;
 
     @Builder
-    public Book(String name, String author, int price, String publisher, String isbn, String imageUrl,
+    public Book(String name, String author, int price, String publisher, String isbn, String imageUrl, String link,
                 String detailInfo, LocalDate publicationDate) {
         this.name = name;
         this.author = author;
@@ -53,6 +56,7 @@ public class Book extends BaseEntity {
         this.publisher = publisher;
         this.isbn = isbn;
         this.imageUrl = imageUrl;
+        this.link = link;
         this.detailInfo = detailInfo;
         this.publicationDate = publicationDate;
     }
@@ -67,6 +71,7 @@ public class Book extends BaseEntity {
                         .map(m -> LocalDate.parse(m, DateTimeUtils.FORMATTER_DATE_SIMPLE)).orElse(null))
                 .isbn(i.getIsbn())
                 .imageUrl(i.getImage())
+                .link(i.getLink())
                 .detailInfo(i.getDescription())
                 .build();
     }
@@ -80,7 +85,34 @@ public class Book extends BaseEntity {
                         .map(m -> LocalDate.parse(m.replaceAll("\\D", "").substring(0,8), DateTimeUtils.FORMATTER_DATE_SIMPLE)).orElse(null))
                 .isbn(d.getIsbn())
                 .imageUrl(d.getThumbnail())
-                .detailInfo(d.getDescription())
+                .link(d.getUrl())
+                .detailInfo(d.getContents())
                 .build();
+    }
+
+    public void update(NaverBookValue.Res.BookBasic.Item i) {
+        this.name = i.getTitle();
+        this.author = i.getAuthor();
+        this.price = i.getPrice();
+        this.publisher = i.getPublisher();
+        this.publicationDate = Optional.ofNullable(i.getPubdate()).filter(f -> f != null && f.length() == 8)
+                .map(m -> LocalDate.parse(m, DateTimeUtils.FORMATTER_DATE_SIMPLE)).orElse(null);
+        this.isbn = i.getIsbn();
+        this.imageUrl = i.getImage();
+        this.link = i.getLink();
+        this.detailInfo = i.getDescription();
+    }
+
+    public void update(KakaoBookValue.Res.BookBasic.Document i) {
+        this.name = i.getTitle();
+//        this.author = i.getAuthor();
+        this.price = i.getPrice();
+        this.publisher = i.getPublisher();
+        this.publicationDate = Optional.ofNullable(i.getDatetime())
+                .map(m -> LocalDate.parse(m.replaceAll("\\D", "").substring(0,8), DateTimeUtils.FORMATTER_DATE_SIMPLE)).orElse(null);
+        this.isbn = i.getIsbn();
+        this.imageUrl = i.getThumbnail();
+        this.link = i.getUrl();
+        this.detailInfo = i.getContents();
     }
 }
