@@ -30,7 +30,7 @@ public class Author {
     @ColumnDefault("NOW()")
     private LocalDateTime createdAt;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "author_id")
     @ToString.Exclude
     private List<BookAndAuthor> bookAndAuthors = new ArrayList<>();
@@ -47,8 +47,7 @@ public class Author {
     }
 
     String getSimpleName(String name) {
-        String simpleName = name.replaceAll("[^\\da-zA-Z가-힣 ]", "");
-        simpleName = simpleName.replaceAll(" +", " ");
+        String simpleName = name.replaceAll("[^\\da-zA-Z가-힣]", "");
         return simpleName;
     }
 }

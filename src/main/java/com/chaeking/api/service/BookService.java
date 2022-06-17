@@ -7,6 +7,7 @@ import com.chaeking.api.domain.entity.BookAndAuthor;
 import com.chaeking.api.domain.value.BookValue;
 import com.chaeking.api.domain.value.naver.KakaoBookValue;
 import com.chaeking.api.domain.value.naver.NaverBookValue;
+import com.chaeking.api.repository.BookAndAuthorRepository;
 import com.chaeking.api.repository.BookRepository;
 import com.chaeking.api.util.DateTimeUtils;
 import com.chaeking.api.util.resttemplate.KakaoApiRestTemplate;
@@ -17,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -29,6 +31,7 @@ import java.util.Optional;
 @Service
 public class BookService {
     private final AuthorService authorService;
+    private final BookAndAuthorRepository bookAndAuthorRepository;
     private final BookRepository bookRepository;
     private final NaverApiRestTemplate naverApiRestTemplate;
     private final KakaoApiRestTemplate kakaoApiRestTemplate;
@@ -71,7 +74,8 @@ public class BookService {
             result.getItems().forEach(i -> {
                 Book b = bookRepository.findByIsbn(i.getIsbn()).orElse(Book.of(i));
                 if (b.getId() == null) {
-                    b.setBookAndAuthors(getBookAndAuthors(Arrays.asList(i.getAuthor().split("|"))));
+                    List<Author> authors = authorService.findAllByNameIn(Arrays.asList(i.getAuthor().split("|")));
+                    bookAndAuthorRepository.saveAll(BookAndAuthor.of(b, authors));
                 }
                 b.update(i);
                 bookRepository.save(b);
@@ -83,29 +87,30 @@ public class BookService {
 
     @Transactional
     public KakaoBookValue.Res.BookBasic searchKakaoBook(String search, String target, String sort) {
-        String query = "?query=" + search + "&target=" + target + "&sort=" + sort;
+        String query = "?query=" + search + "&target=" + target + "&sort=" + sort +"&size=2";
         ResponseEntity<KakaoBookValue.Res.BookBasic> responseEntity = kakaoApiRestTemplate.get("/v3/search/book" + query, null, KakaoBookValue.Res.BookBasic.class);
         if (HttpStatus.OK.equals(responseEntity.getStatusCode())) {
             KakaoBookValue.Res.BookBasic result = responseEntity.getBody();
             result.getDocuments().forEach(i -> {
                 Book b = bookRepository.findByIsbn(i.getIsbn()).orElse(Book.of(i));
-                if (b.getId() == null) {
-                    b.setBookAndAuthors(getBookAndAuthors(i.getAuthors()));
+                bookRepository.save(b);
+                if (CollectionUtils.isEmpty(b.getBookAndAuthors())) {
+                    List<Author> authors = authorService.findAllByNameIn(i.getAuthors());
+                    bookAndAuthorRepository.saveAll(BookAndAuthor.of(b, authors));
                 }
                 b.update(i);
-                bookRepository.save(b);
             });
             return result;
         }
         return null;
     }
 
-    List<BookAndAuthor> getBookAndAuthors(List<String> authorNames) {
-        List<BookAndAuthor> res = new ArrayList<>();
-        List<Author> authors = authorService.findAllByNameIn(authorNames);
-        authors.forEach(author -> {
-            res.add(new BookAndAuthor(author));
-        });
-        return res;
-    }
+//    List<BookAndAuthor> getBookAndAuthors(List<String> authorNames) {
+//        List<BookAndAuthor> res = new ArrayList<>();
+//        List<Author> authors = authorService.findAllByNameIn(authorNames);
+//        authors.forEach(author -> {
+//            res.add(new BookAndAuthor(author));
+//        });
+//        return res;
+//    }
 }
