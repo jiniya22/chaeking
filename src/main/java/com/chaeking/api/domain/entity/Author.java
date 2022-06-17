@@ -30,7 +30,7 @@ public class Author {
     @ColumnDefault("NOW()")
     private LocalDateTime createdAt;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "author_id")
     @ToString.Exclude
     private List<BookAndAuthor> bookAndAuthors = new ArrayList<>();

@@ -73,12 +73,13 @@ public class BookService {
             NaverBookValue.Res.BookBasic result = responseEntity.getBody();
             result.getItems().forEach(i -> {
                 Book b = bookRepository.findByIsbn(i.getIsbn()).orElse(Book.of(i));
-                if (b.getId() == null) {
-                    List<Author> authors = authorService.findAllByNameIn(Arrays.asList(i.getAuthor().split("|")));
-                    bookAndAuthorRepository.saveAll(BookAndAuthor.of(b, authors));
+                bookRepository.save(b);
+                if (CollectionUtils.isEmpty(b.getBookAndAuthors())) {
+                    bookAndAuthorRepository.saveAll(
+                            BookAndAuthor.of(b, authorService.findAllByNameIn(Arrays.asList(i.getAuthor().split("|"))))
+                    );
                 }
                 b.update(i);
-                bookRepository.save(b);
             });
             return result;
         }
@@ -95,8 +96,9 @@ public class BookService {
                 Book b = bookRepository.findByIsbn(i.getIsbn()).orElse(Book.of(i));
                 bookRepository.save(b);
                 if (CollectionUtils.isEmpty(b.getBookAndAuthors())) {
-                    List<Author> authors = authorService.findAllByNameIn(i.getAuthors());
-                    bookAndAuthorRepository.saveAll(BookAndAuthor.of(b, authors));
+                    bookAndAuthorRepository.saveAll(
+                            BookAndAuthor.of(b, authorService.findAllByNameIn(i.getAuthors()))
+                    );
                 }
                 b.update(i);
             });
@@ -104,13 +106,5 @@ public class BookService {
         }
         return null;
     }
-
-//    List<BookAndAuthor> getBookAndAuthors(List<String> authorNames) {
-//        List<BookAndAuthor> res = new ArrayList<>();
-//        List<Author> authors = authorService.findAllByNameIn(authorNames);
-//        authors.forEach(author -> {
-//            res.add(new BookAndAuthor(author));
-//        });
-//        return res;
-//    }
+    
 }

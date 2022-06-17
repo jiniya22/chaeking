@@ -48,7 +48,7 @@ public class Book extends BaseEntity {
     private LocalDate publicationDate;
 
     @Setter
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "book_id")
     @ToString.Exclude
     private List<BookAndAuthor> bookAndAuthors = new ArrayList<>();
