@@ -19,12 +19,12 @@ public class BookController {
 
     private final BookService bookService;
 
-    @Operation(summary = "책 등록")
-    @PostMapping("")
-    public DataResponse<BookValue.Res.Detail> insert(@RequestBody BookValue.Req.Creation req) {
-        BookValue.Res.Detail data = bookService.insert(req);
-        return DataResponse.of(data);
-    }
+//    @Operation(summary = "책 등록")
+//    @PostMapping("")
+//    public DataResponse<BookValue.Res.Detail> insert(@RequestBody BookValue.Req.Creation req) {
+//        BookValue.Res.Detail data = bookService.insert(req);
+//        return DataResponse.of(data);
+//    }
 
     @Operation(summary = "책 상세조회")
     @GetMapping("/{book_id}")

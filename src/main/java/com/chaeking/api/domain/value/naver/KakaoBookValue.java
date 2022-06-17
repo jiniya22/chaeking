@@ -31,7 +31,7 @@ public class KakaoBookValue {
             }
 
 //            @Data
-//            @Schema(name = "NaverBookMeta")
+//            @Schema(name = "KakaoBookMeta")
 //            public static class Meta {
 ////                private boolean is_end;
 //                private int pageable_count;

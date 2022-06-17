@@ -3,12 +3,15 @@ package com.chaeking.api.domain.entity;
 import com.chaeking.api.domain.value.naver.KakaoBookValue;
 import com.chaeking.api.domain.value.naver.NaverBookValue;
 import com.chaeking.api.util.DateTimeUtils;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Getter
@@ -22,9 +25,6 @@ public class Book extends BaseEntity {
 
     @Column(nullable = false, length = 150)
     private String name;
-
-    @Column(length = 50)
-    private String author;
 
     private int price;
 
@@ -47,11 +47,16 @@ public class Book extends BaseEntity {
 
     private LocalDate publicationDate;
 
+    @Setter
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "book_id")
+    @ToString.Exclude
+    private List<BookAndAuthor> bookAndAuthors = new ArrayList<>();
+
     @Builder
-    public Book(String name, String author, int price, String publisher, String isbn, String imageUrl, String link,
+    public Book(String name, int price, String publisher, String isbn, String imageUrl, String link,
                 String detailInfo, LocalDate publicationDate) {
         this.name = name;
-        this.author = author;
         this.price = price;
         this.publisher = publisher;
         this.isbn = isbn;
@@ -64,7 +69,6 @@ public class Book extends BaseEntity {
     public static Book of(NaverBookValue.Res.BookBasic.Item i) {
         return Book.builder()
                 .name(i.getTitle())
-                .author(i.getAuthor())
                 .price(i.getPrice())
                 .publisher(i.getPublisher())
                 .publicationDate(Optional.ofNullable(i.getPubdate()).filter(f -> f != null && f.length() == 8)
@@ -78,7 +82,6 @@ public class Book extends BaseEntity {
     public static Book of(KakaoBookValue.Res.BookBasic.Document d) {
         return Book.builder()
                 .name(d.getTitle())
-//                .author(d.getAuthor())
                 .price(d.getPrice())
                 .publisher(d.getPublisher())
                 .publicationDate(Optional.ofNullable(d.getDatetime())
@@ -92,7 +95,7 @@ public class Book extends BaseEntity {
 
     public void update(NaverBookValue.Res.BookBasic.Item i) {
         this.name = i.getTitle();
-        this.author = i.getAuthor();
+        // FIXME update authors
         this.price = i.getPrice();
         this.publisher = i.getPublisher();
         this.publicationDate = Optional.ofNullable(i.getPubdate()).filter(f -> f != null && f.length() == 8)
@@ -105,7 +108,7 @@ public class Book extends BaseEntity {
 
     public void update(KakaoBookValue.Res.BookBasic.Document i) {
         this.name = i.getTitle();
-//        this.author = i.getAuthor();
+        // FIXME update authors
         this.price = i.getPrice();
         this.publisher = i.getPublisher();
         this.publicationDate = Optional.ofNullable(i.getDatetime())
