@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 @Tag(name = "temp", description = "(테스트용) 암호화, 네이버/카카오 책 검색")
@@ -39,14 +41,18 @@ public class BookSearchController {
     @GetMapping("/book-naver")
     public DataResponse<NaverBookValue.Res.BookBasic> searchNaverBookBasic(
             @Parameter(description = "책 이름") @RequestParam @NotBlank String name,
-            @Parameter(description = "정렬 옵션") @RequestParam(defaultValue = "sim") String sort) {
-        NaverBookValue.Res.BookBasic res = bookService.searchNaverBookBasic(name, sort);
+            @Parameter(description = "정렬 옵션") @RequestParam(defaultValue = "sim") String sort,
+            @RequestParam(required = false, defaultValue = "1") @Min(1) @Max(1000) int page,
+            @RequestParam(required = false, defaultValue = "10") @Min(1) @Max(100) int size) {
+        NaverBookValue.Res.BookBasic res = bookService.searchNaverBookBasic(name, sort, page, size);
         return DataResponse.of(res);
     }
 
     @Operation(summary = "카카오 책 검색 및 저장",
             description = """
                     <ul>
+                        <li>page: 1~100 사이의 값 (default: 1)</li>
+                        <li>size: 1~50 사이의 값 (default: 10)</li>
                         <li>검색 필드 제한
                             <ul>
                                 <li>title: 제목</li>
@@ -67,9 +73,11 @@ public class BookSearchController {
     @GetMapping("/book-kakao")
     public DataResponse<KakaoBookValue.Res.BookBasic> searchKakaoBook(
             @Parameter(description = "검색어") @RequestParam @NotBlank String query,
-            @Parameter(description = "검색 필드 제한") @RequestParam String target,
-            @Parameter(description = "정렬 옵션") @RequestParam(defaultValue = "accuracy") String sort) {
-        KakaoBookValue.Res.BookBasic res = bookService.searchKakaoBook(query, target, sort);
+            @Parameter(description = "검색 필드 제한") @RequestParam(required = false) String target,
+            @Parameter(description = "정렬 옵션") @RequestParam(defaultValue = "accuracy") String sort,
+            @RequestParam(required = false, defaultValue = "1") @Min(1) @Max(100) int page,
+            @RequestParam(required = false, defaultValue = "10") @Min(1) @Max(50) int size) {
+        KakaoBookValue.Res.BookBasic res = bookService.searchKakaoBook(query, target, sort, page, size);
         return DataResponse.of(res);
     }
 }
