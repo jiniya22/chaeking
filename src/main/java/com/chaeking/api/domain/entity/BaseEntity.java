@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @DynamicInsert
 @DynamicUpdate
 @Where(clause = "active = 1")
-public abstract class BasicEntity {
+public abstract class BaseEntity {
 
     @Setter
     @ColumnDefault("1")

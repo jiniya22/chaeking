@@ -5,6 +5,7 @@ import com.chaeking.api.domain.enumerate.Sex;
 import com.chaeking.api.domain.value.UserValue;
 import com.chaeking.api.util.DateTimeUtils;
 import com.chaeking.api.util.cipher.AESCipher;
+import com.chaeking.api.util.cipher.SHA256Cipher;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
@@ -22,7 +23,7 @@ import java.util.Set;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicInsert @DynamicUpdate
 @Entity
-public class User extends BasicEntity implements UserDetails {
+public class User extends BaseEntity implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

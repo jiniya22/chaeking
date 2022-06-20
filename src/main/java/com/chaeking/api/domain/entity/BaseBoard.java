@@ -8,7 +8,7 @@ import javax.persistence.*;
 @MappedSuperclass
 @Getter
 @Setter
-public abstract class BaseBoard extends BasicEntity {
+public abstract class BaseBoard extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

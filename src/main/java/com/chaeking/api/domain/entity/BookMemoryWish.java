@@ -1,5 +1,6 @@
 package com.chaeking.api.domain.entity;
 
+import com.chaeking.api.domain.value.BookMemoryWishValue;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class BookMemoryWish extends BasicEntity {
+public class BookMemoryWish extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
