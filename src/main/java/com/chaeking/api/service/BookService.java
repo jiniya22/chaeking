@@ -3,6 +3,7 @@ package com.chaeking.api.service;
 import com.chaeking.api.config.exception.InvalidInputException;
 import com.chaeking.api.domain.entity.Book;
 import com.chaeking.api.domain.entity.BookAndAuthor;
+import com.chaeking.api.domain.enumerate.KakaoBookTarget;
 import com.chaeking.api.domain.value.BookValue;
 import com.chaeking.api.domain.value.naver.KakaoBookValue;
 import com.chaeking.api.domain.value.naver.NaverBookValue;
@@ -18,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -64,8 +66,9 @@ public class BookService {
     }
 
     @Transactional
-    public KakaoBookValue.Res.BookBasic searchKakaoBook(String search, String target, String sort, int page, int size) {
-        String query = "?query=" + search + "&target=" + target + "&sort=" + sort + "&page=" + page + "&size=" + size;
+    public KakaoBookValue.Res.BookBasic searchKakaoBook(String search, KakaoBookTarget target, String sort, int page, int size) {
+        String query = "?query=" + search + "&target=" + Optional.ofNullable(target).map(KakaoBookTarget::name).orElse("")
+                + "&sort=" + sort + "&page=" + page + "&size=" + size;
         ResponseEntity<KakaoBookValue.Res.BookBasic> responseEntity = kakaoApiRestTemplate.get("/v3/search/book" + query, null, KakaoBookValue.Res.BookBasic.class);
         if (HttpStatus.OK.equals(responseEntity.getStatusCode())) {
             KakaoBookValue.Res.BookBasic result = responseEntity.getBody();

@@ -1,5 +1,6 @@
 package com.chaeking.api.controller.v1;
 
+import com.chaeking.api.domain.enumerate.KakaoBookTarget;
 import com.chaeking.api.domain.value.BookValue;
 import com.chaeking.api.domain.value.naver.KakaoBookValue;
 import com.chaeking.api.domain.value.response.DataResponse;
@@ -51,7 +52,7 @@ public class BookController {
     @GetMapping("")
     public DataResponse<KakaoBookValue.Res.BookBasic> searchKakaoBook(
             @Parameter(description = "검색어") @RequestParam @NotBlank String query,
-            @Parameter(description = "검색 필드 제한") @RequestParam(required = false) String target,
+            @Parameter(description = "검색 필드 제한") @RequestParam(required = false) KakaoBookTarget target,
             @Parameter(description = "정렬 옵션") @RequestParam(defaultValue = "accuracy") String sort,
             @RequestParam(value = "page", required = false, defaultValue = "1") @Min(1) @Max(100) int page,
             @RequestParam(value = "size", required = false, defaultValue = "10") @Min(1) @Max(50) int size) {
