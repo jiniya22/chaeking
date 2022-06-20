@@ -22,4 +22,8 @@ public class NoticeService {
                 .map(BoardValue.Res.Simple::of)
                 .collect(Collectors.toList());
     }
+
+    public BoardValue.Res.Detail notice(long id) {
+        return noticeRepository.findById(id).map(BoardValue.Res.Detail::of).orElse(null);
+    }
 }

@@ -4,14 +4,12 @@ import com.chaeking.api.domain.value.BoardValue;
 import com.chaeking.api.domain.value.response.DataResponse;
 import com.chaeking.api.service.NoticeService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,5 +28,12 @@ public class NoticeController {
             @RequestParam(value = "size", required = false, defaultValue = "10") int size) {
         List<BoardValue.Res.Simple> data = noticeService.notices(PageRequest.of(page, size, Sort.by(Sort.Order.desc("id"))));
         return DataResponse.of(data);
+    }
+
+    @Operation(summary = "공지사항 상세보기")
+    @GetMapping("/{notice_id}")
+    public DataResponse<BoardValue.Res.Detail> notice(
+            @Parameter(description = "공지사항 id") @PathVariable(name = "notice_id") long noticeId) {
+        return DataResponse.of(noticeService.notice(noticeId));
     }
 }
