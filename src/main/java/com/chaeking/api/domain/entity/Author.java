@@ -1,6 +1,5 @@
 package com.chaeking.api.domain.entity;
 
-import com.chaeking.api.util.BasicUtils;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,7 +38,7 @@ public class Author {
     public Author(String name) {
         this();
         this.name = name;
-        this.simpleName = BasicUtils.getSimpleName(name);
+        this.simpleName = getSimpleName(name);
     }
 
     @PrePersist
@@ -47,4 +46,8 @@ public class Author {
         this.createdAt = LocalDateTime.now();
     }
 
+    String getSimpleName(String name) {
+        String simpleName = name.replaceAll("[^\\da-zA-Z가-힣]", "");
+        return simpleName;
+    }
 }

@@ -13,10 +13,4 @@ public class BasicUtils {
         return Optional.ofNullable(response.getHeader("X-Chaeking-User-Id"))
                 .map(Long::valueOf).orElse(null);
     }
-
-    public static String getSimpleName(String name) {
-        String simpleName = name.replaceAll("[^\\da-zA-Z가-힣]", "");
-        return simpleName;
-    }
-
 }
