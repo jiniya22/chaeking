@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Getter
 @DynamicInsert @DynamicUpdate
 @Entity
-public class Review extends BaseEntity {
+public class Review extends BasicEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
