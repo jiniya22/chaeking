@@ -1,6 +1,5 @@
 package com.chaeking.api.config;
 
-import com.chaeking.api.domain.value.Ttt;
 import com.chaeking.api.domain.value.UserValue;
 import com.chaeking.api.util.cipher.AESCipher;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -39,8 +38,7 @@ class WebConfigTest {
             "sex": "F"
         }
         """;
-//        UserValue.Req.Creation user = jackson2ObjectMapper.readerFor(UserValue.Req.Creation.class).readValue(jsonString);
-        Ttt user = objectMapper.readerFor(Ttt.class).readValue(jsonString);
+        UserValue.Req.Creation user = objectMapper.readerFor(UserValue.Req.Creation.class).readValue(jsonString);
         System.out.println(user);
     }
 
