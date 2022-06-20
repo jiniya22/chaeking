@@ -6,10 +6,14 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Where;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@EntityListeners(value = AuditingEntityListener.class)
 @Getter
 @MappedSuperclass
 @DynamicInsert
@@ -21,20 +25,15 @@ public abstract class BaseEntity {
     @ColumnDefault("1")
     private boolean active;
 
-    @ColumnDefault("NOW()")
+    @CreatedDate
     private LocalDateTime createdAt;
 
-    @Setter
+    @LastModifiedBy
     private LocalDateTime updatedAt;
 
     @PrePersist
     protected void prePersist() {
         this.active = true;
-        this.createdAt = LocalDateTime.now();
     }
 
-    @PreUpdate
-    protected  void preUpdate() {
-        this.updatedAt = LocalDateTime.now();
-    }
 }
