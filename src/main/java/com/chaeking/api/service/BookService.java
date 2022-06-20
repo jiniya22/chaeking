@@ -24,6 +24,7 @@ import java.util.Arrays;
 @Service
 public class BookService {
     private final AuthorService authorService;
+    private final PublisherService publisherService;
     private final BookAndAuthorRepository bookAndAuthorRepository;
     private final BookRepository bookRepository;
     private final NaverApiRestTemplate naverApiRestTemplate;
@@ -45,8 +46,11 @@ public class BookService {
         if (HttpStatus.OK.equals(responseEntity.getStatusCode())) {
             NaverBookValue.Res.BookBasic result = responseEntity.getBody();
             result.getItems().forEach(i -> {
-                Book b = bookRepository.findByIsbn(i.getIsbn()).orElse(Book.of(i));
+                Book b = bookRepository.findWithPublisherByIsbn(i.getIsbn()).orElse(Book.of(i));
                 bookRepository.save(b);
+                if(b.getPublisher() == null) {
+                    b.setPublisher(publisherService.findByName(i.getPublisher()));
+                }
                 if (CollectionUtils.isEmpty(b.getBookAndAuthors())) {
                     bookAndAuthorRepository.saveAll(
                             BookAndAuthor.of(b, authorService.findAllByNameIn(Arrays.asList(i.getAuthor().split("|"))))
@@ -66,8 +70,11 @@ public class BookService {
         if (HttpStatus.OK.equals(responseEntity.getStatusCode())) {
             KakaoBookValue.Res.BookBasic result = responseEntity.getBody();
             result.getDocuments().forEach(i -> {
-                Book b = bookRepository.findByIsbn(i.getIsbn()).orElse(Book.of(i));
+                Book b = bookRepository.findWithPublisherByIsbn(i.getIsbn()).orElse(Book.of(i));
                 bookRepository.save(b);
+                if(b.getPublisher() == null) {
+                    b.setPublisher(publisherService.findByName(i.getPublisher()));
+                }
                 if (CollectionUtils.isEmpty(b.getBookAndAuthors())) {
                     bookAndAuthorRepository.saveAll(
                             BookAndAuthor.of(b, authorService.findAllByNameIn(i.getAuthors()))

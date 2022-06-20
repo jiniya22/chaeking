@@ -29,9 +29,6 @@ public class Book extends BaseEntity {
     private int price;
 
     @Column(length = 100)
-    private String publisher;
-
-    @Column(length = 100)
     private String isbn;
 
     @Column(length = 300)
@@ -48,17 +45,22 @@ public class Book extends BaseEntity {
     private LocalDate publicationDate;
 
     @Setter
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK__BOOK__PUBLISHER"))
+    private Publisher publisher;
+
+    @Setter
     @OneToMany(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "book_id")
     @ToString.Exclude
     private List<BookAndAuthor> bookAndAuthors = new ArrayList<>();
 
     @Builder
-    public Book(String name, int price, String publisher, String isbn, String imageUrl, String link,
+    public Book(String name, int price, String isbn, String imageUrl, String link,
                 String detailInfo, LocalDate publicationDate) {
         this.name = name;
         this.price = price;
-        this.publisher = publisher;
         this.isbn = isbn;
         this.imageUrl = imageUrl;
         this.link = link;
@@ -70,7 +72,7 @@ public class Book extends BaseEntity {
         return Book.builder()
                 .name(i.getTitle())
                 .price(i.getPrice())
-                .publisher(i.getPublisher())
+//                .publisher(i.getPublisher())
                 .publicationDate(Optional.ofNullable(i.getPubdate()).filter(f -> f != null && f.length() == 8)
                         .map(m -> LocalDate.parse(m, DateTimeUtils.FORMATTER_DATE_SIMPLE)).orElse(null))
                 .isbn(i.getIsbn())
@@ -83,7 +85,7 @@ public class Book extends BaseEntity {
         return Book.builder()
                 .name(d.getTitle())
                 .price(d.getPrice())
-                .publisher(d.getPublisher())
+//                .publisher(d.getPublisher())
                 .publicationDate(Optional.ofNullable(d.getDatetime())
                         .map(m -> LocalDate.parse(m.replaceAll("\\D", "").substring(0,8), DateTimeUtils.FORMATTER_DATE_SIMPLE)).orElse(null))
                 .isbn(d.getIsbn())
@@ -97,7 +99,7 @@ public class Book extends BaseEntity {
         this.name = i.getTitle();
         // FIXME update authors
         this.price = i.getPrice();
-        this.publisher = i.getPublisher();
+//        this.publisher = i.getPublisher();
         this.publicationDate = Optional.ofNullable(i.getPubdate()).filter(f -> f != null && f.length() == 8)
                 .map(m -> LocalDate.parse(m, DateTimeUtils.FORMATTER_DATE_SIMPLE)).orElse(null);
         this.isbn = i.getIsbn();
@@ -110,7 +112,7 @@ public class Book extends BaseEntity {
         this.name = i.getTitle();
         // FIXME update authors
         this.price = i.getPrice();
-        this.publisher = i.getPublisher();
+//        this.publisher = i.getPublisher();
         this.publicationDate = Optional.ofNullable(i.getDatetime())
                 .map(m -> LocalDate.parse(m.replaceAll("\\D", "").substring(0,8), DateTimeUtils.FORMATTER_DATE_SIMPLE)).orElse(null);
         this.isbn = i.getIsbn();
