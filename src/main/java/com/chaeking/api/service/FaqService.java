@@ -20,4 +20,8 @@ public class FaqService {
                 .map(m -> new BoardValue.Res.Simple(m.getId(), m.getTitle(), m.getContent()))
                 .collect(Collectors.toList());
     }
+
+    public BoardValue.Res.Detail faq(long id) {
+        return faqRepository.findById(id).map(BoardValue.Res.Detail::of).orElse(null);
+    }
 }
