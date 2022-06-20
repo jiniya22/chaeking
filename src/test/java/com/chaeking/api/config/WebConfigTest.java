@@ -19,8 +19,8 @@ class WebConfigTest {
     void serializeTest() {
         String secretKey = "A37aXdxH6gwTySajLe8eZWNvyC2yuZVB";
         String password = AESCipher.encrypt("jini", secretKey);
-//        UserValue.Req.Creation user1 = new UserValue.Req.Creation("jini@jiniworld.me", "123", "지니", LocalDate.of(1992, 11, 11), Sex.F);
-        UserValue.Req.Creation user1 = new UserValue.Req.Creation("jini@jiniworld.me", password, secretKey,"지니", "1992-11-11", "F");
+//        UserValue.Req.Creation user1 = new UserValue.Req.Creation("jini@jiniworld.me", "123", "지니", Sex.F);
+        UserValue.Req.Creation user1 = new UserValue.Req.Creation("jini@jiniworld.me", password, secretKey,"지니", "F");
         try {
             System.out.println(objectMapper.writeValueAsString(user1));
         } catch (JsonProcessingException e) {
@@ -36,7 +36,6 @@ class WebConfigTest {
             "password": "3wqPrWol1T3h/3U+w2abGw==",
             "secret_key": "A37aXdxH6gwTySajLe8eZWNvyC2yuZVB",
             "name": "김소희",
-            "birth_date": "1984-02-12",
             "sex": "F"
         }
         """;

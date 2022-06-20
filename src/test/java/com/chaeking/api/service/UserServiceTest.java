@@ -16,7 +16,7 @@ class UserServiceTest {
     @Test
     void test1() {
         userService.save(UserValue.Req.Creation.builder().name("솔").email("sol@applebox.xyz")
-                .sex("M").birthDate("1990-05-01")
+                .sex("M")
                 .password("3wqPrWol1T3h/3U+w2abGw==").secretKey("A37aXdxH6gwTySajLe8eZWNvyC2yuZVB").build());
     }
 }

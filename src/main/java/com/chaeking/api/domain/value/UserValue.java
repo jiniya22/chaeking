@@ -23,7 +23,6 @@ public final class UserValue {
                 @Schema(description = DescriptionUtils.PASSWORD) @NotBlank String password,
                 @Schema(description = DescriptionUtils.SECRET_KEY) @Length(min = 32) String secretKey,
                 @Schema(description = "이름") @NotBlank String name,
-                @Schema(description = "생년월일(yyyy-MM-dd)") @NotBlank @Pattern(regexp = RegexpUtils.DATE) String birthDate,
                 @Schema(description = "성별") @Pattern(regexp = RegexpUtils.SEX) String sex) { }
 
         @Schema(name = "UserLogin")
@@ -35,11 +34,10 @@ public final class UserValue {
 
     public final static class Res {
         @Schema(name = "UserDetail")
-        public record Detail(String email, String name, String birthDate, Sex sex) {
+        public record Detail(String email, String name, Sex sex) {
             public final static Detail of(User u) {
                 return new Detail(u.getEmail(),
                         u.getName(),
-                        Optional.ofNullable(u.getBirthDate()).map(m -> m.format(DateTimeUtils.FORMATTER_DATE)).orElse(null),
                         u.getSex());
             }
         }

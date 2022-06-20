@@ -41,8 +41,6 @@ public class User extends BaseEntity implements UserDetails {
     @Column(nullable = false, length = 100)
     private String name;
 
-    private LocalDate birthDate;
-
     @Column(length = 1)
     @Enumerated(EnumType.STRING)
     @ColumnDefault("'M'")
@@ -53,11 +51,10 @@ public class User extends BaseEntity implements UserDetails {
     private Set<UserAuthority> authorities;
 
     @Builder
-    private User(String email, String password, String name, LocalDate birthDate, Sex sex) {
+    private User(String email, String password, String name, Sex sex) {
         this.email = email;
         this.password = password;
         this.name = name;
-        this.birthDate = birthDate;
         this.sex = sex;
     }
     
@@ -66,7 +63,6 @@ public class User extends BaseEntity implements UserDetails {
         return User.builder()
                 .email(c.email())
                 .name(c.name())
-                .birthDate(Optional.ofNullable(c.birthDate()).map(m -> LocalDate.parse(m, DateTimeUtils.FORMATTER_DATE)).orElse(null))
                 .sex(Sex.valueOf(c.sex()))
                 .password(SecurityConfig.passwordEncoder.encode(originalPassword)).build();
     }
