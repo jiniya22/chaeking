@@ -19,12 +19,12 @@ public class BookMemoryCompleteTag {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_BOOK_MEMORY_COMPLETE_BOOK_MEMORY_COMPLETE_TAG"))
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK__BOOK_MEMORY_COMPLETE_TAG__BOOK_MEMORY_COMPLETE"))
     private BookMemoryComplete bookMemoryComplete;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_TAG_BOOK_MEMORY_COMPLETE"))
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK__BOOK_MEMORY_COMPLETE_TAG__TAG"))
     private Tag tag;
 
     @Builder

@@ -1,6 +1,5 @@
 package com.chaeking.api.domain.entity;
 
-import com.chaeking.api.domain.value.BookMemoryWishValue;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -20,12 +19,12 @@ public class BookMemoryWish extends BaseEntity {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_BOOK_BOOK_MEMORY_WISH"))
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK__BOOK_MEMORY_WISH__BOOK"))
     private Book book;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_USER_BOOK_MEMORY_WISH"))
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK__BOOK_MEMORY_WISH__USER"))
     private User user;
 
     @Setter

@@ -21,12 +21,12 @@ public class BookMemoryComplete extends BaseEntity {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_BOOK_BOOK_MEMORY_COMPLETE"))
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK__BOOK_MEMORY_COMPLETE__BOOK"))
     private Book book;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "FK_USER_BOOK_MEMORY_COMPLETE"))
+    @JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "FK__BOOK_MEMORY_COMPLETE__USER"))
     private User user;
 
     @Setter

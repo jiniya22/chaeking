@@ -16,11 +16,11 @@ public class Review extends BaseEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "FK_USER_REVIEW"))
+    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "FK__REVIEW__USER"))
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "book_id", foreignKey = @ForeignKey(name = "FK_BOOK_REVIEW"))
+    @JoinColumn(name = "book_id", foreignKey = @ForeignKey(name = "FK__REVIEW__BOOK"))
     private Book book;
 
     @Column(length = 10)

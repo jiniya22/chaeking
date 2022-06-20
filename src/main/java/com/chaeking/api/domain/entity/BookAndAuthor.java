@@ -25,12 +25,12 @@ public class BookAndAuthor {
 
     @ManyToOne
     @ToString.Exclude
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK__BOOK__BOOK_AND_AUTHOR"))
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK__BOOK_AND_AUTHOR__BOOK"))
     private Book book;
 
     @ManyToOne
     @ToString.Exclude
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK__AUTHOR__BOOK_AND_AUTHOR"))
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK__BOOK_AND_AUTHOR__AUTHOR"))
     private Author author;
 
     public static BookAndAuthor of(Book book, Author author) {
