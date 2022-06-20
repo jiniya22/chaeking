@@ -13,6 +13,19 @@ import java.util.stream.Collectors;
 public final class BookValue {
 
     public final static class Res {
+
+        @Schema(name = "BookSimple")
+        public record Simple(
+                long id,
+                String name,
+                String authors,
+                String publisher
+        ) {
+            public static Simple of(Book b) {
+                return new Simple(b.getId(), b.getName(), b.getAuthorNames(), b.getPublisherName());
+            }
+        }
+
         @Schema(name = "BookDetail")
         public record Detail(
                 long id,

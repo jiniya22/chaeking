@@ -19,7 +19,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @Transactional(readOnly = true)
@@ -67,13 +69,13 @@ public class BookService {
     }
 
     @Transactional
-    public KakaoBookValue.Res.BookBasic searchKakaoBook(String search, KakaoBookTarget target, KakaoBookSort sort, int page, int size) {
+    public List<BookValue.Res.Simple> searchKakaoBook(String search, KakaoBookTarget target, KakaoBookSort sort, int page, int size) {
         String query = "?query=" + search + "&target=" + Optional.ofNullable(target).map(KakaoBookTarget::name).orElse("")
                 + "&sort=" + Optional.ofNullable(sort).map(KakaoBookSort::name).orElse("accuracy") + "&page=" + page + "&size=" + size;
         ResponseEntity<KakaoBookValue.Res.BookBasic> responseEntity = kakaoApiRestTemplate.get("/v3/search/book" + query, null, KakaoBookValue.Res.BookBasic.class);
         if (HttpStatus.OK.equals(responseEntity.getStatusCode())) {
-            KakaoBookValue.Res.BookBasic result = responseEntity.getBody();
-            result.getDocuments().forEach(i -> {
+            List<BookValue.Res.Simple> res = new ArrayList<>();
+            responseEntity.getBody().getDocuments().forEach(i -> {
                 Book b = bookRepository.findWithPublisherByIsbn(i.getIsbn()).orElse(Book.of(i));
                 bookRepository.save(b);
                 if(b.getPublisher() == null) {
@@ -83,10 +85,13 @@ public class BookService {
                     bookAndAuthorRepository.saveAll(
                             BookAndAuthor.of(b, authorService.findAllByNameIn(i.getAuthors()))
                     );
+                } else {
+                    b.getBookAndAuthors().forEach(bookAndAuthor -> Optional.ofNullable(bookAndAuthor.getAuthor()).ifPresent(author -> author.getName()));
                 }
                 b.update(i);
+                res.add(BookValue.Res.Simple.of(b));
             });
-            return result;
+            return res;
         }
         return null;
     }

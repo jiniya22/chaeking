@@ -3,21 +3,19 @@ package com.chaeking.api.controller.v1;
 import com.chaeking.api.domain.enumerate.KakaoBookSort;
 import com.chaeking.api.domain.enumerate.KakaoBookTarget;
 import com.chaeking.api.domain.value.BookValue;
-import com.chaeking.api.domain.value.naver.KakaoBookValue;
 import com.chaeking.api.domain.value.response.DataResponse;
 import com.chaeking.api.service.BookService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import java.util.Calendar;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Tag(name = "book", description = "책")
@@ -51,14 +49,13 @@ public class BookController {
                     """
     )
     @GetMapping("")
-    public DataResponse<KakaoBookValue.Res.BookBasic> searchKakaoBook(
+    public DataResponse<List<BookValue.Res.Simple>> searchKakaoBook(
             @Parameter(description = "검색어") @RequestParam @NotBlank String query,
             @Parameter(description = "검색 필드 제한") @RequestParam(required = false) KakaoBookTarget target,
             @Parameter(description = "정렬 옵션") @RequestParam(defaultValue = "accuracy") KakaoBookSort sort,
             @RequestParam(value = "page", required = false, defaultValue = "1") @Min(1) @Max(100) int page,
             @RequestParam(value = "size", required = false, defaultValue = "10") @Min(1) @Max(50) int size) {
-        KakaoBookValue.Res.BookBasic res = bookService.searchKakaoBook(query, target, sort, page, size);
-        return DataResponse.of(res);
+        return DataResponse.of(bookService.searchKakaoBook(query, target, sort, page, size));
     }
 
     @Operation(summary = "책 상세조회")

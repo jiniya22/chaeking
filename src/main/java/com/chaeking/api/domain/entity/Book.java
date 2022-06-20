@@ -5,14 +5,14 @@ import com.chaeking.api.domain.value.naver.NaverBookValue;
 import com.chaeking.api.util.DateTimeUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -54,6 +54,7 @@ public class Book extends BaseEntity {
     @OneToMany(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "book_id")
     @ToString.Exclude
+    @Where(clause = "author_id IS NOT NULL")
     private List<BookAndAuthor> bookAndAuthors = new ArrayList<>();
 
     @Builder
@@ -66,6 +67,14 @@ public class Book extends BaseEntity {
         this.link = link;
         this.detailInfo = detailInfo;
         this.publicationDate = publicationDate;
+    }
+
+    public String getAuthorNames() {
+        return this.bookAndAuthors.stream().map(m -> m.getAuthor().getName()).collect(Collectors.joining(", "));
+    }
+
+    public String getPublisherName() {
+        return Optional.ofNullable(this.publisher).map(Publisher::getName).orElse("");
     }
 
     public static Book of(NaverBookValue.Res.BookBasic.Item i) {
