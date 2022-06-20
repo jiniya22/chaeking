@@ -14,9 +14,9 @@ import java.util.List;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(uniqueConstraints = { @UniqueConstraint(name = "UK__AUTHOR__NAME", columnNames = {"name"}) })
+@Table(uniqueConstraints = { @UniqueConstraint(name = "UK__PUBLISHER__NAME", columnNames = {"name"}) })
 @Entity
-public class Author {
+public class Publisher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,9 +34,9 @@ public class Author {
     @OneToMany(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "author_id")
     @ToString.Exclude
-    private List<BookAndAuthor> bookAndAuthors = new ArrayList<>();
+    private List<Book> books = new ArrayList<>();
 
-    public Author(String name) {
+    public Publisher(String name) {
         this();
         this.name = name;
         this.simpleName = BasicUtils.getSimpleName(name);
@@ -46,5 +46,6 @@ public class Author {
     protected void prePersist() {
         this.createdAt = LocalDateTime.now();
     }
+
 
 }
