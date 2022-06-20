@@ -4,20 +4,22 @@ import com.chaeking.api.domain.entity.BaseBoard;
 import com.chaeking.api.util.DateTimeUtils;
 import io.swagger.v3.oas.annotations.media.Schema;
 
-import java.util.Optional;
-
 public class BoardValue {
 
     public static class Res {
         @Schema(name = "BoardSimple")
         public record Simple(long id, String title, String createdOn) {
             public static Simple of(BaseBoard b) {
-                return new Simple(b.getId(), b.getTitle(), Optional.ofNullable(b.getCreatedAt()).map(m -> m.format(DateTimeUtils.FORMATTER_DATE)).orElse(null));
+                return new Simple(b.getId(), b.getTitle(), DateTimeUtils.toString(b.getCreatedAt()));
             }
         }
 
         @Schema(name = "BoardDetail")
         public record Detail(long id, String title, String createdAt, String content) {
+
+            public static Detail of(BaseBoard b) {
+                return new Detail(b.getId(), b.getTitle(), DateTimeUtils.toString(b.getCreatedAt()), b.getContent());
+            }
         }
     }
 }

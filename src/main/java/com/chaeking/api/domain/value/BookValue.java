@@ -40,7 +40,7 @@ public final class BookValue {
         ) {
             public Detail(Book b) {
                 this(b.getId(), b.getName(), b.getPrice(), Optional.ofNullable(b.getPublisher()).map(Publisher::getName).orElse(null),
-                        Optional.ofNullable(b.getPublicationDate()).map(m -> m.format(DateTimeUtils.FORMATTER_DATE)).orElse(null),
+                        DateTimeUtils.toString(b.getPublicationDate()),
                         b.getIsbn(), b.getImageUrl(), b.getDetailInfo(),
                         b.getBookAndAuthors().stream()
                                 .map(m -> Optional.ofNullable(m.getAuthor())
