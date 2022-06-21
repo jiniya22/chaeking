@@ -2,10 +2,10 @@ package com.chaeking.api.domain.entity;
 
 import com.chaeking.api.config.SecurityConfig;
 import com.chaeking.api.domain.enumerate.Sex;
+import com.chaeking.api.domain.value.TokenValue;
 import com.chaeking.api.domain.value.UserValue;
-import com.chaeking.api.util.DateTimeUtils;
+import com.chaeking.api.util.JWTUtils;
 import com.chaeking.api.util.cipher.AESCipher;
-import com.chaeking.api.util.cipher.SHA256Cipher;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
@@ -13,9 +13,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 @ToString
@@ -65,6 +63,14 @@ public class User extends BaseEntity implements UserDetails {
                 .name(c.name())
                 .sex(Sex.valueOf(c.sex()))
                 .password(SecurityConfig.passwordEncoder.encode(originalPassword)).build();
+    }
+
+    public static UserValue.Res.Detail createDetail(User u) {
+        return new UserValue.Res.Detail(u.getEmail(), u.getName(), u.getSex());
+    }
+
+    public static TokenValue.Token createToken(User u) {
+        return new TokenValue.Token(JWTUtils.createAccessToken(u), JWTUtils.createRefreshToken(u));
     }
 
     public void initializeAuthorities() {

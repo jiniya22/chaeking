@@ -1,5 +1,7 @@
 package com.chaeking.api.domain.entity;
 
+import com.chaeking.api.domain.value.BoardValue;
+import com.chaeking.api.util.DateTimeUtils;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,4 +22,11 @@ public abstract class BaseBoard extends BaseEntity {
     @Column(columnDefinition = "TEXT")
     private String content;
 
+    public static BoardValue.Res.Detail createBoardDetail(BaseBoard b) {
+        return new BoardValue.Res.Detail(b.getId(), b.getTitle(), DateTimeUtils.toString(b.getCreatedAt()), b.getContent());
+    }
+
+    public static BoardValue.Res.Simple createBoardSimple(BaseBoard b) {
+        return new BoardValue.Res.Simple(b.getId(), b.getTitle(), DateTimeUtils.toString(b.getCreatedAt()));
+    }
 }

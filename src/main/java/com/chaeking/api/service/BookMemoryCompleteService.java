@@ -1,8 +1,11 @@
 package com.chaeking.api.service;
 
 import com.chaeking.api.config.exception.InvalidInputException;
+import com.chaeking.api.domain.entity.Book;
+import com.chaeking.api.domain.entity.BookMemoryComplete;
+import com.chaeking.api.domain.entity.BookMemoryCompleteTag;
+import com.chaeking.api.domain.entity.User;
 import com.chaeking.api.domain.value.BookMemoryCompleteValue;
-import com.chaeking.api.domain.entity.*;
 import com.chaeking.api.repository.BookMemoryCompleteRepository;
 import com.chaeking.api.util.MessageUtils;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +30,7 @@ public class BookMemoryCompleteService {
         User user = userService.select(userId);
         return bookMemoryCompleteRepository.findAllByUser(user, pageable)
                 .stream()
-                .map(BookMemoryCompleteValue.Res.Simple::create)
+                .map(BookMemoryComplete::createSimple)
                 .collect(Collectors.toList());
     }
 

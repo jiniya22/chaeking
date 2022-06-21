@@ -1,5 +1,6 @@
 package com.chaeking.api.service;
 
+import com.chaeking.api.domain.entity.BaseBoard;
 import com.chaeking.api.domain.value.BoardValue;
 import com.chaeking.api.repository.NoticeRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,11 +20,11 @@ public class NoticeService {
     public List<BoardValue.Res.Simple> notices(Pageable pageable) {
         return noticeRepository.findAll(pageable)
                 .stream()
-                .map(BoardValue.Res.Simple::create)
+                .map(BaseBoard::createBoardSimple)
                 .collect(Collectors.toList());
     }
 
     public BoardValue.Res.Detail notice(long id) {
-        return noticeRepository.findById(id).map(BoardValue.Res.Detail::create).orElse(null);
+        return noticeRepository.findById(id).map(BaseBoard::createBoardDetail).orElse(null);
     }
 }

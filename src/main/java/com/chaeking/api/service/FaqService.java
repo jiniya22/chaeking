@@ -1,5 +1,6 @@
 package com.chaeking.api.service;
 
+import com.chaeking.api.domain.entity.BaseBoard;
 import com.chaeking.api.domain.value.BoardValue;
 import com.chaeking.api.repository.FaqRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,11 +18,11 @@ public class FaqService {
     public List<BoardValue.Res.Simple> faqs(Pageable pageable) {
         return faqRepository.findAll(pageable)
                 .stream()
-                .map(m -> new BoardValue.Res.Simple(m.getId(), m.getTitle(), m.getContent()))
+                .map(BaseBoard::createBoardSimple)
                 .collect(Collectors.toList());
     }
 
     public BoardValue.Res.Detail faq(long id) {
-        return faqRepository.findById(id).map(BoardValue.Res.Detail::create).orElse(null);
+        return faqRepository.findById(id).map(BaseBoard::createBoardDetail).orElse(null);
     }
 }

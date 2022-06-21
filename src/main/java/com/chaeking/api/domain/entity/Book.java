@@ -1,5 +1,6 @@
 package com.chaeking.api.domain.entity;
 
+import com.chaeking.api.domain.value.BookValue;
 import com.chaeking.api.domain.value.naver.KakaoBookValue;
 import com.chaeking.api.domain.value.naver.NaverBookValue;
 import com.chaeking.api.util.DateTimeUtils;
@@ -75,6 +76,18 @@ public class Book extends BaseEntity {
 
     public String getPublisherName() {
         return Optional.ofNullable(this.publisher).map(Publisher::getName).orElse("");
+    }
+
+    public static BookValue.Res.Simple createSimple(Book b) {
+        return new BookValue.Res.Simple(b.getId(), b.getName(), b.getAuthorNames(), b.getPublisherName());
+    }
+    public static BookValue.Res.Detail createDetail(Book b) {
+        return new BookValue.Res.Detail(b.getId(), b.getName(), b.getPrice(), Optional.ofNullable(b.getPublisher()).map(Publisher::getName).orElse(null),
+                DateTimeUtils.toString(b.getPublicationDate()),
+                b.getIsbn(), b.getImageUrl(), b.getDetailInfo(),
+                b.getBookAndAuthors().stream()
+                        .map(m -> Optional.ofNullable(m.getAuthor())
+                                .map(Author::getName).orElse(null)).collect(Collectors.toList()));
     }
 
     public static Book of(NaverBookValue.Res.BookBasic.Item i) {

@@ -1,11 +1,8 @@
 package com.chaeking.api.domain.value;
 
-import com.chaeking.api.domain.entity.Book;
-import com.chaeking.api.domain.entity.BookMemoryComplete;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.List;
-import java.util.Optional;
 
 public final class BookMemoryCompleteValue {
 
@@ -25,13 +22,9 @@ public final class BookMemoryCompleteValue {
                 double rate) {
         }
     }
+
     public static final class Res {
         @Schema(name = "BookMemoryCompleteSimple")
-        public record Simple(long id, String bookName) {
-
-            public static Simple create(BookMemoryComplete c) {
-                return new Simple(c.getId(), Optional.ofNullable(c.getBook()).map(Book::getName).orElse(""));
-            }
-        }
+        public record Simple(long id, String bookName) { }
     }
 }

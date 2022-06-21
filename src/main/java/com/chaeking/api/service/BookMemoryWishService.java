@@ -26,7 +26,7 @@ public class BookMemoryWishService {
     public List<BookMemoryWishValue.Res.Simple> selectAll(Long userId, Pageable pageable) {
         User user = userService.select(userId);
         return bookMemoryWishRepository.findAllByUser(user, pageable).stream()
-                .map(BookMemoryWishValue.Res.Simple::create).collect(Collectors.toList());
+                .map(BookMemoryWish::createSimple).collect(Collectors.toList());
     }
 
     @Transactional

@@ -1,5 +1,6 @@
 package com.chaeking.api.domain.entity;
 
+import com.chaeking.api.domain.value.BookMemoryCompleteValue;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -9,6 +10,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -45,5 +47,9 @@ public class BookMemoryComplete extends BaseEntity {
     public BookMemoryComplete(Book book, User user) {
         this.book = book;
         this.user = user;
+    }
+
+    public static BookMemoryCompleteValue.Res.Simple createSimple(BookMemoryComplete c) {
+        return new BookMemoryCompleteValue.Res.Simple(c.getId(), Optional.ofNullable(c.getBook()).map(Book::getName).orElse(""));
     }
 }

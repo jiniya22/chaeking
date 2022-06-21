@@ -41,7 +41,7 @@ public class BookService {
     }
 
     public BookValue.Res.Detail book(long bookId) {
-        return new BookValue.Res.Detail(select(bookId));
+        return Book.createDetail(select(bookId));
     }
 
     @Transactional
@@ -89,7 +89,7 @@ public class BookService {
                     b.getBookAndAuthors().forEach(bookAndAuthor -> Optional.ofNullable(bookAndAuthor.getAuthor()).ifPresent(author -> author.getName()));
                 }
                 b.update(i);
-                res.add(BookValue.Res.Simple.create(b));
+                res.add(Book.createSimple(b));
             });
             return res;
         }

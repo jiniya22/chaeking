@@ -1,5 +1,6 @@
 package com.chaeking.api.domain.entity;
 
+import com.chaeking.api.domain.value.BookMemoryWishValue;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Optional;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -34,5 +36,9 @@ public class BookMemoryWish extends BaseEntity {
     public BookMemoryWish(Book book, User user) {
         this.book = book;
         this.user = user;
+    }
+
+    public static BookMemoryWishValue.Res.Simple createSimple(BookMemoryWish w) {
+        return new BookMemoryWishValue.Res.Simple(w.getId(), Optional.ofNullable(w.getBook()).map(Book::getName).orElse(""));
     }
 }
