@@ -9,7 +9,7 @@ public class BoardValue {
     public static class Res {
         @Schema(name = "BoardSimple")
         public record Simple(long id, String title, String createdOn) {
-            public static Simple newInstance(BaseBoard b) {
+            public static Simple create(BaseBoard b) {
                 return new Simple(b.getId(), b.getTitle(), DateTimeUtils.toString(b.getCreatedAt()));
             }
         }
@@ -17,7 +17,7 @@ public class BoardValue {
         @Schema(name = "BoardDetail")
         public record Detail(long id, String title, String createdAt, String content) {
 
-            public static Detail newInstance(BaseBoard b) {
+            public static Detail create(BaseBoard b) {
                 return new Detail(b.getId(), b.getTitle(), DateTimeUtils.toString(b.getCreatedAt()), b.getContent());
             }
         }

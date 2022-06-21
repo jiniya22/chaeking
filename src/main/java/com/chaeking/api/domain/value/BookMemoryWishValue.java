@@ -23,7 +23,7 @@ public final class BookMemoryWishValue {
         @Schema(name = "BookMemoryWishSimple")
         public record Simple(long id, String bookName) {
 
-            public static Simple newInstance(BookMemoryWish w) {
+            public static Simple create(BookMemoryWish w) {
                 return new Simple(w.getId(), Optional.ofNullable(w.getBook()).map(Book::getName).orElse(""));
             }
         }

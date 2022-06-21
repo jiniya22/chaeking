@@ -33,7 +33,7 @@ public final class UserValue {
     public final static class Res {
         @Schema(name = "UserDetail")
         public record Detail(String email, String name, Sex sex) {
-            public final static Detail newInstance(User u) {
+            public final static Detail create(User u) {
                 return new Detail(u.getEmail(),
                         u.getName(),
                         u.getSex());

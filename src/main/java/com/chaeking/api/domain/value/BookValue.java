@@ -21,7 +21,7 @@ public final class BookValue {
                 String authors,
                 String publisher
         ) {
-            public static Simple newInstance(Book b) {
+            public static Simple create(Book b) {
                 return new Simple(b.getId(), b.getName(), b.getAuthorNames(), b.getPublisherName());
             }
         }

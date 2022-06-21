@@ -27,7 +27,7 @@ public class BookMemoryCompleteService {
         User user = userService.select(userId);
         return bookMemoryCompleteRepository.findAllByUser(user, pageable)
                 .stream()
-                .map(BookMemoryCompleteValue.Res.Simple::newInstance)
+                .map(BookMemoryCompleteValue.Res.Simple::create)
                 .collect(Collectors.toList());
     }
 

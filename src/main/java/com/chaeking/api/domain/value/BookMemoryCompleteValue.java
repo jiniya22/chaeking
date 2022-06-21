@@ -29,7 +29,7 @@ public final class BookMemoryCompleteValue {
         @Schema(name = "BookMemoryCompleteSimple")
         public record Simple(long id, String bookName) {
 
-            public static Simple newInstance(BookMemoryComplete c) {
+            public static Simple create(BookMemoryComplete c) {
                 return new Simple(c.getId(), Optional.ofNullable(c.getBook()).map(Book::getName).orElse(""));
             }
         }

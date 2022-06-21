@@ -40,7 +40,7 @@ public class UserService implements UserDetailsService {
     }
 
     public UserValue.Res.Detail selectDetail(long userId) {
-        return UserValue.Res.Detail.newInstance(select(userId));
+        return UserValue.Res.Detail.create(select(userId));
     }
 
     public TokenValue.Token login(String refreshToken, UserValue.Req.Login req) {
@@ -48,7 +48,7 @@ public class UserService implements UserDetailsService {
             TokenValue.Verify verify = JWTUtils.verify(refreshToken);
             if(verify.success()) {
                 User user = userRepository.findByEmail(verify.username()).orElseThrow(() -> new InvalidInputException("이메일이 유효하지 않습니다."));
-                return TokenValue.Token.newInstance(user);
+                return TokenValue.Token.create(user);
             } else {
                 throw new TokenExpiredException("refresh_token was expired");
             }
@@ -56,7 +56,7 @@ public class UserService implements UserDetailsService {
             String pw = AESCipher.decrypt(req.password(), req.secretKey());
             User user = userRepository.findByEmail(req.email()).orElseThrow(() -> new InvalidInputException("이메일이 유효하지 않습니다."));
             if(SecurityConfig.passwordEncoder.matches(pw, user.getPassword())) {
-                return TokenValue.Token.newInstance(user);
+                return TokenValue.Token.create(user);
             }
         }
         throw new InvalidInputException(MessageUtils.INVALID_USER_EMAIL_OR_PASSWORD);
