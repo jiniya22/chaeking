@@ -28,6 +28,8 @@ public class BookSearchController {
     @Operation(summary = "네이버 책 기본 검색 및 저장",
             description = """
                     <ul>
+                        <li>page: 0 ~ 999 사이의 값 (default: 0)</li>
+                        <li>size: 1 ~ 50 사이의 값 (default: 10)</li>
                         <li>정렬 옵션
                             <ul>
                                 <li>sim: 유사도순</li>
@@ -42,9 +44,9 @@ public class BookSearchController {
     public DataResponse<List<BookValue.Res.Simple>> searchNaverBookBasic(
             @Parameter(description = "책 이름") @RequestParam @NotBlank String name,
             @Parameter(description = "정렬 옵션") @RequestParam(defaultValue = "sim") String sort,
-            @RequestParam(required = false, defaultValue = "1") @Min(1) @Max(1000) int page,
+            @RequestParam(required = false, defaultValue = "0") @Min(0) @Max(999) int page,
             @RequestParam(required = false, defaultValue = "10") @Min(1) @Max(100) int size) {
-        List<Long> bookIds = bookService.searchNaverBookBasic(name, sort, page, size);
+        List<Long> bookIds = bookService.searchNaverBookBasic(name, sort, page + 1, size);
         return DataResponse.of(bookService.selectAll(bookIds));
     }
 

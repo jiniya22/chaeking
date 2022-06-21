@@ -29,8 +29,8 @@ public class BookController {
             description = """
                     카카오 API 를 이용하여 책 목록을 조회합니다.
                     <ul>
-                        <li>page: 1~100 사이의 값 (default: 1)</li>
-                        <li>size: 1~50 사이의 값 (default: 10)</li>
+                        <li>page: 0 ~ 99 사이의 값 (default: 0)</li>
+                        <li>size: 1 ~ 50 사이의 값 (default: 10)</li>
                         <li>검색 필드 제한
                             <ul>
                                 <li>title: 제목</li>
@@ -53,9 +53,9 @@ public class BookController {
             @Parameter(description = "검색어") @RequestParam @NotBlank String query,
             @Parameter(description = "검색 필드 제한") @RequestParam(required = false) KakaoBookTarget target,
             @Parameter(description = "정렬 옵션") @RequestParam(defaultValue = "accuracy") KakaoBookSort sort,
-            @RequestParam(value = "page", required = false, defaultValue = "1") @Min(1) @Max(100) int page,
+            @RequestParam(value = "page", required = false, defaultValue = "0") @Min(0) @Max(100) int page,
             @RequestParam(value = "size", required = false, defaultValue = "10") @Min(1) @Max(50) int size) {
-        List<Long> bookIds = bookService.searchKakaoBook(query, target, sort, page, size);
+        List<Long> bookIds = bookService.searchKakaoBook(query, target, sort, page + 1, size);
         return DataResponse.of(bookService.selectAll(bookIds));
     }
 
