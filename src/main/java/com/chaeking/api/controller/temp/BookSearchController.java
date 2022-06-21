@@ -1,6 +1,6 @@
 package com.chaeking.api.controller.temp;
 
-import com.chaeking.api.domain.value.naver.NaverBookValue;
+import com.chaeking.api.domain.value.BookValue;
 import com.chaeking.api.domain.value.response.DataResponse;
 import com.chaeking.api.service.BookService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @Tag(name = "temp", description = "(테스트용) 암호화, 네이버 책검색")
 @RequiredArgsConstructor
@@ -38,13 +39,13 @@ public class BookSearchController {
                     """
     )
     @GetMapping("/book-naver")
-    public DataResponse<NaverBookValue.Res.BookBasic> searchNaverBookBasic(
+    public DataResponse<List<BookValue.Res.Simple>> searchNaverBookBasic(
             @Parameter(description = "책 이름") @RequestParam @NotBlank String name,
             @Parameter(description = "정렬 옵션") @RequestParam(defaultValue = "sim") String sort,
             @RequestParam(required = false, defaultValue = "1") @Min(1) @Max(1000) int page,
             @RequestParam(required = false, defaultValue = "10") @Min(1) @Max(100) int size) {
-        NaverBookValue.Res.BookBasic res = bookService.searchNaverBookBasic(name, sort, page, size);
-        return DataResponse.of(res);
+        List<Long> bookIds = bookService.searchNaverBookBasic(name, sort, page, size);
+        return DataResponse.of(bookService.selectAll(bookIds));
     }
 
 }

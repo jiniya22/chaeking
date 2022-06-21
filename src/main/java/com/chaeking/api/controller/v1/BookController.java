@@ -55,7 +55,8 @@ public class BookController {
             @Parameter(description = "정렬 옵션") @RequestParam(defaultValue = "accuracy") KakaoBookSort sort,
             @RequestParam(value = "page", required = false, defaultValue = "1") @Min(1) @Max(100) int page,
             @RequestParam(value = "size", required = false, defaultValue = "10") @Min(1) @Max(50) int size) {
-        return DataResponse.of(bookService.searchKakaoBook(query, target, sort, page, size));
+        List<Long> bookIds = bookService.searchKakaoBook(query, target, sort, page, size);
+        return DataResponse.of(bookService.selectAll(bookIds));
     }
 
     @Operation(summary = "책 상세조회")
