@@ -1,8 +1,6 @@
 package com.chaeking.api.domain.entity;
 
 import com.chaeking.api.domain.value.BookValue;
-import com.chaeking.api.domain.value.naver.KakaoBookValue;
-import com.chaeking.api.domain.value.naver.NaverBookValue;
 import com.chaeking.api.util.DateTimeUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
@@ -90,56 +88,4 @@ public class Book extends BaseEntity {
                                 .map(Author::getName).orElse(null)).collect(Collectors.toList()));
     }
 
-    public static Book of(NaverBookValue.Res.BookBasic.Item i) {
-        return Book.builder()
-                .name(i.getTitle())
-                .price(i.getPrice())
-//                .publisher(i.getPublisher())
-                .publicationDate(Optional.ofNullable(i.getPubdate()).filter(f -> f != null && f.length() == 8)
-                        .map(m -> LocalDate.parse(m, DateTimeUtils.FORMATTER_DATE_SIMPLE)).orElse(null))
-                .isbn(i.getIsbn())
-                .imageUrl(i.getImage())
-                .link(i.getLink())
-                .detailInfo(i.getDescription())
-                .build();
-    }
-    public static Book of(KakaoBookValue.Res.BookBasic.Document d) {
-        return Book.builder()
-                .name(d.getTitle())
-                .price(d.getPrice())
-//                .publisher(d.getPublisher())
-                .publicationDate(Optional.ofNullable(d.getDatetime())
-                        .map(m -> LocalDate.parse(m.replaceAll("\\D", "").substring(0,8), DateTimeUtils.FORMATTER_DATE_SIMPLE)).orElse(null))
-                .isbn(d.getIsbn())
-                .imageUrl(d.getThumbnail())
-                .link(d.getUrl())
-                .detailInfo(d.getContents())
-                .build();
-    }
-
-    public void update(NaverBookValue.Res.BookBasic.Item i) {
-        this.name = i.getTitle();
-        // FIXME update authors
-        this.price = i.getPrice();
-//        this.publisher = i.getPublisher();
-        this.publicationDate = Optional.ofNullable(i.getPubdate()).filter(f -> f != null && f.length() == 8)
-                .map(m -> LocalDate.parse(m, DateTimeUtils.FORMATTER_DATE_SIMPLE)).orElse(null);
-        this.isbn = i.getIsbn();
-        this.imageUrl = i.getImage();
-        this.link = i.getLink();
-        this.detailInfo = i.getDescription();
-    }
-
-    public void update(KakaoBookValue.Res.BookBasic.Document i) {
-        this.name = i.getTitle();
-        // FIXME update authors
-        this.price = i.getPrice();
-//        this.publisher = i.getPublisher();
-        this.publicationDate = Optional.ofNullable(i.getDatetime())
-                .map(m -> LocalDate.parse(m.replaceAll("\\D", "").substring(0,8), DateTimeUtils.FORMATTER_DATE_SIMPLE)).orElse(null);
-        this.isbn = i.getIsbn();
-        this.imageUrl = i.getThumbnail();
-        this.link = i.getUrl();
-        this.detailInfo = i.getContents();
-    }
 }

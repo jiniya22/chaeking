@@ -61,7 +61,7 @@ public class BookService {
             responseEntity.getBody().getItems().forEach(i -> {
                 if (bookRepository.existsByIsbn(i.getIsbn()))
                     return;
-                Book b = Book.of(i);
+                Book b = i.toBook();
                 b.setPublisher(publisherService.findByName(i.getPublisher()));
                 Arrays.stream(i.getAuthor().split("|")).forEach(author -> {
                     if(!authorMap.containsKey(author))
@@ -89,7 +89,7 @@ public class BookService {
             responseEntity.getBody().getDocuments().forEach(i -> {
                 if (bookRepository.existsByIsbn(i.getIsbn()))
                     return;
-                Book b = Book.of(i);
+                Book b = i.toBook();
                 b.setPublisher(publisherService.findByName(i.getPublisher()));
                 i.getAuthors().forEach(author -> {
                     if(!authorMap.containsKey(author))

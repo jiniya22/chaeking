@@ -20,11 +20,11 @@ public class NoticeService {
     public List<BoardValue.Res.Simple> notices(Pageable pageable) {
         return noticeRepository.findAll(pageable)
                 .stream()
-                .map(BaseBoard::createBoardSimple)
+                .map(BaseBoard::createSimple)
                 .collect(Collectors.toList());
     }
 
     public BoardValue.Res.Detail notice(long id) {
-        return noticeRepository.findById(id).map(BaseBoard::createBoardDetail).orElse(null);
+        return noticeRepository.findById(id).map(BaseBoard::createDetail).orElse(null);
     }
 }

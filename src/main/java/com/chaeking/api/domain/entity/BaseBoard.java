@@ -22,11 +22,11 @@ public abstract class BaseBoard extends BaseEntity {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    public static BoardValue.Res.Detail createBoardDetail(BaseBoard b) {
-        return new BoardValue.Res.Detail(b.getId(), b.getTitle(), DateTimeUtils.toString(b.getCreatedAt()), b.getContent());
+    public static BoardValue.Res.Simple createSimple(BaseBoard b) {
+        return new BoardValue.Res.Simple(b.getId(), b.getTitle(), DateTimeUtils.toString(b.getCreatedAt()));
     }
 
-    public static BoardValue.Res.Simple createBoardSimple(BaseBoard b) {
-        return new BoardValue.Res.Simple(b.getId(), b.getTitle(), DateTimeUtils.toString(b.getCreatedAt()));
+    public static BoardValue.Res.Detail createDetail(BaseBoard b) {
+        return new BoardValue.Res.Detail(b.getId(), b.getTitle(), DateTimeUtils.toString(b.getCreatedAt()), b.getContent());
     }
 }

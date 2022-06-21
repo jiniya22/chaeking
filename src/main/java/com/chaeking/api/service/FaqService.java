@@ -18,11 +18,11 @@ public class FaqService {
     public List<BoardValue.Res.Simple> faqs(Pageable pageable) {
         return faqRepository.findAll(pageable)
                 .stream()
-                .map(BaseBoard::createBoardSimple)
+                .map(BaseBoard::createSimple)
                 .collect(Collectors.toList());
     }
 
     public BoardValue.Res.Detail faq(long id) {
-        return faqRepository.findById(id).map(BaseBoard::createBoardDetail).orElse(null);
+        return faqRepository.findById(id).map(BaseBoard::createDetail).orElse(null);
     }
 }

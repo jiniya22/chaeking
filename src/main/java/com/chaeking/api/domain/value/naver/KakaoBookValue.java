@@ -1,10 +1,14 @@
 package com.chaeking.api.domain.value.naver;
 
+import com.chaeking.api.domain.entity.Book;
+import com.chaeking.api.util.DateTimeUtils;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class KakaoBookValue {
 
@@ -28,6 +32,19 @@ public class KakaoBookValue {
                 private String isbn;
                 private String url;
                 private String contents;
+
+                public Book toBook() {
+                    return Book.builder()
+                            .name(title)
+                            .price(price)
+                            .publicationDate(Optional.ofNullable(datetime)
+                                    .map(m -> LocalDate.parse(m.replaceAll("\\D", "").substring(0,8), DateTimeUtils.FORMATTER_DATE_SIMPLE)).orElse(null))
+                            .isbn(isbn)
+                            .imageUrl(thumbnail)
+                            .link(url)
+                            .detailInfo(contents)
+                            .build();
+                }
             }
 
 //            @Data
