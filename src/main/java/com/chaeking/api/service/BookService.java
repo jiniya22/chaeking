@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -75,22 +76,23 @@ public class BookService {
         ResponseEntity<KakaoBookValue.Res.BookBasic> responseEntity = kakaoApiRestTemplate.get("/v3/search/book" + query, null, KakaoBookValue.Res.BookBasic.class);
         if (HttpStatus.OK.equals(responseEntity.getStatusCode())) {
             List<BookValue.Res.Simple> res = new ArrayList<>();
+            List<Book> books = new ArrayList<>();
+            List<BookAndAuthor> bookAndAuthors = new ArrayList<>();
             responseEntity.getBody().getDocuments().forEach(i -> {
                 Book b = bookRepository.findWithPublisherByIsbn(i.getIsbn()).orElse(Book.of(i));
-                bookRepository.save(b);
                 if(b.getPublisher() == null) {
                     b.setPublisher(publisherService.findByName(i.getPublisher()));
                 }
                 if (CollectionUtils.isEmpty(b.getBookAndAuthors())) {
-                    bookAndAuthorRepository.saveAll(
-                            BookAndAuthor.of(b, authorService.findAllByNameIn(i.getAuthors()))
-                    );
-                } else {
-                    b.getBookAndAuthors().forEach(bookAndAuthor -> Optional.ofNullable(bookAndAuthor.getAuthor()).ifPresent(author -> author.getName()));
+                    bookAndAuthors.addAll(BookAndAuthor.of(b, authorService.findAllByNameIn(i.getAuthors())));
                 }
+                bookAndAuthors.forEach(bookAndAuthor -> Optional.ofNullable(bookAndAuthor.getAuthor()).ifPresent(author -> author.getName()));
                 b.update(i);
-                res.add(Book.createSimple(b));
+                books.add(b);
             });
+            bookRepository.saveAll(books);
+            bookAndAuthorRepository.saveAll(bookAndAuthors);
+            res.addAll(books.stream().map(Book::createSimple).collect(Collectors.toList()));
             return res;
         }
         return null;
