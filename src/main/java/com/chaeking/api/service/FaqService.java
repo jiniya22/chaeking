@@ -22,6 +22,6 @@ public class FaqService {
     }
 
     public BoardValue.Res.Detail faq(long id) {
-        return faqRepository.findById(id).map(BoardValue.Res.Detail::of).orElse(null);
+        return faqRepository.findById(id).map(BoardValue.Res.Detail::newInstance).orElse(null);
     }
 }

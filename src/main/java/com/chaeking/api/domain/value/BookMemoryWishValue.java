@@ -2,12 +2,8 @@ package com.chaeking.api.domain.value;
 
 import com.chaeking.api.domain.entity.Book;
 import com.chaeking.api.domain.entity.BookMemoryWish;
-import com.chaeking.api.domain.entity.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Setter;
 
-import javax.persistence.*;
 import java.util.Optional;
 
 public final class BookMemoryWishValue {
@@ -27,7 +23,7 @@ public final class BookMemoryWishValue {
         @Schema(name = "BookMemoryWishSimple")
         public record Simple(long id, String bookName) {
 
-            public static Simple of(BookMemoryWish w) {
+            public static Simple newInstance(BookMemoryWish w) {
                 return new Simple(w.getId(), Optional.ofNullable(w.getBook()).map(Book::getName).orElse(""));
             }
         }

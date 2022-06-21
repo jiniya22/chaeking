@@ -16,7 +16,7 @@ public class TokenValue {
     public record Token(
             String accessToken,
             String refreshToken) {
-        public final static Token of(User u) {
+        public final static Token newInstance(User u) {
             return new Token(JWTUtils.createAccessToken(u), JWTUtils.createRefreshToken(u));
         }
     }

@@ -2,7 +2,6 @@ package com.chaeking.api.domain.value;
 
 import com.chaeking.api.domain.entity.User;
 import com.chaeking.api.domain.enumerate.Sex;
-import com.chaeking.api.util.DateTimeUtils;
 import com.chaeking.api.util.DescriptionUtils;
 import com.chaeking.api.util.RegexpUtils;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -12,7 +11,6 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
-import java.util.Optional;
 
 public final class UserValue {
     public final static class Req {
@@ -35,7 +33,7 @@ public final class UserValue {
     public final static class Res {
         @Schema(name = "UserDetail")
         public record Detail(String email, String name, Sex sex) {
-            public final static Detail of(User u) {
+            public final static Detail newInstance(User u) {
                 return new Detail(u.getEmail(),
                         u.getName(),
                         u.getSex());

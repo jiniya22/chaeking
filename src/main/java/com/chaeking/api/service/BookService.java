@@ -89,7 +89,7 @@ public class BookService {
                     b.getBookAndAuthors().forEach(bookAndAuthor -> Optional.ofNullable(bookAndAuthor.getAuthor()).ifPresent(author -> author.getName()));
                 }
                 b.update(i);
-                res.add(BookValue.Res.Simple.of(b));
+                res.add(BookValue.Res.Simple.newInstance(b));
             });
             return res;
         }

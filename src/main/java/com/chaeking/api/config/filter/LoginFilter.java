@@ -75,7 +75,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
             Authentication authResult) throws IOException
     {
         User user = (User) authResult.getPrincipal();
-        TokenValue.Token token = TokenValue.Token.of(user);
+        TokenValue.Token token = TokenValue.Token.newInstance(user);
         response.setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
         response.getOutputStream().write(WebConfig.jsonMapper().writeValueAsBytes(token));
     }

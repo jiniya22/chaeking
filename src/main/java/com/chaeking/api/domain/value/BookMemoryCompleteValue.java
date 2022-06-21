@@ -2,7 +2,6 @@ package com.chaeking.api.domain.value;
 
 import com.chaeking.api.domain.entity.Book;
 import com.chaeking.api.domain.entity.BookMemoryComplete;
-import com.chaeking.api.domain.entity.BookMemoryWish;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.List;
@@ -30,7 +29,7 @@ public final class BookMemoryCompleteValue {
         @Schema(name = "BookMemoryCompleteSimple")
         public record Simple(long id, String bookName) {
 
-            public static Simple of(BookMemoryComplete c) {
+            public static Simple newInstance(BookMemoryComplete c) {
                 return new Simple(c.getId(), Optional.ofNullable(c.getBook()).map(Book::getName).orElse(""));
             }
         }

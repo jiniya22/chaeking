@@ -19,11 +19,11 @@ public class NoticeService {
     public List<BoardValue.Res.Simple> notices(Pageable pageable) {
         return noticeRepository.findAll(pageable)
                 .stream()
-                .map(BoardValue.Res.Simple::of)
+                .map(BoardValue.Res.Simple::newInstance)
                 .collect(Collectors.toList());
     }
 
     public BoardValue.Res.Detail notice(long id) {
-        return noticeRepository.findById(id).map(BoardValue.Res.Detail::of).orElse(null);
+        return noticeRepository.findById(id).map(BoardValue.Res.Detail::newInstance).orElse(null);
     }
 }
