@@ -2,6 +2,7 @@ package com.chaeking.api.util;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
@@ -17,6 +18,9 @@ public final class DateTimeUtils {
     public static final DateTimeFormatter FORMATTER_DATE = DateTimeFormatter.ofPattern(DEFAULT_PATTERN_DATE);
     public static final DateTimeFormatter FORMATTER_TIME = DateTimeFormatter.ofPattern(DEFAULT_PATTERN_TIME);
     public static final DateTimeFormatter FORMATTER_DATETIME = DateTimeFormatter.ofPattern(DEFAULT_PATTERN_DATETIME);
+
+    public static final LocalTime LOCALTIME_START = LocalTime.of(0, 0);
+    public static final LocalTime LOCALTIME_END = LocalTime.of(23, 59, 59);
 
     public static String toString(LocalDate localDate) {
         return Optional.ofNullable(localDate).map(m -> m.format(DateTimeUtils.FORMATTER_DATE)).orElse(null);

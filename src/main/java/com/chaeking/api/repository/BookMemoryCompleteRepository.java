@@ -14,5 +14,6 @@ import java.util.Optional;
 public interface BookMemoryCompleteRepository extends JpaRepository<BookMemoryComplete, Long> {
     Optional<BookMemoryComplete> findByBookAndUser(Book book, User user);
     List<BookMemoryComplete> findAllByUser(User user, Pageable pageable);
+    List<BookMemoryComplete> findAllByUserAndCreatedAtBetween(User user, LocalDateTime createdAt1, LocalDateTime createdAt2);
     Page<BookMemoryComplete> findAllByUserAndCreatedAtBetween(User user, LocalDateTime createdAt1, LocalDateTime createdAt2, Pageable pageable);
 }

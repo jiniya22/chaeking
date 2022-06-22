@@ -1,8 +1,6 @@
 package com.chaeking.api.controller.v1;
 
-import com.chaeking.api.domain.entity.BookMemoryComplete;
 import com.chaeking.api.domain.value.BookMemoryCompleteValue;
-import com.chaeking.api.domain.value.response.DataResponse;
 import com.chaeking.api.domain.value.response.PageResponse;
 import com.chaeking.api.service.BookshelfService;
 import com.chaeking.api.util.BasicUtils;
@@ -23,7 +21,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 
 @RequiredArgsConstructor
-@Tag(name = "bookshelf", description = "책장(홈)")
+@Tag(name = "bookshelf", description = "책장")
 @RestController
 @RequestMapping("/v1/bookshelf")
 public class BookshelfController {
@@ -44,6 +42,6 @@ public class BookshelfController {
             @RequestParam(value = "page", required = false, defaultValue = "0") @Min(0) @Max(999) int page
     ) {
         Long userId = BasicUtils.getUserId();
-        return bookshelfService.select(userId, month, PageRequest.of(page, BOOKSHELF_SIZE, Sort.by(Sort.Order.desc("id"))));
+        return bookshelfService.bookshelf(userId, month, PageRequest.of(page, BOOKSHELF_SIZE, Sort.by(Sort.Order.desc("id"))));
     }
 }
