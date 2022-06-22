@@ -13,6 +13,7 @@ import com.chaeking.api.util.MessageUtils;
 import com.chaeking.api.util.cipher.AESCipher;
 import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
 
-    User select(long userId) {
+    User select(Long userId) {
+        if(userId == null)
+            throw new AccessDeniedException(MessageUtils.UNAUTHORIZED_AUTHORIZATION_EMPTY);
+
         return userRepository.findById(userId)
                 .orElseThrow(() -> new InvalidInputException("일치하는 사용자가 없습니다(X-Chaeking-User-Id Error)"));
     }
