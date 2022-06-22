@@ -28,6 +28,6 @@ public final class BookMemoryCompleteValue {
         public record Simple(long id, String bookName) { }
 
         @Schema(name = "BookMemoryCompleteBookshelf")
-        public record Bookshelf(long id, String bookName, double rate, String imageUrl) { }
+        public record Bookshelf(long id, Long bookId, String bookName, double rate, String imageUrl) { }
     }
 }

@@ -1,9 +1,11 @@
 package com.chaeking.api.domain.entity;
 
 import com.chaeking.api.domain.value.BookValue;
+import com.chaeking.api.domain.value.ChaekingProperties;
 import com.chaeking.api.util.DateTimeUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.apache.logging.log4j.util.Strings;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
@@ -88,4 +90,7 @@ public class Book extends BaseEntity {
                                 .map(Author::getName).orElse(null)).collect(Collectors.toList()));
     }
 
+    public String getImageUrl() {
+        return Strings.isBlank(this.imageUrl) ? ChaekingProperties.getUrl() + "/static/img/books.png" : this.imageUrl;
+    }
 }

@@ -5,7 +5,9 @@ import com.chaeking.api.domain.entity.User;
 import com.chaeking.api.domain.value.BookMemoryCompleteValue;
 import com.chaeking.api.domain.value.response.PageResponse;
 import com.chaeking.api.repository.BookMemoryCompleteRepository;
+import com.chaeking.api.util.DateTimeUtils;
 import lombok.RequiredArgsConstructor;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,9 @@ public class BookshelfService {
     private final BookMemoryCompleteRepository bookMemoryCompleteRepository;
 
     public PageResponse<BookMemoryCompleteValue.Res.Bookshelf> select(Long userId, String month, Pageable pageable) {
+        if(Strings.isBlank(month))
+            month = LocalDate.now().format(DateTimeUtils.FORMATTER_MONTH_SIMPLE);
+
         LocalDate date = LocalDate.of(Integer.valueOf(month.substring(0, 4)), Integer.valueOf(month.substring(4, 6)), 1);
         LocalDateTime time1 = LocalDateTime.of(date, LocalTime.of(0, 0));
         LocalDateTime time2 = LocalDateTime.of(date.with(TemporalAdjusters.lastDayOfMonth()), LocalTime.of(23, 59, 59));
@@ -36,6 +41,6 @@ public class BookshelfService {
         return PageResponse.create(
                 bookMemoryCompletePage.stream().map(BookMemoryComplete::createBookshelf).collect(Collectors.toList()),
                 bookMemoryCompletePage.getTotalElements(),
-                bookMemoryCompletePage.isLast());
+                !bookMemoryCompletePage.isLast());
     }
 }

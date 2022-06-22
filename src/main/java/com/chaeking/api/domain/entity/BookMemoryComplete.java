@@ -1,6 +1,7 @@
 package com.chaeking.api.domain.entity;
 
 import com.chaeking.api.domain.value.BookMemoryCompleteValue;
+import com.chaeking.api.domain.value.ChaekingProperties;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -59,8 +60,9 @@ public class BookMemoryComplete extends BaseEntity {
 
     public static BookMemoryCompleteValue.Res.Bookshelf createBookshelf(BookMemoryComplete c) {
         return new BookMemoryCompleteValue.Res.Bookshelf(c.getId(),
+                Optional.ofNullable(c.getBook()).map(Book::getId).orElse(null),
                 Optional.ofNullable(c.getBook()).map(Book::getName).orElse(""),
                 c.getRate(),
-                Optional.ofNullable(c.getBook()).map(Book::getImageUrl).orElse(""));
+                Optional.ofNullable(c.getBook()).map(Book::getImageUrl).orElse(ChaekingProperties.getUrl() + "/static/img/books.png"));
     }
 }
