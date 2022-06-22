@@ -4,8 +4,11 @@ import lombok.Getter;
 
 @Getter
 public class DataResponse<T> extends BaseResponse {
-    private final T data;
+    private T data;
 
+    protected  DataResponse() {
+        super();
+    }
     private DataResponse(T data) {
         super();
         this.data = data;

@@ -6,14 +6,18 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(uniqueConstraints = { @UniqueConstraint(name = "UK__BOOK_MEMORY_COMPLETE__USER_ID__BOOK_ID", columnNames = {"user_id", "book_id"}) })
 @Entity
 public class BookMemoryComplete extends BaseEntity {
 
@@ -51,5 +55,12 @@ public class BookMemoryComplete extends BaseEntity {
 
     public static BookMemoryCompleteValue.Res.Simple createSimple(BookMemoryComplete c) {
         return new BookMemoryCompleteValue.Res.Simple(c.getId(), Optional.ofNullable(c.getBook()).map(Book::getName).orElse(""));
+    }
+
+    public static BookMemoryCompleteValue.Res.Bookshelf createBookshelf(BookMemoryComplete c) {
+        return new BookMemoryCompleteValue.Res.Bookshelf(c.getId(),
+                Optional.ofNullable(c.getBook()).map(Book::getName).orElse(""),
+                c.getRate(),
+                Optional.ofNullable(c.getBook()).map(Book::getImageUrl).orElse(""));
     }
 }

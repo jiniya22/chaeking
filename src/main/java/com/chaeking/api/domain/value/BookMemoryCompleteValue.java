@@ -26,5 +26,8 @@ public final class BookMemoryCompleteValue {
     public static final class Res {
         @Schema(name = "BookMemoryCompleteSimple")
         public record Simple(long id, String bookName) { }
+
+        @Schema(name = "BookMemoryCompleteBookshelf")
+        public record Bookshelf(long id, String bookName, double rate, String imageUrl) { }
     }
 }
