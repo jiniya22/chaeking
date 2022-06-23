@@ -1,6 +1,5 @@
 package com.chaeking.api.domain.value;
 
-import com.chaeking.api.domain.entity.User;
 import com.chaeking.api.domain.enumerate.Sex;
 import com.chaeking.api.util.DescriptionUtils;
 import com.chaeking.api.util.RegexpUtils;

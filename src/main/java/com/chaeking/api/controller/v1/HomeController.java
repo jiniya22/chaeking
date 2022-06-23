@@ -29,7 +29,7 @@ public class HomeController {
                     - type: daily, weekly, monthly 중 하나. 기본값은 daily
                     """)
     public DataResponse<AnalysisValue.BookAnalysis> home(
-            @Parameter(description = "조회 기준") @RequestParam(required = false, defaultValue = "daily") AnalysisType type
+            @Parameter(description = "조회 기준") @RequestParam(required = false) AnalysisType type
     ) {
         Long userId = BasicUtils.getUserId();
         return DataResponse.of(bookshelfService.bookAnalysis(userId, type));
