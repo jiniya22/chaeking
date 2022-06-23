@@ -2,6 +2,7 @@ package com.chaeking.api.service;
 
 import com.chaeking.api.domain.entity.BookMemoryComplete;
 import com.chaeking.api.domain.entity.User;
+import com.chaeking.api.domain.enumerate.AnalysisType;
 import com.chaeking.api.domain.value.AnalysisValue;
 import com.chaeking.api.domain.value.BookMemoryCompleteValue;
 import com.chaeking.api.domain.value.response.PageResponse;
@@ -35,7 +36,7 @@ public class BookshelfService {
         if(Strings.isBlank(month))
             month = LocalDate.now().format(DateTimeUtils.FORMATTER_MONTH_SIMPLE);
 
-        LocalDate date = LocalDate.of(Integer.valueOf(month.substring(0, 4)), Integer.valueOf(month.substring(4, 6)), 1);
+        LocalDate date = LocalDate.of(Integer.parseInt(month.substring(0, 4)), Integer.parseInt(month.substring(4, 6)), 1);
         LocalDateTime time1 = LocalDateTime.of(date, DateTimeUtils.LOCALTIME_START);
         LocalDateTime time2 = LocalDateTime.of(date.with(TemporalAdjusters.lastDayOfMonth()), DateTimeUtils.LOCALTIME_END);
 
@@ -48,26 +49,23 @@ public class BookshelfService {
                 !bookMemoryCompletePage.isLast());
     }
 
-    // FIXME daily, weekly, monthly
-    public AnalysisValue.BookAnalysis bookAnalysis(Long userId, String type) {
+    public AnalysisValue.BookAnalysis bookAnalysis(Long userId, AnalysisType type) {
         LocalDate date = LocalDate.now();
         User user = userService.select(userId);
         return getBookAnalysis(user, date, type);
     }
 
-    private AnalysisValue.BookAnalysis getBookAnalysis(User user, LocalDate date, String type) {
+    private AnalysisValue.BookAnalysis getBookAnalysis(User user, LocalDate date, AnalysisType type) {
         AnalysisValue.BookAnalysis res = new AnalysisValue.BookAnalysis(type);
         LocalDateTime time1 = switch(type) {
-            case "weekly" -> LocalDateTime.of(date.minusDays(date.get(ChronoField.DAY_OF_WEEK) - 1).minusWeeks(6), DateTimeUtils.LOCALTIME_START);
-            case "monthly" -> date.minusDays(date.get(ChronoField.DAY_OF_MONTH) - 1).minusMonths(6).atStartOfDay();
+            case weekly -> LocalDateTime.of(date.minusDays(date.get(ChronoField.DAY_OF_WEEK) - 1).minusWeeks(6), DateTimeUtils.LOCALTIME_START);
+            case monthly -> date.minusDays(date.get(ChronoField.DAY_OF_MONTH) - 1).minusMonths(6).atStartOfDay();
             default -> LocalDateTime.of(date.minusDays(date.get(ChronoField.DAY_OF_WEEK) - 1), DateTimeUtils.LOCALTIME_START);
         };
-        LocalDateTime time2 = switch(type) {
-            case "monthly" -> LocalDateTime.of(date.minusDays(date.get(ChronoField.DAY_OF_MONTH)).plusMonths(1), DateTimeUtils.LOCALTIME_END);
-            default -> LocalDateTime.of(date.plusDays(7 - date.get(ChronoField.DAY_OF_WEEK)), DateTimeUtils.LOCALTIME_END);
-        };
+        LocalDateTime time2 = type.equals(AnalysisType.monthly) ?
+                LocalDateTime.of(date.minusDays(date.get(ChronoField.DAY_OF_MONTH)).plusMonths(1), DateTimeUtils.LOCALTIME_END) :
+                LocalDateTime.of(date.plusDays(7 - date.get(ChronoField.DAY_OF_WEEK)), DateTimeUtils.LOCALTIME_END);
 
-        // TODO -7 days, -1 month
         LocalDateTime[] periodArr = createPeriodArr(type, time1);
         int[] cntArr = {0, 0, 0, 0, 0, 0, 0};
 
@@ -92,10 +90,9 @@ public class BookshelfService {
         });
         IntStream.range(0, cntArr.length).forEach(i -> {
             String pattern = switch (type) {
-                case "daily" -> "E";
-                case "monthly" -> "MM";
-                case "weekly" -> "MM.dd";
-                default -> "dd";
+                case daily -> "E";
+                case monthly -> "MM";
+                case weekly -> "MM.dd";
             };
             res.addContent(DateTimeFormatter.ofPattern(pattern).format(periodArr[i]), cntArr[i]);
         });
@@ -103,12 +100,12 @@ public class BookshelfService {
         return res;
     }
 
-    private LocalDateTime[] createPeriodArr(String type, LocalDateTime firstDateTime) {
+    private LocalDateTime[] createPeriodArr(AnalysisType type, LocalDateTime firstDateTime) {
         LocalDateTime[] periodArr = new LocalDateTime[7];
         for(int i = 0; i < periodArr.length; i++) {
             periodArr[i] = switch (type) {
-                case "weekly" -> firstDateTime.plusWeeks(i);
-                case "monthly" -> firstDateTime.plusMonths(i).with(TemporalAdjusters.firstDayOfMonth());
+                case weekly -> firstDateTime.plusWeeks(i);
+                case monthly -> firstDateTime.plusMonths(i).with(TemporalAdjusters.firstDayOfMonth());
                 default -> firstDateTime.plusDays(i);
             };
         }

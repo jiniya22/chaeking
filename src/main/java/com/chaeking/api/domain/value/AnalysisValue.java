@@ -1,5 +1,6 @@
 package com.chaeking.api.domain.value;
 
+import com.chaeking.api.domain.enumerate.AnalysisType;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -9,11 +10,11 @@ public class AnalysisValue {
 
     @Getter
     public static class BookAnalysis {
-        private String type;
+        private AnalysisType type;
         private int totalAmount;
         private List<Content> contents = new ArrayList<>();
 
-        public BookAnalysis(String type) {
+        public BookAnalysis(AnalysisType type) {
             this.type = type;
         }
 

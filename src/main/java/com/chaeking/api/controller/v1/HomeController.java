@@ -1,10 +1,10 @@
 package com.chaeking.api.controller.v1;
 
+import com.chaeking.api.domain.enumerate.AnalysisType;
 import com.chaeking.api.domain.value.AnalysisValue;
 import com.chaeking.api.domain.value.response.DataResponse;
 import com.chaeking.api.service.BookshelfService;
 import com.chaeking.api.util.BasicUtils;
-import com.chaeking.api.util.RegexpUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.validation.constraints.Pattern;
 
 @RequiredArgsConstructor
 @Tag(name = "home", description = "홈")
@@ -28,9 +26,10 @@ public class HomeController {
     @Operation(summary = "사용자별 홈 화면 조회",
             description = """
                     - **Authorization 헤더 필수**
+                    - type: daily, weekly, monthly 중 하나. 기본값은 daily
                     """)
     public DataResponse<AnalysisValue.BookAnalysis> home(
-            @Parameter(description = "조회 기준") @RequestParam(required = false, defaultValue = "daily") String type
+            @Parameter(description = "조회 기준") @RequestParam(required = false, defaultValue = "daily") AnalysisType type
     ) {
         Long userId = BasicUtils.getUserId();
         return DataResponse.of(bookshelfService.bookAnalysis(userId, type));
