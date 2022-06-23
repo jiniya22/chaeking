@@ -4,6 +4,7 @@ import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.chaeking.api.config.SecurityConfig;
 import com.chaeking.api.config.exception.InvalidInputException;
 import com.chaeking.api.domain.entity.User;
+import com.chaeking.api.domain.entity.UserAuthority;
 import com.chaeking.api.domain.value.TokenValue;
 import com.chaeking.api.domain.value.UserValue;
 import com.chaeking.api.domain.value.response.BaseResponse;
@@ -69,7 +70,7 @@ public class UserService implements UserDetailsService {
     @Override
     public User loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(username).orElseThrow(() -> new InvalidInputException("일치하는 사용자가 없습니다"));
-        user.getAuthorities().forEach(authority -> authority.getAuthority());
+        user.getAuthorities().forEach(UserAuthority::getAuthority);
         return user;
     }
 }

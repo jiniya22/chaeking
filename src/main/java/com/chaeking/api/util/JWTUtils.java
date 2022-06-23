@@ -10,7 +10,7 @@ import java.time.Instant;
 
 public class JWTUtils {
     private static final Algorithm ALGORITHM = Algorithm.HMAC256("PUDJbD7yJvS7xNNsvXuZGRMhueBbTrYb");
-    private static final long ACCESS_TIME = 60 * 20; // 1 day
+    private static final long ACCESS_TIME = 60 * 60 * 24; // 1 day
     private static final long REFRESH_TIME = 60 * 60 * 24 * 7; // 7 days
 
     public static String createAccessToken(User user) {

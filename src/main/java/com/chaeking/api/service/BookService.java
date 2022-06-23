@@ -41,7 +41,7 @@ public class BookService {
 
     public List<BookValue.Res.Simple> selectAll(List<Long> ids) {
         return bookRepository.findAllWithPublisherByIdIn(ids).stream().map(book -> {
-            book.getBookAndAuthors().stream().map(bookAndAuthor -> bookAndAuthor.getAuthor().getName());
+            book.getBookAndAuthors().forEach(bookAndAuthor -> bookAndAuthor.getAuthor().getName());
             return Book.createSimple(book);
         }).collect(Collectors.toList());
     }
@@ -52,18 +52,18 @@ public class BookService {
 
     @Transactional
     public List<Long> searchNaverBookBasic(String name, String sort, int page, int size) {
-        String query = "?query=" + name + "&sort=" + sort + "&sort=" + sort; // + "&start=" + page + "&display=" + size;
+        String query = "?query=" + name + "&sort=" + sort + "&sort=" + sort + "&start=" + page + "&display=" + size;
         ResponseEntity<NaverBookValue.Res.BookBasic> responseEntity = naverApiRestTemplate.get("/v1/search/book.json" + query, null, NaverBookValue.Res.BookBasic.class);
         if (HttpStatus.OK.equals(responseEntity.getStatusCode())) {
             List<Book> books = new ArrayList<>();
             List<BookAndAuthor> bookAndAuthors = new ArrayList<>();
             Map<String, Author> authorMap = new HashMap<>();
-            responseEntity.getBody().getItems().forEach(i -> {
+            Objects.requireNonNull(responseEntity.getBody()).getItems().forEach(i -> {
                 if (bookRepository.existsByIsbn(i.getIsbn()))
                     return;
                 Book b = i.toBook();
                 b.setPublisher(publisherService.findByName(i.getPublisher()));
-                Arrays.stream(i.getAuthor().split("|")).forEach(author -> {
+                Arrays.stream(i.getAuthor().split("\\|")).forEach(author -> {
                     if(!authorMap.containsKey(author))
                         authorMap.put(author, authorRepository.findByName(author).orElse(new Author(author)));
                     bookAndAuthors.add(BookAndAuthor.of(b, authorMap.get(author)));
@@ -86,7 +86,7 @@ public class BookService {
             List<Book> books = new ArrayList<>();
             List<BookAndAuthor> bookAndAuthors = new ArrayList<>();
             Map<String, Author> authorMap = new HashMap<>();
-            responseEntity.getBody().getDocuments().forEach(i -> {
+            Objects.requireNonNull(responseEntity.getBody()).getDocuments().forEach(i -> {
                 if (bookRepository.existsByIsbn(i.getIsbn()))
                     return;
                 Book b = i.toBook();
