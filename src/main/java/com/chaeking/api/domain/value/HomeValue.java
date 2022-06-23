@@ -2,11 +2,16 @@ package com.chaeking.api.domain.value;
 
 import com.chaeking.api.domain.enumerate.AnalysisType;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AnalysisValue {
+@Getter
+@Setter
+public class HomeValue {
+    private BookAnalysis bookAnalysis;
+    private List<BookValue.Res.Simple> bestSeller;
 
     @Getter
     public static class BookAnalysis {

@@ -6,7 +6,6 @@ import com.chaeking.api.domain.value.response.BaseResponse;
 import com.chaeking.api.domain.value.response.ErrorResponse;
 import com.chaeking.api.util.BasicUtils;
 import com.chaeking.api.util.MessageUtils;
-import org.springframework.beans.BeansException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConversionException;

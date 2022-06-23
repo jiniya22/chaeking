@@ -1,7 +1,7 @@
 package com.chaeking.api.controller.v1;
 
 import com.chaeking.api.domain.enumerate.AnalysisType;
-import com.chaeking.api.domain.value.AnalysisValue;
+import com.chaeking.api.domain.value.HomeValue;
 import com.chaeking.api.domain.value.response.DataResponse;
 import com.chaeking.api.service.BookshelfService;
 import com.chaeking.api.util.BasicUtils;
@@ -28,8 +28,8 @@ public class HomeController {
                     - **Authorization 헤더 필수**
                     - type: daily, weekly, monthly 중 하나. 기본값은 daily
                     """)
-    public DataResponse<AnalysisValue.BookAnalysis> home(
-            @Parameter(description = "조회 기준") @RequestParam(required = false) AnalysisType type
+    public DataResponse<HomeValue> home(
+            @Parameter(description = "조회 기준") @RequestParam(required = false, defaultValue = "daily") AnalysisType type
     ) {
         Long userId = BasicUtils.getUserId();
         return DataResponse.of(bookshelfService.bookAnalysis(userId, type));

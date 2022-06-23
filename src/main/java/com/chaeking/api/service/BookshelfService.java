@@ -3,8 +3,8 @@ package com.chaeking.api.service;
 import com.chaeking.api.domain.entity.BookMemoryComplete;
 import com.chaeking.api.domain.entity.User;
 import com.chaeking.api.domain.enumerate.AnalysisType;
-import com.chaeking.api.domain.value.AnalysisValue;
 import com.chaeking.api.domain.value.BookMemoryCompleteValue;
+import com.chaeking.api.domain.value.HomeValue;
 import com.chaeking.api.domain.value.response.PageResponse;
 import com.chaeking.api.repository.BookMemoryCompleteRepository;
 import com.chaeking.api.util.DateTimeUtils;
@@ -49,14 +49,16 @@ public class BookshelfService {
                 !bookMemoryCompletePage.isLast());
     }
 
-    public AnalysisValue.BookAnalysis bookAnalysis(Long userId, AnalysisType type) {
+    public HomeValue bookAnalysis(Long userId, AnalysisType type) {
+        HomeValue res = new HomeValue();
         LocalDate date = LocalDate.now();
         User user = userService.select(userId);
-        return getBookAnalysis(user, date, type);
+        res.setBookAnalysis(getBookAnalysis(user, date, type));
+        return res;
     }
 
-    private AnalysisValue.BookAnalysis getBookAnalysis(User user, LocalDate date, AnalysisType type) {
-        AnalysisValue.BookAnalysis res = new AnalysisValue.BookAnalysis(type);
+    private HomeValue.BookAnalysis getBookAnalysis(User user, LocalDate date, AnalysisType type) {
+        HomeValue.BookAnalysis res = new HomeValue.BookAnalysis(type);
         LocalDateTime time1 = switch(type) {
             case weekly -> LocalDateTime.of(date.minusDays(date.get(ChronoField.DAY_OF_WEEK) - 1).minusWeeks(6), DateTimeUtils.LOCALTIME_START);
             case monthly -> date.minusDays(date.get(ChronoField.DAY_OF_MONTH) - 1).minusMonths(6).atStartOfDay();
