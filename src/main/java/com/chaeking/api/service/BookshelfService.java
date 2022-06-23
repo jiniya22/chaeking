@@ -90,10 +90,11 @@ public class BookshelfService {
                 cntArr[0]++;
             }
         });
-        IntStream.range(0, cntArr.length - 1).forEach(i -> {
+        IntStream.range(0, cntArr.length).forEach(i -> {
             String pattern = switch (type) {
                 case "daily" -> "E";
                 case "monthly" -> "MM";
+                case "weekly" -> "MM.dd";
                 default -> "dd";
             };
             res.addContent(DateTimeFormatter.ofPattern(pattern).format(periodArr[i]), cntArr[i]);
@@ -106,9 +107,9 @@ public class BookshelfService {
         LocalDateTime[] periodArr = new LocalDateTime[7];
         for(int i = 0; i < periodArr.length; i++) {
             periodArr[i] = switch (type) {
-                case "weekly" -> firstDateTime.plusWeeks(7 - i).with(TemporalAdjusters.firstDayOfMonth());
-                case "monthly" -> firstDateTime.plusMonths(7 - i).with(TemporalAdjusters.firstDayOfMonth());
-                default -> firstDateTime.plusDays(7 - i).with(TemporalAdjusters.firstDayOfMonth());
+                case "weekly" -> firstDateTime.plusWeeks(i);
+                case "monthly" -> firstDateTime.plusMonths(i).with(TemporalAdjusters.firstDayOfMonth());
+                default -> firstDateTime.plusDays(i);
             };
         }
         return periodArr;
