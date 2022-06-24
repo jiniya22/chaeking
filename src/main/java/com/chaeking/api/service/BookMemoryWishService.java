@@ -5,14 +5,15 @@ import com.chaeking.api.domain.entity.Book;
 import com.chaeking.api.domain.entity.BookMemoryWish;
 import com.chaeking.api.domain.entity.User;
 import com.chaeking.api.domain.value.BookMemoryWishValue;
+import com.chaeking.api.domain.value.response.PageResponse;
 import com.chaeking.api.repository.BookMemoryWishRepository;
 import com.chaeking.api.util.MessageUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 @Transactional(readOnly = true)
@@ -23,10 +24,14 @@ public class BookMemoryWishService {
     private final UserService userService;
     private final BookMemoryWishRepository bookMemoryWishRepository;
 
-    public List<BookMemoryWishValue.Res.Simple> selectAll(Long userId, Pageable pageable) {
+    public PageResponse<BookMemoryWishValue.Res.Simple> selectAll(Long userId, Pageable pageable) {
         User user = userService.select(userId);
-        return bookMemoryWishRepository.findAllByUser(user, pageable).stream()
-                .map(BookMemoryWish::createSimple).collect(Collectors.toList());
+
+        Page<BookMemoryWish> bookMemoryWishPage = bookMemoryWishRepository.findAllByUser(user, pageable);
+        return PageResponse.create(
+                bookMemoryWishPage.stream().map(BookMemoryWish::createSimple).collect(Collectors.toList()),
+                bookMemoryWishPage.getTotalElements(),
+                !bookMemoryWishPage.isLast());
     }
 
     @Transactional

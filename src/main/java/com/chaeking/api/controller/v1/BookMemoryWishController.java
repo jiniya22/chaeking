@@ -3,6 +3,7 @@ package com.chaeking.api.controller.v1;
 import com.chaeking.api.domain.value.BookMemoryWishValue;
 import com.chaeking.api.domain.value.response.BaseResponse;
 import com.chaeking.api.domain.value.response.DataResponse;
+import com.chaeking.api.domain.value.response.PageResponse;
 import com.chaeking.api.service.BookMemoryWishService;
 import com.chaeking.api.util.BasicUtils;
 import com.chaeking.api.util.DescriptionUtils;
@@ -25,11 +26,11 @@ public class BookMemoryWishController {
 
     @Operation(summary = "읽고 싶은 책 목록")
     @GetMapping("")
-    public DataResponse<List<BookMemoryWishValue.Res.Simple>> selectAll(
+    public PageResponse<BookMemoryWishValue.Res.Simple> selectAll(
             @RequestParam(value = "page", required = false, defaultValue = "0") int page,
             @RequestParam(value = "size", required = false, defaultValue = "10") int size) {
         Long userId = BasicUtils.getUserId();
-        return DataResponse.of(bookMemoryWishService.selectAll(userId, PageRequest.of(page, size, Sort.by(Sort.Order.desc("id")))));
+        return bookMemoryWishService.selectAll(userId, PageRequest.of(page, size, Sort.by(Sort.Order.desc("id"))));
     }
 
     @Operation(summary = "읽고 싶은 책 등록")
