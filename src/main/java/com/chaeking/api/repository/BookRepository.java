@@ -5,10 +5,11 @@ import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface BookRepository extends JpaRepository<Book, Long> {
-    boolean existsByIsbn10AndIsbn13(String isbn10, String isbn13);
-    boolean existsByIsbn10NullAndIsbn13(String isbn13);
+    Optional<Book> findTopByIsbn10AndIsbn13(String isbn10, String isbn13);
+    Optional<Book> findTopByIsbn10NullAndIsbn13(String isbn13);
 
     @EntityGraph(attributePaths = "publisher")
     List<Book> findAllWithPublisherByIdIn(Iterable<Long> ids);

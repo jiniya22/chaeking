@@ -67,7 +67,7 @@ public class Book extends BaseEntity {
                 String detailInfo, LocalDate publicationDate) {
         this.name = name;
         this.price = price;
-        setIsbn(isbn);
+        this.setIsbn(isbn);
         this.imageUrl = imageUrl;
         this.link = link;
         this.detailInfo = detailInfo;
@@ -94,7 +94,7 @@ public class Book extends BaseEntity {
     }
 
     public static BookValue.Res.Simple createSimple(Book b) {
-        return new BookValue.Res.Simple(b.getId(), b.getName(), b.getAuthorNames(), b.getPublisherName());
+        return new BookValue.Res.Simple(b.getId(), b.getName(), b.getAuthorNames(), b.getPublisherName(), b.getImageUrl());
     }
     public static BookValue.Res.Detail createDetail(Book b) {
         String isbn = b.getIsbn10().isEmpty() ? b.getIsbn13() : String.format("%s(%s)", b.getIsbn13(), b.getIsbn10());

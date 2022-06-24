@@ -60,9 +60,11 @@ public class BookService {
             List<BookAndAuthor> bookAndAuthors = new ArrayList<>();
             Map<String, Author> authorMap = new HashMap<>();
             Objects.requireNonNull(responseEntity.getBody()).getItems().forEach(i -> {
-                Book b = i.toBook();
-                if (existsByIsbn(b))
+                Book b = existsByIsbn(i.getIsbn()).orElse(i.toBook());
+                if (b.getId() == null) {
+                    books.add(b);
                     return;
+                }
                 b.setPublisher(publisherService.findByName(i.getPublisher()));
                 Arrays.stream(i.getAuthor().split("\\|")).forEach(author -> {
                     if(!authorMap.containsKey(author))
@@ -84,34 +86,46 @@ public class BookService {
                 + "&sort=" + Optional.ofNullable(sort).map(KakaoBookSort::name).orElse("accuracy") + "&page=" + page + "&size=" + size;
         ResponseEntity<KakaoBookValue.Res.BookBasic> responseEntity = kakaoApiRestTemplate.get("/v3/search/book" + query, null, KakaoBookValue.Res.BookBasic.class);
         if (HttpStatus.OK.equals(responseEntity.getStatusCode())) {
-            List<Book> books = new ArrayList<>();
+            List<Long> bookIds = new ArrayList<>();
             List<BookAndAuthor> bookAndAuthors = new ArrayList<>();
             Map<String, Author> authorMap = new HashMap<>();
             Objects.requireNonNull(responseEntity.getBody()).getDocuments().forEach(i -> {
-                Book b = i.toBook();
-                if (!existsByIsbn(b))
+                Book b = existsByIsbn(i.getIsbn()).orElse(i.toBook());
+                if (b.getId() != null) {
+                    bookIds.add(b.getId());
                     return;
+                }
                 b.setPublisher(publisherService.findByName(i.getPublisher()));
                 i.getAuthors().forEach(author -> {
                     if(!authorMap.containsKey(author))
                         authorMap.put(author, authorRepository.findByName(author).orElse(new Author(author)));
                     bookAndAuthors.add(BookAndAuthor.of(b, authorMap.get(author)));
                 });
-                books.add(b);
+                bookRepository.save(b);
+                bookIds.add(b.getId());
             });
-            bookRepository.saveAll(books);
+//            bookRepository.saveAll(books);
             authorRepository.saveAll(authorMap.values());
             bookAndAuthorRepository.saveAll(bookAndAuthors);
-            return books.stream().mapToLong(Book::getId).boxed().collect(Collectors.toList());
+            return bookIds;
         }
         return null;
     }
 
-    private boolean existsByIsbn(Book b) {
-        if (Strings.isBlank(b.getIsbn10())) {
-            return bookRepository.existsByIsbn10NullAndIsbn13(b.getIsbn13());
+    private Optional<Book> existsByIsbn(String isbn) {
+        if(Strings.isBlank(isbn))   return Optional.empty();
+        String isbn10 = null, isbn13 = null;
+        for(String s : isbn.trim().split(" ")) {
+            if(s.length() == 10) {
+                isbn10 = s;
+            } else if (s.length() == 13) {
+                isbn13 = s;
+            }
         }
-        return bookRepository.existsByIsbn10AndIsbn13(b.getIsbn10(), b.getIsbn13());
+        if (Strings.isBlank(isbn10)) {
+            return bookRepository.findTopByIsbn10NullAndIsbn13(isbn13);
+        }
+        return bookRepository.findTopByIsbn10AndIsbn13(isbn10, isbn13);
     }
 
 }

@@ -13,7 +13,8 @@ public final class BookValue {
                 long id,
                 String name,
                 String authors,
-                String publisher
+                String publisher,
+                String imageUrl
         ) { }
 
         @Schema(name = "BookDetail")
