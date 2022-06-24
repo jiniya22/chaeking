@@ -51,10 +51,4 @@ public class BookSearchController {
         return DataResponse.of(bookService.selectAll(bookIds));
     }
 
-
-    @GetMapping("/update")
-    public BaseResponse update() {
-        bookService.update();
-        return BaseResponse.of();
-    }
 }
