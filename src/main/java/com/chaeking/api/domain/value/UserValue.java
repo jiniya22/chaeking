@@ -19,7 +19,7 @@ public final class UserValue {
                 @Schema(description = "이메일", example = "jini@chaeking.com") @NotBlank @Email String email,
                 @Schema(description = DescriptionUtils.PASSWORD) @NotBlank String password,
                 @Schema(description = DescriptionUtils.SECRET_KEY) @Length(min = 32) String secretKey,
-                @Schema(description = "이름") @NotBlank String name,
+                @Schema(description = "닉네임") @NotBlank String nickname,
                 @Schema(description = "성별") @Pattern(regexp = RegexpUtils.SEX) String sex) { }
 
         @Schema(name = "UserLogin")
@@ -31,6 +31,6 @@ public final class UserValue {
 
     public final static class Res {
         @Schema(name = "UserDetail")
-        public record Detail(String email, String name, Sex sex) { }
+        public record Detail(String email, String nickname, Sex sex) { }
     }
 }

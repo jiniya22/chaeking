@@ -15,7 +15,7 @@ class UserServiceTest {
     @DisplayName("1. user save test")
     @Test
     void test1() {
-        userService.save(UserValue.Req.Creation.builder().name("솔").email("sol@applebox.xyz")
+        userService.save(UserValue.Req.Creation.builder().nickname("솔").email("sol@applebox.xyz")
                 .sex("M")
                 .password("3wqPrWol1T3h/3U+w2abGw==").secretKey("A37aXdxH6gwTySajLe8eZWNvyC2yuZVB").build());
     }

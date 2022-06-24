@@ -37,36 +37,42 @@ public class User extends BaseEntity implements UserDetails {
 
     @Setter
     @Column(nullable = false, length = 100)
-    private String name;
+    private String nickname;
 
     @Column(length = 1)
     @Enumerated(EnumType.STRING)
     @ColumnDefault("'M'")
     private Sex sex;
 
+    @Setter
+    @Column(nullable = false, length = 200)
+    private String secretKey;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "userId", foreignKey = @ForeignKey(name="FK__USER__USER_AUTHORITY"))
     private Set<UserAuthority> authorities;
 
     @Builder
-    private User(String email, String password, String name, Sex sex) {
+    private User(String email, String password, String nickname, Sex sex, String secretKey) {
         this.email = email;
         this.password = password;
-        this.name = name;
+        this.nickname = nickname;
         this.sex = sex;
+        this.secretKey = secretKey;
     }
     
     public static User of(UserValue.Req.Creation c) {
         String originalPassword = AESCipher.decrypt(c.password(), c.secretKey());
         return User.builder()
                 .email(c.email())
-                .name(c.name())
+                .nickname(c.nickname())
                 .sex(Sex.valueOf(c.sex()))
+                .secretKey(c.secretKey())
                 .password(SecurityConfig.passwordEncoder.encode(originalPassword)).build();
     }
 
     public static UserValue.Res.Detail createDetail(User u) {
-        return new UserValue.Res.Detail(u.getEmail(), u.getName(), u.getSex());
+        return new UserValue.Res.Detail(u.getEmail(), u.getNickname(), u.getSex());
     }
 
     public static TokenValue.Token createToken(User u) {
@@ -78,6 +84,7 @@ public class User extends BaseEntity implements UserDetails {
         authorities.add(UserAuthority.builder().userId(this.id).authority("ROLE_USER").build());
         this.authorities = authorities;
     }
+
     @Override
     public String getUsername() {
         return email;
