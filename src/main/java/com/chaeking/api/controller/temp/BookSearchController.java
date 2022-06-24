@@ -1,6 +1,7 @@
 package com.chaeking.api.controller.temp;
 
 import com.chaeking.api.domain.value.BookValue;
+import com.chaeking.api.domain.value.response.BaseResponse;
 import com.chaeking.api.domain.value.response.DataResponse;
 import com.chaeking.api.service.BookService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -50,4 +51,10 @@ public class BookSearchController {
         return DataResponse.of(bookService.selectAll(bookIds));
     }
 
+
+    @GetMapping("/update")
+    public BaseResponse update() {
+        bookService.update();
+        return BaseResponse.of();
+    }
 }

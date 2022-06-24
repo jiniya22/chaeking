@@ -1,11 +1,14 @@
 package com.chaeking.api.service;
 
+import com.chaeking.api.domain.entity.BestSeller;
+import com.chaeking.api.domain.entity.Book;
 import com.chaeking.api.domain.entity.BookMemoryComplete;
 import com.chaeking.api.domain.entity.User;
 import com.chaeking.api.domain.enumerate.AnalysisType;
 import com.chaeking.api.domain.value.BookMemoryCompleteValue;
 import com.chaeking.api.domain.value.HomeValue;
 import com.chaeking.api.domain.value.response.PageResponse;
+import com.chaeking.api.repository.BestSellerRepository;
 import com.chaeking.api.repository.BookMemoryCompleteRepository;
 import com.chaeking.api.util.DateTimeUtils;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +33,7 @@ import java.util.stream.IntStream;
 public class BookshelfService {
 
     private final UserService userService;
+    private final BestSellerRepository bestSellerRepository;
     private final BookMemoryCompleteRepository bookMemoryCompleteRepository;
 
     public PageResponse<BookMemoryCompleteValue.Res.Bookshelf> bookshelf(Long userId, String month, Pageable pageable) {
@@ -53,7 +57,14 @@ public class BookshelfService {
         HomeValue res = new HomeValue();
         LocalDate date = LocalDate.now();
         User user = userService.select(userId);
-        res.setBookAnalysis(getBookAnalysis(user, date, type));
+        if (bookMemoryCompleteRepository.existsByUser(user)) {
+            res.setBookAnalysis(getBookAnalysis(user, date, type));
+        } else {
+            List<BestSeller> bestSellers = bestSellerRepository.findTop10ByOrderById();
+            res.setBestSeller(bestSellers.stream()
+                    .map(BestSeller::getBook)
+                    .map(Book::createSimple).collect(Collectors.toList()));
+        }
         return res;
     }
 

@@ -16,4 +16,5 @@ public interface BookMemoryCompleteRepository extends JpaRepository<BookMemoryCo
     List<BookMemoryComplete> findAllByUser(User user, Pageable pageable);
     List<BookMemoryComplete> findAllByUserAndCreatedAtBetween(User user, LocalDateTime createdAt1, LocalDateTime createdAt2);
     Page<BookMemoryComplete> findAllByUserAndCreatedAtBetween(User user, LocalDateTime createdAt1, LocalDateTime createdAt2, Pageable pageable);
+    boolean existsByUser(User user);
 }

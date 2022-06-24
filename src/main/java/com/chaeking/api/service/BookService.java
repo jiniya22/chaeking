@@ -15,6 +15,7 @@ import com.chaeking.api.repository.BookRepository;
 import com.chaeking.api.util.resttemplate.KakaoApiRestTemplate;
 import com.chaeking.api.util.resttemplate.NaverApiRestTemplate;
 import lombok.RequiredArgsConstructor;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -59,9 +60,9 @@ public class BookService {
             List<BookAndAuthor> bookAndAuthors = new ArrayList<>();
             Map<String, Author> authorMap = new HashMap<>();
             Objects.requireNonNull(responseEntity.getBody()).getItems().forEach(i -> {
-                if (bookRepository.existsByIsbn(i.getIsbn()))
-                    return;
                 Book b = i.toBook();
+                if (existsByIsbn(b))
+                    return;
                 b.setPublisher(publisherService.findByName(i.getPublisher()));
                 Arrays.stream(i.getAuthor().split("\\|")).forEach(author -> {
                     if(!authorMap.containsKey(author))
@@ -87,9 +88,9 @@ public class BookService {
             List<BookAndAuthor> bookAndAuthors = new ArrayList<>();
             Map<String, Author> authorMap = new HashMap<>();
             Objects.requireNonNull(responseEntity.getBody()).getDocuments().forEach(i -> {
-                if (bookRepository.existsByIsbn(i.getIsbn()))
-                    return;
                 Book b = i.toBook();
+                if (!existsByIsbn(b))
+                    return;
                 b.setPublisher(publisherService.findByName(i.getPublisher()));
                 i.getAuthors().forEach(author -> {
                     if(!authorMap.containsKey(author))
@@ -104,6 +105,13 @@ public class BookService {
             return books.stream().mapToLong(Book::getId).boxed().collect(Collectors.toList());
         }
         return null;
+    }
+
+    private boolean existsByIsbn(Book b) {
+        if (Strings.isBlank(b.getIsbn10())) {
+            return bookRepository.existsByIsbn10NullAndIsbn13(b.getIsbn13());
+        }
+        return bookRepository.existsByIsbn10AndIsbn13(b.getIsbn10(), b.getIsbn13());
     }
 
 }

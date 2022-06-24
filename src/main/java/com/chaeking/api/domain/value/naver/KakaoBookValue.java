@@ -2,8 +2,10 @@ package com.chaeking.api.domain.value.naver;
 
 import com.chaeking.api.domain.entity.Book;
 import com.chaeking.api.util.DateTimeUtils;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ public class KakaoBookValue {
         @Data
         public static class BookBasic {
             private List<Document> documents = new ArrayList<>();
+            private Meta meta;
 
             @Data
             @Schema(name = "KakaoBookBasic")
@@ -42,18 +45,18 @@ public class KakaoBookValue {
                             .isbn(isbn)
                             .imageUrl(thumbnail)
                             .link(url)
-                            .detailInfo(contents)
-                            .build();
+                            .detailInfo(contents).build();
                 }
             }
 
-//            @Data
-//            @Schema(name = "KakaoBookMeta")
-//            public static class Meta {
-////                private boolean is_end;
-//                private int pageable_count;
-//                private int total_count;
-//            }
+            @Data
+            @Schema(name = "KakaoBookMeta")
+            public static class Meta {
+                @Setter(onMethod_ = {@JsonSetter("is_end")})
+                private boolean is_end;
+                private int pageable_count;
+                private int total_count;
+            }
         }
 
     }

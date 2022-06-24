@@ -18,7 +18,7 @@ public class BestSeller {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK__BEST_SELLER__BOOK"))
+    @JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "FK__BEST_SELLER__BOOK"))
     private Book book;
 
 }

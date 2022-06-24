@@ -11,6 +11,7 @@ import org.hibernate.annotations.Where;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -29,8 +30,11 @@ public class Book extends BaseEntity {
 
     private int price;
 
-    @Column(length = 100)
-    private String isbn;
+    @Column(length = 13)
+    private String isbn10;
+
+    @Column(length = 15)
+    private String isbn13;
 
     @Column(length = 300)
     private String imageUrl;
@@ -63,11 +67,22 @@ public class Book extends BaseEntity {
                 String detailInfo, LocalDate publicationDate) {
         this.name = name;
         this.price = price;
-        this.isbn = isbn;
+        setIsbn(isbn);
         this.imageUrl = imageUrl;
         this.link = link;
         this.detailInfo = detailInfo;
         this.publicationDate = publicationDate;
+    }
+
+    private void setIsbn(String isbn) {
+        if(Strings.isBlank(isbn))   return;
+        Arrays.stream(isbn.trim().split(" ")).forEach(f -> {
+            if(f.length() == 10) {
+                this.isbn10 = f;
+            } else if (f.length() == 13) {
+                this.isbn13 = f;
+            }
+        });
     }
 
     public String getAuthorNames() {
@@ -82,9 +97,10 @@ public class Book extends BaseEntity {
         return new BookValue.Res.Simple(b.getId(), b.getName(), b.getAuthorNames(), b.getPublisherName());
     }
     public static BookValue.Res.Detail createDetail(Book b) {
+        String isbn = b.getIsbn10().isEmpty() ? b.getIsbn13() : String.format("%s(%s)", b.getIsbn13(), b.getIsbn10());
         return new BookValue.Res.Detail(b.getId(), b.getName(), b.getPrice(), Optional.ofNullable(b.getPublisher()).map(Publisher::getName).orElse(null),
                 DateTimeUtils.toString(b.getPublicationDate()),
-                b.getIsbn(), b.getImageUrl(), b.getDetailInfo(),
+                isbn, b.getImageUrl(), b.getDetailInfo(),
                 b.getBookAndAuthors().stream()
                         .map(m -> Optional.ofNullable(m.getAuthor())
                                 .map(Author::getName).orElse(null)).collect(Collectors.toList()));
