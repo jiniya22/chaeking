@@ -4,6 +4,7 @@ import com.chaeking.api.config.exception.InvalidInputException;
 import com.chaeking.api.domain.entity.Author;
 import com.chaeking.api.domain.entity.Book;
 import com.chaeking.api.domain.entity.BookAndAuthor;
+import com.chaeking.api.domain.entity.Publisher;
 import com.chaeking.api.domain.enumerate.KakaoBookSort;
 import com.chaeking.api.domain.enumerate.KakaoBookTarget;
 import com.chaeking.api.domain.value.BookValue;
@@ -12,6 +13,7 @@ import com.chaeking.api.domain.value.naver.NaverBookValue;
 import com.chaeking.api.repository.AuthorRepository;
 import com.chaeking.api.repository.BookAndAuthorRepository;
 import com.chaeking.api.repository.BookRepository;
+import com.chaeking.api.repository.PublisherRepository;
 import com.chaeking.api.util.resttemplate.KakaoApiRestTemplate;
 import com.chaeking.api.util.resttemplate.NaverApiRestTemplate;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +31,7 @@ import java.util.stream.Collectors;
 @Service
 public class BookService {
     private final AuthorRepository authorRepository;
-    private final PublisherService publisherService;
+    private final PublisherRepository publisherRepository;
     private final BookAndAuthorRepository bookAndAuthorRepository;
     private final BookRepository bookRepository;
     private final NaverApiRestTemplate naverApiRestTemplate;
@@ -59,15 +61,20 @@ public class BookService {
             List<Book> books = new ArrayList<>();
             List<BookAndAuthor> bookAndAuthors = new ArrayList<>();
             Map<String, Author> authorMap = new HashMap<>();
+            Map<String, Publisher> publisherMap = new HashMap<>();
             Objects.requireNonNull(responseEntity.getBody()).getItems().forEach(i -> {
-                Book b = existsByIsbn(i.getIsbn()).orElse(i.toBook());
+                Book b = findByIsbn(i.getIsbn()).orElse(i.toBook());
                 if (b.getId() == null) {
                     books.add(b);
+                    b.getBookAndAuthors().forEach(bookAndAuthor -> authorMap.put(bookAndAuthor.getAuthor().getName(), bookAndAuthor.getAuthor()));
+                    Optional.ofNullable(b.getPublisher()).ifPresent(publisher -> publisherMap.put(publisher.getName(), publisher));
                     return;
                 }
-                b.setPublisher(publisherService.findByName(i.getPublisher()));
+
+                if (!publisherMap.containsKey(i.getPublisher()))
+                    publisherMap.put(i.getPublisher(), publisherRepository.findByName(i.getPublisher()).orElse(new Publisher(i.getPublisher())));
                 Arrays.stream(i.getAuthor().split("\\|")).forEach(author -> {
-                    if(!authorMap.containsKey(author))
+                    if (!authorMap.containsKey(author))
                         authorMap.put(author, authorRepository.findByName(author).orElse(new Author(author)));
                     bookAndAuthors.add(BookAndAuthor.of(b, authorMap.get(author)));
                 });
@@ -89,22 +96,27 @@ public class BookService {
             List<Long> bookIds = new ArrayList<>();
             List<BookAndAuthor> bookAndAuthors = new ArrayList<>();
             Map<String, Author> authorMap = new HashMap<>();
+            Map<String, Publisher> publisherMap = new HashMap<>();
             Objects.requireNonNull(responseEntity.getBody()).getDocuments().forEach(i -> {
-                Book b = existsByIsbn(i.getIsbn()).orElse(i.toBook());
+                Book b = findByIsbn(i.getIsbn()).orElse(i.toBook());
                 if (b.getId() != null) {
                     bookIds.add(b.getId());
+                    b.getBookAndAuthors().forEach(bookAndAuthor -> authorMap.put(bookAndAuthor.getAuthor().getName(), bookAndAuthor.getAuthor()));
+                    Optional.ofNullable(b.getPublisher()).ifPresent(publisher -> publisherMap.put(publisher.getName(), publisher));
                     return;
                 }
-                b.setPublisher(publisherService.findByName(i.getPublisher()));
+
+                if (!publisherMap.containsKey(i.getPublisher()))
+                    publisherMap.put(i.getPublisher(), publisherRepository.findByName(i.getPublisher()).orElse(new Publisher(i.getPublisher())));
+                b.setPublisher(publisherMap.get(i.getPublisher()));
                 i.getAuthors().forEach(author -> {
-                    if(!authorMap.containsKey(author))
+                    if (!authorMap.containsKey(author))
                         authorMap.put(author, authorRepository.findByName(author).orElse(new Author(author)));
                     bookAndAuthors.add(BookAndAuthor.of(b, authorMap.get(author)));
                 });
                 bookRepository.save(b);
                 bookIds.add(b.getId());
             });
-//            bookRepository.saveAll(books);
             authorRepository.saveAll(authorMap.values());
             bookAndAuthorRepository.saveAll(bookAndAuthors);
             return bookIds;
@@ -112,20 +124,20 @@ public class BookService {
         return null;
     }
 
-    private Optional<Book> existsByIsbn(String isbn) {
-        if(Strings.isBlank(isbn))   return Optional.empty();
+    private Optional<Book> findByIsbn(String isbn) {
+        if (Strings.isBlank(isbn)) return Optional.empty();
         String isbn10 = null, isbn13 = null;
-        for(String s : isbn.trim().split(" ")) {
-            if(s.length() == 10) {
+        for (String s : isbn.trim().split(" ")) {
+            if (s.length() == 10) {
                 isbn10 = s;
             } else if (s.length() == 13) {
                 isbn13 = s;
             }
         }
         if (Strings.isBlank(isbn10)) {
-            return bookRepository.findTopByIsbn10NullAndIsbn13(isbn13);
+            return bookRepository.findTopWithPublisherByIsbn10NullAndIsbn13(isbn13);
         }
-        return bookRepository.findTopByIsbn10AndIsbn13(isbn10, isbn13);
+        return bookRepository.findTopWithPublisherByIsbn10AndIsbn13(isbn10, isbn13);
     }
 
 }

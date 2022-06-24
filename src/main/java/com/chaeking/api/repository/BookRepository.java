@@ -8,9 +8,10 @@ import java.util.List;
 import java.util.Optional;
 
 public interface BookRepository extends JpaRepository<Book, Long> {
-    Optional<Book> findTopByIsbn10AndIsbn13(String isbn10, String isbn13);
-    Optional<Book> findTopByIsbn10NullAndIsbn13(String isbn13);
-
+    @EntityGraph(attributePaths = "publisher")
+    Optional<Book> findTopWithPublisherByIsbn10AndIsbn13(String isbn10, String isbn13);
+    @EntityGraph(attributePaths = "publisher")
+    Optional<Book> findTopWithPublisherByIsbn10NullAndIsbn13(String isbn13);
     @EntityGraph(attributePaths = "publisher")
     List<Book> findAllWithPublisherByIdIn(Iterable<Long> ids);
 
