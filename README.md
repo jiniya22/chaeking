@@ -2,7 +2,7 @@
 
 Chaeking API with Spring Boot 2
 
-[Go To Site - Chaeking API](https://api.chaeking.com/)
+<a href="https://api.chaeking.com" target="_blank">Go To Site - Chaeking API</a>
 
 <p>
     <img src="https://img.shields.io/static/v1?label=OpenJDK&message=17.0.2&color=007396&logo=java">
@@ -18,8 +18,27 @@ Chaeking API with Spring Boot 2
 <ul>
     <li>JDK 17</li>
     <li>Spring Data JPA</li>
-    <li>Spring Security</li>
+    <li>Spring Security
+        <ul>
+            <li>stateless</li>
+            <li>UsernamePasswordAuthenticationFilter</li>
+            <li>BasicAuthenticationFilter</li>
+        </ul>
+    </li>
     <li>MariaDB</li>
-    <li>Swagger v3 (OAS 3.0)</li>
-    <li>JWT</li>
+    <li>OpenAPI Specification
+        <ul>
+            <li>Swagger v3 (springdoc)</li>
+        </ul>
+    </li>
+    <li>JWT
+        <ul>
+            <li>java-jwt</li>
+        </ul>
+    </li>
+    <li>외부 Open API
+        <ul>
+            <li>Kakao 책 검색 API</li>
+        </ul>
+    </li>
 </ul>
