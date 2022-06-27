@@ -12,33 +12,21 @@ Chaeking API with Spring Boot 2
     <img src="https://img.shields.io/static/v1?label=java-jwt&message=3.19.2&color=000000&logo=Auth0&logoColor=fff">
 </p>
 
-<hr>
+***
 
-<h3>Tech Stacks</h3>
-<ul>
-    <li>JDK 17</li>
-    <li>Spring Data JPA</li>
-    <li>Spring Security
-        <ul>
-            <li>stateless</li>
-            <li>UsernamePasswordAuthenticationFilter</li>
-            <li>BasicAuthenticationFilter</li>
-        </ul>
-    </li>
-    <li>MariaDB</li>
-    <li>OpenAPI Specification
-        <ul>
-            <li>Swagger v3 (springdoc)</li>
-        </ul>
-    </li>
-    <li>JWT
-        <ul>
-            <li>java-jwt</li>
-        </ul>
-    </li>
-    <li>외부 Open API
-        <ul>
-            <li>Kakao 책 검색 API</li>
-        </ul>
-    </li>
-</ul>
+### Tech Stacks
+
+- JDK 17
+- Spring Data JPA
+- Spring Security
+  - stateless 
+  - UsernamePasswordAuthenticationFilter
+- Thymeleaf
+  - 약관 웹 페이지
+- MariaDB
+- OpenAPI Specification 
+  - Swagger v3 (springdoc)
+- JWT
+  - java-jwt
+- 외부 Open API
+  - Kakao 책 검색 API
