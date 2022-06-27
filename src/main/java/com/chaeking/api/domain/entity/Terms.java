@@ -1,5 +1,7 @@
 package com.chaeking.api.domain.entity;
 
+import com.chaeking.api.domain.value.TermsValue;
+import com.chaeking.api.util.DateTimeUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,9 +18,6 @@ public class Terms {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 10)
-    private String type;
-
     @Column(length = 200)
     private String title;
 
@@ -26,5 +25,13 @@ public class Terms {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(foreignKey = @ForeignKey(name = "FK__TERMS__TERMS_LOG"))
     private TermsLog termsLog;
+
+    public static TermsValue createDetail(Terms t) {
+        return new TermsValue(
+                t.getTermsLog().getId(),
+                t.getTitle(),
+                t.getTermsLog().getUrl(),
+                DateTimeUtils.toString(t.getTermsLog().getEffectiveOn()));
+    }
 
 }
