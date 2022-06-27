@@ -59,7 +59,8 @@ public class BookController {
         return DataResponse.of(bookService.selectAll(bookIds));
     }
 
-    @Operation(summary = "책 상세조회")
+    @Operation(summary = "책 상세조회",
+            description = "Authorization 헤더 설정시, 사용자가 설정한 이미 읽은 책, 읽고 싶은 책 정보를 확인할 수 있습니다.")
     @GetMapping("/{book_id}")
     public DataResponse<BookValue.Res.Detail> selectAll(
             @Parameter(description = "책 id") @PathVariable(name = "book_id") long bookId) {
