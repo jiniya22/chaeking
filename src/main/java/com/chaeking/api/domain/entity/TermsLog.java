@@ -19,6 +19,6 @@ public class TermsLog {
     @Column(length = 500)
     private String url;
 
-    private LocalDate effectiveDt;
+    private LocalDate effectiveOn;
 
 }
