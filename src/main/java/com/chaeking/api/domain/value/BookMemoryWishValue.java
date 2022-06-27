@@ -2,6 +2,8 @@ package com.chaeking.api.domain.value;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.util.List;
+
 public final class BookMemoryWishValue {
 
     public static final class Req {
@@ -18,5 +20,10 @@ public final class BookMemoryWishValue {
     public static final class Res {
         @Schema(name = "BookMemoryWishSimple")
         public record Simple(long id, String bookName) { }
+
+        @Schema(name = "BookMemoryWishContent")
+        public record Content(
+                long id,
+                String memo) { }
     }
 }

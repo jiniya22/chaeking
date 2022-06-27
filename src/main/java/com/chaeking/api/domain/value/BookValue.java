@@ -27,7 +27,9 @@ public final class BookValue {
                 String isbn,
                 String imageUrl,
                 String detailInfo,
-                List<String> authors
+                List<String> authors,
+                BookMemoryCompleteValue.Res.Content bookMemoryComplete,
+                BookMemoryWishValue.Res.Content bookMemoryWish
         ) { }
 
     }

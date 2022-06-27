@@ -5,6 +5,7 @@ import com.chaeking.api.domain.enumerate.KakaoBookTarget;
 import com.chaeking.api.domain.value.BookValue;
 import com.chaeking.api.domain.value.response.DataResponse;
 import com.chaeking.api.service.BookService;
+import com.chaeking.api.util.BasicUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import java.util.Calendar;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -63,8 +63,7 @@ public class BookController {
     @GetMapping("/{book_id}")
     public DataResponse<BookValue.Res.Detail> selectAll(
             @Parameter(description = "책 id") @PathVariable(name = "book_id") long bookId) {
-        BookValue.Res.Detail data = bookService.book(bookId);
-        Calendar cal = Calendar.getInstance();
-        return DataResponse.of(data);
+        Long userId = BasicUtils.getUserId();
+        return DataResponse.of(bookService.book(bookId, userId));
     }
 }

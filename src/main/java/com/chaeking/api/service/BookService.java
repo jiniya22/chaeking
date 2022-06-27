@@ -1,19 +1,13 @@
 package com.chaeking.api.service;
 
 import com.chaeking.api.config.exception.InvalidInputException;
-import com.chaeking.api.domain.entity.Author;
-import com.chaeking.api.domain.entity.Book;
-import com.chaeking.api.domain.entity.BookAndAuthor;
-import com.chaeking.api.domain.entity.Publisher;
+import com.chaeking.api.domain.entity.*;
 import com.chaeking.api.domain.enumerate.KakaoBookSort;
 import com.chaeking.api.domain.enumerate.KakaoBookTarget;
 import com.chaeking.api.domain.value.BookValue;
 import com.chaeking.api.domain.value.naver.KakaoBookValue;
 import com.chaeking.api.domain.value.naver.NaverBookValue;
-import com.chaeking.api.repository.AuthorRepository;
-import com.chaeking.api.repository.BookAndAuthorRepository;
-import com.chaeking.api.repository.BookRepository;
-import com.chaeking.api.repository.PublisherRepository;
+import com.chaeking.api.repository.*;
 import com.chaeking.api.util.resttemplate.KakaoApiRestTemplate;
 import com.chaeking.api.util.resttemplate.NaverApiRestTemplate;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +24,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Service
 public class BookService {
+    private final UserRepository userRepository;
     private final AuthorRepository authorRepository;
     private final PublisherRepository publisherRepository;
     private final BookAndAuthorRepository bookAndAuthorRepository;
@@ -49,8 +44,9 @@ public class BookService {
         }).collect(Collectors.toList());
     }
 
-    public BookValue.Res.Detail book(long bookId) {
-        return Book.createDetail(select(bookId));
+    public BookValue.Res.Detail book(long bookId, Long userId) {
+        User user = userRepository.findById(userId).orElse(null);
+        return Book.createDetail(select(bookId), user);
     }
 
     @Transactional

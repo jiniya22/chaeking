@@ -12,6 +12,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -59,7 +60,14 @@ public class BookMemoryComplete extends BaseEntity {
         return new BookMemoryCompleteValue.Res.Bookshelf(c.getId(),
                 Optional.ofNullable(c.getBook()).map(Book::getId).orElse(null),
                 Optional.ofNullable(c.getBook()).map(Book::getName).orElse(""),
+                c.getMemo(),
                 c.getRate(),
                 Optional.ofNullable(c.getBook()).map(Book::getImageUrl).orElse(ChaekingProperties.getUrl() + "/static/img/books.png"));
     }
+
+    public static BookMemoryCompleteValue.Res.Content createContent(BookMemoryComplete c) {
+        return new BookMemoryCompleteValue.Res.Content(c.getId(), c.getRate(),
+                c.getMemo(), c.getTags().stream().map(BookMemoryCompleteTag::getTag).map(Tag::getId).collect(Collectors.toList()));
+    }
+
 }

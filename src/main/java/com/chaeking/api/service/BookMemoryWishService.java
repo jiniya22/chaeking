@@ -62,4 +62,10 @@ public class BookMemoryWishService {
             throw new InvalidInputException(MessageUtils.NOT_FOUND_BOOK_MEMORY_WISH);
         bookMemoryWish.setActive(false);
     }
+
+    public BookMemoryWishValue.Res.Content selectContent(Long userId, Book book) {
+        User user = userService.select(userId);
+        return bookMemoryWishRepository.findByBookAndUser(book, user).map(BookMemoryWish::createContent).orElse(null);
+    }
+
 }

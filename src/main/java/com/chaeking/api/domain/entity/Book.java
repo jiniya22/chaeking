@@ -1,5 +1,7 @@
 package com.chaeking.api.domain.entity;
 
+import com.chaeking.api.domain.value.BookMemoryCompleteValue;
+import com.chaeking.api.domain.value.BookMemoryWishValue;
 import com.chaeking.api.domain.value.BookValue;
 import com.chaeking.api.domain.value.ChaekingProperties;
 import com.chaeking.api.util.DateTimeUtils;
@@ -63,6 +65,18 @@ public class Book extends BaseEntity {
     @Where(clause = "author_id IS NOT NULL")
     private List<BookAndAuthor> bookAndAuthors = new ArrayList<>();
 
+    @ToString.Exclude
+    @OneToMany(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "book_id")
+    @Where(clause = "user_id IS NOT NULL")
+    private List<BookMemoryComplete> bookMemoryCompletes = new ArrayList<>();
+
+    @ToString.Exclude
+    @OneToMany(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "book_id")
+    @Where(clause = "user_id IS NOT NULL")
+    private List<BookMemoryWish> bookMemoryWishes = new ArrayList<>();
+
     @Builder
     public Book(String name, int price, String isbn, String imageUrl, String link,
                 String detailInfo, LocalDate publicationDate) {
@@ -97,14 +111,21 @@ public class Book extends BaseEntity {
     public static BookValue.Res.Simple createSimple(Book b) {
         return new BookValue.Res.Simple(b.getId(), b.getName(), b.getAuthorNames(), b.getPublisherName(), b.getImageUrl());
     }
-    public static BookValue.Res.Detail createDetail(Book b) {
+
+    public static BookValue.Res.Detail createDetail(Book b, User user) {
         String isbn = b.getIsbn10().isEmpty() ? b.getIsbn13() : String.format("%s(%s)", b.getIsbn13(), b.getIsbn10());
+        BookMemoryCompleteValue.Res.Content bookMemoryComplete = user == null ? null :
+                b.getBookMemoryCompletes().stream().filter(f -> user.equals(f.getUser())).findFirst().map(BookMemoryComplete::createContent).orElse(null);
+        BookMemoryWishValue.Res.Content bookMemoryWish = user == null || bookMemoryComplete != null ? null :
+                b.getBookMemoryWishes().stream().filter(f -> user.equals(f.getUser())).findFirst().map(BookMemoryWish::createContent).orElse(null);
+
         return new BookValue.Res.Detail(b.getId(), b.getName(), b.getPrice(), Optional.ofNullable(b.getPublisher()).map(Publisher::getName).orElse(null),
                 DateTimeUtils.toString(b.getPublicationDate()),
                 isbn, b.getImageUrl(), b.getDetailInfo(),
                 b.getBookAndAuthors().stream()
                         .map(m -> Optional.ofNullable(m.getAuthor())
-                                .map(Author::getName).orElse(null)).collect(Collectors.toList()));
+                                .map(Author::getName).orElse(null)).collect(Collectors.toList()),
+                bookMemoryComplete, bookMemoryWish);
     }
 
     public String getImageUrl() {
