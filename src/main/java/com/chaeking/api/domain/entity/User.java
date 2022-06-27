@@ -14,17 +14,17 @@ import org.hibernate.annotations.Where;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @ToString
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@DynamicInsert @DynamicUpdate
+@DynamicInsert
+@DynamicUpdate
 @Table(name = "user")
 @Entity
+@Where(clause = "active = 1")
 public class User extends BaseEntity implements UserDetails {
 
     @Id
@@ -53,7 +53,7 @@ public class User extends BaseEntity implements UserDetails {
     private String secretKey;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name="FK__USER__USER_AUTHORITY"))
+    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "FK__USER__USER_AUTHORITY"))
     private Set<UserAuthority> authorities;
 
     @Builder

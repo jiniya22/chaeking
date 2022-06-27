@@ -7,6 +7,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "book_memory_complete", uniqueConstraints = { @UniqueConstraint(name = "UK__BOOK_MEMORY_COMPLETE__USER_ID__BOOK_ID", columnNames = {"user_id", "book_id"}) })
 @Entity
+@Where(clause = "active = 1")
 public class BookMemoryComplete extends BaseEntity {
 
     @Id

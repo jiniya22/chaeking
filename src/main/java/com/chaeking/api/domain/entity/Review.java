@@ -3,6 +3,7 @@ package com.chaeking.api.domain.entity;
 import lombok.Getter;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 
@@ -11,6 +12,7 @@ import javax.persistence.*;
 @DynamicInsert @DynamicUpdate
 @Table(name = "review")
 @Entity
+@Where(clause = "active = 1")
 public class Review extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

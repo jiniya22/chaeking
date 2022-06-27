@@ -6,6 +6,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.Optional;
@@ -14,6 +15,7 @@ import java.util.Optional;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "book_memory_wish")
 @Entity
+@Where(clause = "active = 1")
 public class BookMemoryWish extends BaseEntity {
 
     @Id

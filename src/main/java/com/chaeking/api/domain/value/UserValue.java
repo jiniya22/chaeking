@@ -20,7 +20,9 @@ public final class UserValue {
                 @Schema(description = DescriptionUtils.PASSWORD) @NotBlank String password,
                 @Schema(description = DescriptionUtils.SECRET_KEY) @Length(min = 32) String secretKey,
                 @Schema(description = "닉네임") @NotBlank String nickname,
-                @Schema(description = "성별") @Pattern(regexp = RegexpUtils.SEX) String sex) { }
+                @Schema(description = "성별") @Pattern(regexp = RegexpUtils.SEX) String sex,
+                @Schema(description = "푸시 동의") boolean push,
+                @Schema(description = "야간 푸시 동의") boolean nightPush) { }
 
         @Schema(name = "UserLogin")
         public record Login(

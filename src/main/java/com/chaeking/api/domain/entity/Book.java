@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "book")
 @Entity
+@Where(clause = "active = 1")
 public class Book extends BaseEntity {
 
     @Id

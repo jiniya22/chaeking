@@ -2,6 +2,7 @@ package com.chaeking.api.domain.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 
@@ -9,6 +10,7 @@ import javax.persistence.*;
 @Setter
 @Table(name = "tag")
 @Entity
+@Where(clause = "active = 1")
 public class Tag extends BaseEntity {
 
     @Id
