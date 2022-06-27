@@ -9,6 +9,7 @@ import javax.persistence.*;
 
 @Getter
 @DynamicInsert @DynamicUpdate
+@Table(name = "review")
 @Entity
 public class Review extends BaseEntity {
     @Id

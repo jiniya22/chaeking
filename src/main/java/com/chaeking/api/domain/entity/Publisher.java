@@ -16,7 +16,7 @@ import java.util.List;
 @EntityListeners(value = AuditingEntityListener.class)
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(uniqueConstraints = { @UniqueConstraint(name = "UK__PUBLISHER__NAME", columnNames = {"name"}) })
+@Table(name = "publisher", uniqueConstraints = { @UniqueConstraint(name = "UK__PUBLISHER__NAME", columnNames = {"name"}) })
 @Entity
 public class Publisher {
 

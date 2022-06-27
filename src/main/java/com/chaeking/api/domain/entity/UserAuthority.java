@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @IdClass(UserAuthority.class)
+@Table(name = "user_authority")
 @Entity
 public class UserAuthority implements GrantedAuthority {
 

@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "book_memory_wish")
 @Entity
 public class BookMemoryWish extends BaseEntity {
 

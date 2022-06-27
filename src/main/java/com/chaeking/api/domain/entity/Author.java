@@ -5,7 +5,6 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -17,7 +16,7 @@ import java.util.List;
 @EntityListeners(value = AuditingEntityListener.class)
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(uniqueConstraints = { @UniqueConstraint(name = "UK__AUTHOR__NAME", columnNames = {"name"}) })
+@Table(name = "author", uniqueConstraints = { @UniqueConstraint(name = "UK__AUTHOR__NAME", columnNames = {"name"}) })
 @Entity
 public class Author {
 

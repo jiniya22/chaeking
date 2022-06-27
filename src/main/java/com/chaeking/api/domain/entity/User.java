@@ -20,6 +20,7 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicInsert @DynamicUpdate
+@Table(name = "user")
 @Entity
 public class User extends BaseEntity implements UserDetails {
 

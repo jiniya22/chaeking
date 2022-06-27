@@ -10,6 +10,7 @@ import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "book_memory_complete_tag")
 @Entity
 public class BookMemoryCompleteTag {
 
