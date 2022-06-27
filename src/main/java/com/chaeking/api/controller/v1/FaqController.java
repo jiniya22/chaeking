@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RequiredArgsConstructor
-@Tag(name = "setting-system", description = "세팅-시스템(공지사항, FAQ, 이용약관 등)")
+@Tag(name = "setting-system", description = "설정-시스템(공지사항, FAQ, 이용약관 등)")
 @RestController
 @RequestMapping("/v1/faqs")
 public class FaqController {
