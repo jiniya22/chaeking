@@ -7,13 +7,14 @@ import com.chaeking.api.domain.value.UserValue;
 import com.chaeking.api.util.JWTUtils;
 import com.chaeking.api.util.cipher.AESCipher;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.Where;
+import org.hibernate.annotations.*;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -52,19 +53,33 @@ public class User extends BaseEntity implements UserDetails {
     @Column(nullable = false, length = 200)
     private String secretKey;
 
+    @Setter
+    @ColumnDefault("false")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
+    @Column(columnDefinition = "TINYINT(1)")
+    private boolean push;
+
+    @Setter
+    @ColumnDefault("false")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
+    @Column(columnDefinition = "TINYINT(1)")
+    private boolean nightPush;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "FK__USER__USER_AUTHORITY"))
     private Set<UserAuthority> authorities;
 
     @Builder
-    private User(String email, String password, String nickname, Sex sex, String secretKey) {
+    private User(String email, String password, String nickname, Sex sex, String secretKey, boolean push, boolean nightPush) {
         this.email = email;
         this.password = password;
         this.nickname = nickname;
         this.sex = sex;
         this.secretKey = secretKey;
+        this.push = push;
+        this.nightPush = nightPush;
     }
-    
+
     public static User of(UserValue.Req.Creation c) {
         String originalPassword = AESCipher.decrypt(c.password(), c.secretKey());
         return User.builder()
@@ -72,7 +87,9 @@ public class User extends BaseEntity implements UserDetails {
                 .nickname(c.nickname())
                 .sex(Sex.valueOf(c.sex()))
                 .secretKey(c.secretKey())
-                .password(SecurityConfig.passwordEncoder.encode(originalPassword)).build();
+                .password(SecurityConfig.passwordEncoder.encode(originalPassword))
+                .push(c.push())
+                .nightPush(c.nightPush()).build();
     }
 
     public static UserValue.Res.Detail createDetail(User u) {

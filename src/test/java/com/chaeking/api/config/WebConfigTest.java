@@ -19,7 +19,7 @@ class WebConfigTest {
         String secretKey = "A37aXdxH6gwTySajLe8eZWNvyC2yuZVB";
         String password = AESCipher.encrypt("jini", secretKey);
 //        UserValue.Req.Creation user1 = new UserValue.Req.Creation("jini@jiniworld.me", "123", "지니", Sex.F);
-        UserValue.Req.Creation user1 = new UserValue.Req.Creation("jini@jiniworld.me", password, secretKey,"지니", "F");
+        UserValue.Req.Creation user1 = new UserValue.Req.Creation("jini@jiniworld.me", password, secretKey,"지니", "F", false, false);
         try {
             System.out.println(objectMapper.writeValueAsString(user1));
         } catch (JsonProcessingException e) {

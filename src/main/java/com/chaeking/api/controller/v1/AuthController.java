@@ -24,7 +24,9 @@ public class AuthController {
 
     @Operation(summary = "회원 가입",
             description = "<ul><li>secret_key: uuid 나 32자 이상의 난수값</li>" +
-                    "<li>password: secret_key 를 이용하여 비밀번호를 AES 암호화한 값</li></ul>")
+                    "<li>password: secret_key 를 이용하여 비밀번호를 AES 암호화한 값</li>" +
+                    "<li>push, night_push: 푸시 동의, 야간 푸시 동의. 옵션값으로, 미설정시 false 로 간주합니다.</li></ul>" +
+                    "<b>※ 필수 약관은 반드시 동의해야 가입할 수 있으므로, Request Body 로 별도로 받지 않습니다.</b>")
     @PostMapping("/join")
     public BaseResponse save(@RequestBody @Valid UserValue.Req.Creation req) {
         return userService.save(req);
