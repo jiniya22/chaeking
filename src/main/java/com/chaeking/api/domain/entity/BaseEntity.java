@@ -5,11 +5,12 @@ import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.Where;
+import org.hibernate.annotations.Type;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
@@ -20,11 +21,12 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 @DynamicInsert
 @DynamicUpdate
-@Where(clause = "active = 1")
 public abstract class BaseEntity {
 
     @Setter
-    @ColumnDefault("1")
+    @ColumnDefault("true")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
+    @Column(columnDefinition = "TINYINT(1)")
     private boolean active;
 
     @CreatedDate
