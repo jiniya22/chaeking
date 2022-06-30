@@ -7,6 +7,7 @@ import com.chaeking.api.domain.entity.BookMemoryCompleteTag;
 import com.chaeking.api.domain.entity.User;
 import com.chaeking.api.domain.value.BookMemoryCompleteValue;
 import com.chaeking.api.repository.BookMemoryCompleteRepository;
+import com.chaeking.api.repository.BookMemoryWishRepository;
 import com.chaeking.api.util.MessageUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -25,6 +26,7 @@ public class BookMemoryCompleteService {
     private final UserService userService;
     private final TagService tagService;
     private final BookMemoryCompleteRepository bookMemoryCompleteRepository;
+    private final BookMemoryWishRepository bookMemoryWishRepository;
 
     public List<BookMemoryCompleteValue.Res.Simple> selectAll(Long userId, Pageable pageable) {
         User user = userService.select(userId);
@@ -47,6 +49,7 @@ public class BookMemoryCompleteService {
             bookMemoryComplete.setTags(tagService.select(req.tagIds())
                     .stream().map(BookMemoryCompleteTag::new).collect(Collectors.toList()));
         }
+        bookMemoryWishRepository.deleteByBookAndUser(book, user);
         bookMemoryCompleteRepository.save(bookMemoryComplete);
     }
 

@@ -6,6 +6,8 @@ import com.chaeking.api.domain.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,4 +20,8 @@ public interface BookMemoryCompleteRepository extends JpaRepository<BookMemoryCo
     List<BookMemoryComplete> findAllByUserAndCreatedAtBetween(User user, LocalDateTime createdAt1, LocalDateTime createdAt2);
     Page<BookMemoryComplete> findAllByUserAndCreatedAtBetween(User user, LocalDateTime createdAt1, LocalDateTime createdAt2, Pageable pageable);
     boolean existsByUser(User user);
+
+    @Modifying
+    @Query(value = "delete from BookMemoryComplete b where b.book = ?1 and b.user = ?2")
+    void deleteByBookAndUser(Book book, User user);
 }
