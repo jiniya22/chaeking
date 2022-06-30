@@ -47,20 +47,22 @@ public class BookMemoryWishService {
 
     @Transactional
     public void modify(Long userId, Long bookMemoryWishId, BookMemoryWishValue.Req.Modification value) {
-        BookMemoryWish bookMemoryWish = bookMemoryWishRepository.findById(bookMemoryWishId)
+        BookMemoryWish bookMemoryWish = bookMemoryWishRepository.findWithUserById(bookMemoryWishId)
                 .orElseThrow(() -> new InvalidInputException(MessageUtils.NOT_FOUND_BOOK_MEMORY_WISH));
-        if(userId.equals(bookMemoryWish.getUser().getId()))
+        if(!userId.equals(bookMemoryWish.getUser().getId()))
             throw new InvalidInputException(MessageUtils.NOT_FOUND_BOOK_MEMORY_WISH);
         bookMemoryWish.setMemo(value.memo());
+        bookMemoryWishRepository.save(bookMemoryWish);
     }
 
     @Transactional
     public void delete(Long userId, Long bookMemoryWishId) {
-        BookMemoryWish bookMemoryWish = bookMemoryWishRepository.findById(bookMemoryWishId)
+        BookMemoryWish bookMemoryWish = bookMemoryWishRepository.findWithUserById(bookMemoryWishId)
                 .orElseThrow(() -> new InvalidInputException(MessageUtils.NOT_FOUND_BOOK_MEMORY_WISH));
-        if(userId.equals(bookMemoryWish.getUser().getId()))
+        if(!userId.equals(bookMemoryWish.getUser().getId()))
             throw new InvalidInputException(MessageUtils.NOT_FOUND_BOOK_MEMORY_WISH);
         bookMemoryWish.setActive(false);
+        bookMemoryWishRepository.save(bookMemoryWish);
     }
 
     public BookMemoryWishValue.Res.Content selectContent(Long userId, Book book) {

@@ -52,9 +52,9 @@ public class BookMemoryCompleteService {
 
     @Transactional
     public void modify(Long userId, Long bookMemoryCompleteId, BookMemoryCompleteValue.Req.Modification value) {
-        BookMemoryComplete bookMemoryComplete = bookMemoryCompleteRepository.findById(bookMemoryCompleteId)
+        BookMemoryComplete bookMemoryComplete = bookMemoryCompleteRepository.findWithUserById(bookMemoryCompleteId)
                 .orElseThrow(() -> new InvalidInputException(MessageUtils.NOT_FOUND_BOOK_MEMORY_COMPLETE));
-        if(userId.equals(bookMemoryComplete.getUser().getId()))
+        if(!userId.equals(bookMemoryComplete.getUser().getId()))
             throw new InvalidInputException(MessageUtils.NOT_FOUND_BOOK_MEMORY_COMPLETE);
         bookMemoryComplete.setMemo(value.memo());
         bookMemoryComplete.setRate(value.rate());
@@ -62,15 +62,17 @@ public class BookMemoryCompleteService {
             bookMemoryComplete.setTags(tagService.select(value.tagIds())
                     .stream().map(BookMemoryCompleteTag::new).collect(Collectors.toList()));
         }
+        bookMemoryCompleteRepository.save(bookMemoryComplete);
     }
 
     @Transactional
     public void delete(Long userId, Long bookMemoryCompleteId) {
-        BookMemoryComplete bookMemoryComplete = bookMemoryCompleteRepository.findById(bookMemoryCompleteId)
+        BookMemoryComplete bookMemoryComplete = bookMemoryCompleteRepository.findWithUserById(bookMemoryCompleteId)
                 .orElseThrow(() -> new InvalidInputException(MessageUtils.NOT_FOUND_BOOK_MEMORY_COMPLETE));
-        if(userId.equals(bookMemoryComplete.getUser().getId()))
+        if(!userId.equals(bookMemoryComplete.getUser().getId()))
             throw new InvalidInputException(MessageUtils.NOT_FOUND_BOOK_MEMORY_COMPLETE);
         bookMemoryComplete.setActive(false);
+        bookMemoryCompleteRepository.save(bookMemoryComplete);
     }
 
 }

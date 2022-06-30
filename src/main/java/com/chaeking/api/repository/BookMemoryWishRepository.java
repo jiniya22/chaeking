@@ -7,10 +7,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
 import java.util.Optional;
 
 public interface BookMemoryWishRepository extends JpaRepository<BookMemoryWish, Long> {
     Optional<BookMemoryWish> findByBookAndUser(Book book, User user);
+    Optional<BookMemoryWish> findWithUserById(Long bookMemoryWishId);
     Page<BookMemoryWish> findAllByUser(User user, Pageable pageable);
 }
