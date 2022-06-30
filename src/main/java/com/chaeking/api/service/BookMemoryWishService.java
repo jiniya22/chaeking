@@ -6,6 +6,7 @@ import com.chaeking.api.domain.entity.BookMemoryWish;
 import com.chaeking.api.domain.entity.User;
 import com.chaeking.api.domain.value.BookMemoryWishValue;
 import com.chaeking.api.domain.value.response.PageResponse;
+import com.chaeking.api.repository.BookMemoryCompleteRepository;
 import com.chaeking.api.repository.BookMemoryWishRepository;
 import com.chaeking.api.util.MessageUtils;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,7 @@ import java.util.stream.Collectors;
 public class BookMemoryWishService {
     private final BookService bookService;
     private final UserService userService;
+    private final BookMemoryCompleteRepository bookMemoryCompleteRepository;
     private final BookMemoryWishRepository bookMemoryWishRepository;
 
     public PageResponse<BookMemoryWishValue.Res.Simple> selectAll(Long userId, Pageable pageable) {
@@ -42,6 +44,7 @@ public class BookMemoryWishService {
         BookMemoryWish bookMemoryWish = bookMemoryWishRepository.findByBookAndUser(book, user)
                 .orElse(new BookMemoryWish(book, user));
         bookMemoryWish.setMemo(value.memo());
+        bookMemoryCompleteRepository.deleteByBookAndUser(book, user);
         bookMemoryWishRepository.save(bookMemoryWish);
     }
 
