@@ -1,1356 +1,421 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>이용약관</title>
-    <style>
-    .lst-kix_6wx3b52nmquy-0 > li:before {
-        content: "\0025cf  "
-    }
-
-    .lst-kix_6wx3b52nmquy-1 > li:before {
-        content: "\0025cf  "
-    }
-
-    .lst-kix_6wx3b52nmquy-4 > li:before {
-        content: "\0025cf  "
-    }
-
-    ul.lst-kix_6wx3b52nmquy-4 {
-        list-style-type: none
-    }
-
-    ul.lst-kix_6wx3b52nmquy-5 {
-        list-style-type: none
-    }
-
-    ul.lst-kix_6wx3b52nmquy-2 {
-        list-style-type: none
-    }
-
-    .lst-kix_6wx3b52nmquy-3 > li:before {
-        content: "\0025cf  "
-    }
-
-    .lst-kix_6wx3b52nmquy-5 > li:before {
-        content: "\0025cf  "
-    }
-
-    ul.lst-kix_6wx3b52nmquy-3 {
-        list-style-type: none
-    }
-
-    ul.lst-kix_6wx3b52nmquy-0 {
-        list-style-type: none
-    }
-
-    .lst-kix_6wx3b52nmquy-2 > li:before {
-        content: "\0025cf  "
-    }
-
-    .lst-kix_6wx3b52nmquy-6 > li:before {
-        content: "\0025cf  "
-    }
-
-    ul.lst-kix_6wx3b52nmquy-1 {
-        list-style-type: none
-    }
-
-    ul.lst-kix_6wx3b52nmquy-8 {
-        list-style-type: none
-    }
-
-    ul.lst-kix_6wx3b52nmquy-6 {
-        list-style-type: none
-    }
-
-    ul.lst-kix_6wx3b52nmquy-7 {
-        list-style-type: none
-    }
-
-    ul.lst-kix_kh2eq0sgxc2t-5 {
-        list-style-type: none
-    }
-
-    ul.lst-kix_kh2eq0sgxc2t-6 {
-        list-style-type: none
-    }
-
-    ul.lst-kix_kh2eq0sgxc2t-7 {
-        list-style-type: none
-    }
-
-    ul.lst-kix_kh2eq0sgxc2t-8 {
-        list-style-type: none
-    }
-
-    .lst-kix_kh2eq0sgxc2t-0 > li:before {
-        content: "\0025cf  "
-    }
-
-    ul.lst-kix_kh2eq0sgxc2t-1 {
-        list-style-type: none
-    }
-
-    ul.lst-kix_kh2eq0sgxc2t-2 {
-        list-style-type: none
-    }
-
-    .lst-kix_kh2eq0sgxc2t-1 > li:before {
-        content: "\0025cb  "
-    }
-
-    ul.lst-kix_kh2eq0sgxc2t-3 {
-        list-style-type: none
-    }
-
-    ul.lst-kix_kh2eq0sgxc2t-4 {
-        list-style-type: none
-    }
-
-    .lst-kix_6wx3b52nmquy-8 > li:before {
-        content: "\0025cf  "
-    }
-
-    .lst-kix_kh2eq0sgxc2t-2 > li:before {
-        content: "\0025a0  "
-    }
-
-    .lst-kix_6wx3b52nmquy-7 > li:before {
-        content: "\0025cf  "
-    }
-
-    .lst-kix_kh2eq0sgxc2t-3 > li:before {
-        content: "\0025cf  "
-    }
-
-    .lst-kix_kh2eq0sgxc2t-6 > li:before {
-        content: "\0025cf  "
-    }
-
-    .lst-kix_kh2eq0sgxc2t-4 > li:before {
-        content: "\0025cb  "
-    }
-
-    .lst-kix_kh2eq0sgxc2t-8 > li:before {
-        content: "\0025a0  "
-    }
-
-    .lst-kix_kh2eq0sgxc2t-5 > li:before {
-        content: "\0025a0  "
-    }
-
-    ul.lst-kix_kh2eq0sgxc2t-0 {
-        list-style-type: none
-    }
-
-    .lst-kix_kh2eq0sgxc2t-7 > li:before {
-        content: "\0025cb  "
-    }
-
-    ol {
-        margin: 0;
-        padding: 0
-    }
-
-    table td, table th {
-        padding: 0
-    }
-
-    .c21 {
-        border-right-style: solid;
-        padding-top: 0pt;
-        border-top-width: 0pt;
-        border-right-width: 0pt;
-        padding-left: -26pt;
-        padding-bottom: 0pt;
-        line-height: 1.454543181818182;
-        border-left-width: 0pt;
-        border-top-style: solid;
-        margin-left: 52pt;
-        text-indent: -26pt;
-        border-left-style: solid;
-        border-bottom-width: 0pt;
-        border-bottom-style: solid;
-        orphans: 2;
-        widows: 2;
-        text-align: justify;
-        padding-right: 0pt
-    }
-
-    .c6 {
-        border-right-style: solid;
-        padding-top: 0pt;
-        border-top-width: 0pt;
-        border-right-width: 0pt;
-        padding-left: -21.8pt;
-        padding-bottom: 0pt;
-        line-height: 1.454543181818182;
-        border-left-width: 0pt;
-        border-top-style: solid;
-        margin-left: 44pt;
-        text-indent: -22.7pt;
-        border-left-style: solid;
-        border-bottom-width: 0pt;
-        border-bottom-style: solid;
-        orphans: 2;
-        widows: 2;
-        text-align: justify;
-        padding-right: 0pt
-    }
-
-    .c28 {
-        border-right-style: solid;
-        padding-top: 0pt;
-        border-top-width: 0pt;
-        border-right-width: 0pt;
-        padding-left: -22pt;
-        padding-bottom: 0pt;
-        line-height: 1.454543181818182;
-        border-left-width: 0pt;
-        border-top-style: solid;
-        margin-left: 44pt;
-        text-indent: -15.7pt;
-        border-left-style: solid;
-        border-bottom-width: 0pt;
-        border-bottom-style: solid;
-        orphans: 2;
-        widows: 2;
-        text-align: justify;
-        padding-right: 0pt
-    }
-
-    .c22 {
-        border-right-style: solid;
-        padding-top: 0pt;
-        border-top-width: 0pt;
-        border-right-width: 0pt;
-        padding-left: -25.3pt;
-        padding-bottom: 0pt;
-        line-height: 1.454543181818182;
-        border-left-width: 0pt;
-        border-top-style: solid;
-        margin-left: 50pt;
-        text-indent: -25pt;
-        border-left-style: solid;
-        border-bottom-width: 0pt;
-        border-bottom-style: solid;
-        orphans: 2;
-        widows: 2;
-        text-align: justify;
-        padding-right: 0pt
-    }
-
-    .c14 {
-        border-right-style: solid;
-        padding-top: 0pt;
-        border-top-width: 0pt;
-        border-right-width: 0pt;
-        padding-left: -25.7pt;
-        padding-bottom: 0pt;
-        line-height: 1.454543181818182;
-        border-left-width: 0pt;
-        border-top-style: solid;
-        margin-left: 52pt;
-        text-indent: -26pt;
-        border-left-style: solid;
-        border-bottom-width: 0pt;
-        border-bottom-style: solid;
-        orphans: 2;
-        widows: 2;
-        text-align: justify;
-        padding-right: 0pt
-    }
-
-    .c17 {
-        border-right-style: solid;
-        padding-top: 0pt;
-        border-top-width: 0pt;
-        border-right-width: 0pt;
-        padding-left: -22.9pt;
-        padding-bottom: 0pt;
-        line-height: 1.454543181818182;
-        border-left-width: 0pt;
-        border-top-style: solid;
-        margin-left: 46pt;
-        text-indent: -24.7pt;
-        border-left-style: solid;
-        border-bottom-width: 0pt;
-        border-bottom-style: solid;
-        orphans: 2;
-        widows: 2;
-        text-align: justify;
-        padding-right: 0pt
-    }
-
-    .c34 {
-        border-right-style: solid;
-        padding-top: 0pt;
-        border-top-width: 0pt;
-        border-right-width: 0pt;
-        padding-left: -17.5pt;
-        padding-bottom: 0pt;
-        line-height: 1.454543181818182;
-        border-left-width: 0pt;
-        border-top-style: solid;
-        margin-left: 34pt;
-        text-indent: -5.7pt;
-        border-left-style: solid;
-        border-bottom-width: 0pt;
-        border-bottom-style: solid;
-        orphans: 2;
-        widows: 2;
-        text-align: justify;
-        padding-right: 0pt
-    }
-
-    .c18 {
-        border-right-style: solid;
-        padding-top: 0pt;
-        border-top-width: 0pt;
-        border-right-width: 0pt;
-        padding-left: -27.6pt;
-        padding-bottom: 0pt;
-        line-height: 1.454543181818182;
-        border-left-width: 0pt;
-        border-top-style: solid;
-        margin-left: 56pt;
-        text-indent: -27.7pt;
-        border-left-style: solid;
-        border-bottom-width: 0pt;
-        border-bottom-style: solid;
-        orphans: 2;
-        widows: 2;
-        text-align: justify;
-        padding-right: 0pt
-    }
-
-    .c29 {
-        border-right-style: solid;
-        padding-top: 0pt;
-        border-top-width: 0pt;
-        border-right-width: 0pt;
-        padding-left: -21.9pt;
-        padding-bottom: 0pt;
-        line-height: 1.454543181818182;
-        border-left-width: 0pt;
-        border-top-style: solid;
-        margin-left: 44pt;
-        text-indent: -29.8pt;
-        border-left-style: solid;
-        border-bottom-width: 0pt;
-        border-bottom-style: solid;
-        orphans: 2;
-        widows: 2;
-        text-align: justify;
-        padding-right: 0pt
-    }
-
-    .c36 {
-        border-right-style: solid;
-        padding-top: 0pt;
-        border-top-width: 0pt;
-        border-right-width: 0pt;
-        padding-left: -18.3pt;
-        padding-bottom: 0pt;
-        line-height: 1.454543181818182;
-        border-left-width: 0pt;
-        border-top-style: solid;
-        margin-left: 36pt;
-        text-indent: -18pt;
-        border-left-style: solid;
-        border-bottom-width: 0pt;
-        border-bottom-style: solid;
-        orphans: 2;
-        widows: 2;
-        text-align: justify;
-        padding-right: 0pt
-    }
-
-    .c19 {
-        border-right-style: solid;
-        padding-top: 0pt;
-        border-top-width: 0pt;
-        border-right-width: 0pt;
-        padding-left: -22.3pt;
-        padding-bottom: 0pt;
-        line-height: 1.454543181818182;
-        border-left-width: 0pt;
-        border-top-style: solid;
-        margin-left: 44pt;
-        text-indent: -29.8pt;
-        border-left-style: solid;
-        border-bottom-width: 0pt;
-        border-bottom-style: solid;
-        orphans: 2;
-        widows: 2;
-        text-align: justify;
-        padding-right: 0pt
-    }
-
-    .c13 {
-        border-right-style: solid;
-        padding-top: 0pt;
-        border-top-width: 0pt;
-        border-right-width: 0pt;
-        padding-left: -27.3pt;
-        padding-bottom: 0pt;
-        line-height: 1.454543181818182;
-        border-left-width: 0pt;
-        border-top-style: solid;
-        margin-left: 54pt;
-        text-indent: -39.8pt;
-        border-left-style: solid;
-        border-bottom-width: 0pt;
-        border-bottom-style: solid;
-        orphans: 2;
-        widows: 2;
-        text-align: justify;
-        padding-right: 0pt
-    }
-
-    .c38 {
-        border-right-style: solid;
-        padding-top: 0pt;
-        border-top-width: 0pt;
-        border-right-width: 0pt;
-        padding-left: -22.2pt;
-        padding-bottom: 0pt;
-        line-height: 1.454543181818182;
-        border-left-width: 0pt;
-        border-top-style: solid;
-        margin-left: 44pt;
-        text-indent: -29.8pt;
-        border-left-style: solid;
-        border-bottom-width: 0pt;
-        border-bottom-style: solid;
-        orphans: 2;
-        widows: 2;
-        text-align: justify;
-        padding-right: 0pt
-    }
-
-    .c8 {
-        border-right-style: solid;
-        padding-top: 0pt;
-        border-top-width: 0pt;
-        border-right-width: 0pt;
-        padding-left: -24.9pt;
-        padding-bottom: 0pt;
-        line-height: 1.454543181818182;
-        border-left-width: 0pt;
-        border-top-style: solid;
-        margin-left: 50pt;
-        text-indent: -25pt;
-        border-left-style: solid;
-        border-bottom-width: 0pt;
-        border-bottom-style: solid;
-        orphans: 2;
-        widows: 2;
-        text-align: justify;
-        padding-right: 0pt
-    }
-
-    .c23 {
-        border-right-style: solid;
-        padding-top: 0pt;
-        border-top-width: 0pt;
-        border-right-width: 0pt;
-        padding-left: -22.2pt;
-        padding-bottom: 0pt;
-        line-height: 1.454543181818182;
-        border-left-width: 0pt;
-        border-top-style: solid;
-        margin-left: 44pt;
-        text-indent: -15.7pt;
-        border-left-style: solid;
-        border-bottom-width: 0pt;
-        border-bottom-style: solid;
-        orphans: 2;
-        widows: 2;
-        text-align: justify;
-        padding-right: 0pt
-    }
-
-    .c16 {
-        border-right-style: solid;
-        padding-top: 0pt;
-        border-top-width: 0pt;
-        border-right-width: 0pt;
-        padding-left: -21.2pt;
-        padding-bottom: 0pt;
-        line-height: 1.454543181818182;
-        border-left-width: 0pt;
-        border-top-style: solid;
-        margin-left: 42pt;
-        text-indent: -13.7pt;
-        border-left-style: solid;
-        border-bottom-width: 0pt;
-        border-bottom-style: solid;
-        orphans: 2;
-        widows: 2;
-        text-align: justify;
-        padding-right: 0pt
-    }
-
-    .c27 {
-        border-right-style: solid;
-        padding-top: 0pt;
-        border-top-width: 0pt;
-        border-right-width: 0pt;
-        padding-left: -28.1pt;
-        padding-bottom: 0pt;
-        line-height: 1.454543181818182;
-        border-left-width: 0pt;
-        border-top-style: solid;
-        margin-left: 56pt;
-        text-indent: -27.7pt;
-        border-left-style: solid;
-        border-bottom-width: 0pt;
-        border-bottom-style: solid;
-        orphans: 2;
-        widows: 2;
-        text-align: justify;
-        padding-right: 0pt
-    }
-
-    .c24 {
-        border-right-style: solid;
-        padding-top: 0pt;
-        border-top-width: 0pt;
-        border-right-width: 0pt;
-        padding-left: -27.2pt;
-        padding-bottom: 0pt;
-        line-height: 1.454543181818182;
-        border-left-width: 0pt;
-        border-top-style: solid;
-        margin-left: 54pt;
-        text-indent: -25.7pt;
-        border-left-style: solid;
-        border-bottom-width: 0pt;
-        border-bottom-style: solid;
-        orphans: 2;
-        widows: 2;
-        text-align: justify;
-        padding-right: 0pt
-    }
-
-    .c31 {
-        border-right-style: solid;
-        padding-top: 0pt;
-        border-top-width: 0pt;
-        border-right-width: 0pt;
-        padding-left: -22.1pt;
-        padding-bottom: 0pt;
-        line-height: 1.454543181818182;
-        border-left-width: 0pt;
-        border-top-style: solid;
-        margin-left: 44pt;
-        text-indent: -22.7pt;
-        border-left-style: solid;
-        border-bottom-width: 0pt;
-        border-bottom-style: solid;
-        orphans: 2;
-        widows: 2;
-        text-align: justify;
-        padding-right: 0pt
-    }
-
-    .c12 {
-        border-right-style: solid;
-        padding-top: 0pt;
-        border-top-width: 0pt;
-        border-right-width: 0pt;
-        padding-left: -21.5pt;
-        padding-bottom: 0pt;
-        line-height: 1.454543181818182;
-        border-left-width: 0pt;
-        border-top-style: solid;
-        margin-left: 43pt;
-        text-indent: -14.7pt;
-        border-left-style: solid;
-        border-bottom-width: 0pt;
-        border-bottom-style: solid;
-        orphans: 2;
-        widows: 2;
-        text-align: justify;
-        padding-right: 0pt
-    }
-
-    .c4 {
-        border-right-style: solid;
-        padding-top: 0pt;
-        border-top-width: 0pt;
-        border-right-width: 0pt;
-        padding-left: -22.4pt;
-        padding-bottom: 0pt;
-        line-height: 1.454543181818182;
-        border-left-width: 0pt;
-        border-top-style: solid;
-        margin-left: 44pt;
-        text-indent: -22pt;
-        border-left-style: solid;
-        border-bottom-width: 0pt;
-        border-bottom-style: solid;
-        orphans: 2;
-        widows: 2;
-        text-align: justify;
-        padding-right: 0pt
-    }
-
-    .c3 {
-        border-right-style: solid;
-        padding-top: 0pt;
-        border-top-width: 0pt;
-        border-right-width: 0pt;
-        padding-left: -21.3pt;
-        padding-bottom: 0pt;
-        line-height: 1.454543181818182;
-        border-left-width: 0pt;
-        border-top-style: solid;
-        margin-left: 42pt;
-        text-indent: -27.8pt;
-        border-left-style: solid;
-        border-bottom-width: 0pt;
-        border-bottom-style: solid;
-        orphans: 2;
-        widows: 2;
-        text-align: justify;
-        padding-right: 0pt
-    }
-
-    .c33 {
-        border-right-style: solid;
-        padding-top: 0pt;
-        border-top-width: 0pt;
-        border-right-width: 0pt;
-        padding-left: -21.3pt;
-        padding-bottom: 0pt;
-        line-height: 1.454543181818182;
-        border-left-width: 0pt;
-        border-top-style: solid;
-        margin-left: 42pt;
-        text-indent: -13.7pt;
-        border-left-style: solid;
-        border-bottom-width: 0pt;
-        border-bottom-style: solid;
-        orphans: 2;
-        widows: 2;
-        text-align: justify;
-        padding-right: 0pt
-    }
-
-    .c35 {
-        border-right-style: solid;
-        padding-top: 0pt;
-        border-top-width: 0pt;
-        border-right-width: 0pt;
-        padding-left: -16.3pt;
-        padding-bottom: 0pt;
-        line-height: 1.454543181818182;
-        border-left-width: 0pt;
-        border-top-style: solid;
-        margin-left: 32pt;
-        text-indent: -16pt;
-        border-left-style: solid;
-        border-bottom-width: 0pt;
-        border-bottom-style: solid;
-        orphans: 2;
-        widows: 2;
-        text-align: justify;
-        padding-right: 0pt
-    }
-
-    .c25 {
-        border-right-style: solid;
-        padding-top: 0pt;
-        border-top-width: 0pt;
-        border-right-width: 0pt;
-        padding-left: -27.7pt;
-        padding-bottom: 0pt;
-        line-height: 1.454543181818182;
-        border-left-width: 0pt;
-        border-top-style: solid;
-        margin-left: 56pt;
-        text-indent: -27.7pt;
-        border-left-style: solid;
-        border-bottom-width: 0pt;
-        border-bottom-style: solid;
-        orphans: 2;
-        widows: 2;
-        text-align: justify;
-        padding-right: 0pt
-    }
-
-    .c20 {
-        border-right-style: solid;
-        padding-top: 0pt;
-        border-top-width: 0pt;
-        border-right-width: 0pt;
-        padding-left: -15.6pt;
-        padding-bottom: 0pt;
-        line-height: 1.454543181818182;
-        border-left-width: 0pt;
-        border-top-style: solid;
-        border-left-style: solid;
-        border-bottom-width: 0pt;
-        border-bottom-style: solid;
-        orphans: 2;
-        widows: 2;
-        text-align: justify;
-        padding-right: 0pt
-    }
-
-    .c10 {
-        border-right-style: solid;
-        padding-top: 0pt;
-        border-top-width: 0pt;
-        border-right-width: 0pt;
-        padding-left: 0pt;
-        padding-bottom: 0pt;
-        line-height: 1.454543181818182;
-        border-left-width: 0pt;
-        border-top-style: solid;
-        border-left-style: solid;
-        border-bottom-width: 0pt;
-        border-bottom-style: solid;
-        orphans: 2;
-        widows: 2;
-        text-align: center;
-        padding-right: 0pt
-    }
-
-    .c2 {
-        border-right-style: solid;
-        padding-top: 0pt;
-        border-top-width: 0pt;
-        border-right-width: 0pt;
-        padding-left: 0pt;
-        padding-bottom: 0pt;
-        line-height: 1.454543181818182;
-        border-left-width: 0pt;
-        border-top-style: solid;
-        border-left-style: solid;
-        border-bottom-width: 0pt;
-        border-bottom-style: solid;
-        orphans: 2;
-        widows: 2;
-        text-align: justify;
-        padding-right: 0pt
-    }
-
-    .c37 {
-        border-right-style: solid;
-        padding-top: 0pt;
-        border-top-width: 0pt;
-        border-right-width: 0pt;
-        padding-left: -26.8pt;
-        padding-bottom: 0pt;
-        line-height: 1.454543181818182;
-        border-left-width: 0pt;
-        border-top-style: solid;
-        border-left-style: solid;
-        border-bottom-width: 0pt;
-        border-bottom-style: solid;
-        orphans: 2;
-        widows: 2;
-        text-align: justify;
-        padding-right: 0pt
-    }
-
-    .c1 {
-        color: #000000;
-        font-weight: 400;
-        text-decoration: none;
-        vertical-align: baseline;
-        font-size: 12pt;
-        font-family: "Arial";
-        font-style: normal
-    }
-
-    .c30 {
-        padding-top: 0pt;
-        padding-bottom: 0pt;
-        line-height: 1.15;
-        orphans: 2;
-        widows: 2;
-        text-align: left;
-        height: 11pt
-    }
-
-    .c5 {
-        color: #000000;
-        font-weight: 700;
-        text-decoration: none;
-        vertical-align: baseline;
-        font-size: 14pt;
-        font-family: "Arial";
-        font-style: normal
-    }
-
-    .c0 {
-        color: #000000;
-        font-weight: 400;
-        text-decoration: none;
-        vertical-align: baseline;
-        font-size: 10pt;
-        font-family: "Arial";
-        font-style: normal
-    }
-
-    .c11 {
-        color: #000000;
-        text-decoration: none;
-        vertical-align: baseline;
-        font-family: "Arial";
-        font-style: normal
-    }
-
-    .c15 {
-        background-color: #ffffff;
-        max-width: 451.4pt;
-        margin: 0 auto;
-        padding: 30pt
-    }
-
-    .c32 {
-        font-weight: 400;
-        font-size: 11pt
-    }
-
-    .c9 {
-        font-size: 12pt;
-        font-weight: 700
-    }
-
-    .c26 {
-        margin-right: 4pt;
-        margin-left: 2pt
-    }
-
-    .c7 {
-        text-indent: 14.2pt
-    }
-
-    .title {
-        padding-top: 0pt;
-        color: #000000;
-        font-size: 26pt;
-        padding-bottom: 3pt;
-        font-family: "Arial";
-        line-height: 1.15;
-        page-break-after: avoid;
-        orphans: 2;
-        widows: 2;
-        text-align: left
-    }
-
-    .subtitle {
-        padding-top: 0pt;
-        color: #666666;
-        font-size: 15pt;
-        padding-bottom: 16pt;
-        font-family: "Arial";
-        line-height: 1.15;
-        page-break-after: avoid;
-        orphans: 2;
-        widows: 2;
-        text-align: left
-    }
-
-    li {
-        color: #000000;
-        font-size: 11pt;
-        font-family: "Arial"
-    }
-
-    p {
-        margin: 0;
-        color: #000000;
-        font-size: 11pt;
-        font-family: "Arial"
-    }
-
-    h1 {
-        padding-top: 20pt;
-        color: #000000;
-        font-size: 20pt;
-        padding-bottom: 6pt;
-        font-family: "Arial";
-        line-height: 1.15;
-        page-break-after: avoid;
-        orphans: 2;
-        widows: 2;
-        text-align: left
-    }
-
-    h2 {
-        padding-top: 18pt;
-        color: #000000;
-        font-size: 16pt;
-        padding-bottom: 6pt;
-        font-family: "Arial";
-        line-height: 1.15;
-        page-break-after: avoid;
-        orphans: 2;
-        widows: 2;
-        text-align: left
-    }
-
-    h3 {
-        padding-top: 16pt;
-        color: #434343;
-        font-size: 14pt;
-        padding-bottom: 4pt;
-        font-family: "Arial";
-        line-height: 1.15;
-        page-break-after: avoid;
-        orphans: 2;
-        widows: 2;
-        text-align: left
-    }
-
-    h4 {
-        padding-top: 14pt;
-        color: #666666;
-        font-size: 12pt;
-        padding-bottom: 4pt;
-        font-family: "Arial";
-        line-height: 1.15;
-        page-break-after: avoid;
-        orphans: 2;
-        widows: 2;
-        text-align: left
-    }
-
-    h5 {
-        padding-top: 12pt;
-        color: #666666;
-        font-size: 11pt;
-        padding-bottom: 4pt;
-        font-family: "Arial";
-        line-height: 1.15;
-        page-break-after: avoid;
-        orphans: 2;
-        widows: 2;
-        text-align: left
-    }
-
-    h6 {
-        padding-top: 12pt;
-        color: #666666;
-        font-size: 11pt;
-        padding-bottom: 4pt;
-        font-family: "Arial";
-        line-height: 1.15;
-        page-break-after: avoid;
-        font-style: italic;
-        orphans: 2;
-        widows: 2;
-        text-align: left
-    }
-    </style>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/reset.css}"/>
+<style>
+body {
+    max-width: 451.4pt;
+    margin: 0 auto;
+    padding: 30pt;
+}
+h2 {
+    text-align: center;
+    line-height: 5;
+    font-size: 1.3em;
+    font-weight: 700;
+}
+hr {
+    border: none;
+}
+</style>
 </head>
-<body class="c15"><p class="c10"><span class="c5">&#51228;1&#51109; &#52509;&#52825;</span></p>
-<p class="c10"><span class="c0">&nbsp;</span></p>
-<p class="c2"><span class="c9">&#51228;1&#51312; (&#47785;&#51201;) </span><span class="c1">&#51060; &#50557;&#44288;&#51008; &#52293;&#53433;(&#51060;&#54616; &ldquo;&#54924;&#49324;&rdquo;&#46972; &#54633;&#45768;&#45796;)&#51060; &#47784;&#48148;&#51068; &#44592;&#44592;&#47484; &#53685;&#54644; &#51228;&#44277;&#54616;&#45716; &nbsp;&#49436;&#48708;&#49828; &#48143; &#51060;&#50640; &#48512;&#49688;&#54616;&#45716; &#45348;&#53944;&#50892;&#53356;, &#50937;&#49324;&#51060;&#53944;, &#44592;&#53440; &#49436;&#48708;&#49828;(&#51060;&#54616; &ldquo;&#49436;&#48708;&#49828;&rdquo;&#46972; &#54633;&#45768;&#45796;)&#51032; &#51060;&#50857;&#50640; &#45824;&#54620; &#54924;&#49324;&#50752; &#49436;&#48708;&#49828; &#51060;&#50857;&#51088;&#51032; &#44428;&#47532;&#12685;&#51032;&#47924; &#48143; &#52293;&#51076;&#49324;&#54637;, &#44592;&#53440; &#54596;&#50836;&#54620; &#49324;&#54637;&#51012; &#44508;&#51221;&#54632;&#51012; &#47785;&#51201;&#51004;&#47196; &#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c0">&nbsp;</span></p>
-<p class="c2"><span class="c9">&#51228;2&#51312; (&#50857;&#50612;&#51032; &#51221;&#51032;)</span><span class="c1">&nbsp;&#9312; &#51060; &#50557;&#44288;&#50640;&#49436; &#49324;&#50857;&#54616;&#45716; &#50857;&#50612;&#51032; &#51221;&#51032;&#45716; &#45796;&#51020;&#44284; &#44057;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2 c7"><span class="c1">1. &ldquo;&#54924;&#49324;&rdquo;&#46972; &#54632;&#51008; &#47784;&#48148;&#51068; &#44592;&#44592;&#47484; &#53685;&#54616;&#50668; &#49436;&#48708;&#49828;&#47484; &#51228;&#44277;&#54616;&#45716; &#49324;&#50629;&#51088;&#47484; &#51032;&#48120;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c38"><span class="c1">2. &ldquo;&#54924;&#50896;&rdquo;&#51060;&#46976; &#51060; &#50557;&#44288;&#50640; &#46384;&#46972; &#51060;&#50857;&#44228;&#50557;&#51012; &#52404;&#44208;&#54616;&#44256;, &#54924;&#49324;&#44032; &#51228;&#44277;&#54616;&#45716; &#49436;&#48708;&#49828;&#47484; &#51060;&#50857;&#54616;&#45716; &#51088;&#47484; &#51032;&#48120;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c3"><span class="c1">3. &ldquo;&#51076;&#49884;&#54924;&#50896;&rdquo;&#51060;&#46976; &#51068;&#48512; &#51221;&#48372;&#47564; &#51228;&#44277;&#54616;&#44256; &#54924;&#49324;&#44032; &#51228;&#44277;&#54616;&#45716; &#49436;&#48708;&#49828;&#51032; &#51068;&#48512;&#47564; &#51060;&#50857;&#54616;&#45716; &#51088;&#47484; &#51032;&#48120;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c29"><span class="c1">4. &ldquo;&#47784;&#48148;&#51068; &#44592;&#44592;&rdquo;&#46976; &#53080;&#53584;&#52768;&#47484; &#45796;&#50868;&#47196;&#46300; &#48155;&#44144;&#45208; &#49444;&#52824;&#54616;&#50668; &#49324;&#50857;&#54624; &#49688; &#51080;&#45716; &#44592;&#44592;&#47196;&#49436;, &#55092;&#45824;&#54256;, &#49828;&#47560;&#53944;&#54256;, &#55092;&#45824;&#51221;&#48372;&#45800;&#47568;&#44592;(PDA), &#53468;&#48660;&#47551; &#46321;&#51012; &#51032;&#48120;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c19"><span class="c1">5. &ldquo;&#44228;&#51221;&#51221;&#48372;&rdquo;&#46976; &#54924;&#50896;&#51032; &#54924;&#50896;&#48264;&#54840;&#50752; &#50808;&#48512;&#44228;&#51221;&#51221;&#48372;, &#44592;&#44592;&#51221;&#48372;, &#48324;&#47749;, &#54532;&#47196;&#54596; &#49324;&#51652;, &#52828;&#44396;&#47785;&#47197; &#46321; &#54924;&#50896;&#51060; &#54924;&#49324;&#50640; &#51228;&#44277;&#54620; &#51221;&#48372;&#50752; &#44172;&#51076;&#51060;&#50857;&#51221;&#48372; (&#52880;&#47533;&#53552; &#51221;&#48372;, &#50500;&#51060;&#53596;, &#47112;&#48296; &#46321;), &#51060;&#50857;&#50836;&#44552; &#44208;&#51228; &#51221;&#48372; &#46321;&#51012; &#53685;&#52845;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c29"><span class="c1">6. &ldquo;&#53080;&#53584;&#52768;&rdquo;&#46976; &#47784;&#48148;&#51068; &#44592;&#44592;&#47196; &#51060;&#50857;&#54624; &#49688; &#51080;&#46020;&#47197; &#54924;&#49324;&#44032; &#49436;&#48708;&#49828; &#51228;&#44277;&#44284; &#44288;&#47144;&#54616;&#50668; &#46356;&#51648;&#53560; &#48169;&#49885;&#51004;&#47196; &#51228;&#51089;&#54620; &#50976;&#47308; &#46608;&#45716; &#47924;&#47308;&#51032; &#45236;&#50857;&#47932; &#51068;&#52404;(&#44172;&#51076; &#48143; &#45348;&#53944;&#50892;&#53356; &#49436;&#48708;&#49828;, &#50528;&#54540;&#47532;&#52992;&#51060;&#49496;, &#44172;&#51076; &#47672;&#45768;, &#44172;&#51076; &#50500;&#51060;&#53596; &#46321;)&#47484; &#51032;&#48120;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c3"><span class="c1">7. &ldquo;&#50724;&#54536;&#47560;&#53011;&rdquo;&#51060;&#46976; &#47784;&#48148;&#51068; &#44592;&#44592;&#50640;&#49436; &#44172;&#51076; &#53080;&#53584;&#52768;&#47484; &#49444;&#52824;&#54616;&#44256; &#44208;&#51228;&#54624; &#49688; &#51080;&#46020;&#47197; &#44396;&#52629;&#46108; &#51204;&#51088;&#49345;&#44144;&#47000; &#54872;&#44221;&#51012; &#51032;&#48120;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c13"><span class="c1">8. &ldquo;&#50528;&#54540;&#47532;&#52992;&#51060;&#49496;&rdquo;&#51060;&#46976; &#54924;&#49324;&#44032; &#51228;&#44277;&#54616;&#45716; &#49436;&#48708;&#49828;&#47484; &#51060;&#50857;&#54616;&#44592; &#50948;&#54616;&#50668; &#47784;&#48148;&#51068; &#44592;&#44592;&#47484; &#53685;&#54644; &#45796;&#50868;&#47196;&#46300; &#48155;&#44144;&#45208; &#49444;&#52824;&#54616;&#50668; &#49324;&#50857;&#54616;&#45716; &#54532;&#47196;&#44536;&#47016; &#51068;&#52404;&#47484; &#51032;&#48120;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c3"><span class="c1">9 . &ldquo;&#44172;&#51076;&#49436;&#48708;&#49828;&rdquo;&#46972; &#54632;&#51008; &#54924;&#49324;&#44032; &#51228;&#44277;&#54616;&#45716; &#49436;&#48708;&#49828;&#51032; &#54616;&#45208;&#47196;&#49436; &#54924;&#50896;&#51060; &#47784;&#48148;&#51068; &#44592;&#44592;&#50640;&#49436; &#49892;&#54665;&#54616;&#45716; &#44172;&#51076; &#48143; &#51060;&#50640; &#48512;&#49688;&#54616;&#45716; &#49436;&#48708;&#49828;&#47484; &#51032;&#48120;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9313; &#51060; &#50557;&#44288;&#50640;&#49436; &#49324;&#50857;&#54616;&#45716; &#50857;&#50612;&#51032; &#51221;&#51032;&#45716; &#48376; &#51312; &#51228;1&#54637;&#50640;&#49436; &#51221;&#54616;&#45716; &#44163;&#51012; &#51228;&#50808;&#54616;&#44256;&#45716; &#44288;&#44228;&#48277;&#47161; &#48143; &#49436;&#48708;&#49828;&#48324; &#51221;&#52293;&#50640;&#49436; &#51221;&#54616;&#45716; &#48148;&#50640; &#51032;&#54616;&#47728;, &#51060;&#50640; &#51221;&#54616;&#51648; &#50500;&#45768;&#54620; &#44163;&#51008; &#51068;&#48152;&#51201;&#51064; &#49345; &#44288;&#47168;&#50640; &#46384;&#47493;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c0">&nbsp;</span></p>
-<p class="c2"><span
-        class="c9">&#51228;3&#51312; (&#54924;&#49324;&#51221;&#48372; &#46321;&#51032; &#51228;&#44277;) </span><span
-        class="c1">&#54924;&#49324;&#45716; &#45796;&#51020; &#44033; &#54840;&#51032; &#49324;&#54637;&#51012; &#54924;&#50896;&#51060; &#50508;&#50500;&#48372;&#44592; &#49789;&#46020;&#47197; &#44172;&#51076; &#49436;&#48708;&#49828; &#45236;&#50640; &#54364;&#49884;&#54633;&#45768;&#45796;. &#45796;&#47564;, &#44060;&#51064;&#51221;&#48372;&#52376;&#47532;&#48169;&#52840;&#44284; &#50557;&#44288;&#51008; &#54924;&#50896;&#51060; &#50672;&#44208;&#54868;&#47732;&#51012; &#53685;&#54616;&#50668; &#48380; &#49688; &#51080;&#46020;&#47197; &#54624; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span
-        class="c1">&nbsp;1. &#49345;&#54840; &#48143; &#45824;&#54364;&#51088;&#51032; &#49457;&#47749;</span></p>
-<p class="c37"><span class="c1">&nbsp;2. &#50689;&#50629;&#49548; &#49548;&#51116;&#51648; &#51452;&#49548;(&#54924;&#50896;&#51032; &#48520;&#47564;&#51012; &#52376;&#47532;&#54624; &#49688; &#51080;&#45716; &#44275;&#51032; &#51452;&#49548;&#47484; &#54252;&#54632;&#54620;&#45796;)</span>
-</p>
-<p class="c2"><span class="c1">&nbsp;3. &#51204;&#54868;&#48264;&#54840;, &#51204;&#51088;&#50864;&#54200;&#51452;&#49548;</span>
-</p>
-<p class="c2"><span class="c1">&nbsp;4. &#49324;&#50629;&#51088; &#46321;&#47197;&#48264;&#54840;</span></p>
-<p class="c2"><span class="c1">&nbsp;5. &#53685;&#49888;&#54032;&#47588;&#50629; &#49888;&#44256;&#48264;&#54840;</span>
-</p>
-<p class="c2"><span class="c1">&nbsp;6. &#44060;&#51064;&#51221;&#48372;&#52376;&#47532;&#48169;&#52840;</span></p>
-<p class="c2"><span class="c1">&nbsp;7. &#49436;&#48708;&#49828; &#51060;&#50857;&#50557;&#44288;</span></p>
-<p class="c2"><span class="c0">&nbsp;</span></p>
-<p class="c2"><span
-        class="c9">&#51228;4&#51312; (&#50557;&#44288;&#51032; &#54952;&#47141; &#48143; &#48320;&#44221;)</span><span
-        class="c1">&nbsp;&#9312; &#54924;&#49324;&#45716; &#51060; &#50557;&#44288;&#51032; &#45236;&#50857;&#51012; &#54924;&#50896;&#51060; &#50508; &#49688; &#51080;&#46020;&#47197; &#44172;&#51076;&#49436;&#48708;&#49828; &#45236; &#46608;&#45716; &#44536; &#50672;&#44208;&#54868;&#47732;&#50640; &#44172;&#49884;&#54633;&#45768;&#45796;. &#51060; &#44221;&#50864; &#51060; &#50557;&#44288;&#51032; &#45236;&#50857; &#51473; &#49436;&#48708;&#49828; &#51473;&#45800;, &#52397;&#50557;&#52384;&#54924;, &#54872;&#44553;, &#44228;&#50557; &#54644;&#51228;&#8228;&#54644;&#51648;, &#54924;&#49324;&#51032; &#47732;&#52293;&#49324;&#54637; &#46321;&#44284; &#44057;&#51008; &#51473;&#50836;&#54620; &#45236;&#50857;&#51008; &#44405;&#51008; &#44544;&#50472;, &#49353;&#52292;, &#48512;&#54840; &#46321;&#51004;&#47196; &#47749;&#54869;&#54616;&#44172; &#54364;&#49884;&#54616;&#44144;&#45208; &#48324;&#46020;&#51032; &#50672;&#44208;&#54868;&#47732; &#46321;&#51012; &#53685;&#54616;&#50668; &#54924;&#50896;&#51060; &#50508;&#50500;&#48372;&#44592; &#49789;&#44172; &#52376;&#47532;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9313; &#54924;&#49324;&#44032; &#50557;&#44288;&#51012; &#44060;&#51221;&#54624; &#44221;&#50864;&#50640;&#45716; &#51201;&#50857;&#51068;&#51088; &#48143; &#44060;&#51221;&#45236;&#50857;, &#44060;&#51221;&#49324;&#50976; &#46321;&#51012; &#47749;&#49884;&#54616;&#50668; &#52572;&#49548;&#54620; &#44536; &#51201;&#50857;&#51068; 7&#51068; &#51060;&#51204;&#48512;&#53552; &#44172;&#51076;&#49436;&#48708;&#49828; &#45236; &#46608;&#45716; &#44536; &#50672;&#44208;&#54868;&#47732;&#50640; &#44172;&#49884;&#54616;&#50668; &#54924;&#50896;&#50640;&#44172; &#44277;&#51648;&#54633;&#45768;&#45796;. &#45796;&#47564;, &#48320;&#44221;&#46108; &#45236;&#50857;&#51060; &#54924;&#50896;&#50640;&#44172; &#48520;&#47532;&#54616;&#44144;&#45208; &#51473;&#45824;&#54620; &#49324;&#54637;&#51032; &#48320;&#44221;&#51064; &#44221;&#50864;&#50640;&#45716; &#44536; &#51201;&#50857;&#51068; 30&#51068; &#51060;&#51204;&#44620;&#51648; &#48376;&#47928;&#44284; &#44057;&#51008; &#48169;&#48277;&#51004;&#47196; &#44277;&#51648;&#54616;&#44256; &#51228;27&#51312; &#51228;1&#54637;&#51032; &#48169;&#48277;&#51004;&#47196; &#54924;&#50896;&#50640;&#44172; &#53685;&#51648;&#54633;&#45768;&#45796;. &#51060; &#44221;&#50864; &#44060;&#51221; &#51204; &#45236;&#50857;&#44284; &#44060;&#51221; &#54980; &#45236;&#50857;&#51012; &#47749;&#54869;&#54616;&#44172; &#48708;&#44368;&#54616;&#50668; &#54924;&#50896;&#51060; &#50508;&#44592; &#49789;&#46020;&#47197; &#54364;&#49884;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9314; &#54924;&#49324;&#44032; &#50557;&#44288;&#51012; &#44060;&#51221;&#54624; &#44221;&#50864; &#44060;&#51221;&#50557;&#44288; &#44277;&#51648; &#54980; &#44060;&#51221;&#50557;&#44288;&#51032; &#51201;&#50857;&#50640; &#45824;&#54620; &#54924;&#50896;&#51032; &#46041;&#51032; &#50668;&#48512;&#47484; &#54869;&#51064;&#54633;&#45768;&#45796;. &#54924;&#49324;&#45716; &#51228;2&#54637;&#51032; &#44277;&#51648; &#46608;&#45716; &#53685;&#51648;&#47484; &#54624; &#44221;&#50864; &#54924;&#50896;&#51060; &#44060;&#51221;&#50557;&#44288;&#50640; &#45824;&#54644; &#46041;&#51032; &#46608;&#45716; &#44144;&#48512;&#51032; &#51032;&#49324;&#54364;&#49884;&#47484; &#54616;&#51648; &#50506;&#51004;&#47732; &#46041;&#51032;&#54620; &#44163;&#51004;&#47196; &#48380; &#49688; &#51080;&#45796;&#45716; &#45236;&#50857;&#46020; &#54632;&#44760; &#44277;&#51648; &#46608;&#45716; &#53685;&#51648;&#47484; &#54616;&#47728;, &#54924;&#50896;&#51060; &#51060; &#50557;&#44288; &#49884;&#54665;&#51068;&#44620;&#51648; &#44144;&#48512;&#51032; &#51032;&#49324;&#54364;&#49884;&#47484; &#54616;&#51648; &#50506;&#45716;&#45796;&#47732; &#44060;&#51221;&#50557;&#44288;&#50640; &#46041;&#51032;&#54620; &#44163;&#51004;&#47196; &#48380; &#49688; &#51080;&#49845;&#45768;&#45796;. &#54924;&#50896;&#51060; &#44060;&#51221;&#50557;&#44288;&#50640; &#45824;&#54644; &#46041;&#51032;&#54616;&#51648; &#50506;&#45716; &#44221;&#50864; &#54924;&#49324; &#46608;&#45716; &#54924;&#50896;&#51008; &#49436;&#48708;&#49828; &#51060;&#50857;&#44228;&#50557;&#51012; &#54644;&#51648;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9315; &#54924;&#49324;&#45716; &#54924;&#50896;&#51060; &#54924;&#49324;&#50752; &#51060; &#50557;&#44288;&#51032; &#45236;&#50857;&#50640; &#44288;&#54616;&#50668; &#51656;&#51032; &#48143; &#51025;&#45813;&#51012; &#54624; &#49688; &#51080;&#46020;&#47197; &#51312;&#52824;&#47484; &#52712;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9316; &#54924;&#49324;&#45716; &#12300;&#51204;&#51088;&#49345;&#44144;&#47000; &#46321;&#50640;&#49436;&#51032; &#49548;&#48708;&#51088;&#48372;&#54840;&#50640; &#44288;&#54620; &#48277;&#47456;&#12301;, &#12300;&#50557;&#44288;&#51032; &#44508;&#51228;&#50640; &#44288;&#54620; &#48277;&#47456;&#12301;, &#12300;&#44172;&#51076;&#49328;&#50629;&#51652;&#55141;&#50640; &#44288;&#54620; &#48277;&#47456;&#12301;, &#12300;&#51221;&#48372;&#53685;&#49888;&#47581;&#51060;&#50857;&#52489;&#51652; &#48143; &#51221;&#48372;&#48372;&#54840; &#46321;&#50640; &#44288;&#54620; &#48277;&#47456;&#12301;, &#12300;&#53080;&#53584;&#52768;&#49328;&#50629;&#51652;&#55141;&#48277;&#12301; &#46321; &#44288;&#47144; &#48277;&#47161;&#50640; &#50948;&#48176;&#54616;&#51648; &#50506;&#45716; &#48276;&#50948;&#50640;&#49436; &#51060; &#50557;&#44288;&#51012; &#44060;&#51221;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c0">&nbsp;</span></p>
-<p class="c2"><span class="c9">&#51228;5&#51312; (&#51060;&#50857;&#44228;&#50557;&#51032; &#52404;&#44208; &#48143; &#51201;&#50857;)</span><span
-        class="c1">&nbsp;&#9312; &#51060;&#50857;&#44228;&#50557;&#51008; &#54924;&#50896;&#51060; &#46104;&#44256;&#51088; &#54616;&#45716; &#51088;(&#51060;&#54616; &ldquo;&#44032;&#51077;&#49888;&#52397;&#51088;&rdquo;&#46972; &#54633;&#45768;&#45796;.)&#44032; &#51060; &#50557;&#44288;&#51032; &#45236;&#50857;&#50640; &#45824;&#54616;&#50668; &#46041;&#51032;&#47484; &#54620; &#45796;&#51020; &#49436;&#48708;&#49828; &#51060;&#50857; &#49888;&#52397;&#51012; &#54616;&#44256;, &#54924;&#49324;&#44032; &#44536; &#49888;&#52397;&#50640; &#45824;&#54644;&#49436; &#49849;&#45209;&#54632;&#51004;&#47196;&#50024; &#52404;&#44208;&#46121;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9313; &#54924;&#49324;&#45716; &#44032;&#51077;&#49888;&#52397;&#51088;&#51032; &#49888;&#52397;&#50640; &#45824;&#54616;&#50668; &#49849;&#45209;&#54632;&#51012; &#50896;&#52825;&#51004;&#47196; &#54633;&#45768;&#45796;. &#45796;&#47564;, &#54924;&#49324;&#45716; &#45796;&#51020; &#44033; &#54840;&#51032; &#50612;&#45712; &#54616;&#45208;&#50640; &#54644;&#45817;&#54616;&#45716; &#51060;&#50857; &#49888;&#52397;&#50640; &#45824;&#54644;&#49436;&#45716; &#49849;&#45209;&#51012; &#44144;&#51208;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c21"><span class="c1">&nbsp;1. &#51060;&#50857;&#49888;&#52397;&#49436; &#45236;&#50857;&#51012; &#54728;&#50948;&#47196; &#44592;&#51116;&#54616;&#44144;&#45208; &#51060;&#50857;&#49888;&#52397; &#50836;&#44148;&#51012; &#52649;&#51313;&#54616;&#51648; &#47803;&#54620; &#44221;&#50864;</span>
-</p>
-<p class="c21"><span class="c1">&nbsp;2. &#54924;&#49324;&#44032; &#49436;&#48708;&#49828;&#47484; &#51228;&#44277;&#54616;&#51648; &#50506;&#51008; &#44397;&#44032;&#50640;&#49436; &#48708;&#51221;&#49345;&#51201;&#51060;&#44144;&#45208; &#50864;&#54924;&#51201;&#51064; &#48169;&#48277;&#51012; &#53685;&#54644; &#49436;&#48708;&#49828;&#47484; &#51060;&#50857;&#54616;&#45716; &#44221;&#50864;</span>
-</p>
-<p class="c21"><span class="c1">&nbsp;3. &#12300;&#44172;&#51076;&#49328;&#50629;&#51652;&#55141;&#50640; &#44288;&#54620; &#48277;&#47456;&#12301;&#46321; &#44288;&#47144; &#48277;&#47161;&#50640;&#49436; &#44552;&#51648;&#54616;&#45716; &#54665;&#50948;&#47484; &#54624; &#47785;&#51201;&#51004;&#47196; &#49888;&#52397; &#54616;&#45716; &#44221;&#50864;</span>
-</p>
-<p class="c14"><span class="c1">&nbsp;4. &#49324;&#54924;&#51032; &#50504;&#45397;&#44284; &#51656;&#49436; &#46608;&#45716; &#48120;&#54413;&#50577;&#49549;&#51012; &#51200;&#54644;&#54624; &#47785;&#51201;&#51004;&#47196; &#49888;&#52397;&#54620; &#44221;&#50864;</span>
-</p>
-<p class="c2"><span class="c1">&nbsp;5. &#48512;&#51221;&#54620; &#50857;&#46020;&#47196; &#44172;&#51076;&#49436;&#48708;&#49828;&#47484; &#51060;&#50857;&#54616;&#44256;&#51088; &#54616;&#45716; &#44221;&#50864;</span>
-</p>
-<p class="c2"><span class="c1">&nbsp;6. &#50689;&#47532;&#47484; &#52628;&#44396;&#54624; &#47785;&#51201;&#51004;&#47196; &#44172;&#51076;&#49436;&#48708;&#49828;&#47484; &#51060;&#50857;&#54616;&#44256;&#51088; &#54616;&#45716; &#44221;&#50864;</span>
-</p>
-<p class="c14"><span class="c1">&nbsp;7. &#44536; &#48150;&#50640; &#44033; &#54840;&#50640; &#51456;&#54616;&#45716; &#49324;&#50976;&#47196;&#49436; &#49849;&#45209;&#51060; &#48512;&#51201;&#51208;&#54616;&#45796;&#44256; &#54032;&#45800;&#46104;&#45716; &#44221;&#50864;</span>
-</p>
-<p class="c2"><span class="c1">&#9314; &#54924;&#49324;&#45716; &#45796;&#51020; &#44033; &#54840;&#51032; &#50612;&#45712; &#54616;&#45208;&#50640; &#54644;&#45817;&#54616;&#45716; &#44221;&#50864; &#44536; &#49324;&#50976;&#44032; &#54644;&#49548;&#46112; &#46412;&#44620;&#51648; &#49849;&#45209;&#51012; &#50976;&#48372;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c4"><span class="c1">&nbsp;1. &#54924;&#49324;&#51032; &#49444;&#48708;&#50640; &#50668;&#50976;&#44032; &#50630;&#44144;&#45208;, &#53945;&#51221; &#47784;&#48148;&#51068; &#44592;&#44592;&#51032; &#51648;&#50896;&#51060; &#50612;&#47157;&#44144;&#45208;, &#44592;&#49696;&#51201; &#51109;&#50528;&#44032; &#51080;&#45716; &#44221;&#50864;</span>
-</p>
-<p class="c22"><span class="c1">&nbsp;2. &#49436;&#48708;&#49828; &#49345;&#51032; &#51109;&#50528; &#46608;&#45716; &#49436;&#48708;&#49828; &#51060;&#50857;&#50836;&#44552;, &#44208;&#51228;&#49688;&#45800;&#51032; &#51109;&#50528;&#44032; &#48156;&#49373;&#54620; &#44221;&#50864;</span>
-</p>
-<p class="c8"><span class="c1">&nbsp;3. &#44536; &#48150;&#51032; &#44033; &#54840;&#50640; &#51456;&#54616;&#45716; &#49324;&#50976;&#47196;&#49436; &#51060;&#50857;&#49888;&#52397;&#51032; &#49849;&#45209;&#51060; &#50612;&#47157;&#45796;&#44256; &#54032;&#45800;&#46104;&#45716; &#44221;&#50864;</span>
-</p>
-<p class="c8"><span class="c1">&nbsp;</span></p>
-<p class="c2"><span class="c9">&#51228;6&#51312; (&#50557;&#44288; &#50808; &#51456;&#52825;) </span><span class="c1">&#51060; &#50557;&#44288;&#50640;&#49436; &#51221;&#54616;&#51648; &#50500;&#45768;&#54620; &#49324;&#54637;&#44284; &#51060; &#50557;&#44288;&#51032; &#54644;&#49437;&#50640; &#44288;&#54616;&#50668;&#45716; &#12300;&#51204;&#51088;&#49345;&#44144;&#47000; &#46321;&#50640;&#49436;&#51032; &#49548;&#48708;&#51088;&#48372;&#54840;&#50640; &#44288;&#54620; &#48277;&#47456;&#12301;,&#12300;&#50557;&#44288;&#51032; &#44508;&#51228;&#50640; &#44288;&#54620; &#48277;&#47456;&#12301;,&#12300;&#44172;&#51076;&#49328;&#50629;&#51652;&#55141;&#50640; &#44288;&#54620; &#48277;&#47456;&#12301;,&#12300;&#51221;&#48372;&#53685;&#49888;&#47581;&#51060;&#50857;&#52489;&#51652; &#48143; &#51221;&#48372;&#48372;&#54840; &#46321;&#50640; &#44288;&#54620; &#48277;&#47456;&#12301;,&#12300;&#53080;&#53584;&#52768;&#49328;&#50629;&#51652;&#55141;&#48277;&#12301; &#46321; &#44288;&#47144; &#48277;&#47161; &#46608;&#45716; &#49345; &#44288;&#47168;&#50640; &#46384;&#47493;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c0">&nbsp;</span></p>
-<p class="c2"><span class="c9">&#51228;7&#51312; (&#50868;&#50689;&#51221;&#52293;)</span><span class="c1">&nbsp;&#9312; &#50557;&#44288;&#51012; &#51201;&#50857;&#54616;&#44592; &#50948;&#54616;&#50668; &#54596;&#50836;&#54620; &#49324;&#54637;&#44284; &#50557;&#44288;&#50640;&#49436; &#44396;&#52404;&#51201; &#48276;&#50948;&#47484; &#51221;&#54616;&#50668; &#50948;&#51076;&#54620; &#49324;&#54637;&#51012; &#44172;&#51076;&#49436;&#48708;&#49828; &#50868;&#50689;&#51221;&#52293;(&#51060;&#54616; &ldquo;&#50868;&#50689;&#51221;&#52293;&rdquo;&#51060;&#46972; &#54633;&#45768;&#45796;)&#51004;&#47196; &#51221;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9313; &#54924;&#49324;&#45716; &#50868;&#50689;&#51221;&#52293;&#51032; &#45236;&#50857;&#51012; &#54924;&#50896;&#51060; &#50508; &#49688; &#51080;&#46020;&#47197; &#44172;&#51076;&#49436;&#48708;&#49828; &#45236; &#46608;&#45716; &#44536; &#50672;&#44208;&#54868;&#47732;&#50640; &#44172;&#49884;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9314; &#50868;&#50689;&#51221;&#52293;&#51012; &#44060;&#51221;&#54616;&#45716; &#44221;&#50864;&#50640;&#45716; &#51228;4&#51312; &#51228;2&#54637;&#51032; &#51208;&#52264;&#50640; &#46384;&#47493;&#45768;&#45796;. &#45796;&#47564;, &#50868;&#50689;&#51221;&#52293; &#44060;&#51221;&#45236;&#50857;&#51060; &#45796;&#51020; &#44033; &#54840;&#51032; &#50612;&#45712; &#54616;&#45208;&#50640; &#54644;&#45817;&#54616;&#45716; &#44221;&#50864;&#50640;&#45716; &#51228;2&#54637;&#51032; &#48169;&#48277;&#51004;&#47196; &#49324;&#51204;&#50640; &#44277;&#51648;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&nbsp;1. &#50557;&#44288;&#50640;&#49436; &#44396;&#52404;&#51201;&#51004;&#47196; &#48276;&#50948;&#47484; &#51221;&#54616;&#50668; &#50948;&#51076;&#54620; &#49324;&#54637;&#51012; &#44060;&#51221;&#54616;&#45716; &#44221;&#50864;</span>
-</p>
-<p class="c2"><span class="c1">&nbsp;2. &#54924;&#50896;&#51032; &#44428;&#47532;&middot;&#51032;&#47924;&#50752; &#44288;&#47144; &#50630;&#45716; &#49324;&#54637;&#51012; &#44060;&#51221;&#54616;&#45716; &#44221;&#50864;</span>
-</p>
-<p class="c2"><span class="c1">3. &#50868;&#50689;&#51221;&#52293;&#51032; &#45236;&#50857;&#51060; &#50557;&#44288;&#50640;&#49436; &#51221;&#54620; &#45236;&#50857;&#44284; &#44540;&#48376;&#51201;&#51004;&#47196; &#45796;&#47476;&#51648; &#50506;&#44256; &#54924;&#50896;&#51060; &#50696;&#52769;&#54624; &#49688; &#51080;&#45716; &#48276;&#50948; &#45236;&#50640;&#49436; &#50868;&#50689;&#51221;&#52293;&#51012; &#44060;&#51221;&#54616;&#45716; &#44221;&#50864;</span>
-</p>
-<p class="c2"><span class="c0">&nbsp;</span></p>
-<p class="c10"><span class="c5">&#51228;2&#51109; &#44060;&#51064;&#51221;&#48372; &#44288;&#47532;</span></p>
-<p class="c2"><span class="c0">&nbsp;</span></p>
-<p class="c2"><span class="c9">&#51228;8&#51312; (&#44060;&#51064;&#51221;&#48372;&#51032; &#48372;&#54840; &#48143; &#49324;&#50857;)</span><span
-        class="c1">&nbsp;&#9312; &#54924;&#49324;&#45716; &#44288;&#47144; &#48277;&#47161;&#51060; &#51221;&#54616;&#45716; &#48148;&#50640; &#46384;&#46972; &#54924;&#50896;&#51032; &#44060;&#51064;&#51221;&#48372;&#47484; &#48372;&#54840;&#54616;&#44592; &#50948;&#54644; &#45432;&#47141;&#54616;&#47728;, &#44060;&#51064;&#51221;&#48372;&#51032; &#48372;&#54840; &#48143; &#49324;&#50857;&#50640; &#45824;&#54644;&#49436;&#45716; &#44288;&#47144; &#48277;&#47161; &#48143; &#54924;&#49324;&#51032; &#44060;&#51064;&#51221;&#48372;&#52376;&#47532;&#48169;&#52840;&#50640; &#46384;&#47493;&#45768;&#45796;. &#45796;&#47564;, &#54924;&#49324;&#44032; &#51228;&#44277;&#54616;&#45716; &#49436;&#48708;&#49828; &#51060;&#50808;&#51032; &#47553;&#53356;&#46108; &#49436;&#48708;&#49828;&#50640;&#49436;&#45716; &#54924;&#49324;&#51032; &#44060;&#51064;&#51221;&#48372;&#52376;&#47532;&#48169;&#52840;&#51060; &#51201;&#50857;&#46104;&#51648; &#50506;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9313; &#49436;&#48708;&#49828;&#51032; &#53945;&#49457;&#50640; &#46384;&#46972; &#54924;&#50896;&#51032; &#44060;&#51064;&#51221;&#48372;&#50752; &#44288;&#47144;&#51060; &#50630;&#45716; &#48324;&#47749;&#8231;&#52880;&#47533;&#53552; &#49324;&#51652;&#8231;&#49345;&#53468;&#51221;&#48372; &#46321; &#51088;&#49888;&#51012; &#49548;&#44060;&#54616;&#45716; &#45236;&#50857;&#51060; &#44277;&#44060;&#46112; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9314; &#54924;&#49324;&#45716; &#44288;&#47144; &#48277;&#47161;&#50640; &#51032;&#54644; &#44288;&#47144; &#44397;&#44032;&#44592;&#44288; &#46321;&#51032; &#50836;&#52397;&#51060; &#51080;&#45716; &#44221;&#50864;&#47484; &#51228;&#50808;&#54616;&#44256;&#45716; &#54924;&#50896;&#51032; &#44060;&#51064;&#51221;&#48372;&#47484; &#48376;&#51064;&#51032; &#46041;&#51032; &#50630;&#51060; &#53440;&#51064;&#50640;&#44172; &#51228;&#44277;&#54616;&#51648; &#50506;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9315; &#54924;&#49324;&#45716; &#54924;&#50896;&#51032; &#44480;&#52293;&#49324;&#50976;&#47196; &#44060;&#51064;&#51221;&#48372;&#44032; &#50976;&#52636;&#46104;&#50612; &#48156;&#49373;&#54620; &#54588;&#54644;&#50640; &#45824;&#54616;&#50668; &#52293;&#51076;&#51012; &#51648;&#51648; &#50506;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c0">&nbsp;</span></p>
-<p class="c10"><span class="c5">&#51228;3&#51109; &#51060;&#50857;&#44228;&#50557; &#45817;&#49324;&#51088;&#51032; &#51032;&#47924;</span>
-</p>
-<p class="c10"><span class="c0">&nbsp;</span></p>
-<p class="c2"><span class="c9">&#51228;9&#51312; (&#54924;&#49324;&#51032; &#51032;&#47924;)</span><span class="c1">&nbsp;&#9312; &#54924;&#49324;&#45716; &#44288;&#47144; &#48277;&#47161;, &#51060; &#50557;&#44288;&#50640;&#49436; &#51221;&#54616;&#45716; &#44428;&#47532;&#51032; &#54665;&#49324; &#48143; &#51032;&#47924;&#51032; &#51060;&#54665;&#51012; &#49888;&#51032;&#50640; &#46384;&#46972; &#49457;&#49892;&#54616;&#44172; &#51456;&#49688;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9313; &#54924;&#49324;&#45716; &#54924;&#50896;&#51060; &#50504;&#51204;&#54616;&#44172; &#49436;&#48708;&#49828;&#47484; &#51060;&#50857;&#54624; &#49688; &#51080;&#46020;&#47197; &#44060;&#51064;&#51221;&#48372;(&#49888;&#50857;&#51221;&#48372; &#54252;&#54632;)&#48372;&#54840;&#47484; &#50948;&#54644; &#48372;&#50504;&#49884;&#49828;&#53596;&#51012; &#44054;&#52628;&#50612;&#50556; &#54616;&#47728; &#44060;&#51064;&#51221;&#48372;&#52376;&#47532;&#48169;&#52840;&#51012; &#44277;&#49884;&#54616;&#44256; &#51456;&#49688;&#54633;&#45768;&#45796;. &#54924;&#49324;&#45716; &#51060; &#50557;&#44288; &#48143; &#44060;&#51064;&#51221;&#48372;&#52376;&#47532;&#48169;&#52840;&#50640;&#49436; &#51221;&#54620; &#44221;&#50864;&#47484; &#51228;&#50808;&#54616;&#44256;&#45716; &#54924;&#50896;&#51032; &#44060;&#51064;&#51221;&#48372;&#44032; &#51228;3&#51088;&#50640;&#44172; &#44277;&#44060; &#46608;&#45716; &#51228;&#44277;&#46104;&#51648; &#50506;&#46020;&#47197; &#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9314; &#54924;&#49324;&#45716; &#44228;&#49549;&#51201;&#51060;&#44256; &#50504;&#51221;&#51201;&#51064; &#49436;&#48708;&#49828;&#51032; &#51228;&#44277;&#51012; &#50948;&#54616;&#50668; &#49436;&#48708;&#49828; &#44060;&#49440;&#51012; &#54616;&#45912; &#51473; &#49444;&#48708;&#50640; &#51109;&#50528;&#44032; &#49373;&#44592;&#44144;&#45208; &#45936;&#51060;&#53552; &#46321;&#51060; &#47736;&#49892;&#8228;&#55036;&#49552;&#46108; &#46412;&#50640;&#45716; &#52380;&#51116;&#51648;&#48320;, &#48708;&#49345;&#49324;&#53468;, &#54788;&#51116;&#51032; &#44592;&#49696;&#47196;&#45716; &#54644;&#44208;&#51060; &#48520;&#44032;&#45733;&#54620; &#51109;&#50528;&#45208; &#44208;&#54632; &#46321; &#48512;&#46301;&#51060;&#54620; &#49324;&#50976;&#44032; &#50630;&#45716; &#54620; &#51648;&#52404; &#50630;&#51060; &#51060;&#47484; &#49688;&#47532; &#46608;&#45716; &#48373;&#44396;&#54616;&#46020;&#47197; &#52572;&#49440;&#51032; &#45432;&#47141;&#51012; &#45796;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c0">&nbsp;</span></p>
-<p class="c2"><span class="c9">&#51228;10&#51312; (&#54924;&#50896;&#51032; &#51032;&#47924;) </span><span class="c1">&#9312; &#54924;&#50896;&#51008; &#54924;&#49324;&#50640;&#49436; &#51228;&#44277;&#54616;&#45716; &#49436;&#48708;&#49828;&#51032; &#51060;&#50857;&#44284; &#44288;&#47144;&#54616;&#50668; &#45796;&#51020; &#44033; &#54840;&#50640; &#54644;&#45817;&#54616;&#45716; &#54665;&#50948;&#47484; &#54644;&#49436;&#45716; &#50504; &#46121;&#45768;&#45796;.</span>
-</p>
-<p class="c34"><span class="c1">1. &#51060;&#50857;&#49888;&#52397; &#46608;&#45716; &#54924;&#50896; &#51221;&#48372; &#48320;&#44221; &#49884; &#54728;&#50948;&#49324;&#49892;&#51012; &#44592;&#51116;&#54616;&#45716; &#54665;&#50948;</span>
-</p>
-<p class="c16"><span class="c1">2. &#54924;&#49324;&#44032; &#51228;&#44277;&#54616;&#51648; &#50506;&#45716; &#49436;&#48708;&#49828;&#45208; &#48708;&#51221;&#49345;&#51201;&#51064; &#48169;&#48277;&#51012; &#53685;&#54644; &#49324;&#51060;&#48260; &#51088;&#49328;(ID, &#52880;&#47533;&#53552;, &#50500;&#51060;&#53596;, &#44172;&#51076; &#47672;&#45768; &#46321;)&#51012; &#47588;&#47588; &#46608;&#45716; &#51613;&#50668;&#54616;&#44144;&#45208;, &#51060;&#47484; &#52712;&#46301;&#54616;&#50668; &#51060;&#50857;&#54616;&#45716; &#54665;&#50948;</span>
-</p>
-<p class="c33"><span class="c1">3. &#54924;&#49324;&#51032; &#51649;&#50896;&#51060;&#45208; &#50868;&#50689;&#51088;&#47484; &#44032;&#51109;&#54616;&#44144;&#45208; &#53440;&#51064;&#51032; &#47749;&#51032;&#47484; &#46020;&#50857;&#54616;&#50668; &#44544;&#51012; &#44172;&#49884;&#54616;&#44144;&#45208; &#47700;&#51068;&#51012; &#48156;&#49569;&#54616;&#45716; &#54665;&#50948;, &#53440;&#51064;&#51004;&#47196; &#44032;&#51109;&#54616;&#44144;&#45208; &#53440;&#51064;&#44284;&#51032; &#44288;&#44228;&#47484; &#54728;&#50948;&#47196; &#47749;&#49884;&#54616;&#45716; &#54665;&#50948;</span>
-</p>
-<p class="c23"><span class="c1">4. &#53440;&#51064;&#51032; &#49888;&#50857;&#52852;&#46300;&sdot;&#50976;/&#47924;&#49440; &#51204;&#54868;&sdot;&#51008;&#54665; &#44228;&#51340; &#46321;&#51012; &#46020;&#50857;&#54616;&#50668; &#50976;&#47308; &#53080;&#53584;&#52768;&#47484; &#44396;&#47588;&#54616;&#45716; &#54665;&#50948;, &#45796;&#47480; &#54924;&#50896;&#51032; ID &#48143; &#48708;&#48128;&#48264;&#54840;&#47484; &#48512;&#51221;&#49324;&#50857;&#54616;&#45716; &#54665;&#50948;</span>
-</p>
-<p class="c23"><span class="c1">5. &#45796;&#47480; &#54924;&#50896;&#51032; &#44060;&#51064;&#51221;&#48372;&#47484; &#47924;&#45800;&#51004;&#47196; &#49688;&#51665;&sdot;&#51200;&#51109;&sdot;&#44172;&#49884; &#46608;&#45716; &#50976;&#54252;&#54616;&#45716; &#54665;&#50948;</span>
-</p>
-<p class="c23"><span class="c1">6. &#46020;&#48149; &#46321; &#49324;&#54665;&#54665;&#50948;&#47484; &#54616;&#44144;&#45208; &#50976;&#46020;&#54616;&#45716; &#54665;&#50948;, &#51020;&#46976;&sdot;&#51200;&#49549;&#54620; &#51221;&#48372;&#47484; &#44368;&#47448;&sdot;&#44172;&#51116;&#54616;&#44144;&#45208; &#51020;&#46976; &#49324;&#51060;&#53944;&#47484; &#50672;&#44208;(&#47553;&#53356;)&#54616;&#45716; &#54665;&#50948;, &#49688;&#52824;&#49900;&sdot;&#54800;&#50724;&#44048; &#46608;&#45716; &#44277;&#54252;&#49900;&#51012; &#51068;&#51004;&#53412;&#45716; &#47568;&sdot;&#49548;&#47532;&sdot;&#44544;&sdot;&#44536;&#47548;&sdot;&#49324;&#51652; &#46608;&#45716; &#50689;&#49345;&#51012; &#53440;&#51064;&#50640;&#44172; &#51204;&#49569; &#46608;&#45716; &#50976;&#54252;&#54616;&#45716; &#54665;&#50948; &#46321; &#49436;&#48708;&#49828;&#47484; &#48520;&#44148;&#51204;&#54616;&#44172; &#51060;&#50857;&#54616;&#45716; &#54665;&#50948;</span>
-</p>
-<p class="c28"><span class="c1">7. &#49436;&#48708;&#49828;&#47484; &#47924;&#45800;&#51004;&#47196; &#50689;&#47532;, &#50689;&#50629;, &#44305;&#44256;, &#54861;&#48372;, &#51221;&#52824;&#54876;&#46041;, &#49440;&#44144;&#50868;&#46041; &#46321; &#48376;&#47000;&#51032; &#50857;&#46020; &#51060;&#50808;&#51032; &#50857;&#46020;&#47196; &#51060;&#50857;&#54616;&#45716; &#54665;&#50948;</span>
-</p>
-<p class="c12"><span class="c1">8. &#54924;&#49324;&#51032; &#49436;&#48708;&#49828;&#47484; &#51060;&#50857;&#54616;&#50668; &#50619;&#51008; &#51221;&#48372;&#47484; &#47924;&#45800;&#51004;&#47196; &#48373;&#51228;&#8228;&#50976;&#53685;&#8228;&#51312;&#51109;&#54616;&#44144;&#45208; &#49345;&#50629;&#51201;&#51004;&#47196; &#51060;&#50857;&#54616;&#45716; &#54665;&#50948;, &#50508;&#47140;&#51648;&#44144;&#45208; &#50508;&#47140;&#51648;&#51648; &#50506;&#51008; &#48260;&#44536;&#47484; &#50501;&#50857;&#54616;&#50668; &#49436;&#48708;&#49828;&#47484; &#51060;&#50857;&#54616;&#45716; &#54665;&#50948;</span>
-</p>
-<p class="c12"><span class="c1">9. &#53440;&#51064;&#51012; &#44592;&#47581;&#54616;&#50668; &#51060;&#46301;&#51012; &#52712;&#54616;&#45716; &#54665;&#50948;, &#54924;&#49324;&#51032; &#49436;&#48708;&#49828;&#51032; &#51060;&#50857;&#44284; &#44288;&#47144;&#54616;&#50668; &#53440;&#51064;&#50640;&#44172; &#54588;&#54644;&#47484; &#51077;&#55176;&#45716; &#54665;&#50948;</span>
-</p>
-<p class="c27"><span class="c1">10. &#54924;&#49324;&#45208; &#53440;&#51064;&#51032; &#51648;&#51201;&#51116;&#49328;&#44428; &#46608;&#45716; &#52488;&#49345;&#44428;&#51012; &#52840;&#54644;&#54616;&#45716; &#54665;&#50948;, &#53440;&#51064;&#51032; &#47749;&#50696;&#47484; &#55036;&#49552;&#54616;&#44144;&#45208; &#49552;&#54644;&#47484; &#44032;&#54616;&#45716; &#54665;&#50948;</span>
-</p>
-<p class="c25"><span class="c1">11. &#48277;&#47161;&#50640; &#51032;&#54616;&#50668; &#51204;&#49569; &#46608;&#45716; &#44172;&#49884;&#44032; &#44552;&#51648;&#46108; &#51221;&#48372;(&#52980;&#54504;&#53552; &#54532;&#47196;&#44536;&#47016;)&#45208; &#52980;&#54504;&#53552; &#49548;&#54532;&#53944;&#50920;&#50612;&sdot;&#54616;&#46300;&#50920;&#50612; &#46608;&#45716; &#51204;&#44592;&#53685;&#49888;&#51109;&#48708;&#51032; &#51221;&#49345;&#51201;&#51064; &#51089;&#46041;&#51012; &#48169;&#54644;&sdot;&#54028;&#44340;&#54624; &#47785;&#51201;&#51004;&#47196; &#44256;&#50504;&#46108; &#48148;&#51060;&#47084;&#49828;&sdot;&#52980;&#54504;&#53552; &#53076;&#46300;&sdot;&#54028;&#51068;&sdot;&#54532;&#47196;&#44536;&#47016; &#46321;&#51012; &#44256;&#51032;&#47196; &#51204;&#49569;&sdot;&#44172;&#49884;&sdot;&#50976;&#54252; &#46608;&#45716; &#49324;&#50857;&#54616;&#45716; &#54665;&#50948;</span>
-</p>
-<p class="c18"><span class="c1">12. &#54924;&#49324;&#47196;&#48512;&#53552; &#53945;&#48324;&#54620; &#44428;&#47532;&#47484; &#48512;&#50668; &#48155;&#51648; &#50506;&#44256; &#50528;&#54540;&#47532;&#52992;&#51060;&#49496;&#51012; &#48320;&#44221;&#54616;&#44144;&#45208;, &#50528;&#54540;&#47532;&#52992;&#51060;&#49496;&#50640; &#45796;&#47480; &#54532;&#47196;&#44536;&#47016;&#51012; &#52628;&#44032;&sdot;&#49341;&#51077;&#54616;&#44144;&#45208;, &#49436;&#48260;&#47484; &#54644;&#53433;&sdot;&#50669;&#49444;&#44228;&#54616;&#44144;&#45208;, &#49548;&#49828; &#53076;&#46300;&#45208; &#50528;&#54540;&#47532;&#52992;&#51060;&#49496; &#45936;&#51060;&#53552;&#47484; &#50976;&#52636;&sdot;&#48320;&#44221;&#54616;&#44144;&#45208;, &#48324;&#46020;&#51032; &#49436;&#48260;&#47484; &#44396;&#52629;&#54616;&#44144;&#45208;, &#50937;&#49324;&#51060;&#53944;&#51032; &#51068;&#48512;&#48516;&#51012; &#51076;&#51032;&#47196; &#48320;&#44221;&sdot;&#46020;&#50857;&#54616;&#50668; &#54924;&#49324;&#47484; &#49324;&#52845;&#54616;&#45716; &#54665;&#50948;</span>
-</p>
-<p class="c24"><span class="c1">13. &#44536; &#48150;&#50640; &#44288;&#47144; &#48277;&#47161;&#50640; &#50948;&#48152;&#46104;&#44144;&#45208; &#49440;&#47049;&#54620; &#54413;&#49549; &#44592;&#53440; &#49324;&#54924;&#53685;&#45392;&#50640; &#48152;&#54616;&#45716; &#54665;&#50948;</span>
-</p>
-<p class="c2"><span class="c1">&#9313; &#54924;&#50896;&#51032; &#44228;&#51221; &#48143; &#47784;&#48148;&#51068; &#44592;&#44592;&#50640; &#44288;&#54620; &#44288;&#47532; &#52293;&#51076;&#51008; &#54924;&#50896;&#50640;&#44172; &#51080;&#51004;&#47728;, &#51060;&#47484; &#53440;&#51064;&#51060; &#51060;&#50857;&#54616;&#46020;&#47197; &#54616;&#44172; &#54616;&#50668;&#49436;&#45716; &#50504; &#46121;&#45768;&#45796;. &#47784;&#48148;&#51068; &#44592;&#44592;&#51032; &#44288;&#47532; &#48512;&#49892;&#51060;&#45208; &#53440;&#51064;&#50640;&#44172; &#51060;&#50857;&#51012; &#49849;&#45209;&#54632;&#51004;&#47196; &#51064;&#54644; &#48156;&#49373;&#54616;&#45716; &#49552;&#54644;&#50640; &#45824;&#54644;&#49436; &#54924;&#49324;&#45716; &#52293;&#51076;&#51012; &#51648;&#51648; &#50506;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9314; &#54924;&#50896;&#51008; &#44033; &#50724;&#54536;&#47560;&#53011;&#50640;&#49436; &#48512;&#51221;&#54620; &#44208;&#51228;&#44032; &#51060;&#47336;&#50612;&#51648;&#51648; &#50500;&#45768;&#54616;&#46020;&#47197; &#44208;&#51228; &#48708;&#48128;&#48264;&#54840; &#44592;&#45733;&#51012; &#49444;&#51221;&#54616;&#44256; &#44288;&#47532;&#54616;&#50668;&#50556; &#54633;&#45768;&#45796;. &#54924;&#50896;&#51032; &#48512;&#51452;&#51032;&#47196; &#51064;&#54616;&#50668; &#48156;&#49373;&#54616;&#45716; &#49552;&#54644;&#50640; &#45824;&#54644; &#54924;&#49324;&#45716; &#52293;&#51076;&#51648;&#51648; &#50506;&#49845;&#45768;&#45796;</span>
-</p>
-<p class="c2"><span class="c1">&#9315; &#54924;&#49324;&#45716; &#45796;&#51020; &#44033; &#54840;&#51032; &#54665;&#50948;&#51032; &#44396;&#52404;&#51201;&#51064; &#45236;&#50857;&#51012; &#51221;&#54624; &#49688; &#51080;&#51004;&#47728;, &#54924;&#50896;&#51008; &#51060;&#47484; &#46384;&#46972;&#50556; &#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&nbsp; 1. &#54924;&#50896;&#51032; &#44228;&#51221;&#47749;, &#52880;&#47533;&#53552;&#47749;, &#44600;&#46300;&#47749;, &#44592;&#53440; &#44172;&#51076; &#45236;&#50640;&#49436; &#49324;&#50857;&#54616;&#45716; &#47749;&#52845;</span>
-</p>
-<p class="c2"><span class="c1">&nbsp; 2. &#52292;&#54021;&#45236;&#50857;&#44284; &#48169;&#48277;</span></p>
-<p class="c2"><span class="c1">&nbsp; 3. &#44172;&#49884;&#54032;&#51060;&#50857; &#48143; &#49436;&#48708;&#49828;&#51060;&#50857; &#48169;&#48277;</span>
-</p>
-<p class="c2"><span class="c1">&nbsp; 4. &#52852;&#52852;&#50724;, &#54168;&#51060;&#49828;&#48513;, &#44396;&#44544;&#54540;&#47084;&#49828; &#46321; &#50808;&#48512; &#47784;&#48148;&#51068; &#54540;&#47019;&#54268; &#51228;&#55092; &#49436;&#48708;&#49828; &#51221;&#52293;</span>
-</p>
-<p class="c2"><span class="c0">&nbsp;</span></p>
-<p class="c2"><span class="c0">&nbsp;</span></p>
-<p class="c10"><span class="c5">&#51228;4&#51109; &#49436;&#48708;&#49828; &#51060;&#50857; &#48143; &#51060;&#50857;&#51228;&#54620;</span>
-</p>
-<p class="c10"><span class="c0">&nbsp;</span></p>
-<p class="c2"><span class="c9">&#51228;11&#51312; (&#49436;&#48708;&#49828;&#51032; &#51228;&#44277;)</span><span
-        class="c1">&nbsp;&#9312; &#54924;&#49324;&#45716; &#51228;5&#51312;&#51032; &#44508;&#51221;&#50640; &#46384;&#46972; &#51060;&#50857;&#44228;&#50557;&#51060; &#50756;&#47308;&#46108; &#54924;&#50896;&#50640;&#44172; &#44536; &#51593;&#49884; &#49436;&#48708;&#49828;&#47484; &#51060;&#50857;&#54624; &#49688; &#51080;&#46020;&#47197; &#54633;&#45768;&#45796;. &#45796;&#47564;, &#51068;&#48512; &#49436;&#48708;&#49828;&#51032; &#44221;&#50864; &#54924;&#49324;&#51032; &#54596;&#50836;&#50640; &#46384;&#46972; &#51648;&#51221;&#46108; &#51068;&#51088;&#48512;&#53552; &#49436;&#48708;&#49828;&#47484; &#44060;&#49884;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9313; &#54924;&#49324;&#45716; &#54924;&#50896;&#50640;&#44172; &#44172;&#51076;&#49436;&#48708;&#49828;&#47484; &#51228;&#44277;&#54624; &#46412; &#51060; &#50557;&#44288;&#50640; &#51221;&#54616;&#44256; &#51080;&#45716; &#49436;&#48708;&#49828;&#47484; &#54252;&#54632;&#54616;&#50668; &#44592;&#53440; &#48512;&#44032;&#51201;&#51064; &#49436;&#48708;&#49828;&#47484; &#54632;&#44760; &#51228;&#44277;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9314; &#54924;&#49324;&#45716; &#54924;&#50896;&#51032; &#46321;&#44553;&#51012; &#44396;&#48516;&#54616;&#44256; &#51060;&#50857;&#49884;&#44036;, &#51060;&#50857;&#54943;&#49688;, &#51228;&#44277; &#49436;&#48708;&#49828;&#51032; &#48276;&#50948; &#46321;&#51012; &#49464;&#48516;&#54868;&#54616;&#50668; &#51060;&#50857;&#50640; &#52264;&#46321;&#51012; &#46168; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c0">&nbsp;</span></p>
-<p class="c2"><span class="c9">&#51228;12&#51312; (&#49436;&#48708;&#49828;&#51032; &#51060;&#50857;)</span><span
-        class="c1">&nbsp;&#9312; &#44172;&#51076;&#49436;&#48708;&#49828;&#45716; &#54924;&#49324;&#51032; &#50689;&#50629;&#48169;&#52840;&#50640; &#46384;&#46972; &#51221;&#54644;&#51652; &#49884;&#44036; &#46041;&#50504; &#51228;&#44277;&#54633;&#45768;&#45796;. &#54924;&#49324;&#45716; &#44172;&#51076;&#49436;&#48708;&#49828; &#51228;&#44277;&#49884;&#44036;&#51012; &#44172;&#51076; &#50528;&#54540;&#47532;&#52992;&#51060;&#49496; &#52488;&#44592;&#54868;&#47732;&#51060;&#45208; &#44172;&#51076;&#49436;&#48708;&#49828; &#44277;&#51648;&#49324;&#54637;&#50640; &#51201;&#51208;&#54620; &#48169;&#48277;&#51004;&#47196; &#50504;&#45236;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9313; &#51228;1&#54637;&#50640;&#46020; &#48520;&#44396;&#54616;&#44256; &#54924;&#49324;&#45716; &#45796;&#51020; &#44033; &#54840;&#51032; &#44221;&#50864;&#50640;&#45716; &#49436;&#48708;&#49828;&#51032; &#51204;&#48512; &#46608;&#45716; &#51068;&#48512;&#47484; &#51068;&#49884; &#51221;&#51648;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;. &#51060; &#44221;&#50864; &#54924;&#49324;&#45716; &#49324;&#51204;&#50640; &#44536; &#51221;&#51648;&#51032; &#49324;&#50976;&#50752; &#44592;&#44036;&#51012; &#44172;&#51076; &#50528;&#54540;&#47532;&#52992;&#51060;&#49496; &#52488;&#44592;&#54868;&#47732;&#51060;&#45208; &#44172;&#51076;&#49436;&#48708;&#49828; &#44277;&#51648;&#49324;&#54637; &#46321;&#50640; &#44277;&#51648;&#54633;&#45768;&#45796;. &#45796;&#47564;, &#49324;&#51204;&#50640; &#44277;&#51648;&#54624; &#49688; &#50630;&#45716; &#48512;&#46301;&#51060;&#54620; &#49324;&#51221;&#51060; &#51080;&#45716; &#44221;&#50864; &#49324;&#54980;&#50640; &#44277;&#51648;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c6"><span class="c1">1. &#49884;&#49828;&#53596; &#51221;&#44592;&#51216;&#44160;, &#49436;&#48260;&#51032; &#51613;&#49444; &#48143; &#44368;&#52404;, &#45348;&#53944;&#50892;&#53356;&#51032; &#48520;&#50504;&#51221; &#46321;&#51032; &#49884;&#49828;&#53596; &#50868;&#50689;&#49345; &#54596;&#50836;&#54620; &#44221;&#50864;</span>
-</p>
-<p class="c31"><span class="c1">2. &#51221;&#51204;, &#49436;&#48708;&#49828; &#49444;&#48708;&#51032; &#51109;&#50528;, &#49436;&#48708;&#49828; &#51060;&#50857;&#54253;&#51452;, &#44592;&#44036;&#53685;&#49888;&#49324;&#50629;&#51088;&#51032; &#49444;&#48708; &#48372;&#49688; &#46608;&#45716; &#51216;&#44160; &#46321;&#51004;&#47196; &#51064;&#54616;&#50668; &#51221;&#49345;&#51201;&#51064; &#49436;&#48708;&#49828; &#51228;&#44277;&#51060; &#48520;&#44032;&#45733;&#54620; &#44221;&#50864;</span>
-</p>
-<p class="c17"><span class="c1">3. &#51204;&#49884;, &#49324;&#48320;, &#52380;&#51116;&#51648;&#48320; &#46608;&#45716; &#51060;&#50640; &#51456;&#54616;&#45716; &#44397;&#44032;&#48708;&#49345;&#49324;&#53468; &#46321; &#54924;&#49324;&#44032; &#53685;&#51228;&#54624; &#49688; &#50630;&#45716; &#49345;&#54889;&#51060; &#48156;&#49373;&#54620; &#44221;&#50864;</span>
-</p>
-<p class="c2"><span class="c1">&#9314; &#54924;&#49324;&#45716; &#47784;&#48148;&#51068; &#44592;&#44592;&#47484; &#50948;&#54620; &#51204;&#50857; &#50528;&#54540;&#47532;&#52992;&#51060;&#49496; &#46608;&#45716; &#45348;&#53944;&#50892;&#53356;&#47484; &#51060;&#50857;&#54616;&#50668; &#49436;&#48708;&#49828;&#47484; &#51228;&#44277;&#54633;&#45768;&#45796;. &#54924;&#50896;&#51008; &#50528;&#54540;&#47532;&#52992;&#51060;&#49496;&#51012; &#45796;&#50868;&#47196;&#46300;&#54616;&#50668; &#49444;&#52824;&#54616;&#44144;&#45208; &#45348;&#53944;&#50892;&#53356;&#47484; &#51060;&#50857;&#54616;&#50668; &#47924;&#47308; &#46608;&#45716; &#50976;&#47308;&#47196; &#49436;&#48708;&#49828;&#47484; &#51060;&#50857;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9315; &#50976;&#47308; &#53080;&#53584;&#52768;&#51032; &#44221;&#50864;&#50640;&#45716; &#54644;&#45817; &#49436;&#48708;&#49828;&#50640; &#47749;&#49884;&#46108; &#50836;&#44552;&#51012; &#51648;&#44553;&#54616;&#50668;&#50556; &#51060;&#50857;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;. &#45348;&#53944;&#50892;&#53356;&#47484; &#53685;&#54644; &#50528;&#54540;&#47532;&#52992;&#51060;&#49496;&#51012; &#45796;&#50868;&#47196;&#46300;&#54616;&#44144;&#45208; &#49436;&#48708;&#49828;&#47484; &#51060;&#50857;&#54616;&#45716; &#44221;&#50864;&#50640;&#45716; &#44032;&#51077;&#54620; &#51060;&#46041;&#53685;&#49888;&#49324;&#50640;&#49436; &#51221;&#54620; &#48324;&#46020;&#51032; &#50836;&#44552;&#51060; &#48156;&#49373;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9316; &#45796;&#50868;&#47196;&#46300;&#54616;&#50668; &#49444;&#52824;&#54620; &#50528;&#54540;&#47532;&#52992;&#51060;&#49496; &#46608;&#45716; &#45348;&#53944;&#50892;&#53356;&#47484; &#53685;&#54644; &#51060;&#50857;&#54616;&#45716; &#49436;&#48708;&#49828;&#51032; &#44221;&#50864;&#50640;&#45716; &#47784;&#48148;&#51068; &#44592;&#44592; &#46608;&#45716; &#51060;&#46041;&#53685;&#49888;&#49324;&#51032; &#53945;&#49457;&#50640; &#47582;&#46020;&#47197; &#51228;&#44277;&#46121;&#45768;&#45796;. &#47784;&#48148;&#51068; &#44592;&#44592;&#51032; &#48320;&#44221;&#8228;&#48264;&#54840; &#48320;&#44221; &#46608;&#45716; &#54644;&#50808; &#47196;&#48141;&#51032; &#44221;&#50864;&#50640;&#45716; &#53080;&#53584;&#52768;&#51032; &#51204;&#48512; &#46608;&#45716; &#51068;&#48512;&#51032; &#51060;&#50857;&#51060; &#48520;&#44032;&#45733;&#54624; &#49688; &#51080;&#51004;&#47728;, &#51060; &#44221;&#50864; &#54924;&#49324;&#45716; &#52293;&#51076;&#51012; &#51648;&#51648; &#50506;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9317; &#45796;&#50868;&#47196;&#46300;&#54616;&#50668; &#49444;&#52824;&#54620; &#50528;&#54540;&#47532;&#52992;&#51060;&#49496; &#46608;&#45716; &#45348;&#53944;&#50892;&#53356;&#47484; &#53685;&#54644; &#51060;&#50857;&#54616;&#45716; &#49436;&#48708;&#49828;&#51032; &#44221;&#50864;&#50640;&#45716; &#48177;&#44536;&#46972;&#50868;&#46300; &#51089;&#50629;&#51060; &#51652;&#54665;&#46112; &#49688; &#51080;&#49845;&#45768;&#45796;. &#51060; &#44221;&#50864; &#47784;&#48148;&#51068; &#44592;&#44592; &#46608;&#45716; &#51060;&#46041;&#53685;&#49888;&#49324;&#51032; &#53945;&#49457;&#50640; &#47582;&#46020;&#47197; &#52628;&#44032;&#50836;&#44552;&#51060; &#48156;&#49373;&#54624; &#49688; &#51080;&#51004;&#47728; &#51060;&#50752; &#44288;&#47144;&#54616;&#50668; &#54924;&#49324;&#45716; &#52293;&#51076;&#51012; &#51648;&#51648; &#50506;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c0">&nbsp;</span></p>
-<p class="c2"><span class="c9">&#51228;13&#51312; (&#49436;&#48708;&#49828;&#51032; &#48320;&#44221; &#48143; &#51473;&#45800;)</span><span
-        class="c1">&nbsp;&#9312; &#54924;&#49324;&#45716; &#50896;&#54876;&#54620; &#44172;&#51076;&#49436;&#48708;&#49828; &#51228;&#44277;&#51012; &#50948;&#54644; &#50868;&#50689;&#49345; &#46608;&#45716; &#44592;&#49696;&#49345;&#51032; &#54596;&#50836;&#50640; &#46384;&#46972; &#49436;&#48708;&#49828;&#47484; &#48320;&#44221;&#54624; &#49688; &#51080;&#51004;&#47728;, &#48320;&#44221; &#51204;&#50640; &#54644;&#45817; &#45236;&#50857;&#51012; &#44172;&#51076;&#49436;&#48708;&#49828; &#45236;&#50640; &#44277;&#51648;&#54633;&#45768;&#45796;. &#45796;&#47564;, &#48260;&#44536;&#8228;&#50724;&#47448; &#46321;&#51032; &#49688;&#51221;&#51060;&#45208; &#44596;&#44553; &#50629;&#45936;&#51060;&#53944; &#46321; &#48512;&#46301;&#51060;&#54616;&#44172; &#48320;&#44221;&#54624; &#54596;&#50836;&#44032; &#51080;&#45716; &#44221;&#50864; &#46608;&#45716; &#51473;&#45824;&#54620; &#48320;&#44221;&#50640; &#54644;&#45817;&#54616;&#51648; &#50506;&#45716; &#44221;&#50864;&#50640;&#45716; &#49324;&#54980;&#50640; &#44277;&#51648;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9313; &#54924;&#49324;&#45716; &#50689;&#50629;&#50577;&#46020;&#8228;&#48516;&#54624;&#8228;&#54633;&#48337; &#46321;&#50640; &#46384;&#47480; &#50689;&#50629;&#51032; &#54224;&#51648;, &#44172;&#51076;&#51228;&#44277;&#51032; &#44228;&#50557;&#47564;&#47308;, &#45817;&#54644; &#44172;&#51076;&#49436;&#48708;&#49828;&#51032; &#54788;&#51200;&#54620; &#49688;&#51061; &#50501;&#54868; &#46321; &#44221;&#50689;&#49345;&#51032; &#51473;&#45824;&#54620; &#49324;&#50976;&#47196; &#51064;&#54644; &#44172;&#51076;&#49436;&#48708;&#49828;&#47484; &#51648;&#49549;&#54616;&#44592; &#50612;&#47140;&#50868; &#44221;&#50864;&#50640;&#45716; &#49436;&#48708;&#49828; &#51204;&#48512;&#47484; &#51473;&#45800;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;. &#51060; &#44221;&#50864; &#51473;&#45800;&#51068;&#51088; 30&#51068; &#51060;&#51204;&#44620;&#51648; &#51473;&#45800;&#51068;&#51088;&#8228;&#51473;&#45800;&#49324;&#50976;&#8228;&#48372;&#49345;&#51312;&#44148; &#46321;&#51012; &#44172;&#51076; &#50528;&#54540;&#47532;&#52992;&#51060;&#49496; &#52488;&#44592;&#54868;&#47732; &#46608;&#45716; &#44536; &#50672;&#44208;&#54868;&#47732;&#51012; &#53685;&#54644; &#44277;&#51648;&#54616;&#44256; &#51228;27&#51312; &#51228;1&#54637;&#51032; &#48169;&#48277;&#51004;&#47196; &#54924;&#50896;&#50640;&#44172; &#53685;&#51648;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9314; &#51228;2&#54637;&#51032; &#44221;&#50864; &#54924;&#49324;&#45716; &#49324;&#50857;&#54616;&#51648; &#50506;&#50520;&#44144;&#45208; &#49324;&#50857;&#44592;&#44036;&#51060; &#45224;&#50500; &#51080;&#45716; &#50976;&#47308; &#50500;&#51060;&#53596;&#50640; &#45824;&#54644; &#51228;24&#51312; &#51228;3&#54637;&#50640; &#46384;&#46972; &#54872;&#44553;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c0">&nbsp;</span></p>
-<p class="c2"><span class="c9">&#51228;14&#51312; (&#51221;&#48372;&#51032; &#49688;&#51665; &#46321;)</span><span
-        class="c1">&nbsp;&#9312; &#54924;&#49324;&#45716; &#54924;&#50896;&#44036;&#50640; &#51060;&#47336;&#50612;&#51648;&#45716; &#52292;&#54021; &#45236;&#50857;&#51012; &#51200;&#51109;&#8228;&#48372;&#44288;&#54624; &#49688; &#51080;&#51004;&#47728; &#51060; &#51221;&#48372;&#45716; &#54924;&#49324;&#47564;&#51060; &#48372;&#50976;&#54633;&#45768;&#45796;. &#54924;&#49324;&#45716; &#54924;&#50896;&#44036;&#51032; &#48516;&#51137; &#51312;&#51221;, &#48124;&#50896; &#52376;&#47532; &#46608;&#45716; &#44172;&#51076; &#51656;&#49436;&#51032; &#50976;&#51648;&#47484; &#50948;&#54620; &#44221;&#50864;&#50640; &#54620;&#54616;&#50668;, &#51228;3&#51088;&#45716; &#48277;&#47161;&#50640; &#46384;&#46972; &#44428;&#54620;&#51060; &#48512;&#50668;&#46108; &#44221;&#50864;&#50640; &#54620;&#54616;&#50668; &#51060; &#51221;&#48372;&#47484; &#50676;&#46988;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9313; &#54924;&#49324; &#46608;&#45716; &#51228;3&#51088;&#44032; &#51228;1&#54637;&#50640; &#46384;&#46972; &#52292;&#54021; &#51221;&#48372;&#47484; &#50676;&#46988;&#54624; &#44221;&#50864; &#54924;&#49324;&#45716; &#49324;&#51204;&#50640; &#50676;&#46988;&#51032; &#49324;&#50976; &#48143; &#48276;&#50948;&#47484; &#54644;&#45817; &#54924;&#50896;&#50640;&#44172; &#44256;&#51648;&#54633;&#45768;&#45796;. &#45796;&#47564;, &#51228;10&#51312; &#51228;1&#54637;&#50640; &#46384;&#47480; &#44552;&#51648;&#54665;&#50948;&#51032; &#51312;&#49324;&#8228;&#52376;&#47532;&#8228;&#54869;&#51064; &#46608;&#45716; &#44536; &#54665;&#50948;&#47196; &#51064;&#54620; &#54588;&#54644; &#44396;&#51228;&#50752; &#44288;&#47144;&#54616;&#50668; &#51060; &#51221;&#48372;&#47484; &#50676;&#46988;&#54644;&#50556; &#54624; &#44221;&#50864;&#50640;&#45716; &#49324;&#54980;&#50640; &#44256;&#51648;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9314; &#54924;&#49324;&#45716; &#49436;&#48708;&#49828;&#51032; &#50896;&#54876;&#54616;&#44256; &#50504;&#51221;&#51201;&#51064; &#50868;&#50689; &#48143; &#49436;&#48708;&#49828; &#54408;&#51656;&#51032; &#44060;&#49440;&#51012; &#50948;&#54616;&#50668; &#54924;&#50896;&#51032; &#44060;&#51064;&#51221;&#48372;&#47484; &#51228;&#50808;&#54620; &#54924;&#50896;&#51032; &#47784;&#48148;&#51068; &#44592;&#44592; &#51221;&#48372;(&#49444;&#51221;,&#49324;&#50577;,&#50868;&#50689;&#52404;&#51228;, &#48260;&#51204; &#46321;)&#47484; &#49688;&#51665; &#8231; &#54876;&#50857;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9315; &#54924;&#49324;&#45716; &#49436;&#48708;&#49828; &#44060;&#49440; &#48143; &#54924;&#50896; &#45824;&#49345; &#49436;&#48708;&#49828; &#49548;&#44060; &#46321;&#51012; &#50948;&#54620; &#47785;&#51201;&#51004;&#47196; &#54924;&#50896;&#50640;&#44172; &#52628;&#44032;&#51221;&#48372;&#47484; &#50836;&#52397;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;. &#51060; &#50836;&#52397;&#50640; &#45824;&#54644; &#54924;&#50896;&#51008; &#49849;&#45209;&#54616;&#44144;&#45208; &#44144;&#51208;&#54624; &#49688; &#51080;&#51004;&#47728;, &#54924;&#49324;&#44032; &#51060; &#50836;&#52397;&#51012; &#54624; &#44221;&#50864;&#50640;&#45716; &#54924;&#50896;&#51060; &#51060; &#50836;&#52397;&#51012; &#44144;&#51208;&#54624; &#49688; &#51080;&#45796;&#45716; &#46907;&#51012; &#54632;&#44760; &#44256;&#51648;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c0">&nbsp;</span></p>
-<p class="c2"><span class="c9">&#51228;15&#51312; (&#44305;&#44256;&#51032; &#51228;&#44277;)</span><span class="c1">&nbsp;&#9312; &#54924;&#49324;&#45716; &#49436;&#48708;&#49828;&#51032; &#50868;&#50689;&#44284; &#44288;&#47144;&#54616;&#50668; &#44172;&#51076;&#49436;&#48708;&#49828; &#45236;&#50640; &#44305;&#44256;&#47484; &#44172;&#51116;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;. &#46608;&#54620; &#49688;&#49888;&#50640; &#46041;&#51032;&#54620; &#54924;&#50896;&#50640; &#54620;&#54616;&#50668; &#51204;&#51088;&#50864;&#54200;, &#47928;&#51088;&#49436;&#48708;&#49828;(LMS/SMS), &#54392;&#49884;&#47700;&#49884;&#51648;(Push Notification) &#46321;&#51032; &#48169;&#48277;&#51004;&#47196; &#44305;&#44256;&#49457; &#51221;&#48372;&#47484; &#51204;&#49569;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;. &#51060; &#44221;&#50864; &#54924;&#50896;&#51008; &#50616;&#51228;&#46304;&#51648; &#49688;&#49888;&#51012; &#44144;&#51208;&#54624; &#49688; &#51080;&#51004;&#47728;, &#54924;&#49324;&#45716; &#54924;&#50896;&#51032; &#49688;&#49888; &#44144;&#51208; &#49884; &#44305;&#44256;&#49457; &#51221;&#48372;&#47484; &#48156;&#49569;&#54616;&#51648; &#50500;&#45768;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9313; &#54924;&#49324;&#44032; &#51228;&#44277;&#54616;&#45716; &#49436;&#48708;&#49828; &#51473;&#51032; &#48176;&#45320; &#46608;&#45716; &#47553;&#53356; &#46321;&#51012; &#53685;&#54644; &#53440;&#51064;&#51060; &#51228;&#44277;&#54616;&#45716; &#44305;&#44256;&#45208; &#49436;&#48708;&#49828;&#50640; &#50672;&#44208;&#46112; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9314; &#51228;2&#54637;&#50640; &#46384;&#46972; &#53440;&#51064;&#51060; &#51228;&#44277;&#54616;&#45716; &#44305;&#44256;&#45208; &#49436;&#48708;&#49828;&#50640; &#50672;&#44208;&#46112; &#44221;&#50864; &#54644;&#45817; &#50689;&#50669;&#50640;&#49436; &#51228;&#44277;&#54616;&#45716; &#49436;&#48708;&#49828;&#45716; &#54924;&#49324;&#51032; &#49436;&#48708;&#49828; &#50689;&#50669;&#51060; &#50500;&#45768;&#48064;&#47196; &#54924;&#49324;&#44032; &#49888;&#47280;&#49457;, &#50504;&#51221;&#49457; &#46321;&#51012; &#48372;&#51109;&#54616;&#51648; &#50506;&#51004;&#47728;, &#44536;&#47196; &#51064;&#54620; &#54924;&#50896;&#51032; &#49552;&#54644;&#50640; &#45824;&#54616;&#50668;&#46020; &#54924;&#49324;&#45716; &#52293;&#51076;&#51012; &#51648;&#51648; &#50506;&#49845;&#45768;&#45796;. &#45796;&#47564;, &#54924;&#49324;&#44032; &#44256;&#51032; &#46608;&#45716; &#51473;&#44284;&#49892;&#47196; &#49552;&#54644;&#51032; &#48156;&#49373;&#51012; &#50857;&#51060;&#54616;&#44172; &#54616;&#44144;&#45208; &#49552;&#54644; &#48169;&#51648;&#47484; &#50948;&#54620; &#51312;&#52824;&#47484; &#52712;&#54616;&#51648; &#50500;&#45768;&#54620; &#44221;&#50864;&#50640;&#45716; &#44536;&#47084;&#54616;&#51648; &#50500;&#45768;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c0">&nbsp;</span></p>
-<p class="c2"><span
-        class="c9">&#51228;16&#51312; (&#51200;&#51089;&#44428; &#46321;&#51032; &#44480;&#49549;) </span><span
-        class="c1">&#9312; &#54924;&#49324;&#44032; &#51228;&#51089;&#54620; &#44172;&#51076;&#49436;&#48708;&#49828; &#45236;&#51032; &#53080;&#53584;&#52768;&#50640; &#45824;&#54620; &#51200;&#51089;&#44428;&#44284; &#44592;&#53440; &#51648;&#51201;&#51116;&#49328;&#44428;&#51008; &#54924;&#49324;&#50640; &#44480;&#49549;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9313; &#54924;&#50896;&#51008; &#54924;&#49324;&#44032; &#51228;&#44277;&#54616;&#45716; &#44172;&#51076;&#49436;&#48708;&#49828;&#47484; &#51060;&#50857;&#54616;&#50668; &#50619;&#51008; &#51221;&#48372; &#51473;&#50640;&#49436; &#54924;&#49324; &#46608;&#45716; &#51228;&#44277;&#50629;&#52404;&#50640; &#51648;&#51201;&#51116;&#49328;&#44428;&#51060; &#44480;&#49549;&#46108; &#51221;&#48372;&#47484; &#54924;&#49324; &#46608;&#45716; &#51228;&#44277;&#50629;&#52404;&#51032; &#49324;&#51204; &#46041;&#51032; &#50630;&#51060; &#48373;&#51228;&sdot;&#51204;&#49569; &#46321;&#51032; &#48169;&#48277;(&#54200;&#51665;, &#44277;&#54364;, &#44277;&#50672;, &#48176;&#54252;, &#48169;&#49569;, 2&#52264;&#51201; &#51200;&#51089;&#47932; &#51089;&#49457; &#46321;&#51012; &#54252;&#54632;&#54633;&#45768;&#45796;. &#51060;&#54616; &#44057;&#49845;&#45768;&#45796;)&#50640; &#51032;&#54616;&#50668; &#50689;&#47532;&#47785;&#51201;&#51004;&#47196; &#51060;&#50857;&#54616;&#44144;&#45208; &#53440;&#51064;&#50640;&#44172; &#51060;&#50857;&#54616;&#44172; &#54616;&#50668;&#49436;&#45716; &#50504; &#46121;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9314; &#54924;&#50896;&#51008; &#44172;&#51076; &#45236;&#50640;&#49436; &#48372;&#50668;&#51648;&#44144;&#45208; &#44172;&#51076;&#49436;&#48708;&#49828;&#50752; &#44288;&#47144;&#54616;&#50668; &#54924;&#50896; &#46608;&#45716; &#45796;&#47480; &#51060;&#50857;&#51088;&#44032; &#44172;&#51076; &#50528;&#54540;&#47532;&#52992;&#51060;&#49496; &#46608;&#45716; &#44172;&#51076;&#49436;&#48708;&#49828;&#47484; &#53685;&#54644; &#50629;&#47196;&#46300; &#46608;&#45716; &#51204;&#49569;&#54616;&#45716; &#45824;&#54868; &#53581;&#49828;&#53944;&#47484; &#54252;&#54632;&#54620; &#52964;&#48036;&#45768;&#52992;&#51060;&#49496;, &#51060;&#48120;&#51648;, &#49324;&#50868;&#46300; &#48143; &#47784;&#46304; &#51088;&#47308; &#48143; &#51221;&#48372;(&#51060;&#54616; &ldquo;&#51060;&#50857;&#51088; &#53080;&#53584;&#52768;&rdquo;&#46972; &#54633;&#45768;&#45796;.)&#50640; &#45824;&#54616;&#50668; &#54924;&#49324;&#44032; &#45796;&#51020;&#44284; &#44057;&#51008; &#48169;&#48277;&#44284; &#51312;&#44148;&#51004;&#47196; &#51060;&#50857;&#54616;&#45716; &#44163;&#51012; &#54728;&#46973;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c35"><span class="c1">1. &#54644;&#45817; &#51060;&#50857;&#51088; &#53080;&#53584;&#52768;&#47484; &#51060;&#50857;, &#54200;&#51665; &#54805;&#49885;&#51032; &#48320;&#44221; &#48143; &#44592;&#53440; &#48320;&#54805;&#54616;&#45716; &#44163;(&#44277;&#54364;, &#48373;&#51228;, &#44277;&#50672;, &#51204;&#49569;, &#48176;&#54252;, &#48169;&#49569;, 2&#52264;&#51201; &#51200;&#51089;&#47932; &#51089;&#49457; &#46321; &#50612;&#46496;&#54620; &#54805;&#53468;&#47196;&#46304; &#51060;&#50857; &#44032;&#45733;&#54616;&#47728;, &#51060;&#50857;&#44592;&#44036;&#44284; &#51648;&#50669;&#50640;&#45716; &#51228;&#54620;&#51060; &#50630;&#51020;)</span>
-</p>
-<p class="c36"><span class="c1">2. &#51060;&#50857;&#51088; &#53080;&#53584;&#52768;&#47484; &#51228;&#51089;&#54620; &#51060;&#50857;&#51088;&#51032; &#49324;&#51204; &#46041;&#51032; &#50630;&#51060; &#44144;&#47000;&#47484; &#47785;&#51201;&#51004;&#47196; &#51060;&#50857;&#51088; &#53080;&#53584;&#52768;&#47484; &#54032;&#47588;, &#45824;&#50668;, &#50577;&#46020; &#54665;&#50948;&#47484; &#54616;&#51648; &#50506;&#51020;</span>
-</p>
-<p class="c2"><span class="c1">&#9315; &#44172;&#51076; &#45236;&#50640;&#49436; &#48372;&#50668;&#51648;&#51648; &#50506;&#44256; &#44172;&#51076;&#49436;&#48708;&#49828;&#50752; &#51068;&#52404;&#54868;&#46104;&#51648; &#50506;&#51008; &#54924;&#50896;&#51032; &#51060;&#50857;&#51088; &#53080;&#53584;&#52768;(&#50696;&#52968;&#45824;, &#51068;&#48152;&#44172;&#49884;&#54032; &#46321;&#50640;&#49436;&#51032; &#44172;&#49884;&#47932;)&#50640; &#45824;&#54616;&#50668; &#54924;&#49324;&#45716; &#54924;&#50896;&#51032; &#47749;&#49884;&#51201;&#51064; &#46041;&#51032;&#44032; &#50630;&#51060; &#51060;&#50857;&#54616;&#51648; &#50506;&#51004;&#47728;, &#54924;&#50896;&#51008; &#50616;&#51228;&#46304;&#51648; &#51060;&#47084;&#54620; &#51060;&#50857;&#51088; &#53080;&#53584;&#52768;&#47484; &#49325;&#51228;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9316; &#54924;&#49324;&#45716; &#54924;&#50896;&#51060; &#44172;&#49884;&#54616;&#44144;&#45208; &#46321;&#47197;&#54616;&#45716; &#49436;&#48708;&#49828; &#45236;&#51032; &#44172;&#49884;&#47932;&#50640; &#45824;&#54644; &#51228;10&#51312; &#51228;1&#54637;&#50640; &#46384;&#47480; &#44552;&#51648;&#54665;&#50948;&#50640; &#54644;&#45817;&#46108;&#45796;&#44256; &#54032;&#45800;&#46104;&#45716; &#44221;&#50864;&#50640;&#45716; &#49324;&#51204; &#53685;&#51648; &#50630;&#51060; &#51060;&#47484; &#49325;&#51228; &#46608;&#45716; &#51060;&#46041;&#54616;&#44144;&#45208; &#44536; &#46321;&#47197;&#51012; &#44144;&#51208;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9317; &#54924;&#49324;&#44032; &#50868;&#50689;&#54616;&#45716; &#44172;&#49884;&#54032; &#46321;&#50640; &#44172;&#49884;&#46108; &#51221;&#48372;&#47196; &#51064;&#54616;&#50668; &#48277;&#47456;&#49345; &#51060;&#51061;&#51060; &#52840;&#54644;&#46108; &#54924;&#50896;&#51008; &#54924;&#49324;&#50640; &#54644;&#45817; &#51221;&#48372;&#51032; &#49325;&#51228; &#46608;&#45716; &#48152;&#48149; &#45236;&#50857;&#51032; &#44172;&#51116;&#47484; &#50836;&#52397;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;. &#51060; &#44221;&#50864; &#54924;&#49324;&#45716; &#49888;&#49549;&#54616;&#44172; &#54596;&#50836;&#54620; &#51312;&#52824;&#47484; &#52712;&#54616;&#44256; &#51060;&#47484; &#49888;&#52397;&#51064;&#50640;&#44172; &#53685;&#51648;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9318; &#51060; &#51312;&#45716; &#54924;&#49324;&#44032; &#44172;&#51076;&#49436;&#48708;&#49828;&#47484; &#50868;&#50689;&#54616;&#45716; &#46041;&#50504; &#50976;&#54952;&#54616;&#47728;, &#54924;&#50896; &#53448;&#53748; &#54980;&#50640;&#46020; &#51648;&#49549;&#51201;&#51004;&#47196; &#51201;&#50857;&#46121;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c0">&nbsp;</span></p>
-<p class="c2"><span class="c9">&#51228;17&#51312; (&#50976;&#47308; &#53080;&#53584;&#52768;&#51032; &#44396;&#47588;, &#49324;&#50857;&#44592;&#44036; &#48143; &#51060;&#50857;)</span><span
-        class="c1">&nbsp;&#9312; &#44172;&#51076;&#49436;&#48708;&#49828; &#45236;&#50640;&#49436; &#54924;&#50896;&#51060; &#44396;&#47588;&#54620; &#50976;&#47308; &#53080;&#53584;&#52768;&#45716; &#54644;&#45817; &#50528;&#54540;&#47532;&#52992;&#51060;&#49496;&#51012; &#45796;&#50868;&#47196;&#46300; &#48155;&#44144;&#45208; &#49444;&#52824;&#54620; &#47784;&#48148;&#51068; &#44592;&#44592;&#50640;&#49436;&#47564; &#51060;&#50857;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9313; &#54924;&#50896;&#51060; &#44396;&#47588;&#54620; &#50976;&#47308; &#53080;&#53584;&#52768;&#51032; &#51060;&#50857;&#44592;&#44036;&#51008; &#44396;&#47588; &#49884; &#47749;&#49884;&#46108; &#44592;&#44036;&#50640; &#46384;&#47493;&#45768;&#45796;. &#45796;&#47564;, &#51228;13&#51312; &#51228;2&#54637;&#50640; &#46384;&#46972; &#49436;&#48708;&#49828; &#51473;&#45800;&#51060; &#51060;&#47336;&#50612;&#51648;&#45716; &#44221;&#50864; &#44592;&#44036;&#51032; &#51221;&#54632;&#51060; &#50630;&#45716; &#50976;&#47308; &#53080;&#53584;&#52768;&#51032; &#51060;&#50857;&#44592;&#44036;&#51008; &#49436;&#48708;&#49828; &#51473;&#45800; &#44277;&#51648; &#49884; &#44277;&#51648;&#46108; &#49436;&#48708;&#49828;&#51032; &#51473;&#45800;&#51068;&#51088;&#44620;&#51648;&#47196; &#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c0">&nbsp;</span></p>
-<p class="c2"><span class="c9">&#51228;18&#51312; (&#54924;&#50896;&#50640; &#45824;&#54620; &#49436;&#48708;&#49828; &#51060;&#50857;&#51228;&#54620;) </span><span
-        class="c1">&#9312; &#54924;&#50896;&#51008; &#51228;10&#51312;&#50640; &#46384;&#47480; &#54924;&#50896;&#51032; &#51032;&#47924;&#47484; &#50948;&#48152;&#54616;&#45716; &#54665;&#50948;&#47484; &#54616;&#50668;&#49436;&#45716; &#50504; &#46104;&#47728;, &#54644;&#45817; &#54665;&#50948;&#47484; &#54616;&#45716; &#44221;&#50864;&#50640; &#54924;&#49324;&#45716; &#45796;&#51020; &#44033; &#54840;&#51032; &#44396;&#48516;&#50640; &#46384;&#47480; &#54924;&#50896;&#51032; &#49436;&#48708;&#49828; &#51060;&#50857;&#51228;&#54620;, &#44288;&#47144; &#51221;&#48372;(&#44544;, &#49324;&#51652;, &#50689;&#49345; &#46321;) &#49325;&#51228; &#48143; &#44592;&#53440;&#51032; &#51312;&#52824;&#47484; &#54252;&#54632;&#54620; &#51060;&#50857;&#51228;&#54620; &#51312;&#52824;&#47484; &#54624; &#49688; &#51080;&#49845;&#45768;&#45796;. &#51060;&#50857;&#51228;&#54620; &#51312;&#52824;&#44032; &#51060;&#47336;&#50612;&#51648;&#45716; &#44396;&#52404;&#51201;&#51064; &#49324;&#50976; &#48143; &#51208;&#52264;&#45716; &#51228;19&#51312; &#51228;1&#54637;&#50640; &#46384;&#46972; &#44060;&#48324; &#44172;&#51076;&#51032; &#50868;&#50689;&#51221;&#52293;&#50640;&#49436; &#51221;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&nbsp;1. &#51068;&#48512; &#44428;&#54620; &#51228;&#54620; : &#51068;&#51221;&#44592;&#44036; &#52292;&#54021; &#46321; &#51068;&#51221; &#44428;&#54620;&#51012; &#51228;&#54620;</span>
-</p>
-<p class="c2"><span class="c1">&nbsp;2. &#52880;&#47533;&#53552; &#51060;&#50857;&#51228;&#54620; : &#51068;&#51221;&#44592;&#44036; &#46608;&#45716; &#50689;&#44396;&#55176; &#54924;&#50896; &#52880;&#47533;&#53552;&#51032; &#51060;&#50857;&#51012; &#51228;&#54620;</span>
-</p>
-<p class="c2"><span class="c1">&nbsp;3. &#44228;&#51221; &#51060;&#50857;&#51228;&#54620; : &#51068;&#51221;&#44592;&#44036; &#46608;&#45716; &#50689;&#44396;&#55176; &#54924;&#50896; &#44228;&#51221;&#51032; &#51060;&#50857;&#51012; &#51228;&#54620;</span>
-</p>
-<p class="c2"><span class="c1">&nbsp;4. &#54924;&#50896; &#51060;&#50857;&#51228;&#54620; : &#51068;&#51221;&#44592;&#44036; &#46608;&#45716; &#50689;&#44396;&#55176; &#54924;&#50896;&#51032; &#44172;&#51076;&#49436;&#48708;&#49828; &#51060;&#50857;&#51012; &#51228;&#54620;</span>
-</p>
-<p class="c2"><span class="c1">&#9313; &#51228;1&#54637;&#51032; &#51060;&#50857;&#51228;&#54620;&#51060; &#51221;&#45817;&#54620; &#44221;&#50864;&#50640; &#54924;&#49324;&#45716; &#51060;&#50857;&#51228;&#54620;&#51004;&#47196; &#51064;&#54616;&#50668; &#54924;&#50896;&#51060; &#51077;&#51008; &#49552;&#54644;&#47484; &#48176;&#49345;&#54616;&#51648; &#50506;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9314; &#54924;&#49324;&#45716; &#45796;&#51020; &#44033; &#54840;&#51032; &#49324;&#50976;&#50640; &#45824;&#54620; &#51312;&#49324;&#44032; &#50756;&#47308;&#46112; &#46412;&#44620;&#51648; &#54644;&#45817; &#44228;&#51221;&#51032; &#49436;&#48708;&#49828; &#51060;&#50857;&#51012; &#51221;&#51648;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&nbsp;1. &#44228;&#51221;&#51060; &#54644;&#53433; &#46608;&#45716; &#46020;&#50857;&#45817;&#54664;&#45796;&#45716; &#51221;&#45817;&#54620; &#49888;&#44256;&#44032; &#51217;&#49688;&#46108; &#44221;&#50864;</span>
-</p>
-<p class="c2"><span class="c1">&nbsp;2. &#48520;&#48277;&#54532;&#47196;&#44536;&#47016; &#49324;&#50857;&#51088; &#46608;&#45716; &#51089;&#50629;&#51109; &#46321; &#50948;&#48277;&#54665;&#50948;&#51088;&#47196; &#51032;&#49900;&#46104;&#45716; &#44221;&#50864;</span>
-</p>
-<p class="c2"><span class="c1">&nbsp;3. &#44536; &#48150;&#50640; &#44033; &#54840;&#50640; &#51456;&#54616;&#45716; &#49324;&#50976;&#47196; &#49436;&#48708;&#49828; &#51060;&#50857;&#51032; &#51104;&#51221;&#51312;&#52824;&#44032; &#54596;&#50836;&#54620; &#44221;&#50864;</span>
-</p>
-<p class="c2"><span class="c1">&#9315; &#51228;3&#54637;&#51032; &#51312;&#49324;&#44032; &#50756;&#47308;&#46108; &#54980;, &#50976;&#47308; &#44172;&#51076;&#49436;&#48708;&#49828;&#51032; &#44221;&#50864;&#50640;&#45716; &#51221;&#51648;&#46108; &#49884;&#44036;&#47564;&#53372; &#54924;&#50896;&#51032; &#51060;&#50857;&#49884;&#44036;&#51012; &#50672;&#51109;&#54616;&#44144;&#45208; &#44536;&#50640; &#49345;&#45817;&#54616;&#45716; &#50976;&#47308;&#49436;&#48708;&#49828; &#46608;&#45716; &#52880;&#49772; &#46321;&#51004;&#47196; &#48372;&#49345;&#54633;&#45768;&#45796;. &#45796;&#47564;, &#54924;&#50896;&#51060; &#51228;3&#54637; &#44033; &#54840;&#51032; &#49324;&#50976;&#50640; &#54644;&#45817;&#54616;&#45716; &#44221;&#50864;&#50640;&#45716; &#44536;&#47084;&#54616;&#51648; &#50500;&#45768;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c0">&nbsp;</span></p>
-<p class="c2"><span class="c9">&#51228;19&#51312; (&#51060;&#50857;&#51228;&#54620; &#51312;&#52824;&#51032; &#49324;&#50976;&#50752; &#51208;&#52264;)</span><span
-        class="c1">&nbsp;&#9312; &#54924;&#49324;&#45716; &#51228;18&#51312; &#51228;1&#54637;&#50640; &#46384;&#47480; &#51060;&#50857;&#51228;&#54620; &#51312;&#52824;&#51032; &#44396;&#52404;&#51201;&#51064; &#49324;&#50976; &#48143; &#51208;&#52264;&#47484; &#51228;10&#51312; &#51228;1&#54637;&#50640; &#46384;&#47480; &#44552;&#51648;&#54665;&#50948;&#51032; &#45236;&#50857;&#8228;&#51221;&#46020;&#8228;&#54943;&#49688;&#8228;&#44208;&#44284; &#46321;&#51012; &#44256;&#47140;&#54616;&#50668; &#50868;&#50689;&#51221;&#52293;&#51004;&#47196; &#51221;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9313; &#54924;&#49324;&#44032; &#51228;18&#51312; &#51228;1&#54637;&#50640;&#49436; &#51221;&#54620; &#51060;&#50857;&#51228;&#54620; &#51312;&#52824;&#47484; &#54616;&#45716; &#44221;&#50864;&#50640;&#45716; &#45796;&#51020; &#44033; &#54840;&#51032; &#49324;&#54637;&#51012; &#54924;&#50896;&#50640;&#44172; &#49324;&#51204; &#53685;&#51648;&#54633;&#45768;&#45796;. &#45796;&#47564;, &#44596;&#44553;&#55176; &#51312;&#52824;&#54624; &#54596;&#50836;&#44032; &#51080;&#45716; &#44221;&#50864;&#50640;&#45716; &#49324;&#54980;&#50640; &#53685;&#51648;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span
-        class="c1">&nbsp;1. &#51060;&#50857;&#51228;&#54620; &#51312;&#52824;&#51032; &#49324;&#50976;</span></p>
-<p class="c2"><span class="c1">&nbsp;2. &#51060;&#50857;&#51228;&#54620; &#51312;&#52824;&#51032; &#50976;&#54805; &#48143; &#44592;&#44036;</span>
-</p>
-<p class="c2"><span class="c1">&nbsp;3. &#51060;&#50857;&#51228;&#54620; &#51312;&#52824;&#50640; &#45824;&#54620; &#51060;&#51032;&#49888;&#52397; &#48169;&#48277;</span>
-</p>
-<p class="c2"><span class="c0">&nbsp;</span></p>
-<p class="c2"><span class="c9">&#51228;20&#51312; (&#51060;&#50857;&#51228;&#54620; &#51312;&#52824;&#50640; &#45824;&#54620; &#51060;&#51032;&#49888;&#52397; &#51208;&#52264;) </span><span
-        class="c1">&#9312; &#54924;&#50896;&#51060; &#54924;&#49324;&#51032; &#51060;&#50857;&#51228;&#54620; &#51312;&#52824;&#50640; &#48520;&#48373;&#54616;&#44256;&#51088; &#54624; &#46412;&#50640;&#45716; &#51060; &#51312;&#52824;&#51032; &#53685;&#51648;&#47484; &#48155;&#51008; &#45216;&#48512;&#53552; 14&#51068; &#51060;&#45236;&#50640; &#48520;&#48373; &#51060;&#50976;&#47484; &#44592;&#51116;&#54620; &#51060;&#51032; &#49888;&#52397;&#49436;&#47484; &#49436;&#47732;, &#51204;&#51088;&#50864;&#54200; &#46608;&#45716; &#51060;&#50640; &#51456;&#54616;&#45716; &#48169;&#48277;&#51004;&#47196; &#54924;&#49324;&#50640; &#51228;&#52636;&#54616;&#50668;&#50556; &#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9313; &#54924;&#49324;&#45716; &#51228;1&#54637;&#51032; &#51060;&#51032;&#49888;&#52397;&#49436;&#47484; &#51217;&#49688;&#54620; &#45216;&#48512;&#53552; 15&#51068; &#51060;&#45236;&#50640; &#48520;&#48373; &#51060;&#50976;&#50640; &#45824;&#54616;&#50668; &#49436;&#47732;, &#51204;&#51088;&#50864;&#54200; &#46608;&#45716; &#51060;&#50640; &#51456;&#54616;&#45716; &#48169;&#48277;&#51004;&#47196; &#45813;&#48320;&#54633;&#45768;&#45796;. &#45796;&#47564;, &#54924;&#49324;&#45716; &#51060; &#44592;&#44036; &#45236;&#50640; &#45813;&#48320;&#51060; &#50612;&#47140;&#50868; &#44221;&#50864;&#50640;&#45716; &#44536; &#49324;&#50976;&#50752; &#52376;&#47532;&#51068;&#51221;&#51012; &#53685;&#51648;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9314; &#54924;&#49324;&#45716; &#48520;&#48373; &#51060;&#50976;&#44032; &#53440;&#45817;&#54620; &#44221;&#50864;&#50640;&#45716; &#51060;&#50640; &#46384;&#47480; &#51312;&#52824;&#47484; &#52712;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c0">&nbsp;</span></p>
-<p class="c10"><span class="c5">&#51228;5&#51109; &#52397;&#50557;&#52384;&#54924;, &#44284;&#50724;&#45225;&#44552;&#51032; &#54872;&#44553; &#48143; &#51060;&#50857;&#44228;&#50557;&#51032; &#54644;&#51648;</span>
-</p>
-<p class="c10"><span class="c0">&nbsp;</span></p>
-<p class="c2"><span class="c9">&#51228;21&#51312; (&#45824;&#44552;&#44208;&#51228;) </span><span class="c1">&#9312; &#53080;&#53584;&#52768;&#50640; &#45824;&#54620; &#44396;&#47588; &#45824;&#44552;&#51032; &#48512;&#44284;&#50752; &#45225;&#48512;&#45716; &#50896;&#52825;&#51201;&#51004;&#47196; &#51060;&#46041;&#53685;&#49888;&#49324;&#45208; &#50724;&#54536;&#47560;&#53011; &#49324;&#50629;&#51088; &#46321;&#50640;&#49436; &#51221;&#54616;&#45716; &#51221;&#52293;&#51060;&#45208; &#48169;&#48277;&#50640; &#46384;&#47493;&#45768;&#45796;. &#46608;&#54620; &#44033; &#44208;&#51228;&#49688;&#45800;&#48324; &#54620;&#46020;&#44032; &#54924;&#49324;&#45208; &#50724;&#54536;&#47560;&#53011; &#49324;&#50629;&#51088;&#44032; &#51221;&#54616;&#45716; &#51221;&#52293; &#46608;&#45716; &#51221;&#48512;&#51032; &#48169;&#52840;&#50640; &#46384;&#46972; &#48512;&#50668;&#46104;&#44144;&#45208; &#51312;&#51221;&#46112; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9313; &#53080;&#53584;&#52768;&#51032; &#44396;&#47588;&#45824;&#44552;&#51012; &#50808;&#54868;&#47196; &#44208;&#51228;&#54616;&#45716; &#44221;&#50864;&#50640;&#45716; &#54872;&#50984;&#8231;&#49688;&#49688;&#47308; &#46321;&#51004;&#47196; &#51064;&#54616;&#50668; &#49892;&#51228; &#52397;&#44396;&#44552;&#50529;&#51060; &#49436;&#48708;&#49828;&#51032; &#49345;&#51216; &#46321;&#50640;&#49436; &#54364;&#49884;&#46108; &#44032;&#44201;&#44284; &#45804;&#46972;&#51656; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c0">&nbsp;</span></p>
-<p class="c2"><span class="c9">&#51228;22&#51312; (&#52397;&#50557; &#52384;&#54924; &#46321;)</span><span class="c1">&nbsp;&#9312; &#54924;&#49324;&#50752; &#50976;&#47308; &#53080;&#53584;&#52768;&#51032; &#44396;&#47588;&#50640; &#44288;&#54620; &#44228;&#50557;&#51012; &#52404;&#44208;&#54620; &#54924;&#50896;&#51008; &#44396;&#47588;&#44228;&#50557;&#51068;&#44284; &#53080;&#53584;&#52768; &#51060;&#50857; &#44032;&#45733;&#51068; &#51473; &#45734;&#51008; &#45216;&#48512;&#53552; 7&#51068; &#51060;&#45236;&#50640; &#48324;&#46020;&#51032; &#49688;&#49688;&#47308;&#8231;&#50948;&#50557;&#44552; &#46321;&#51032; &#48512;&#45812; &#50630;&#51060; &#52397;&#50557;&#52384;&#54924;&#47484; &#54624; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9313; &#54924;&#50896;&#51008; &#45796;&#51020; &#44033; &#54840;&#50640; &#54644;&#45817;&#54616;&#45716; &#44221;&#50864;&#50640;&#45716; &#54924;&#49324;&#51032; &#51032;&#49324;&#50640; &#48152;&#54616;&#50668; &#51228;1&#54637;&#50640; &#46384;&#47480; &#52397;&#50557;&#52384;&#54924;&#47484; &#54624; &#49688; &#50630;&#49845;&#45768;&#45796;. &#45796;&#47564;, &#44032;&#48516;&#51201; &#53080;&#53584;&#52768;&#47196; &#44396;&#49457;&#46108; &#44396;&#47588;&#44228;&#50557;&#51032; &#44221;&#50864;&#50640;&#45716; &#44032;&#48516;&#51201; &#53080;&#53584;&#52768; &#51473; &#45796;&#51020; &#44033; &#54840;&#50640; &#54644;&#45817;&#54616;&#51648; &#50500;&#45768;&#54616;&#45716; &#45208;&#47672;&#51648; &#48512;&#48516;&#50640; &#45824;&#54616;&#50668;&#45716; &#44536;&#47084;&#54616;&#51648; &#50500;&#45768;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&nbsp;1. &#44396;&#47588; &#51593;&#49884; &#49324;&#50857;&#46104;&#44144;&#45208; &#51201;&#50857;&#46104;&#45716; &#50976;&#47308; &#53080;&#53584;&#52768;</span>
-</p>
-<p class="c20"><span class="c1">&nbsp;2. &#52628;&#44032;&#54812;&#53469;&#51060; &#51228;&#44277;&#46104;&#45716; &#44221;&#50864;&#50640; &#44536; &#52628;&#44032; &#54812;&#53469;&#51060; &#49324;&#50857;&#46108; &#53080;&#53584;&#52768;</span>
-</p>
-<p class="c20"><span class="c1">&nbsp;3. &#44060;&#48393;&#54665;&#50948;&#47484; &#49324;&#50857;&#51004;&#47196; &#48380; &#49688; &#51080;&#44144;&#45208; &#44060;&#48393; &#49884; &#54952;&#50857;&#51060; &#44208;&#51221;&#46104;&#45716; &#53080;&#53584;&#52768;&#51032; &#44060;&#48393;&#54665;&#50948;&#44032; &#51080;&#45716; &#44221;&#50864;</span>
-</p>
-<p class="c2"><span class="c1">&#9314; &#54924;&#49324;&#45716; &#51228;2&#54637; &#44033; &#54840;&#51032; &#44508;&#51221;&#50640; &#46384;&#46972; &#52397;&#50557;&#52384;&#54924;&#44032; &#48520;&#44032;&#45733;&#54620; &#53080;&#53584;&#52768;&#51032; &#44221;&#50864;&#50640;&#45716; &#44536; &#49324;&#49892;&#51012; &#54924;&#50896;&#51060; &#49789;&#44172; &#50508; &#49688; &#51080;&#45716; &#44275;&#50640; &#47749;&#54869;&#54616;&#44172; &#54364;&#49884;&#54616;&#44256;, &#54644;&#45817; &#53080;&#53584;&#52768;&#51032; &#49884;&#54744;&#49324;&#50857; &#49345;&#54408;&#51012; &#51228;&#44277;(&#54620;&#49884;&#51201; &#51060;&#50857;&#51032; &#54728;&#50857;, &#52404;&#54744;&#50857; &#51228;&#44277; &#46321;)&#54616;&#44144;&#45208; &#51060;&#50640; &#45824;&#54620; &#51228;&#44277;&#51060; &#44260;&#46976;&#54620; &#44221;&#50864;&#50640;&#45716; &#53080;&#53584;&#52768;&#50640; &#44288;&#54620; &#51221;&#48372; &#51228;&#44277;&#54632;&#51004;&#47196;&#50024; &#54924;&#50896;&#51032; &#52397;&#50557;&#52384;&#54924;&#51032; &#44428;&#47532;&#54665;&#49324;&#44032; &#48169;&#54644;&#48155;&#51648; &#50500;&#45768;&#54616;&#46020;&#47197; &#51312;&#52824;&#54633;&#45768;&#45796;. &#47564;&#50557; &#54924;&#49324;&#44032; &#51060;&#47084;&#54620; &#51312;&#52824;&#47484; &#54616;&#51648; &#50500;&#45768;&#54620; &#44221;&#50864;&#50640;&#45716; &#51228;2&#54637; &#44033; &#54840;&#51032; &#52397;&#50557;&#52384;&#54924; &#51228;&#54620;&#49324;&#50976;&#50640;&#46020; &#48520;&#44396;&#54616;&#44256; &#54924;&#50896;&#51008; &#52397;&#50557;&#52384;&#54924;&#47484; &#54624; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9315; &#54924;&#50896;&#51008; &#51228;1&#54637; &#48143; &#51228;2&#54637;&#50640;&#46020; &#48520;&#44396;&#54616;&#44256; &#44396;&#47588;&#54620; &#50976;&#47308; &#53080;&#53584;&#52768;&#51032; &#45236;&#50857;&#51060; &#54364;&#49884;&#8228;&#44305;&#44256;&#51032; &#45236;&#50857;&#44284; &#45796;&#47476;&#44144;&#45208; &#44396;&#47588;&#44228;&#50557;&#51032; &#45236;&#50857;&#44284; &#45796;&#47476;&#44172; &#51060;&#54665;&#46108; &#44221;&#50864;&#50640; &#54644;&#45817; &#53080;&#53584;&#52768;&#44032; &#51060;&#50857; &#44032;&#45733;&#54616;&#44172; &#46108; &#45216;&#48512;&#53552; 3&#44060;&#50900; &#51060;&#45236;, &#44536; &#49324;&#49892;&#51012; &#50504; &#45216; &#46608;&#45716; &#50508; &#49688; &#51080;&#50632;&#45912; &#45216;&#48512;&#53552; 30&#51068; &#51060;&#45236;&#50640; &#52397;&#50557;&#52384;&#54924;&#47484; &#54624; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9316; &#54924;&#50896;&#51060; &#52397;&#50557;&#52384;&#54924;&#47484; &#54624; &#44221;&#50864; &#54924;&#49324;&#45716; &#54540;&#47019;&#54268;&#49324;&#50629;&#51088; &#46608;&#45716; &#50724;&#54536;&#47560;&#53011; &#49324;&#50629;&#51088;&#47484; &#53685;&#54644; &#44396;&#47588;&#45236;&#50669;&#51012; &#54869;&#51064;&#54633;&#45768;&#45796;. &#46608;&#54620; &#54924;&#49324;&#45716; &#54924;&#50896;&#51032; &#51221;&#45817;&#54620; &#52384;&#54924; &#49324;&#50976;&#47484; &#54869;&#51064;&#54616;&#44592; &#50948;&#54644; &#54924;&#50896;&#50640;&#44172;&#49436; &#51228;&#44277;&#48155;&#51008; &#51221;&#48372;&#47484; &#53685;&#54644; &#54924;&#50896;&#50640;&#44172; &#50672;&#46973;&#54624; &#49688; &#51080;&#51004;&#47728;, &#52628;&#44032;&#51201;&#51064; &#51613;&#48729;&#51012; &#50836;&#44396;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9317; &#51228;1&#54637;&#48512;&#53552; &#51228;4&#54637;&#44620;&#51648;&#51032; &#44508;&#51221;&#50640; &#46384;&#46972; &#52397;&#50557;&#52384;&#54924;&#44032; &#51060;&#47336;&#50612;&#51656; &#44221;&#50864; &#54924;&#49324;&#45716; &#51648;&#52404; &#50630;&#51060; &#54924;&#50896;&#51032; &#50976;&#47308; &#53080;&#53584;&#52768;&#47484; &#54924;&#49688;&#54616;&#44256; 3&#50689;&#50629;&#51068; &#51060;&#45236;&#50640; &#45824;&#44552;&#51012; &#54872;&#44553;&#54633;&#45768;&#45796;. &#51060; &#44221;&#50864; &#54924;&#49324;&#44032; &#54872;&#44553;&#51012; &#51648;&#50672;&#54620; &#46412;&#50640;&#45716; &#44536; &#51648;&#50672;&#44592;&#44036;&#50640; &#45824;&#54616;&#50668; &#12300;&#51204;&#51088;&#49345;&#44144;&#47000; &#46321;&#50640;&#49436;&#51032; &#49548;&#48708;&#51088;&#48372;&#54840;&#50640; &#44288;&#54620; &#48277;&#47456;&#12301; &#48143; &#44057;&#51008; &#48277; &#49884;&#54665;&#47161; &#51228;21&#51312;&#51032;3&#50640;&#49436; &#51221;&#54616;&#45716; &#51060;&#50984;&#51012; &#44273;&#54616;&#50668; &#49328;&#51221;&#54620; &#51648;&#50672;&#51060;&#51088;&#47484; &#51648;&#44553;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9318; &#48120;&#49457;&#45380;&#51088;&#44032; &#47784;&#48148;&#51068; &#44592;&#44592;&#50640;&#49436; &#53080;&#53584;&#52768; &#44396;&#47588;&#44228;&#50557;&#51012; &#52404;&#44208;&#54616;&#45716; &#44221;&#50864;, &#54924;&#49324;&#45716; &#48277;&#51221;&#45824;&#47532;&#51064;&#51032; &#46041;&#51032;&#44032; &#50630;&#51004;&#47732; &#48120;&#49457;&#45380;&#51088; &#48376;&#51064; &#46608;&#45716; &#48277;&#51221;&#45824;&#47532;&#51064;&#51060; &#44536; &#44228;&#50557;&#51012; &#52712;&#49548;&#54624; &#49688; &#51080;&#45796;&#45716; &#45236;&#50857;&#51012; &#44256;&#51648;&#54616;&#47728;, &#48120;&#49457;&#45380;&#51088;&#44032; &#48277;&#51221;&#45824;&#47532;&#51064;&#51032; &#46041;&#51032; &#50630;&#51060; &#44396;&#47588;&#44228;&#50557;&#51012; &#52404;&#44208;&#54620; &#46412;&#50640;&#45716; &#48120;&#49457;&#45380;&#51088; &#48376;&#51064; &#46608;&#45716; &#48277;&#51221;&#45824;&#47532;&#51064;&#51008; &#54924;&#49324;&#50640; &#44536; &#44228;&#50557;&#51012; &#52712;&#49548;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;. &#45796;&#47564;, &#48120;&#49457;&#45380;&#51088;&#44032; &#48277;&#51221;&#45824;&#47532;&#51064;&#51060; &#48276;&#50948;&#47484; &#51221;&#54616;&#50668; &#52376;&#48516;&#51012; &#54728;&#46973;&#54620; &#51116;&#49328;&#51004;&#47196; &#53080;&#53584;&#52768;&#47484; &#44396;&#47588;&#54620; &#44221;&#50864; &#46608;&#45716; &#48120;&#49457;&#45380;&#51088;&#44032; &#49549;&#51076;&#49688;&#47196;&#50024; &#51088;&#44592;&#47484; &#49457;&#45380;&#51088;&#47196; &#48127;&#44172; &#54616;&#44144;&#45208; &#48277;&#51221;&#45824;&#47532;&#51064;&#51032; &#46041;&#51032;&#44032; &#51080;&#45716; &#44163;&#51004;&#47196; &#48127;&#44172; &#54620; &#44221;&#50864;&#50640;&#45716; &#52712;&#49548;&#54624; &#49688; &#50630;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9319; &#53080;&#53584;&#52768; &#44396;&#47588;&#44228;&#50557;&#51032; &#45817;&#49324;&#51088;&#44032; &#48120;&#49457;&#45380;&#51088;&#51064;&#51648; &#50668;&#48512;&#45716; &#44208;&#51228;&#44032; &#51652;&#54665;&#46108; &#47784;&#48148;&#51068; &#44592;&#44592;, &#44208;&#51228; &#49892;&#54665;&#51088; &#51221;&#48372;, &#44208;&#51228; &#49688;&#45800; &#47749;&#51032;&#51088; &#46321;&#51012; &#44540;&#44144;&#47196; &#54032;&#45800;&#54633;&#45768;&#45796;. &#46608;&#54620; &#54924;&#49324;&#45716; &#51221;&#45817;&#54620; &#52712;&#49548;&#51064;&#51648;&#47484; &#54869;&#51064;&#54616;&#44592; &#50948;&#54644; &#48120;&#49457;&#45380;&#51088; &#48143; &#48277;&#51221;&#45824;&#47532;&#51064;&#51076;&#51012; &#51613;&#47749;&#54624; &#49688; &#51080;&#45716; &#49436;&#47448;&#51032; &#51228;&#52636;&#51012; &#50836;&#52397;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c0">&nbsp;</span></p>
-<p class="c2"><span
-        class="c9">&#51228;23&#51312; (&#44284;&#50724;&#45225;&#44552;&#51032; &#54872;&#44553;)</span><span
-        class="c1">&nbsp;&#9312; &#54924;&#49324;&#45716; &#44284;&#50724;&#45225;&#44552;&#51060; &#48156;&#49373;&#54616;&#45716; &#44221;&#50864; &#44284;&#50724;&#45225;&#44552;&#51012; &#54924;&#50896;&#50640;&#44172; &#54872;&#44553;&#54633;&#45768;&#45796;. &#45796;&#47564;, &#44284;&#50724;&#45225;&#44552;&#51060; &#54924;&#49324;&#51032; &#44256;&#51032; &#46608;&#45716; &#44284;&#49892; &#50630;&#51060; &#54924;&#50896;&#51032; &#44284;&#49892;&#47196; &#51064;&#54616;&#50668; &#48156;&#49373;&#54620; &#44221;&#50864;&#50640;&#45716; &#44536; &#54872;&#44553;&#50640; &#49548;&#50836;&#46104;&#45716; &#49892;&#51228; &#48708;&#50857;&#51008; &#54633;&#47532;&#51201;&#51064; &#48276;&#50948; &#45236;&#50640;&#49436; &#54924;&#50896;&#51060; &#48512;&#45812;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9313; &#50528;&#54540;&#47532;&#52992;&#51060;&#49496;&#51012; &#53685;&#54620; &#44208;&#51228;&#45716; &#50724;&#54536;&#47560;&#53011; &#49324;&#50629;&#51088;&#44032; &#51228;&#44277;&#54616;&#45716; &#44208;&#51228;&#48169;&#49885;&#50640; &#46384;&#47476;&#47728;, &#44208;&#51228; &#44284;&#51221;&#50640;&#49436; &#44284;&#50724;&#45225;&#44552;&#51060; &#48156;&#49373;&#54616;&#45716; &#44221;&#50864;, &#54924;&#49324; &#46608;&#45716; &#50724;&#54536;&#47560;&#53011; &#49324;&#50629;&#51088;&#50640;&#44172; &#54872;&#44553;&#51012; &#50836;&#52397;&#54616;&#50668;&#50556; &#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9314; &#50528;&#54540;&#47532;&#52992;&#51060;&#49496;&#51032; &#45796;&#50868;&#47196;&#46300; &#46608;&#45716; &#45348;&#53944;&#50892;&#53356; &#49436;&#48708;&#49828;&#51032; &#51060;&#50857;&#51004;&#47196; &#51064;&#54644; &#48156;&#49373;&#54620; &#53685;&#49888;&#50836;&#44552;(&#53685;&#54868;&#47308;, &#45936;&#51060;&#53552; &#53685;&#54868;&#47308; &#46321;)&#51008; &#54872;&#44553; &#45824;&#49345;&#50640;&#49436; &#51228;&#50808;&#46112; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9315; &#54872;&#44553;&#51008; &#49436;&#48708;&#49828;&#47484; &#51060;&#50857;&#54616;&#44256; &#51080;&#45716; &#47784;&#48148;&#51068; &#44592;&#44592;&#51032; &#50868;&#50689;&#52404;&#51228; &#51333;&#47448;&#50640; &#46384;&#46972; &#44033; &#50724;&#54536;&#47560;&#53011; &#49324;&#50629;&#51088; &#46608;&#45716; &#54924;&#49324;&#51032; &#54872;&#44553;&#51221;&#52293;&#50640; &#46384;&#46972; &#51652;&#54665;&#46121;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9316; &#54924;&#49324;&#45716; &#44284;&#50724;&#45225;&#44552;&#51032; &#54872;&#44553;&#51012; &#52376;&#47532;&#54616;&#44592; &#50948;&#54644; &#54924;&#50896;&#50640;&#44172;&#49436; &#51228;&#44277;&#48155;&#51008; &#51221;&#48372;&#47484; &#53685;&#54644; &#54924;&#50896;&#50640;&#44172; &#50672;&#46973;&#54624; &#49688; &#51080;&#51004;&#47728;, &#54596;&#50836;&#54620; &#51221;&#48372;&#51032; &#51228;&#44277;&#51012; &#50836;&#52397;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;. &#54924;&#49324;&#45716; &#54924;&#50896;&#51004;&#47196;&#48512;&#53552; &#54872;&#44553;&#50640; &#54596;&#50836;&#54620; &#51221;&#48372;&#47484; &#48155;&#51008; &#45216;&#48512;&#53552; 3&#50689;&#50629;&#51068; &#51060;&#45236;&#50640; &#54872;&#44553;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c0">&nbsp;</span></p>
-<p class="c2"><span class="c9">&#51228;24&#51312; (&#44228;&#50557; &#54644;&#51648; &#46321;)</span><span class="c1">&nbsp;&#9312; &#54924;&#50896;&#51008; &#50616;&#51228;&#46304;&#51648; &#49436;&#48708;&#49828; &#51060;&#50857;&#51012; &#50896;&#54616;&#51648; &#50506;&#45716; &#44221;&#50864; &#54924;&#50896; &#53448;&#53748;&#47484; &#53685;&#54644; &#51060;&#50857;&#44228;&#50557;&#51012; &#54644;&#51648;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;. &#54924;&#50896;&#53448;&#53748;&#47196; &#51064;&#54644; &#54924;&#50896;&#51060; &#44172;&#51076;&#49436;&#48708;&#49828; &#45236;&#50640;&#49436; &#48372;&#50976;&#54620; &#44172;&#51076;&#51060;&#50857;&#51221;&#48372;&#45716; &#47784;&#46160; &#49325;&#51228;&#46104;&#50612; &#48373;&#44396;&#44032; &#48520;&#44032;&#45733;&#54616;&#44172; &#46121;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9313; &#54924;&#49324;&#45716; &#54924;&#50896;&#51060; &#51060; &#50557;&#44288; &#48143; &#44536;&#50640; &#46384;&#47480; &#50868;&#50689;&#51221;&#52293;, &#49436;&#48708;&#49828; &#51221;&#52293;&#50640;&#49436; &#44552;&#51648;&#54616;&#45716; &#54665;&#50948;&#47484; &#54616;&#45716; &#46321; &#48376; &#44228;&#50557;&#51012; &#50976;&#51648;&#54624; &#49688; &#50630;&#45716; &#51473;&#45824;&#54620; &#49324;&#50976;&#44032; &#51080;&#45716; &#44221;&#50864;&#50640;&#45716; &#49345;&#45817;&#54620; &#44592;&#44036; &#51204;&#50640; &#52572;&#44256;&#54616;&#44256; &#44592;&#44036;&#51012; &#51221;&#54616;&#50668; &#49436;&#48708;&#49828; &#51060;&#50857;&#51012; &#51473;&#51648;&#54616;&#44144;&#45208; &#51060;&#50857;&#44228;&#50557;&#51012; &#54644;&#51648;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9314; &#51228;1&#54637; &#48143; &#51228;2&#54637;&#50640; &#46384;&#47480; &#54872;&#44553; &#48143; &#49552;&#54644;&#48176;&#49345;&#51008; &#12300;&#53080;&#53584;&#52768;&#51060;&#50857;&#51088;&#48372;&#54840;&#51648;&#52840;&#12301;&#50640; &#46384;&#46972; &#52376;&#47532;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9315; &#54924;&#49324;&#45716; &#52572;&#44540;&#51032; &#49436;&#48708;&#49828; &#51060;&#50857;&#51068;&#48512;&#53552; &#50672;&#49549;&#54616;&#50668; 1&#45380; &#46041;&#50504; &#54924;&#49324;&#51032; &#49436;&#48708;&#49828;&#47484; &#51060;&#50857;&#54616;&#51648; &#50506;&#51008; &#54924;&#50896;(&#51060;&#54616; &ldquo;&#55092;&#47732;&#44228;&#51221;&rdquo;&#51060;&#46972; &#54633;&#45768;&#45796;)&#51032; &#44060;&#51064;&#51221;&#48372;&#47484; &#48372;&#54840;&#54616;&#44592; &#50948;&#54644; &#51060;&#50857;&#44228;&#50557;&#51012; &#54644;&#51648;&#54616;&#44256; &#54924;&#50896;&#51032; &#44060;&#51064;&#51221;&#48372; &#54028;&#44592; &#46321;&#51032; &#51312;&#52824;&#47484; &#52712;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;. &#51060; &#44221;&#50864; &#51312;&#52824;&#51068; 30&#51068; &#51204;&#44620;&#51648; &#44228;&#50557;&#54644;&#51648;, &#44060;&#51064;&#51221;&#48372; &#54028;&#44592; &#46321;&#51032; &#51312;&#52824;&#44032; &#52712;&#54644;&#51652;&#45796;&#45716; &#49324;&#49892; &#48143; &#54028;&#44592;&#46112; &#44060;&#51064;&#51221;&#48372; &#46321;&#51012; &#54924;&#50896;&#50640;&#44172; &#53685;&#51648;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c0">&nbsp;</span></p>
-<p class="c10"><span class="c5">&#51228;6&#51109; &#49552;&#54644;&#48176;&#49345; &#48143; &#47732;&#52293;&#51312;&#54637; &#46321;</span>
-</p>
-<p class="c10"><span class="c0">&nbsp;</span></p>
-<p class="c2"><span class="c9">&#51228;25&#51312; (&#49552;&#54644;&#48176;&#49345;)</span><span class="c1">&nbsp;&#9312; &#54924;&#49324; &#46608;&#45716; &#54924;&#50896;&#51008; &#48376; &#50557;&#44288;&#51012; &#50948;&#48152;&#54616;&#50668; &#49345;&#45824;&#48169;&#50640;&#44172; &#49552;&#54644;&#47484; &#51077;&#55180; &#44221;&#50864;&#50640;&#45716; &#44536; &#49552;&#54644;&#47484; &#48176;&#49345;&#54624; &#52293;&#51076;&#51060; &#51080;&#49845;&#45768;&#45796;. &#45796;&#47564;, &#44256;&#51032; &#46608;&#45716; &#44284;&#49892;&#51060; &#50630;&#45716; &#44221;&#50864;&#50640;&#45716; &#44536;&#47084;&#54616;&#51648; &#50500;&#45768; &#54633;&#45768;&#45796;</span>
-</p>
-<p class="c2"><span class="c1">&#9313; &#54924;&#49324;&#44032; &#44060;&#48324;&#49436;&#48708;&#49828; &#51228;&#44277;&#51088;&#50752; &#51228;&#55092; &#44228;&#50557;&#51012; &#47610;&#44256; &#54924;&#50896;&#50640;&#44172; &#44060;&#48324;&#49436;&#48708;&#49828;&#47484; &#51228;&#44277;&#54616;&#45716; &#44221;&#50864;&#50640; &#54924;&#50896;&#51060; &#51060; &#44060;&#48324;&#49436;&#48708;&#49828; &#51060;&#50857;&#50557;&#44288;&#50640; &#46041;&#51032;&#47484; &#54620; &#46244; &#44060;&#48324;&#49436;&#48708;&#49828; &#51228;&#44277;&#51088;&#51032; &#44256;&#51032; &#46608;&#45716; &#44284;&#49892;&#47196; &#51064;&#54644; &#54924;&#50896;&#50640;&#44172; &#49552;&#54644;&#44032; &#48156;&#49373;&#54620; &#44221;&#50864;&#50640; &#44536; &#49552;&#54644;&#50640; &#45824;&#54644;&#49436;&#45716; &#44060;&#48324;&#49436;&#48708;&#49828; &#51228;&#44277;&#51088;&#44032; &#52293;&#51076;&#51012; &#51665;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c0">&nbsp;</span></p>
-<p class="c2"><span class="c9">&#51228;26&#51312; (&#54924;&#49324;&#51032; &#47732;&#52293;)</span><span class="c1">&nbsp;&#9312; &#54924;&#49324;&#45716; &#52380;&#51116;&#51648;&#48320; &#46608;&#45716; &#51060;&#50640; &#51456;&#54616;&#45716; &#48520;&#44032;&#54637;&#47141;&#51004;&#47196; &#51064;&#54616;&#50668; &#49436;&#48708;&#49828;&#47484; &#51228;&#44277;&#54624; &#49688; &#50630;&#45716; &#44221;&#50864;&#50640;&#45716; &#49436;&#48708;&#49828; &#51228;&#44277;&#50640; &#44288;&#54616;&#50668; &#52293;&#51076;&#51012; &#51648;&#51648; &#50506;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9313; &#54924;&#49324;&#45716; &#49436;&#48708;&#49828;&#50857; &#49444;&#48708;&#51032; &#48372;&#49688;, &#44368;&#52404;, &#51221;&#44592;&#51216;&#44160;, &#44277;&#49324; &#46321; &#44592;&#53440; &#51060;&#50640; &#51456;&#54616;&#45716; &#49324;&#50976;&#47196; &#48156;&#49373;&#54620; &#49552;&#54644;&#50640; &#45824;&#54616;&#50668; &#52293;&#51076;&#51012; &#51648;&#51648; &#50506;&#49845;&#45768;&#45796;. &#45796;&#47564;, &#54924;&#49324;&#51032; &#44256;&#51032; &#46608;&#45716; &#44284;&#49892;&#50640; &#51032;&#54620; &#44221;&#50864;&#50640;&#45716; &#44536;&#47084;&#54616;&#51648; &#50500;&#45768;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9314; &#54924;&#49324;&#45716; &#54924;&#50896;&#51032; &#44256;&#51032; &#46608;&#45716; &#44284;&#49892;&#47196; &#51064;&#54620; &#49436;&#48708;&#49828; &#51060;&#50857;&#51032; &#51109;&#50528;&#50640; &#45824;&#54616;&#50668;&#45716; &#52293;&#51076;&#51012; &#51648;&#51648; &#50506;&#49845;&#45768;&#45796;. &#45796;&#47564;, &#54924;&#50896;&#50640;&#44172; &#48512;&#46301;&#51060;&#54616;&#44144;&#45208; &#51221;&#45817;&#54620; &#49324;&#50976;&#44032; &#51080;&#45716; &#44221;&#50864;&#50640;&#45716; &#44536;&#47084;&#54616;&#51648; &#50500;&#45768;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9315; &#54924;&#50896;&#51060; &#49436;&#48708;&#49828;&#50752; &#44288;&#47144;&#54616;&#50668; &#44172;&#51116;&#54620; &#51221;&#48372;&#45208; &#51088;&#47308; &#46321;&#51032; &#49888;&#47280;&#49457;, &#51221;&#54869;&#49457; &#46321;&#50640; &#45824;&#54616;&#50668; &#54924;&#49324;&#45716; &#44256;&#51032; &#46608;&#45716; &#51473;&#45824;&#54620; &#44284;&#49892;&#51060; &#50630;&#45716; &#54620; &#52293;&#51076;&#51012; &#51648;&#51648; &#50506;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9316; &#54924;&#49324;&#45716; &#54924;&#50896;&#51060; &#45796;&#47480; &#54924;&#50896; &#46608;&#45716; &#53440;&#51064;&#44284; &#49436;&#48708;&#49828;&#47484; &#47588;&#44060;&#47196; &#48156;&#49373;&#54620; &#44144;&#47000;&#45208; &#48516;&#51137;&#50640; &#45824;&#54644; &#44060;&#51077;&#54624; &#51032;&#47924;&#44032; &#50630;&#51004;&#47728;, &#51060;&#47196; &#51064;&#54620; &#49552;&#54644;&#50640; &#45824;&#54644; &#52293;&#51076;&#51012; &#51648;&#51648; &#50506;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9317; &#54924;&#49324;&#45716; &#47924;&#47308;&#47196; &#51228;&#44277;&#46104;&#45716; &#49436;&#48708;&#49828; &#51060;&#50857;&#44284; &#44288;&#47144;&#54616;&#50668; &#54924;&#50896;&#50640;&#44172; &#48156;&#49373;&#54620; &#49552;&#54644;&#50640; &#45824;&#54644;&#49436;&#45716; &#52293;&#51076;&#51012; &#51648;&#51648; &#50506;&#49845;&#45768;&#45796;. &#44536;&#47084;&#45208; &#54924;&#49324;&#51032; &#44256;&#51032; &#46608;&#45716; &#51473;&#44284;&#49892;&#50640; &#51032;&#54620; &#44221;&#50864;&#50640;&#45716; &#44536;&#47084;&#54616;&#51648; &#50500;&#45768;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9318; &#54924;&#49324;&#45716; &#54924;&#50896;&#51060; &#49436;&#48708;&#49828;&#47484; &#51060;&#50857;&#54616;&#50668; &#44592;&#45824;&#54616;&#45716; &#51060;&#51061;&#51012; &#50619;&#51648; &#47803;&#54616;&#44144;&#45208; &#49345;&#49892;&#54620; &#44163;&#50640; &#45824;&#54616;&#50668; &#52293;&#51076;&#51012; &#51648;&#51648; &#50506;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9319; &#54924;&#49324;&#45716; &#54924;&#50896;&#51032; &#44172;&#51076;&#49345; &#44221;&#54744;&#52824;, &#46321;&#44553;, &#50500;&#51060;&#53596;, &#44172;&#51076; &#47672;&#45768; &#46321;&#51032; &#49552;&#49892;&#50640; &#45824;&#54616;&#50668; &#52293;&#51076;&#51012; &#51648;&#51648; &#50506;&#49845;&#45768;&#45796;. &#45796;&#47564;, &#54924;&#49324;&#51032; &#44256;&#51032; &#46608;&#45716; &#44284;&#49892;&#50640; &#51032;&#54620; &#44221;&#50864;&#50640;&#45716; &#44536;&#47084;&#54616;&#51648; &#50500;&#45768;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9320; &#54924;&#49324;&#45716; &#54924;&#50896;&#51060; &#47784;&#48148;&#51068; &#44592;&#44592; &#48708;&#48128;&#48264;&#54840;, &#50724;&#54536;&#47560;&#53011; &#49324;&#50629;&#51088;&#44032; &#51228;&#44277;&#54616;&#45716; &#48708;&#48128;&#48264;&#54840; &#46321;&#51012; &#44288;&#47532;&#54616;&#51648; &#50506;&#50500; &#48156;&#49373;&#54616;&#45716; &#51228;3&#51088; &#44208;&#51228;&#50640; &#45824;&#54644; &#52293;&#51076;&#51012; &#51648;&#51648; &#50506;&#49845;&#45768;&#45796;. &#45796;&#47564;, &#54924;&#49324;&#51032; &#44256;&#51032; &#46608;&#45716; &#44284;&#49892;&#50640; &#51032;&#54620; &#44221;&#50864;&#50640;&#45716; &#44536;&#47084;&#54616;&#51648; &#50500;&#45768;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9321; &#54924;&#50896;&#51060; &#47784;&#48148;&#51068; &#44592;&#44592;&#51032; &#48320;&#44221;, &#47784;&#48148;&#51068; &#44592;&#44592;&#51032; &#48264;&#54840; &#48320;&#44221;, &#50868;&#50689;&#52404;&#51228;(OS) &#48260;&#51204;&#51032; &#48320;&#44221;, &#54644;&#50808; &#47196;&#48141;, &#53685;&#49888;&#49324; &#48320;&#44221; &#46321;&#51004;&#47196; &#51064;&#54644; &#53080;&#53584;&#52768; &#51204;&#48512;&#45208; &#51068;&#48512;&#51032; &#44592;&#45733;&#51012; &#51060;&#50857;&#54624; &#49688; &#50630;&#45716; &#44221;&#50864; &#54924;&#49324;&#45716; &#51060;&#50640; &#45824;&#54644; &#52293;&#51076;&#51012; &#51648;&#51648; &#50506;&#49845;&#45768;&#45796;. &#45796;&#47564;, &#54924;&#49324;&#51032; &#44256;&#51032; &#46608;&#45716; &#44284;&#49892;&#50640; &#51032;&#54620; &#44221;&#50864;&#50640;&#45716; &#44536;&#47084;&#54616;&#51648; &#50500;&#45768;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9322; &#54924;&#50896;&#51060; &#54924;&#49324;&#44032; &#51228;&#44277;&#54616;&#45716; &#53080;&#53584;&#52768;&#45208; &#44228;&#51221;&#51221;&#48372;&#47484; &#49325;&#51228;&#54620; &#44221;&#50864; &#54924;&#49324;&#45716; &#51060;&#50640; &#45824;&#54644; &#52293;&#51076;&#51012; &#51648;&#51648; &#50506;&#49845;&#45768;&#45796;. &#45796;&#47564;, &#54924;&#49324;&#51032; &#44256;&#51032; &#46608;&#45716; &#44284;&#49892;&#50640; &#51032;&#54620; &#44221;&#50864;&#50640;&#45716; &#44536;&#47084;&#54616;&#51648; &#50500;&#45768;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9323; &#54924;&#49324;&#45716; &#51076;&#49884;&#54924;&#50896;&#51060; &#49436;&#48708;&#49828; &#51060;&#50857;&#51004;&#47196; &#48156;&#49373;&#54620; &#49552;&#54644;&#50640; &#45824;&#54644;&#49436;&#45716; &#52293;&#51076;&#51012; &#51648;&#51648; &#50506;&#49845;&#45768;&#45796;. &#45796;&#47564;, &#54924;&#49324;&#51032; &#44256;&#51032; &#46608;&#45716; &#44284;&#49892;&#50640; &#51032;&#54620; &#44221;&#50864;&#50640;&#45716; &#44536;&#47084;&#54616;&#51648; &#50500;&#45768;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c0">&nbsp;</span></p>
-<p class="c2"><span
-        class="c9">&#51228;27&#51312; (&#54924;&#50896;&#50640; &#45824;&#54620; &#53685;&#51648;)</span><span
-        class="c1">&nbsp;&#9312; &#54924;&#49324;&#44032; &#54924;&#50896;&#50640;&#44172; &#53685;&#51648;&#47484; &#54616;&#45716; &#44221;&#50864; &#54924;&#50896;&#51032; &#51204;&#51088;&#50864;&#54200;&#51452;&#49548;, &#51204;&#51088;&#47700;&#47784;, &#44172;&#51076; &#49436;&#48708;&#49828; &#45236; &#51901;&#51648;, &#47928;&#51088;&#47700;&#49884;&#51648;(LMS/SMS) &#46321;&#51004;&#47196; &#54624; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9313; &#54924;&#49324;&#45716; &#54924;&#50896; &#51204;&#52404;&#50640;&#44172; &#53685;&#51648;&#47484; &#54616;&#45716; &#44221;&#50864; 7&#51068; &#51060;&#49345; &#44172;&#51076;&#49436;&#48708;&#49828; &#45236;&#50640; &#44172;&#49884;&#54616;&#44144;&#45208; &#54045;&#50629;&#54868;&#47732; &#46321;&#51012; &#51228;&#49884;&#54632;&#51004;&#47196;&#50024; &#51228;1&#54637;&#51032; &#53685;&#51648;&#50640; &#44040;&#51020;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c0">&nbsp;</span></p>
-<p class="c2"><span
-        class="c9">&#51228;28&#51312; (&#51116;&#54032;&#44428; &#48143; &#51456;&#44144;&#48277;)</span><span
-        class="c1">&nbsp;&#51060; &#50557;&#44288;&#51008; &#45824;&#54620;&#48124;&#44397; &#48277;&#47456;&#50640; &#46384;&#46972; &#44508;&#50984;&#46104;&#44256; &#54644;&#49437;&#46121;&#45768;&#45796;. &#54924;&#49324;&#50752; &#54924;&#50896; &#44036;&#50640; &#48156;&#49373;&#54620; &#48516;&#51137;&#51004;&#47196; &#49548;&#49569;&#51060; &#51228;&#44592;&#46104;&#45716; &#44221;&#50864;&#50640;&#45716; &#48277;&#47161;&#50640; &#51221;&#54620; &#51208;&#52264;&#50640; &#46384;&#47480; &#48277;&#50896;&#51012; &#44288;&#54624; &#48277;&#50896;&#51004;&#47196; &#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c0">&nbsp;</span></p>
-<p class="c2"><span class="c9 c11">&#51228;29&#51312; (&#54924;&#50896;&#51032; &#44256;&#52649;&#52376;&#47532; &#48143; &#48516;&#51137;&#54644;&#44208;)</span>
-</p>
-<p class="c2"><span class="c1">&#9312; &#54924;&#49324;&#45716; &#54924;&#50896;&#51032; &#54200;&#51032;&#47484; &#44256;&#47140;&#54616;&#50668; &#54924;&#50896;&#51032; &#51032;&#44204;&#51060;&#45208; &#48520;&#47564;&#51012; &#51228;&#49884;&#54616;&#45716; &#48169;&#48277;&#51012; &#44172;&#51076;&#49436;&#48708;&#49828; &#45236; &#46608;&#45716; &#44536; &#50672;&#44208;&#54868;&#47732;&#50640; &#50504;&#45236;&#54633;&#45768;&#45796;. &#54924;&#49324;&#45716; &#51060;&#47084;&#54620; &#54924;&#50896;&#51032; &#51032;&#44204;&#51060;&#45208; &#48520;&#47564;&#51012; &#52376;&#47532;&#54616;&#44592; &#50948;&#54620; &#51204;&#45812;&#51064;&#47141;&#51012; &#50868;&#50689;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2"><span class="c1">&#9313; &#54924;&#49324;&#45716; &#54924;&#50896;&#51004;&#47196;&#48512;&#53552; &#51228;&#44592;&#46104;&#45716; &#51032;&#44204;&#51060;&#45208; &#48520;&#47564;&#51060; &#51221;&#45817;&#54616;&#45796;&#44256; &#44061;&#44288;&#51201;&#51004;&#47196; &#51064;&#51221;&#46112; &#44221;&#50864;&#50640;&#45716; &#54633;&#47532;&#51201;&#51064; &#44592;&#44036; &#45236;&#50640; &#51060;&#47484; &#49888;&#49549;&#54616;&#44172; &#52376;&#47532;&#54633;&#45768;&#45796;. &#45796;&#47564;, &#52376;&#47532;&#50640; &#51109;&#44592;&#44036;&#51060; &#49548;&#50836;&#46104;&#45716; &#44221;&#50864;&#50640;&#45716; &#54924;&#50896;&#50640;&#44172; &#51109;&#44592;&#44036;&#51060; &#49548;&#50836;&#46104;&#45716; &#49324;&#50976;&#50752; &#52376;&#47532;&#51068;&#51221;&#51012; &#44172;&#51076;&#49436;&#48708;&#49828; &#45236; &#44277;&#51648;&#54616;&#44144;&#45208; &#51228;27&#51312; &#51228;1&#54637;&#50640; &#46384;&#46972; &#53685;&#51648;&#54633;&#45768;&#45796;.</span>
-</p>
-<p class="c2 c26"><span class="c1">&#9314; &#54924;&#49324;&#50752; &#54924;&#50896; &#44036;&#50640; &#48516;&#51137;&#51060; &#48156;&#49373;&#54616;&#50668; &#51228;3&#51032; &#48516;&#51137;&#51312;&#51221;&#44592;&#44288;&#51060; &#51312;&#51221;&#54624; &#44221;&#50864; &#54924;&#49324;&#45716; &#51060;&#50857;&#51228;&#54620; &#46321; &#54924;&#50896;&#50640;&#44172; &#51312;&#52824;&#54620; &#49324;&#54637;&#51012; &#49457;&#49892;&#55176; &#51613;&#47749;&#54616;&#44256;, &#51312;&#51221;&#44592;&#44288;&#51032; &#51312;&#51221;&#50640; &#46384;&#47484; &#49688; &#51080;&#49845;&#45768;&#45796;.</span>
-</p>
-<p class="c30"><span class="c11 c32"></span></p></body>
+<body>
+<h2>제1장 총칙</h2>
+<p>
+    <strong>제1조 (목적)</strong> 이 약관은 책킹(이하 “회사”라 합니다)이 모바일 기기를 통해 제공하는 서비스 및 이에 부수하는 네트워크, 웹사이트, 기타 서비스(이하 “서비스”라 합니다)의
+    이용에 대한 회사와 서비스 이용자의 권리ㆍ의무 및 책임사항, 기타 필요한 사항을 규정함을 목적으로 합니다.
+</p>
+<p>
+    <strong>제2조 (용어의 정의)</strong>
+<ol>
+    <li>이 약관에서 사용하는 용어의 정의는 다음과 같습니다.
+        <ol>
+            <li>“회사”라 함은 모바일 기기를 통하여 서비스를 제공하는 사업자를 의미합니다.</li>
+            <li>“회원”이란 이 약관에 따라 이용계약을 체결하고, 회사가 제공하는 서비스를 이용하는 자를 의미합니다.</li>
+            <li>“임시회원”이란 일부 정보만 제공하고 회사가 제공하는 서비스의 일부만 이용하는 자를 의미합니다.</li>
+            <li>“모바일 기기”란 콘텐츠를 다운로드 받거나 설치하여 사용할 수 있는 기기로서, 휴대폰, 스마트폰, 휴대정보단말기(PDA), 태블릿 등을 의미합니다.</li>
+            <li>“계정정보”란 회원의 회원번호와 외부계정정보, 기기정보, 별명, 프로필 사진, 친구목록 등 회원이 회사에 제공한 정보와 게임이용정보 (캐릭터 정보, 아이템, 레벨 등), 이용요금 결제
+                정보 등을 통칭합니다.
+            </li>
+            <li>“콘텐츠”란 모바일 기기로 이용할 수 있도록 회사가 서비스 제공과 관련하여 디지털 방식으로 제작한 유료 또는 무료의 내용물 일체(게임 및 네트워크 서비스, 애플리케이션, 게임 머니, 게임
+                아이템 등)를 의미합니다.
+            </li>
+            <li>“오픈마켓”이란 모바일 기기에서 게임 콘텐츠를 설치하고 결제할 수 있도록 구축된 전자상거래 환경을 의미합니다.</li>
+            <li>“애플리케이션”이란 회사가 제공하는 서비스를 이용하기 위하여 모바일 기기를 통해 다운로드 받거나 설치하여 사용하는 프로그램 일체를 의미합니다.</li>
+            <li>“게임서비스”라 함은 회사가 제공하는 서비스의 하나로서 회원이 모바일 기기에서 실행하는 게임 및 이에 부수하는 서비스를 의미합니다.</li>
+        </ol>
+    </li>
+    <li>이 약관에서 사용하는 용어의 정의는 본 조 제1항에서 정하는 것을 제외하고는 관계법령 및 서비스별 정책에서 정하는 바에 의하며, 이에 정하지 아니한 것은 일반적인 상 관례에 따릅니다.</li>
+</ol>
+</p>
+<p>
+    <strong>제3조 (회사정보 등의 제공)</strong>
+    회사는 다음 각 호의 사항을 회원이 알아보기 쉽도록 게임 서비스 내에 표시합니다. 다만, 개인정보처리방침과 약관은 회원이 연결화면을 통하여 볼 수 있도록 할 수 있습니다.
+    <ol>
+        <li>상호 및 대표자의 성명</li>
+        <li>영업소 소재지 주소(회원의 불만을 처리할 수 있는 곳의 주소를 포함한다)</li>
+        <li>전화번호, 전자우편주소</li>
+        <li>사업자 등록번호</li>
+        <li>통신판매업 신고번호</li>
+        <li>개인정보처리방침</li>
+        <li>서비스 이용약관</li>
+    </ol>
+</p>
+<p>
+    <strong>제4조 (약관의 효력 및 변경)</strong>
+    <ol>
+        <li>회사는 이 약관의 내용을 회원이 알 수 있도록 게임서비스 내 또는 그 연결화면에 게시합니다. 이 경우 이 약관의 내용 중 서비스 중단, 청약철회, 환급, 계약 해제․해지, 회사의 면책사항 등과 같은
+            중요한 내용은 굵은 글씨, 색채, 부호 등으로 명확하게 표시하거나 별도의 연결화면 등을 통하여 회원이 알아보기 쉽게 처리합니다.
+        </li>
+        <li>회사가 약관을 개정할 경우에는 적용일자 및 개정내용, 개정사유 등을 명시하여 최소한 그 적용일 7일 이전부터 게임서비스 내 또는 그 연결화면에 게시하여 회원에게 공지합니다. 다만, 변경된 내용이
+            회원에게 불리하거나 중대한 사항의 변경인 경우에는 그 적용일 30일 이전까지 본문과 같은 방법으로 공지하고 제27조 제1항의 방법으로 회원에게 통지합니다. 이 경우 개정 전 내용과 개정 후 내용을
+            명확하게 비교하여 회원이 알기 쉽도록 표시합니다.
+        </li>
+        <li>회사가 약관을 개정할 경우 개정약관 공지 후 개정약관의 적용에 대한 회원의 동의 여부를 확인합니다. 회사는 제2항의 공지 또는 통지를 할 경우 회원이 개정약관에 대해 동의 또는 거부의 의사표시를 하지
+            않으면 동의한 것으로 볼 수 있다는 내용도 함께 공지 또는 통지를 하며, 회원이 이 약관 시행일까지 거부의 의사표시를 하지 않는다면 개정약관에 동의한 것으로 볼 수 있습니다. 회원이 개정약관에 대해
+            동의하지 않는 경우 회사 또는 회원은 서비스 이용계약을 해지할 수 있습니다.
+        </li>
+        <li>회사는 회원이 회사와 이 약관의 내용에 관하여 질의 및 응답을 할 수 있도록 조치를 취합니다.</li>
+        <li>회사는 「전자상거래 등에서의 소비자보호에 관한 법률」, 「약관의 규제에 관한 법률」, 「게임산업진흥에 관한 법률」, 「정보통신망이용촉진 및 정보보호 등에 관한 법률」, 「콘텐츠산업진흥법」 등 관련
+            법령에 위배하지 않는 범위에서 이 약관을 개정할 수 있습니다.
+        </li>
+    </ol>
+</p>
+<p>
+    <strong>제5조 (이용계약의 체결 및 적용)</strong>
+    <ol>
+        <li>이용계약은 회원이 되고자 하는 자(이하 “가입신청자”라 합니다.)가 이 약관의 내용에 대하여 동의를 한 다음 서비스 이용 신청을 하고, 회사가 그 신청에 대해서 승낙함으로써 체결됩니다.</li>
+        <li>회사는 가입신청자의 신청에 대하여 승낙함을 원칙으로 합니다. 다만, 회사는 다음 각 호의 어느 하나에 해당하는 이용 신청에 대해서는 승낙을 거절할 수 있습니다.
+            <ol>
+                <li>이용신청서 내용을 허위로 기재하거나 이용신청 요건을 충족하지 못한 경우</li>
+                <li>회사가 서비스를 제공하지 않은 국가에서 비정상적이거나 우회적인 방법을 통해 서비스를 이용하는 경우</li>
+                <li>「게임산업진흥에 관한 법률」등 관련 법령에서 금지하는 행위를 할 목적으로 신청 하는 경우</li>
+                <li>사회의 안녕과 질서 또는 미풍양속을 저해할 목적으로 신청한 경우</li>
+                <li>부정한 용도로 게임서비스를 이용하고자 하는 경우
+                <li>영리를 추구할 목적으로 게임서비스를 이용하고자 하는 경우</li>
+                <li>그 밖에 각 호에 준하는 사유로서 승낙이 부적절하다고 판단되는 경우</li>
+            </ol>
+        </li>
+        <li>회사는 다음 각 호의 어느 하나에 해당하는 경우 그 사유가 해소될 때까지 승낙을 유보할 수 있습니다.
+            <ol>
+                <li>회사의 설비에 여유가 없거나, 특정 모바일 기기의 지원이 어렵거나, 기술적 장애가 있는 경우</li>
+                <li>서비스 상의 장애 또는 서비스 이용요금, 결제수단의 장애가 발생한 경우</li>
+                <li>그 밖의 각 호에 준하는 사유로서 이용신청의 승낙이 어렵다고 판단되는 경우</li>
+            </ol>
+        </li>
+    </ol>
+</p>
+<p>
+    <strong>제6조 (약관 외 준칙) </strong>
+    이 약관에서 정하지 아니한 사항과 이 약관의 해석에 관하여는 「전자상거래 등에서의 소비자보호에 관한 법률」,「약관의 규제에 관한 법률」,「게임산업진흥에 관한 법률」,「정보통신망이용촉진 및 정보보호 등에 관한 법률」,「콘텐츠산업진흥법」 등 관련 법령 또는 상 관례에 따릅니다.
+</p>
+<p>
+    <strong>제7조 (운영정책)</strong>
+    회사는 다음 각 호의 사항을 회원이 알아보기 쉽도록 게임 서비스 내에 표시합니다. 다만, 개인정보처리방침과 약관은 회원이 연결화면을 통하여 볼 수 있도록 할 수 있습니다.
+    <ol>
+        <li>약관을 적용하기 위하여 필요한 사항과 약관에서 구체적 범위를 정하여 위임한 사항을 게임서비스 운영정책(이하 “운영정책”이라 합니다)으로 정할 수 있습니다.</li>
+        <li>회사는 운영정책의 내용을 회원이 알 수 있도록 게임서비스 내 또는 그 연결화면에 게시합니다.</li>
+        <li>운영정책을 개정하는 경우에는 제4조 제2항의 절차에 따릅니다. 다만, 운영정책 개정내용이 다음 각 호의 어느 하나에 해당하는 경우에는 제2항의 방법으로 사전에 공지합니다.</li>
+        <ol>
+            <li>약관에서 구체적으로 범위를 정하여 위임한 사항을 개정하는 경우</li>
+            <li>회원의 권리·의무와 관련 없는 사항을 개정하는 경우</li>
+            <li>운영정책의 내용이 약관에서 정한 내용과 근본적으로 다르지 않고 회원이 예측할 수 있는 범위 내에서 운영정책을 개정하는 경우</li>
+        </ol>
+    </ol>
+</p>
+
+<hr>
+
+<h2>제2장 개인정보 관리</h2>
+<p>
+    <strong>제8조 (개인정보의 보호 및 사용)</strong>
+    <ol>
+        <li>회사는 관련 법령이 정하는 바에 따라 회원의 개인정보를 보호하기 위해 노력하며, 개인정보의 보호 및 사용에 대해서는 관련 법령 및 회사의 개인정보처리방침에 따릅니다. 다만, 회사가 제공하는 서비스 이외의 링크된 서비스에서는 회사의 개인정보처리방침이 적용되지 않습니다.</li>
+        <li>서비스의 특성에 따라 회원의 개인정보와 관련이 없는 별명‧캐릭터 사진‧상태정보 등 자신을 소개하는 내용이 공개될 수 있습니다.</li>
+        <li>회사는 관련 법령에 의해 관련 국가기관 등의 요청이 있는 경우를 제외하고는 회원의 개인정보를 본인의 동의 없이 타인에게 제공하지 않습니다.</li>
+        <li>회사는 회원의 귀책사유로 개인정보가 유출되어 발생한 피해에 대하여 책임을 지지 않습니다.</li>
+    </ol>
+</p>
+
+<hr>
+
+<h2>제3장 이용계약 당사자의 의무</h2>
+<p>
+    <strong>제9조 (회사의 의무)</strong>
+    <ol>
+        <li>회사는 관련 법령, 이 약관에서 정하는 권리의 행사 및 의무의 이행을 신의에 따라 성실하게 준수합니다.</li>
+        <li>회사는 회원이 안전하게 서비스를 이용할 수 있도록 개인정보(신용정보 포함)보호를 위해 보안시스템을 갖추어야 하며 개인정보처리방침을 공시하고 준수합니다. 회사는 이 약관 및 개인정보처리방침에서 정한 경우를 제외하고는 회원의 개인정보가 제3자에게 공개 또는 제공되지 않도록 합니다.</li>
+        <li>회사는 계속적이고 안정적인 서비스의 제공을 위하여 서비스 개선을 하던 중 설비에 장애가 생기거나 데이터 등이 멸실․훼손된 때에는 천재지변, 비상사태, 현재의 기술로는 해결이 불가능한 장애나 결함 등 부득이한 사유가 없는 한 지체 없이 이를 수리 또는 복구하도록 최선의 노력을 다합니다.</li>
+    </ol>
+</p>
+<p>
+    <strong>제10조 (회원의 의무)</strong>
+<ol>
+    <li>회원은 회사에서 제공하는 서비스의 이용과 관련하여 다음 각 호에 해당하는 행위를 해서는 안 됩니다.
+        <ol>
+            <li>이용신청 또는 회원 정보 변경 시 허위사실을 기재하는 행위</li>
+            <li>회사가 제공하지 않는 서비스나 비정상적인 방법을 통해 사이버 자산(ID, 캐릭터, 아이템, 게임 머니 등)을 매매 또는 증여하거나, 이를 취득하여 이용하는 행위</li>
+            <li>회사의 직원이나 운영자를 가장하거나 타인의 명의를 도용하여 글을 게시하거나 메일을 발송하는 행위, 타인으로 가장하거나 타인과의 관계를 허위로 명시하는 행위/li>
+            <li>타인의 신용카드⋅유/무선 전화⋅은행 계좌 등을 도용하여 유료 콘텐츠를 구매하는 행위, 다른 회원의 ID 및 비밀번호를 부정사용하는 행위</li>
+            <li>다른 회원의 개인정보를 무단으로 수집⋅저장⋅게시 또는 유포하는 행위</li>
+            <li>도박 등 사행행위를 하거나 유도하는 행위, 음란⋅저속한 정보를 교류⋅게재하거나 음란 사이트를 연결(링크)하는 행위, 수치심⋅혐오감 또는 공포심을 일으키는 말⋅소리⋅글⋅그림⋅사진 또는 영상을 타인에게 전송 또는 유포하는 행위 등 서비스를 불건전하게 이용하는 행위</li>
+            <li>서비스를 무단으로 영리, 영업, 광고, 홍보, 정치활동, 선거운동 등 본래의 용도 이외의 용도로 이용하는 행위</li>
+            <li>회사의 서비스를 이용하여 얻은 정보를 무단으로 복제․유통․조장하거나 상업적으로 이용하는 행위, 알려지거나 알려지지 않은 버그를 악용하여 서비스를 이용하는 행위</li>
+            <li>타인을 기망하여 이득을 취하는 행위, 회사의 서비스의 이용과 관련하여 타인에게 피해를 입히는 행위</li>
+            <li>회사나 타인의 지적재산권 또는 초상권을 침해하는 행위, 타인의 명예를 훼손하거나 손해를 가하는 행위</li>
+            <li>법령에 의하여 전송 또는 게시가 금지된 정보(컴퓨터 프로그램)나 컴퓨터 소프트웨어⋅하드웨어 또는 전기통신장비의 정상적인 작동을 방해⋅파괴할 목적으로 고안된 바이러스⋅컴퓨터 코드⋅파일⋅프로그램 등을 고의로 전송⋅게시⋅유포 또는 사용하는 행위</li>
+            <li>회사로부터 특별한 권리를 부여 받지 않고 애플리케이션을 변경하거나, 애플리케이션에 다른 프로그램을 추가⋅삽입하거나, 서버를 해킹⋅역설계하거나, 소스 코드나 애플리케이션 데이터를 유출⋅변경하거나, 별도의 서버를 구축하거나, 웹사이트의 일부분을 임의로 변경⋅도용하여 회사를 사칭하는 행위</li>
+            <li>그 밖에 관련 법령에 위반되거나 선량한 풍속 기타 사회통념에 반하는 행위</li>
+        </ol>
+    </li>
+    <li>회원의 계정 및 모바일 기기에 관한 관리 책임은 회원에게 있으며, 이를 타인이 이용하도록 하게 하여서는 안 됩니다. 모바일 기기의 관리 부실이나 타인에게 이용을 승낙함으로 인해 발생하는 손해에 대해서 회사는 책임을 지지 않습니다.</li>
+    <li>회원은 각 오픈마켓에서 부정한 결제가 이루어지지 아니하도록 결제 비밀번호 기능을 설정하고 관리하여야 합니다. 회원의 부주의로 인하여 발생하는 손해에 대해 회사는 책임지지 않습니다</li>
+    <li>회사는 다음 각 호의 행위의 구체적인 내용을 정할 수 있으며, 회원은 이를 따라야 합니다.
+        <ol>
+            <li>회원의 계정명, 캐릭터명, 길드명, 기타 게임 내에서 사용하는 명칭</li>
+            <li>채팅내용과 방법</li>
+            <li>게시판이용 및 서비스이용 방법</li>
+            <li>카카오, 페이스북, 구글플러스 등 외부 모바일 플랫폼 제휴 서비스 정책</li>
+        </ol>
+    </li>
+</ol>
+</p>
+
+<hr>
+
+<h2>제4장 서비스 이용 및 이용제한</h2>
+<p>
+    <strong>제11조 (서비스의 제공)</strong>
+    <ol>
+        <li>회사는 제5조의 규정에 따라 이용계약이 완료된 회원에게 그 즉시 서비스를 이용할 수 있도록 합니다. 다만, 일부 서비스의 경우 회사의 필요에 따라 지정된 일자부터 서비스를 개시할 수 있습니다.</li>
+        <li>회사는 회원에게 게임서비스를 제공할 때 이 약관에 정하고 있는 서비스를 포함하여 기타 부가적인 서비스를 함께 제공할 수 있습니다.</li>
+        <li>회사는 회원의 등급을 구분하고 이용시간, 이용횟수, 제공 서비스의 범위 등을 세분화하여 이용에 차등을 둘 수 있습니다.</li>
+    </ol>
+</p>
+
+<p>
+    <strong>제12조 (서비스의 이용)</strong>
+    <ol>
+        <li>게임서비스는 회사의 영업방침에 따라 정해진 시간 동안 제공합니다. 회사는 게임서비스 제공시간을 게임 애플리케이션 초기화면이나 게임서비스 공지사항에 적절한 방법으로 안내합니다.</li>
+        <li>제1항에도 불구하고 회사는 다음 각 호의 경우에는 서비스의 전부 또는 일부를 일시 정지할 수 있습니다. 이 경우 회사는 사전에 그 정지의 사유와 기간을 게임 애플리케이션 초기화면이나 게임서비스 공지사항 등에 공지합니다. 다만, 사전에 공지할 수 없는 부득이한 사정이 있는 경우 사후에 공지할 수 있습니다.
+            <ol>
+                <li>시스템 정기점검, 서버의 증설 및 교체, 네트워크의 불안정 등의 시스템 운영상 필요한 경우</li>
+                <li>정전, 서비스 설비의 장애, 서비스 이용폭주, 기간통신사업자의 설비 보수 또는 점검 등으로 인하여 정상적인 서비스 제공이 불가능한 경우</li>
+                <li>전시, 사변, 천재지변 또는 이에 준하는 국가비상사태 등 회사가 통제할 수 없는 상황이 발생한 경우</li>
+            </ol>
+        </li>
+        <li>회사는 모바일 기기를 위한 전용 애플리케이션 또는 네트워크를 이용하여 서비스를 제공합니다. 회원은 애플리케이션을 다운로드하여 설치하거나 네트워크를 이용하여 무료 또는 유료로 서비스를 이용할 수 있습니다.</li>
+        <li>유료 콘텐츠의 경우에는 해당 서비스에 명시된 요금을 지급하여야 이용할 수 있습니다. 네트워크를 통해 애플리케이션을 다운로드하거나 서비스를 이용하는 경우에는 가입한 이동통신사에서 정한 별도의 요금이 발생할 수 있습니다.</li>
+        <li>다운로드하여 설치한 애플리케이션 또는 네트워크를 통해 이용하는 서비스의 경우에는 모바일 기기 또는 이동통신사의 특성에 맞도록 제공됩니다. 모바일 기기의 변경․번호 변경 또는 해외 로밍의 경우에는 콘텐츠의 전부 또는 일부의 이용이 불가능할 수 있으며, 이 경우 회사는 책임을 지지 않습니다.</li>
+        <li>다운로드하여 설치한 애플리케이션 또는 네트워크를 통해 이용하는 서비스의 경우에는 백그라운드 작업이 진행될 수 있습니다. 이 경우 모바일 기기 또는 이동통신사의 특성에 맞도록 추가요금이 발생할 수 있으며 이와 관련하여 회사는 책임을 지지 않습니다.</li>
+    </ol>
+</p>
+<p>
+    <strong>제13조 (서비스의 변경 및 중단)</strong>
+    <ol>
+        <li>회사는 원활한 게임서비스 제공을 위해 운영상 또는 기술상의 필요에 따라 서비스를 변경할 수 있으며, 변경 전에 해당 내용을 게임서비스 내에 공지합니다. 다만, 버그․오류 등의 수정이나 긴급 업데이트 등 부득이하게 변경할 필요가 있는 경우 또는 중대한 변경에 해당하지 않는 경우에는 사후에 공지할 수 있습니다.</li>
+        <li>회사는 영업양도․분할․합병 등에 따른 영업의 폐지, 게임제공의 계약만료, 당해 게임서비스의 현저한 수익 악화 등 경영상의 중대한 사유로 인해 게임서비스를 지속하기 어려운 경우에는 서비스 전부를 중단할 수 있습니다. 이 경우 중단일자 30일 이전까지 중단일자․중단사유․보상조건 등을 게임 애플리케이션 초기화면 또는 그 연결화면을 통해 공지하고 제27조 제1항의 방법으로 회원에게 통지합니다.</li>
+        <li>제2항의 경우 회사는 사용하지 않았거나 사용기간이 남아 있는 유료 아이템에 대해 제24조 제3항에 따라 환급합니다.</li>
+    </ol>
+</p>
+<p>
+    <strong>제14조 (정보의 수집 등)</strong>
+    <ol>
+        <li>회사는 회원간에 이루어지는 채팅 내용을 저장․보관할 수 있으며 이 정보는 회사만이 보유합니다. 회사는 회원간의 분쟁 조정, 민원 처리 또는 게임 질서의 유지를 위한 경우에 한하여, 제3자는 법령에 따라 권한이 부여된 경우에 한하여 이 정보를 열람할 수 있습니다.</li>
+        <li>회사 또는 제3자가 제1항에 따라 채팅 정보를 열람할 경우 회사는 사전에 열람의 사유 및 범위를 해당 회원에게 고지합니다. 다만, 제10조 제1항에 따른 금지행위의 조사․처리․확인 또는 그 행위로 인한 피해 구제와 관련하여 이 정보를 열람해야 할 경우에는 사후에 고지할 수 있습니다.</li>
+        <li>회사는 서비스의 원활하고 안정적인 운영 및 서비스 품질의 개선을 위하여 회원의 개인정보를 제외한 회원의 모바일 기기 정보(설정,사양,운영체제, 버전 등)를 수집 ‧ 활용할 수 있습니다.</li>
+        <li>회사는 서비스 개선 및 회원 대상 서비스 소개 등을 위한 목적으로 회원에게 추가정보를 요청할 수 있습니다. 이 요청에 대해 회원은 승낙하거나 거절할 수 있으며, 회사가 이 요청을 할 경우에는 회원이 이 요청을 거절할 수 있다는 뜻을 함께 고지합니다.</li>
+    </ol>
+</p>
+<p>
+    <strong>제15조 (광고의 제공)</strong>
+    <ol>
+        <li>회사는 서비스의 운영과 관련하여 게임서비스 내에 광고를 게재할 수 있습니다. 또한 수신에 동의한 회원에 한하여 전자우편, 문자서비스(LMS/SMS), 푸시메시지(Push Notification) 등의 방법으로 광고성 정보를 전송할 수 있습니다. 이 경우 회원은 언제든지 수신을 거절할 수 있으며, 회사는 회원의 수신 거절 시 광고성 정보를 발송하지 아니합니다.</li>
+        <li>회사가 제공하는 서비스 중의 배너 또는 링크 등을 통해 타인이 제공하는 광고나 서비스에 연결될 수 있습니다.</li>
+        <li>제2항에 따라 타인이 제공하는 광고나 서비스에 연결될 경우 해당 영역에서 제공하는 서비스는 회사의 서비스 영역이 아니므로 회사가 신뢰성, 안정성 등을 보장하지 않으며, 그로 인한 회원의 손해에 대하여도 회사는 책임을 지지 않습니다. 다만, 회사가 고의 또는 중과실로 손해의 발생을 용이하게 하거나 손해 방지를 위한 조치를 취하지 아니한 경우에는 그러하지 아니합니다.</li>
+    </ol>
+</p>
+
+<p>
+    <strong>제16조 (저작권 등의 귀속)</strong>
+    <ol>
+        <li>사가 제작한 게임서비스 내의 콘텐츠에 대한 저작권과 기타 지적재산권은 회사에 귀속합니다.</li>
+        <li>회원은 회사가 제공하는 게임서비스를 이용하여 얻은 정보 중에서 회사 또는 제공업체에 지적재산권이 귀속된 정보를 회사 또는 제공업체의 사전 동의 없이 복제⋅전송 등의 방법(편집, 공표, 공연, 배포, 방송, 2차적 저작물 작성 등을 포함합니다. 이하 같습니다)에 의하여 영리목적으로 이용하거나 타인에게 이용하게 하여서는 안 됩니다.</li>
+        <li>회원은 게임 내에서 보여지거나 게임서비스와 관련하여 회원 또는 다른 이용자가 게임 애플리케이션 또는 게임서비스를 통해 업로드 또는 전송하는 대화 텍스트를 포함한 커뮤니케이션, 이미지, 사운드 및 모든 자료 및 정보(이하 “이용자 콘텐츠”라 합니다.)에 대하여 회사가 다음과 같은 방법과 조건으로 이용하는 것을 허락합니다.
+            <ol>
+                <li>해당 이용자 콘텐츠를 이용, 편집 형식의 변경 및 기타 변형하는 것(공표, 복제, 공연, 전송, 배포, 방송, 2차적 저작물 작성 등 어떠한 형태로든 이용 가능하며, 이용기간과 지역에는 제한이 없음)</li>
+                <li>이용자 콘텐츠를 제작한 이용자의 사전 동의 없이 거래를 목적으로 이용자 콘텐츠를 판매, 대여, 양도 행위를 하지 않음</li>
+            </ol>
+        </li>
+        <li>게임 내에서 보여지지 않고 게임서비스와 일체화되지 않은 회원의 이용자 콘텐츠(예컨대, 일반게시판 등에서의 게시물)에 대하여 회사는 회원의 명시적인 동의가 없이 이용하지 않으며, 회원은 언제든지 이러한 이용자 콘텐츠를 삭제할 수 있습니다.</li>
+        <li>회사는 회원이 게시하거나 등록하는 서비스 내의 게시물에 대해 제10조 제1항에 따른 금지행위에 해당된다고 판단되는 경우에는 사전 통지 없이 이를 삭제 또는 이동하거나 그 등록을 거절할 수 있습니다.</li>
+        <li>회사가 운영하는 게시판 등에 게시된 정보로 인하여 법률상 이익이 침해된 회원은 회사에 해당 정보의 삭제 또는 반박 내용의 게재를 요청할 수 있습니다. 이 경우 회사는 신속하게 필요한 조치를 취하고 이를 신청인에게 통지합니다.</li>
+        <li>이 조는 회사가 게임서비스를 운영하는 동안 유효하며, 회원 탈퇴 후에도 지속적으로 적용됩니다.</li>
+    </ol>
+</p>
+
+<p>
+    <strong>제17조 (유료 콘텐츠의 구매, 사용기간 및 이용)</strong>
+<ol>
+    <li>게임서비스 내에서 회원이 구매한 유료 콘텐츠는 해당 애플리케이션을 다운로드 받거나 설치한 모바일 기기에서만 이용할 수 있습니다.</li>
+    <li>회원이 구매한 유료 콘텐츠의 이용기간은 구매 시 명시된 기간에 따릅니다. 다만, 제13조 제2항에 따라 서비스 중단이 이루어지는 경우 기간의 정함이 없는 유료 콘텐츠의 이용기간은 서비스 중단 공지 시 공지된 서비스의 중단일자까지로 합니다.</li>
+</ol>
+</p>
+
+<p>
+    <strong>제18조 (회원에 대한 서비스 이용제한)</strong>
+<ol>
+    <li> 회원은 제10조에 따른 회원의 의무를 위반하는 행위를 하여서는 안 되며, 해당 행위를 하는 경우에 회사는 다음 각 호의 구분에 따른 회원의 서비스 이용제한, 관련 정보(글, 사진, 영상 등) 삭제 및 기타의 조치를 포함한 이용제한 조치를 할 수 있습니다. 이용제한 조치가 이루어지는 구체적인 사유 및 절차는 제19조 제1항에 따라 개별 게임의 운영정책에서 정합니다.
+        <ol>
+            <li>일부 권한 제한 : 일정기간 채팅 등 일정 권한을 제한</li>
+            <li>캐릭터 이용제한 : 일정기간 또는 영구히 회원 캐릭터의 이용을 제한</li>
+            <li>계정 이용제한 : 일정기간 또는 영구히 회원 계정의 이용을 제한</li>
+            <li>회원 이용제한 : 일정기간 또는 영구히 회원의 게임서비스 이용을 제한</li>
+        </ol>
+    </li>
+    <li>제1항의 이용제한이 정당한 경우에 회사는 이용제한으로 인하여 회원이 입은 손해를 배상하지 않습니다.</li>
+    <li>회사는 다음 각 호의 사유에 대한 조사가 완료될 때까지 해당 계정의 서비스 이용을 정지할 수 있습니다.
+        <ol>
+            <li>계정이 해킹 또는 도용당했다는 정당한 신고가 접수된 경우</li>
+            <li>불법프로그램 사용자 또는 작업장 등 위법행위자로 의심되는 경우</li>
+            <li>그 밖에 각 호에 준하는 사유로 서비스 이용의 잠정조치가 필요한 경우</li>
+        </ol>
+    </li>
+    <li>제3항의 조사가 완료된 후, 유료 게임서비스의 경우에는 정지된 시간만큼 회원의 이용시간을 연장하거나 그에 상당하는 유료서비스 또는 캐쉬 등으로 보상합니다. 다만, 회원이 제3항 각 호의 사유에 해당하는 경우에는 그러하지 아니합니다.</li>
+</ol>
+</p>
+
+<p>
+    <strong>제19조 (이용제한 조치의 사유와 절차)</strong>
+<ol>
+    <li>회사는 제18조 제1항에 따른 이용제한 조치의 구체적인 사유 및 절차를 제10조 제1항에 따른 금지행위의 내용․정도․횟수․결과 등을 고려하여 운영정책으로 정합니다.</li>
+    <li>회사가 제18조 제1항에서 정한 이용제한 조치를 하는 경우에는 다음 각 호의 사항을 회원에게 사전 통지합니다. 다만, 긴급히 조치할 필요가 있는 경우에는 사후에 통지할 수 있습니다.
+        <ol>
+            <li>이용제한 조치의 사유</li>
+            <li>이용제한 조치의 유형 및 기간</li>
+            <li>이용제한 조치에 대한 이의신청 방법</li>
+        </ol>
+    </li>
+</ol>
+</p>
+
+<p>
+    <strong>제20조 (이용제한 조치에 대한 이의신청 절차) </strong>
+<ol>
+    <li>회원이 회사의 이용제한 조치에 불복하고자 할 때에는 이 조치의 통지를 받은 날부터 14일 이내에 불복 이유를 기재한 이의 신청서를 서면, 전자우편 또는 이에 준하는 방법으로 회사에 제출하여야 합니다.</li>
+    <li>회사는 제1항의 이의신청서를 접수한 날부터 15일 이내에 불복 이유에 대하여 서면, 전자우편 또는 이에 준하는 방법으로 답변합니다. 다만, 회사는 이 기간 내에 답변이 어려운 경우에는 그 사유와 처리일정을 통지합니다.</li>
+    <li>회사는 불복 이유가 타당한 경우에는 이에 따른 조치를 취합니다.</li>
+</ol>
+</p>
+
+<hr>
+
+<h2>제5장 청약철회, 과오납금의 환급 및 이용계약의 해지</h2>
+
+<p>
+    <strong>제21조 (대금결제)</strong>
+<ol>
+    <li>콘텐츠에 대한 구매 대금의 부과와 납부는 원칙적으로 이동통신사나 오픈마켓 사업자 등에서 정하는 정책이나 방법에 따릅니다. 또한 각 결제수단별 한도가 회사나 오픈마켓 사업자가 정하는 정책 또는 정부의 방침에 따라 부여되거나 조정될 수 있습니다.</li>
+    <li>콘텐츠의 구매대금을 외화로 결제하는 경우에는 환율‧수수료 등으로 인하여 실제 청구금액이 서비스의 상점 등에서 표시된 가격과 달라질 수 있습니다.</li>
+</ol>
+</p>
+
+<p>
+    <strong>제22조 (청약 철회 등)</strong>
+<ol>
+    <li>회사와 유료 콘텐츠의 구매에 관한 계약을 체결한 회원은 구매계약일과 콘텐츠 이용 가능일 중 늦은 날부터 7일 이내에 별도의 수수료‧위약금 등의 부담 없이 청약철회를 할 수 있습니다.</li>
+    <li>회원은 다음 각 호에 해당하는 경우에는 회사의 의사에 반하여 제1항에 따른 청약철회를 할 수 없습니다. 다만, 가분적 콘텐츠로 구성된 구매계약의 경우에는 가분적 콘텐츠 중 다음 각 호에 해당하지 아니하는 나머지 부분에 대하여는 그러하지 아니합니다.
+        <ol>
+            <li>구매 즉시 사용되거나 적용되는 유료 콘텐츠</li>
+            <li>추가혜택이 제공되는 경우에 그 추가 혜택이 사용된 콘텐츠</li>
+            <li>개봉행위를 사용으로 볼 수 있거나 개봉 시 효용이 결정되는 콘텐츠의 개봉행위가 있는 경우</li>
+        </ol>
+    </li>
+    <li>회사는 제2항 각 호의 규정에 따라 청약철회가 불가능한 콘텐츠의 경우에는 그 사실을 회원이 쉽게 알 수 있는 곳에 명확하게 표시하고, 해당 콘텐츠의 시험사용 상품을 제공(한시적 이용의 허용, 체험용 제공 등)하거나 이에 대한 제공이 곤란한 경우에는 콘텐츠에 관한 정보 제공함으로써 회원의 청약철회의 권리행사가 방해받지 아니하도록 조치합니다. 만약 회사가 이러한 조치를 하지 아니한 경우에는 제2항 각 호의 청약철회 제한사유에도 불구하고 회원은 청약철회를 할 수 있습니다.</li>
+    <li>회원은 제1항 및 제2항에도 불구하고 구매한 유료 콘텐츠의 내용이 표시․광고의 내용과 다르거나 구매계약의 내용과 다르게 이행된 경우에 해당 콘텐츠가 이용 가능하게 된 날부터 3개월 이내, 그 사실을 안 날 또는 알 수 있었던 날부터 30일 이내에 청약철회를 할 수 있습니다.</li>
+    <li>회원이 청약철회를 할 경우 회사는 플랫폼사업자 또는 오픈마켓 사업자를 통해 구매내역을 확인합니다. 또한 회사는 회원의 정당한 철회 사유를 확인하기 위해 회원에게서 제공받은 정보를 통해 회원에게 연락할 수 있으며, 추가적인 증빙을 요구할 수 있습니다.</li>
+    <li>제1항부터 제4항까지의 규정에 따라 청약철회가 이루어질 경우 회사는 지체 없이 회원의 유료 콘텐츠를 회수하고 3영업일 이내에 대금을 환급합니다. 이 경우 회사가 환급을 지연한 때에는 그 지연기간에 대하여 「전자상거래 등에서의 소비자보호에 관한 법률」 및 같은 법 시행령 제21조의3에서 정하는 이율을 곱하여 산정한 지연이자를 지급합니다.</li>
+    <li>미성년자가 모바일 기기에서 콘텐츠 구매계약을 체결하는 경우, 회사는 법정대리인의 동의가 없으면 미성년자 본인 또는 법정대리인이 그 계약을 취소할 수 있다는 내용을 고지하며, 미성년자가 법정대리인의 동의 없이 구매계약을 체결한 때에는 미성년자 본인 또는 법정대리인은 회사에 그 계약을 취소할 수 있습니다. 다만, 미성년자가 법정대리인이 범위를 정하여 처분을 허락한 재산으로 콘텐츠를 구매한 경우 또는 미성년자가 속임수로써 자기를 성년자로 믿게 하거나 법정대리인의 동의가 있는 것으로 믿게 한 경우에는 취소할 수 없습니다.</li>
+    <li>콘텐츠 구매계약의 당사자가 미성년자인지 여부는 결제가 진행된 모바일 기기, 결제 실행자 정보, 결제 수단 명의자 등을 근거로 판단합니다. 또한 회사는 정당한 취소인지를 확인하기 위해 미성년자 및 법정대리인임을 증명할 수 있는 서류의 제출을 요청할 수 있습니다.</li>
+</ol>
+</p>
+
+<p>
+    <strong>제23조 (과오납금의 환급)</strong>
+<ol>
+    <li>회사는 과오납금이 발생하는 경우 과오납금을 회원에게 환급합니다. 다만, 과오납금이 회사의 고의 또는 과실 없이 회원의 과실로 인하여 발생한 경우에는 그 환급에 소요되는 실제 비용은 합리적인 범위 내에서 회원이 부담합니다.</li>
+    <li>애플리케이션을 통한 결제는 오픈마켓 사업자가 제공하는 결제방식에 따르며, 결제 과정에서 과오납금이 발생하는 경우, 회사 또는 오픈마켓 사업자에게 환급을 요청하여야 합니다.</li>
+    <li>애플리케이션의 다운로드 또는 네트워크 서비스의 이용으로 인해 발생한 통신요금(통화료, 데이터 통화료 등)은 환급 대상에서 제외될 수 있습니다.</li>
+    <li>환급은 서비스를 이용하고 있는 모바일 기기의 운영체제 종류에 따라 각 오픈마켓 사업자 또는 회사의 환급정책에 따라 진행됩니다.</li>
+    <li>회사는 과오납금의 환급을 처리하기 위해 회원에게서 제공받은 정보를 통해 회원에게 연락할 수 있으며, 필요한 정보의 제공을 요청할 수 있습니다. 회사는 회원으로부터 환급에 필요한 정보를 받은 날부터 3영업일 이내에 환급합니다.</li>
+</ol>
+</p>
+
+<p>
+    <strong>제24조 (계약 해지 등)</strong>
+<ol>
+    <li>회원은 언제든지 서비스 이용을 원하지 않는 경우 회원 탈퇴를 통해 이용계약을 해지할 수 있습니다. 회원탈퇴로 인해 회원이 게임서비스 내에서 보유한 게임이용정보는 모두 삭제되어 복구가 불가능하게 됩니다.</li>
+    <li>사는 회원이 이 약관 및 그에 따른 운영정책, 서비스 정책에서 금지하는 행위를 하는 등 본 계약을 유지할 수 없는 중대한 사유가 있는 경우에는 상당한 기간 전에 최고하고 기간을 정하여 서비스 이용을 중지하거나 이용계약을 해지할 수 있습니다.</li>
+    <li>제1항 및 제2항에 따른 환급 및 손해배상은 「콘텐츠이용자보호지침」에 따라 처리합니다.</li>
+    <li>회사는 최근의 서비스 이용일부터 연속하여 1년 동안 회사의 서비스를 이용하지 않은 회원(이하 “휴면계정”이라 합니다)의 개인정보를 보호하기 위해 이용계약을 해지하고 회원의 개인정보 파기 등의 조치를 취할 수 있습니다. 이 경우 조치일 30일 전까지 계약해지, 개인정보 파기 등의 조치가 취해진다는 사실 및 파기될 개인정보 등을 회원에게 통지합니다.</li>
+</ol>
+</p>
+
+<hr>
+
+<h2>제6장 손해배상 및 면책조항 등</h2>
+<p>
+    <strong>제25조 (손해배상)</strong>
+    <ol>
+        <li>회사 또는 회원은 본 약관을 위반하여 상대방에게 손해를 입힌 경우에는 그 손해를 배상할 책임이 있습니다. 다만, 고의 또는 과실이 없는 경우에는 그러하지 아니 합니다</li>
+        <li>회사가 개별서비스 제공자와 제휴 계약을 맺고 회원에게 개별서비스를 제공하는 경우에 회원이 이 개별서비스 이용약관에 동의를 한 뒤 개별서비스 제공자의 고의 또는 과실로 인해 회원에게 손해가 발생한 경우에 그 손해에 대해서는 개별서비스 제공자가 책임을 집니다.</li>
+    </ol>
+</p>
+
+<p>
+    <strong>제26조 (회사의 면책)</strong>
+<ol>
+    <li>사는 천재지변 또는 이에 준하는 불가항력으로 인하여 서비스를 제공할 수 없는 경우에는 서비스 제공에 관하여 책임을 지지 않습니다.</li>
+    <li>회사는 서비스용 설비의 보수, 교체, 정기점검, 공사 등 기타 이에 준하는 사유로 발생한 손해에 대하여 책임을 지지 않습니다. 다만, 회사의 고의 또는 과실에 의한 경우에는 그러하지 아니합니다.</li>
+    <li>회사는 회원의 고의 또는 과실로 인한 서비스 이용의 장애에 대하여는 책임을 지지 않습니다. 다만, 회원에게 부득이하거나 정당한 사유가 있는 경우에는 그러하지 아니합니다.</li>
+    <li>회원이 서비스와 관련하여 게재한 정보나 자료 등의 신뢰성, 정확성 등에 대하여 회사는 고의 또는 중대한 과실이 없는 한 책임을 지지 않습니다.</li>
+    <li>회사는 회원이 다른 회원 또는 타인과 서비스를 매개로 발생한 거래나 분쟁에 대해 개입할 의무가 없으며, 이로 인한 손해에 대해 책임을 지지 않습니다.</li>
+    <li>회사는 무료로 제공되는 서비스 이용과 관련하여 회원에게 발생한 손해에 대해서는 책임을 지지 않습니다. 그러나 회사의 고의 또는 중과실에 의한 경우에는 그러하지 아니합니다.</li>
+    <li>회사는 회원이 서비스를 이용하여 기대하는 이익을 얻지 못하거나 상실한 것에 대하여 책임을 지지 않습니다.</li>
+    <li>회사는 회원의 게임상 경험치, 등급, 아이템, 게임 머니 등의 손실에 대하여 책임을 지지 않습니다. 다만, 회사의 고의 또는 과실에 의한 경우에는 그러하지 아니합니다.</li>
+    <li>회사는 회원이 모바일 기기 비밀번호, 오픈마켓 사업자가 제공하는 비밀번호 등을 관리하지 않아 발생하는 제3자 결제에 대해 책임을 지지 않습니다. 다만, 회사의 고의 또는 과실에 의한 경우에는 그러하지 아니합니다.</li>
+    <li>회원이 모바일 기기의 변경, 모바일 기기의 번호 변경, 운영체제(OS) 버전의 변경, 해외 로밍, 통신사 변경 등으로 인해 콘텐츠 전부나 일부의 기능을 이용할 수 없는 경우 회사는 이에 대해 책임을 지지 않습니다. 다만, 회사의 고의 또는 과실에 의한 경우에는 그러하지 아니합니다.</li>
+    <li>회원이 회사가 제공하는 콘텐츠나 계정정보를 삭제한 경우 회사는 이에 대해 책임을 지지 않습니다. 다만, 회사의 고의 또는 과실에 의한 경우에는 그러하지 아니합니다.</li>
+    <li>회사는 임시회원이 서비스 이용으로 발생한 손해에 대해서는 책임을 지지 않습니다. 다만, 회사의 고의 또는 과실에 의한 경우에는 그러하지 아니합니다.</li>
+</ol>
+</p>
+
+<p>
+    <strong>제27조 (회원에 대한 통지) </strong>
+<ol>
+    <li>회사가 회원에게 통지를 하는 경우 회원의 전자우편주소, 전자메모, 게임 서비스 내 쪽지, 문자메시지(LMS/SMS) 등으로 할 수 있습니다.</li>
+    <li>회사는 회원 전체에게 통지를 하는 경우 7일 이상 게임서비스 내에 게시하거나 팝업화면 등을 제시함으로써 제1항의 통지에 갈음할 수 있습니다.</li>
+</ol>
+</p>
+
+<p>
+    <strong>제28조 (재판권 및 준거법)</strong>
+    이 약관은 대한민국 법률에 따라 규율되고 해석됩니다. 회사와 회원 간에 발생한 분쟁으로 소송이 제기되는 경우에는 법령에 정한 절차에 따른 법원을 관할 법원으로 합니다.
+</p>
+
+<p>
+    <strong>제29조 (회원의 고충처리 및 분쟁해결)</strong>
+    <ol>
+        <li>회사는 회원의 편의를 고려하여 회원의 의견이나 불만을 제시하는 방법을 게임서비스 내 또는 그 연결화면에 안내합니다. 회사는 이러한 회원의 의견이나 불만을 처리하기 위한 전담인력을 운영합니다.</li>
+        <li>회사는 회원으로부터 제기되는 의견이나 불만이 정당하다고 객관적으로 인정될 경우에는 합리적인 기간 내에 이를 신속하게 처리합니다. 다만, 처리에 장기간이 소요되는 경우에는 회원에게 장기간이 소요되는 사유와 처리일정을 게임서비스 내 공지하거나 제27조 제1항에 따라 통지합니다.</li>
+        <li>회사와 회원 간에 분쟁이 발생하여 제3의 분쟁조정기관이 조정할 경우 회사는 이용제한 등 회원에게 조치한 사항을 성실히 증명하고, 조정기관의 조정에 따를 수 있습니다.</li>
+    </ol>
+</p>
+</body>
 </html>
