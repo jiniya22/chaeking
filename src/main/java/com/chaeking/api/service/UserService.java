@@ -1,7 +1,5 @@
 package com.chaeking.api.service;
 
-import com.auth0.jwt.exceptions.TokenExpiredException;
-import com.chaeking.api.config.SecurityConfig;
 import com.chaeking.api.config.exception.InvalidInputException;
 import com.chaeking.api.domain.entity.User;
 import com.chaeking.api.domain.entity.UserAuthority;
@@ -9,9 +7,7 @@ import com.chaeking.api.domain.value.TokenValue;
 import com.chaeking.api.domain.value.UserValue;
 import com.chaeking.api.domain.value.response.BaseResponse;
 import com.chaeking.api.repository.UserRepository;
-import com.chaeking.api.util.JWTUtils;
 import com.chaeking.api.util.MessageUtils;
-import com.chaeking.api.util.cipher.AESCipher;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.util.Strings;
@@ -47,7 +43,7 @@ public class UserService implements UserDetailsService {
     }
 
     @Transactional
-    public void patch(long userId, UserValue.Req.Modification req) {
+    public TokenValue.Token patch(long userId, UserValue.Req.Modification req) {
         User user = select(userId);
         if (Strings.isBlank(req.email()) && Strings.isBlank(req.nickname())) {
             log.info(">>>>> email, nickname 모두 값이 없습니다.");
@@ -57,35 +53,18 @@ public class UserService implements UserDetailsService {
                     throw new InvalidInputException(MessageUtils.DUPLICATE_USER_EMAIL);
                 }
                 user.setEmail(req.email());
+                userRepository.save(user);
+                return User.createToken(user);
             }
             if (Strings.isNotBlank(req.nickname())) {
                 user.setNickname(req.nickname());
             }
         }
-        userRepository.save(user);
+        return null;
     }
 
     public UserValue.Res.Detail selectDetail(long userId) {
         return User.createDetail(select(userId));
-    }
-
-    public TokenValue.Token login(String refreshToken, UserValue.Req.Login req) {
-        if (Strings.isBlank(refreshToken)) {
-            TokenValue.Verify verify = JWTUtils.verify(refreshToken);
-            if(verify.success()) {
-                User user = userRepository.findByEmail(verify.username()).orElseThrow(() -> new InvalidInputException("이메일이 유효하지 않습니다."));
-                return User.createToken(user);
-            } else {
-                throw new TokenExpiredException("refresh_token was expired");
-            }
-        } else {
-            String pw = AESCipher.decrypt(req.password(), req.secretKey());
-            User user = userRepository.findByEmail(req.email()).orElseThrow(() -> new InvalidInputException("이메일이 유효하지 않습니다."));
-            if(SecurityConfig.passwordEncoder.matches(pw, user.getPassword())) {
-                return User.createToken(user);
-            }
-        }
-        throw new InvalidInputException(MessageUtils.INVALID_USER_EMAIL_OR_PASSWORD);
     }
 
     @Override
