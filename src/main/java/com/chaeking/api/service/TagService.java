@@ -1,7 +1,6 @@
 package com.chaeking.api.service;
 
 import com.chaeking.api.domain.value.BaseValue;
-import com.chaeking.api.domain.entity.Tag;
 import com.chaeking.api.repository.TagRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,14 +15,7 @@ import java.util.stream.Collectors;
 public class TagService {
     private final TagRepository tagRepository;
 
-    public List<Tag> select(List<Long> tagIds) {
-        return tagRepository.findAllById(tagIds);
-    }
-
     public List<BaseValue> tags() {
-        return tagRepository.findAll()
-                .stream()
-                .map(m -> new BaseValue(m.getId(), m.getName()))
-                .collect(Collectors.toList());
+        return tagRepository.findAll().stream().map(m -> new BaseValue(m.getId(), m.getName())).collect(Collectors.toList());
     }
 }

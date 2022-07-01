@@ -45,13 +45,23 @@ public class BookMemoryComplete extends BaseEntity {
 
     @Setter
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "book_memory_complete_id")
     private List<BookMemoryCompleteTag> tags = new ArrayList<>();
 
     public BookMemoryComplete(Book book, User user) {
         this.book = book;
         this.user = user;
+    }
+
+    public void addTag(BookMemoryCompleteTag tag) {
+        tag.setBookMemoryComplete(this);
+        this.tags.add(tag);
+    }
+
+    public void removeTags(List<BookMemoryCompleteTag> tags) {
+        tags.stream().forEach(tag -> tag.setBookMemoryComplete(null));
+        this.tags.removeAll(tags);
     }
 
     public static BookMemoryCompleteValue.Res.Simple createSimple(BookMemoryComplete c) {

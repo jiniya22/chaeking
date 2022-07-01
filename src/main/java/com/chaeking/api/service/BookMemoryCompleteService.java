@@ -8,6 +8,7 @@ import com.chaeking.api.domain.entity.User;
 import com.chaeking.api.domain.value.BookMemoryCompleteValue;
 import com.chaeking.api.repository.BookMemoryCompleteRepository;
 import com.chaeking.api.repository.BookMemoryWishRepository;
+import com.chaeking.api.repository.TagRepository;
 import com.chaeking.api.util.MessageUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -24,7 +25,7 @@ import java.util.stream.Collectors;
 public class BookMemoryCompleteService {
     private final BookService bookService;
     private final UserService userService;
-    private final TagService tagService;
+    private final TagRepository tagRepository;
     private final BookMemoryCompleteRepository bookMemoryCompleteRepository;
     private final BookMemoryWishRepository bookMemoryWishRepository;
 
@@ -45,12 +46,24 @@ public class BookMemoryCompleteService {
 
         bookMemoryComplete.setMemo(req.memo());
         bookMemoryComplete.setRate(req.rate());
-        if(!CollectionUtils.isEmpty(req.tagIds())) {
-            bookMemoryComplete.setTags(tagService.select(req.tagIds())
-                    .stream().map(BookMemoryCompleteTag::new).collect(Collectors.toList()));
-        }
+        mergeBookMemoryCompleteTags(req.tagIds(), bookMemoryComplete);
         bookMemoryWishRepository.deleteByBookAndUser(book, user);
         bookMemoryCompleteRepository.save(bookMemoryComplete);
+    }
+
+    private void mergeBookMemoryCompleteTags(List<Long> tagIds, BookMemoryComplete bookMemoryComplete) {
+        List<BookMemoryCompleteTag> bookMemoryCompleteTags = bookMemoryComplete.getTags();
+        if(!CollectionUtils.isEmpty(tagIds)) {
+            bookMemoryComplete.removeTags(bookMemoryCompleteTags.stream().filter(f -> !tagIds.contains(f.getTag().getId())).collect(Collectors.toList()));
+            List<Long> existIds = bookMemoryCompleteTags.stream().mapToLong(m -> m.getTag().getId()).boxed().collect(Collectors.toList());
+            tagIds.stream().filter(tagId -> !existIds.contains(tagId)).forEach(tagId -> {
+                tagRepository.findById(tagId).ifPresent(tag -> {
+                    bookMemoryComplete.addTag(new BookMemoryCompleteTag(tag));
+                });
+            });
+        } else if (!CollectionUtils.isEmpty(bookMemoryCompleteTags)) {
+            bookMemoryComplete.removeTags(bookMemoryCompleteTags);
+        }
     }
 
     @Transactional
@@ -61,12 +74,9 @@ public class BookMemoryCompleteService {
             throw new InvalidInputException(MessageUtils.NOT_FOUND_BOOK_MEMORY_COMPLETE);
         bookMemoryComplete.setMemo(value.memo());
         bookMemoryComplete.setRate(value.rate());
-        if(!CollectionUtils.isEmpty(value.tagIds())) {     // TODO :: test 필요
-            bookMemoryComplete.setTags(tagService.select(value.tagIds())
-                    .stream().map(BookMemoryCompleteTag::new).collect(Collectors.toList()));
-        }
+        mergeBookMemoryCompleteTags(value.tagIds(), bookMemoryComplete);
         bookMemoryCompleteRepository.save(bookMemoryComplete);
-    }
+        }
 
     @Transactional
     public void delete(Long userId, Long bookMemoryCompleteId) {
