@@ -6,6 +6,7 @@ import com.chaeking.api.domain.entity.User;
 import com.chaeking.api.domain.value.TokenValue;
 import com.chaeking.api.domain.value.UserValue;
 import com.chaeking.api.domain.value.response.BaseResponse;
+import com.chaeking.api.domain.value.response.DataResponse;
 import com.chaeking.api.service.UserService;
 import com.chaeking.api.util.JWTUtils;
 import com.chaeking.api.util.MessageUtils;
@@ -75,9 +76,9 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
             Authentication authResult) throws IOException
     {
         User user = (User) authResult.getPrincipal();
-        TokenValue.Token token = User.createToken(user);
+        DataResponse<TokenValue.Token> body = DataResponse.of(User.createToken(user));
         response.setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
-        response.getOutputStream().write(WebConfig.jsonMapper().writeValueAsBytes(token));
+        response.getOutputStream().write(WebConfig.jsonMapper().writeValueAsBytes(body));
     }
     
 }
