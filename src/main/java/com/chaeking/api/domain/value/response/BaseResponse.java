@@ -9,6 +9,8 @@ public class BaseResponse {
     private String result;
     private String reason;
 
+    private static BaseResponse INSTANCE;
+
     protected BaseResponse() {
         this.result = MessageUtils.SUCCESS;
         this.reason = "";
@@ -20,7 +22,9 @@ public class BaseResponse {
     }
 
     public static BaseResponse of() {
-        return new BaseResponse();
+        if(INSTANCE == null)
+            INSTANCE = new BaseResponse();
+        return INSTANCE;
     }
     public static BaseResponse of(String reason) {
         return new BaseResponse(reason);

@@ -13,4 +13,6 @@ public final class MessageUtils {
     public static final String UNAUTHORIZED_AUTHORIZATION_FORMAT_ERROR = "access_token 의 형식이 올바르지 않습니다.";
 
     public static final String INVALID_USER_EMAIL_OR_PASSWORD = "이메일 또는 비밀번호를 잘못 입력했습니다.";
+
+    public static final String DUPLICATE_USER_EMAIL = "이미 등록된 이메일 입니다.";
 }

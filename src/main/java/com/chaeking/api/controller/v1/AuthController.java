@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RequiredArgsConstructor
-@Tag(name = "auth", description = "인증(로그인, 회원 가입, 회원 정보 조회)")
+@Tag(name = "auth", description = "인증(로그인, 회원 가입, 회원 정보 조회/수정)")
 @RestController
 @RequestMapping("/v1/auth")
 public class AuthController {
@@ -50,6 +50,14 @@ public class AuthController {
     public DataResponse<UserValue.Res.Detail> selectOne() {
         long userId = BasicUtils.getUserId();
         return DataResponse.of(userService.selectDetail(userId));
+    }
+
+    @Operation(summary = "회원 정보 수정 - 이메일 or 닉네임")
+    @PatchMapping("/profile")
+    public BaseResponse patchUser(@RequestBody @Valid UserValue.Req.Modification req) {
+        Long userId = BasicUtils.getUserId();
+        userService.patch(userId, req);
+        return BaseResponse.of();
     }
 
 }

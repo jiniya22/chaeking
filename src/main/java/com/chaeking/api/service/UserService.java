@@ -13,6 +13,7 @@ import com.chaeking.api.util.JWTUtils;
 import com.chaeking.api.util.MessageUtils;
 import com.chaeking.api.util.cipher.AESCipher;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,6 +21,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Slf4j
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 @Service
@@ -37,11 +39,30 @@ public class UserService implements UserDetailsService {
     @Transactional
     public BaseResponse save(UserValue.Req.Creation req) {
         if(userRepository.existsByEmail(req.email()))
-            throw new InvalidInputException("등록된 이메일 입니다.");
+            throw new InvalidInputException(MessageUtils.DUPLICATE_USER_EMAIL);
         User user = userRepository.save(User.of(req));
         user.initializeAuthorities();
         userRepository.save(user);
         return BaseResponse.of();
+    }
+
+    @Transactional
+    public void patch(long userId, UserValue.Req.Modification req) {
+        User user = select(userId);
+        if (Strings.isBlank(req.email()) && Strings.isBlank(req.nickname())) {
+            log.info(">>>>> email, nickname 모두 값이 없습니다.");
+        } else {
+            if (Strings.isNotBlank(req.email())) {
+                if (!req.email().equals(user.getEmail()) && userRepository.existsByEmail(req.email())) {
+                    throw new InvalidInputException(MessageUtils.DUPLICATE_USER_EMAIL);
+                }
+                user.setEmail(req.email());
+            }
+            if (Strings.isNotBlank(req.nickname())) {
+                user.setNickname(req.nickname());
+            }
+        }
+        userRepository.save(user);
     }
 
     public UserValue.Res.Detail selectDetail(long userId) {
