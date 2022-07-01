@@ -12,6 +12,10 @@ public final class BookMemoryCompleteValue {
                 String memo,
                 List<Long> tagIds,
                 double rate) {
+
+            public static Modification of(Creation c) {
+                return new Modification(c.memo(), c.tagIds(), c.rate());
+            }
         }
 
         @Schema(name = "BookMemoryCompleteCreation")

@@ -44,14 +44,38 @@ public class BookMemoryCompleteService {
         BookMemoryComplete bookMemoryComplete = bookMemoryCompleteRepository.findByBookAndUser(book, user)
                 .orElse(new BookMemoryComplete(book, user));
 
-        bookMemoryComplete.setMemo(req.memo());
-        bookMemoryComplete.setRate(req.rate());
-        mergeBookMemoryCompleteTags(req.tagIds(), bookMemoryComplete);
-        bookMemoryWishRepository.deleteByBookAndUser(book, user);
+        mergeBookMemoryComplete(bookMemoryComplete, BookMemoryCompleteValue.Req.Modification.of(req));
+    }
+
+    @Transactional
+    public void modify(Long userId, Long bookMemoryCompleteId, BookMemoryCompleteValue.Req.Modification req) {
+        BookMemoryComplete bookMemoryComplete = bookMemoryCompleteRepository.findWithUserById(bookMemoryCompleteId)
+                .orElseThrow(() -> new InvalidInputException(MessageUtils.NOT_FOUND_BOOK_MEMORY_COMPLETE));
+        if(!userId.equals(bookMemoryComplete.getUser().getId()))
+            throw new InvalidInputException(MessageUtils.NOT_FOUND_BOOK_MEMORY_COMPLETE);
+
+        mergeBookMemoryComplete(bookMemoryComplete, req);
+    }
+
+    @Transactional
+    public void delete(Long userId, Long bookMemoryCompleteId) {
+        BookMemoryComplete bookMemoryComplete = bookMemoryCompleteRepository.findWithUserById(bookMemoryCompleteId)
+                .orElseThrow(() -> new InvalidInputException(MessageUtils.NOT_FOUND_BOOK_MEMORY_COMPLETE));
+        if(!userId.equals(bookMemoryComplete.getUser().getId()))
+            throw new InvalidInputException(MessageUtils.NOT_FOUND_BOOK_MEMORY_COMPLETE);
+        bookMemoryComplete.setActive(false);
         bookMemoryCompleteRepository.save(bookMemoryComplete);
     }
 
-    private void mergeBookMemoryCompleteTags(List<Long> tagIds, BookMemoryComplete bookMemoryComplete) {
+    private void mergeBookMemoryComplete(BookMemoryComplete bookMemoryComplete, BookMemoryCompleteValue.Req.Modification req) {
+        bookMemoryComplete.setMemo(req.memo());
+        bookMemoryComplete.setRate(req.rate());
+        mergeBookMemoryCompleteTags(bookMemoryComplete, req.tagIds());
+        bookMemoryWishRepository.deleteByBookAndUser(bookMemoryComplete.getBook(), bookMemoryComplete.getUser());
+        bookMemoryCompleteRepository.save(bookMemoryComplete);
+    }
+
+    private void mergeBookMemoryCompleteTags(BookMemoryComplete bookMemoryComplete, List<Long> tagIds) {
         List<BookMemoryCompleteTag> bookMemoryCompleteTags = bookMemoryComplete.getTags();
         if(!CollectionUtils.isEmpty(tagIds)) {
             bookMemoryComplete.removeTags(bookMemoryCompleteTags.stream().filter(f -> !tagIds.contains(f.getTag().getId())).collect(Collectors.toList()));
@@ -64,28 +88,6 @@ public class BookMemoryCompleteService {
         } else if (!CollectionUtils.isEmpty(bookMemoryCompleteTags)) {
             bookMemoryComplete.removeTags(bookMemoryCompleteTags);
         }
-    }
-
-    @Transactional
-    public void modify(Long userId, Long bookMemoryCompleteId, BookMemoryCompleteValue.Req.Modification value) {
-        BookMemoryComplete bookMemoryComplete = bookMemoryCompleteRepository.findWithUserById(bookMemoryCompleteId)
-                .orElseThrow(() -> new InvalidInputException(MessageUtils.NOT_FOUND_BOOK_MEMORY_COMPLETE));
-        if(!userId.equals(bookMemoryComplete.getUser().getId()))
-            throw new InvalidInputException(MessageUtils.NOT_FOUND_BOOK_MEMORY_COMPLETE);
-        bookMemoryComplete.setMemo(value.memo());
-        bookMemoryComplete.setRate(value.rate());
-        mergeBookMemoryCompleteTags(value.tagIds(), bookMemoryComplete);
-        bookMemoryCompleteRepository.save(bookMemoryComplete);
-        }
-
-    @Transactional
-    public void delete(Long userId, Long bookMemoryCompleteId) {
-        BookMemoryComplete bookMemoryComplete = bookMemoryCompleteRepository.findWithUserById(bookMemoryCompleteId)
-                .orElseThrow(() -> new InvalidInputException(MessageUtils.NOT_FOUND_BOOK_MEMORY_COMPLETE));
-        if(!userId.equals(bookMemoryComplete.getUser().getId()))
-            throw new InvalidInputException(MessageUtils.NOT_FOUND_BOOK_MEMORY_COMPLETE);
-        bookMemoryComplete.setActive(false);
-        bookMemoryCompleteRepository.save(bookMemoryComplete);
     }
 
 }
