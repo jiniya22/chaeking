@@ -1,22 +1,22 @@
 package com.chaeking.api.config.filter;
 
 import com.auth0.jwt.exceptions.TokenExpiredException;
+import com.chaeking.api.config.SecurityConfig;
 import com.chaeking.api.config.WebConfig;
 import com.chaeking.api.domain.entity.User;
 import com.chaeking.api.domain.value.TokenValue;
 import com.chaeking.api.domain.value.UserValue;
-import com.chaeking.api.domain.value.response.BaseResponse;
 import com.chaeking.api.domain.value.response.DataResponse;
 import com.chaeking.api.service.UserService;
 import com.chaeking.api.util.JWTUtils;
 import com.chaeking.api.util.MessageUtils;
+import com.chaeking.api.util.ResponseWriterUtil;
 import com.chaeking.api.util.cipher.AESCipher;
-import lombok.SneakyThrows;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -34,32 +34,26 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
     public LoginFilter(AuthenticationManager authenticationManager, UserService userService) {
         super(authenticationManager);
         this.userService = userService;
+        setAuthenticationFailureHandler(SecurityConfig.authenticationFailureHandler());
         setFilterProcessesUrl("/v1/auth/login");
     }
 
-    @SneakyThrows(IOException.class)
     @Transactional
     @Override
-    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
-            throws AuthenticationException {
+    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         String refreshToken = request.getHeader("X-Refresh-Token");
-        if(Strings.isBlank(refreshToken)) {
+        if (Strings.isBlank(refreshToken)) {
             try {
                 UserValue.Req.Login userLogin = WebConfig.jsonMapper().readValue(request.getInputStream(), UserValue.Req.Login.class);
                 String pw = AESCipher.decrypt(userLogin.password(), userLogin.secretKey());
-                UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
-                        userLogin.email(), pw, null
-                );
+                UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userLogin.email(), pw, null);
                 return getAuthenticationManager().authenticate(token);
-            } catch(Exception e) {
-                BaseResponse errorResponse = BaseResponse.of(MessageUtils.INVALID_USER_EMAIL_OR_PASSWORD);
-                response.setStatus(HttpStatus.BAD_REQUEST.value());
-                response.getOutputStream().write(WebConfig.jsonMapper().writeValueAsBytes(errorResponse));
-                return null;
+            } catch (Exception e) {
+                throw new AuthenticationServiceException(MessageUtils.INVALID_USER_EMAIL_OR_PASSWORD);
             }
         } else {
             TokenValue.Verify verify = JWTUtils.verify(refreshToken);
-            if(verify.success()) {
+            if (verify.success()) {
                 User user = userService.loadUserByUsername(verify.username());
                 return new UsernamePasswordAuthenticationToken(user, user.getAuthorities());
             } else {
@@ -69,16 +63,10 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
     }
 
     @Override
-    protected void successfulAuthentication(
-            HttpServletRequest request,
-            HttpServletResponse response,
-            FilterChain chain,
-            Authentication authResult) throws IOException
-    {
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException {
         User user = (User) authResult.getPrincipal();
         DataResponse<TokenValue.Token> body = DataResponse.of(User.createToken(user));
-        response.setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
-        response.getOutputStream().write(WebConfig.jsonMapper().writeValueAsBytes(body));
+        ResponseWriterUtil.writeResponse(response, HttpServletResponse.SC_UNAUTHORIZED, body);
     }
-    
+
 }

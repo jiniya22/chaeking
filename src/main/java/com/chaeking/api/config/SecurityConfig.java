@@ -4,6 +4,7 @@ import com.chaeking.api.config.filter.AccessTokenCheckFilter;
 import com.chaeking.api.config.filter.ApiOriginFilter;
 import com.chaeking.api.config.filter.LoginFilter;
 import com.chaeking.api.service.UserService;
+import com.chaeking.api.util.ResponseWriterUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,9 +17,12 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.security.web.header.HeaderWriterFilter;
+
+import javax.servlet.http.HttpServletResponse;
 
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
@@ -69,5 +73,11 @@ public class SecurityConfig {
                 instance = new CustomDslConfig(userService);
             return instance;
         }
+    }
+
+    public static AuthenticationFailureHandler authenticationFailureHandler() {
+        return (request, response, ex) -> {
+            ResponseWriterUtil.writeBaseResponse(response, HttpServletResponse.SC_UNAUTHORIZED, ex.getMessage());
+        };
     }
 }

@@ -1,13 +1,12 @@
 package com.chaeking.api.config.filter;
 
 import com.auth0.jwt.exceptions.JWTDecodeException;
-import com.chaeking.api.config.WebConfig;
 import com.chaeking.api.domain.entity.User;
 import com.chaeking.api.domain.value.TokenValue;
-import com.chaeking.api.domain.value.response.BaseResponse;
 import com.chaeking.api.service.UserService;
 import com.chaeking.api.util.JWTUtils;
 import com.chaeking.api.util.MessageUtils;
+import com.chaeking.api.util.ResponseWriterUtil;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -58,7 +57,6 @@ public class AccessTokenCheckFilter extends BasicAuthenticationFilter {
         } catch (Exception e) {
             reason = e.getMessage();
         }
-        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);    // token 이 유효하지 않을 때
-        response.getOutputStream().write(WebConfig.jsonMapper().writeValueAsBytes(BaseResponse.of(reason)));
+        ResponseWriterUtil.writeBaseResponse(response, HttpServletResponse.SC_UNAUTHORIZED, reason);
     }
 }
