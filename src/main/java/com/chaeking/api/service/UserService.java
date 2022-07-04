@@ -47,8 +47,8 @@ public class UserService implements UserDetailsService {
     @Transactional
     public TokenValue.Token patch(long userId, UserValue.Req.Modification req) {
         User user = select(userId);
-        if (Strings.isBlank(req.email()) && Strings.isBlank(req.nickname())) {
-            log.info(">>>>> email, nickname 모두 값이 없습니다.");
+        if (Strings.isBlank(req.email()) && Strings.isBlank(req.nickname()) && req.push() == null && req.nightPush() == null) {
+            log.info(">>>>> email, nickname, push, nightPush 모두 값이 없습니다.");
         } else {
             if (Strings.isNotBlank(req.email())) {
                 if (!req.email().equals(user.getEmail()) && userRepository.existsByEmail(req.email())) {
@@ -60,6 +60,12 @@ public class UserService implements UserDetailsService {
             }
             if (Strings.isNotBlank(req.nickname())) {
                 user.setNickname(req.nickname());
+            }
+            if (req.push() != null) {
+                user.setPush(req.push());
+            }
+            if (req.nightPush() != null) {
+                user.setNightPush(req.nightPush());
             }
         }
         return null;

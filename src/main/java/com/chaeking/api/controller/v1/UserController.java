@@ -30,10 +30,11 @@ public class UserController {
         return DataResponse.of(userService.selectDetail(BasicUtils.getUserId()));
     }
 
-    @Operation(summary = "회원 정보 수정 - 이메일 or 닉네임",
+    @Operation(summary = "회원 정보 수정 - 이메일 or 닉네임 or 푸시 동의 or 야간 푸시 동의",
             description = """
                     <ul>
-                        <li>email 또는 nickname 을 수정합니다.</li>
+                        <li>email, nickname, push, night_push 를 수정합니다.</li>
+                        <li>수정하고자 하는 값만 설정하면 됩니다.</li>
                         <li>email 은 email 형식에 맞지 않을 경우 Exception 을 발생시킵니다.</li>
                     </ul>
                     <b>※ email 을 수정했을 경우, header 에 담긴 토큰 값(X-Access-Token, X-Refresh-Token)을 이용하여 기존 토큰을 갱신해야합니다.</b>

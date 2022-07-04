@@ -33,7 +33,9 @@ public final class UserValue {
         @Schema(name = "UserModification")
         public record Modification(
                 @Schema(description = "이메일", example = "jini@chaeking.com") @Email String email,
-                @Schema(description = "닉네임") String nickname) { }
+                @Schema(description = "닉네임") String nickname,
+                @Schema(description = "푸시 동의") Boolean push,
+                @Schema(description = "야간 푸시 동의") Boolean nightPush) { }
 
         @Schema(name = "UserPasswordModification")
         public record PasswordModification(
