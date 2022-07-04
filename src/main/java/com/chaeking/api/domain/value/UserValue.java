@@ -34,6 +34,11 @@ public final class UserValue {
         public record Modification(
                 @Schema(description = "이메일", example = "jini@chaeking.com") @Email String email,
                 @Schema(description = "닉네임") String nickname) { }
+
+        @Schema(name = "UserPasswordModification")
+        public record PasswordModification(
+                @Schema(description = DescriptionUtils.PASSWORD) @NotBlank String password,
+                @Schema(description = DescriptionUtils.SECRET_KEY) @Length(min = 32) String secretKey) { }
     }
 
     public final static class Res {

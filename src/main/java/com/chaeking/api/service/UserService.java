@@ -1,5 +1,6 @@
 package com.chaeking.api.service;
 
+import com.chaeking.api.config.SecurityConfig;
 import com.chaeking.api.config.exception.InvalidInputException;
 import com.chaeking.api.domain.entity.User;
 import com.chaeking.api.domain.entity.UserAuthority;
@@ -8,6 +9,7 @@ import com.chaeking.api.domain.value.UserValue;
 import com.chaeking.api.domain.value.response.BaseResponse;
 import com.chaeking.api.repository.UserRepository;
 import com.chaeking.api.util.MessageUtils;
+import com.chaeking.api.util.cipher.AESCipher;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.util.Strings;
@@ -63,6 +65,14 @@ public class UserService implements UserDetailsService {
         return null;
     }
 
+    @Transactional
+    public void patchPassword(Long userId, UserValue.Req.PasswordModification req) {
+        User user = select(userId);
+        user.setSecretKey(req.secretKey());
+        user.setPassword(SecurityConfig.passwordEncoder.encode(AESCipher.decrypt(req.password(), req.secretKey())));
+        userRepository.save(user);
+    }
+
     public UserValue.Res.Detail selectDetail(long userId) {
         return User.createDetail(select(userId));
     }
@@ -73,4 +83,5 @@ public class UserService implements UserDetailsService {
         user.getAuthorities().forEach(UserAuthority::getAuthority);
         return user;
     }
+
 }

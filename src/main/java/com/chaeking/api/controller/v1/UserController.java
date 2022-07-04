@@ -49,4 +49,16 @@ public class UserController {
         return builder.body(BaseResponse.of());
     }
 
+    @Operation(summary = "회원 정보 수정 - 비밀번호",
+            description = """
+                    <ul>
+                        <li>secret_key: uuid 나 32자 이상의 난수값</li>
+                        <li>password: secret_key 를 이용하여 비밀번호를 AES 암호화한 값</li>
+                    </ul>
+                    """)
+    @PatchMapping("/password")
+    public BaseResponse patchUserPassword(@RequestBody @Valid UserValue.Req.PasswordModification req) {
+        userService.patchPassword(BasicUtils.getUserId(), req);
+        return BaseResponse.of();
+    }
 }
