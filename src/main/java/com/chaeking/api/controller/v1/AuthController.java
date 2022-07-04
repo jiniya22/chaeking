@@ -5,18 +5,15 @@ import com.chaeking.api.domain.value.UserValue;
 import com.chaeking.api.domain.value.response.BaseResponse;
 import com.chaeking.api.domain.value.response.DataResponse;
 import com.chaeking.api.service.UserService;
-import com.chaeking.api.util.BasicUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @RequiredArgsConstructor
-@Tag(name = "auth", description = "인증(로그인, 회원 가입, 회원 정보 조회/수정)")
+@Tag(name = "auth", description = "인증(로그인, 회원 가입)")
 @RestController
 @RequestMapping("/v1/auth")
 public class AuthController {
@@ -52,34 +49,6 @@ public class AuthController {
             @RequestHeader(value = "X-Refresh-Token", required = false) String refreshToken,
             @RequestBody(required = false) UserValue.Req.Login req) {
         return DataResponse.of(new TokenValue.Token(req.email(), refreshToken));
-    }
-
-    @PreAuthorize("isAuthenticated()")
-    @Operation(summary = "회원 정보 조회")
-    @GetMapping("/profile")
-    public DataResponse<UserValue.Res.Detail> selectOne() {
-        long userId = BasicUtils.getUserId();
-        return DataResponse.of(userService.selectDetail(userId));
-    }
-
-    @Operation(summary = "회원 정보 수정 - 이메일 or 닉네임",
-            description = """
-                    <ul>
-                        <li>email 또는 nickname 을 수정합니다.</li>
-                        <li>email 은 email 형식에 맞지 않을 경우 Exception 을 발생시킵니다.</li>
-                    </ul>
-                    <b>※ email 을 수정했을 경우, header 에 담긴 토큰 값(X-Access-Token, X-Refresh-Token)을 이용하여 기존 토큰을 갱신해야합니다.</b>
-                    """)
-    @PatchMapping("/profile")
-    public ResponseEntity<BaseResponse> patchUser(@RequestBody @Valid UserValue.Req.Modification req) {
-        Long userId = BasicUtils.getUserId();
-        TokenValue.Token token = userService.patch(userId, req);
-        ResponseEntity.BodyBuilder builder = ResponseEntity.ok();
-        if(token != null) {
-            builder.header("X-Access-Token", token.accessToken());
-            builder.header("X-Refresh-Token", token.refreshToken());
-        }
-        return builder.body(BaseResponse.of());
     }
 
 }
