@@ -55,7 +55,7 @@ public class Book extends BaseEntity {
 
     @Setter
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(foreignKey = @ForeignKey(name = "FK__BOOK__PUBLISHER"))
     private Publisher publisher;
 
