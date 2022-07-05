@@ -66,7 +66,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException {
         User user = (User) authResult.getPrincipal();
         DataResponse<TokenValue.Token> body = DataResponse.of(User.createToken(user));
-        ResponseWriterUtil.writeResponse(response, HttpServletResponse.SC_UNAUTHORIZED, body);
+        ResponseWriterUtil.writeResponse(response, HttpServletResponse.SC_OK, body);
     }
 
 }
