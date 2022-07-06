@@ -51,7 +51,7 @@ public class BookService {
 
     @Transactional
     public List<Long> searchNaverBookBasic(String name, String sort, int page, int size) {
-        String query = "?query=" + name + "&sort=" + sort + "&sort=" + sort + "&start=" + page + "&display=" + size;
+        String query = "?query=" + name + "&sort=" + sort + "&start=" + page + "&display=" + size;
         ResponseEntity<NaverBookValue.Res.BookBasic> responseEntity = naverApiRestTemplate.get("/v1/search/book.json" + query, null, NaverBookValue.Res.BookBasic.class);
         if (HttpStatus.OK.equals(responseEntity.getStatusCode())) {
             List<Book> books = new ArrayList<>();
