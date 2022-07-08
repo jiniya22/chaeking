@@ -45,6 +45,6 @@ public final class UserValue {
 
     public final static class Res {
         @Schema(name = "UserDetail")
-        public record Detail(String email, String nickname, Sex sex) { }
+        public record Detail(String email, String nickname, String imageUrl, boolean push, boolean nightPush) { }
     }
 }

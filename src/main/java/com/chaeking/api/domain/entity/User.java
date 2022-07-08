@@ -2,11 +2,13 @@ package com.chaeking.api.domain.entity;
 
 import com.chaeking.api.config.SecurityConfig;
 import com.chaeking.api.domain.enumerate.Sex;
+import com.chaeking.api.domain.value.ChaekingProperties;
 import com.chaeking.api.domain.value.TokenValue;
 import com.chaeking.api.domain.value.UserValue;
 import com.chaeking.api.util.JWTUtils;
 import com.chaeking.api.util.cipher.AESCipher;
 import lombok.*;
+import org.apache.logging.log4j.util.Strings;
 import org.hibernate.annotations.*;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -54,6 +56,10 @@ public class User extends BaseEntity implements UserDetails {
     private String secretKey;
 
     @Setter
+    @Column(length = 500)
+    private String imageUrl;
+
+    @Setter
     @ColumnDefault("false")
     @Type(type = "org.hibernate.type.NumericBooleanType")
     @Column(columnDefinition = "TINYINT(1)")
@@ -70,7 +76,7 @@ public class User extends BaseEntity implements UserDetails {
     private Set<UserAuthority> authorities;
 
     @Builder
-    private User(String email, String password, String nickname, Sex sex, String secretKey, boolean push, boolean nightPush) {
+    private User(String email, String password, String nickname, Sex sex, String secretKey, boolean push, boolean nightPush, String imageUrl) {
         this.email = email;
         this.password = password;
         this.nickname = nickname;
@@ -78,6 +84,7 @@ public class User extends BaseEntity implements UserDetails {
         this.secretKey = secretKey;
         this.push = push;
         this.nightPush = nightPush;
+        this.imageUrl = imageUrl;
     }
 
     public static User of(UserValue.Req.Creation c) {
@@ -93,7 +100,7 @@ public class User extends BaseEntity implements UserDetails {
     }
 
     public static UserValue.Res.Detail createDetail(User u) {
-        return new UserValue.Res.Detail(u.getEmail(), u.getNickname(), u.getSex());
+        return new UserValue.Res.Detail(u.getEmail(), u.getNickname(), u.getImageUrl(), u.isPush(), u.isNightPush());
     }
 
     public static TokenValue.Token createToken(User u) {
@@ -129,5 +136,9 @@ public class User extends BaseEntity implements UserDetails {
     @Override
     public boolean isCredentialsNonExpired() {
         return isActive();
+    }
+
+    public String getImageUrl() {
+        return Strings.isBlank(this.imageUrl) ? ChaekingProperties.getUrl() + "/static/img/user.png" : this.imageUrl;
     }
 }
