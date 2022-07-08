@@ -1,5 +1,7 @@
 package com.chaeking.api.controller.temp;
 
+import com.chaeking.api.domain.enumerate.KakaoBookSort;
+import com.chaeking.api.domain.enumerate.KakaoBookTarget;
 import com.chaeking.api.domain.value.BookValue;
 import com.chaeking.api.domain.value.response.BaseResponse;
 import com.chaeking.api.domain.value.response.DataResponse;
@@ -51,4 +53,16 @@ public class BookSearchController {
         return DataResponse.of(bookService.selectAll(bookIds));
     }
 
+    @Operation(summary = "테스트용"
+    )
+    @GetMapping("/books")
+    public DataResponse<List<BookValue.Res.Simple>> searchKakaoBook(
+            @Parameter(description = "검색어") @RequestParam(required = false) String query,
+            @Parameter(description = "검색 필드 제한") @RequestParam(required = false) KakaoBookTarget target,
+            @Parameter(description = "정렬 옵션") @RequestParam(required = false) KakaoBookSort sort,
+            @RequestParam(value = "page", required = false, defaultValue = "0") @Min(0) @Max(100) int page,
+            @RequestParam(value = "size", required = false, defaultValue = "10") @Min(1) @Max(50) int size) {
+        List<BookValue.Res.Simple> res = bookService.searchTemp(query, target, sort, page + 1, size);
+        return DataResponse.of(res);
+    }
 }

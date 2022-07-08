@@ -12,6 +12,8 @@ import com.chaeking.api.util.resttemplate.KakaoApiRestTemplate;
 import com.chaeking.api.util.resttemplate.NaverApiRestTemplate;
 import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -136,4 +138,10 @@ public class BookService {
         return bookRepository.findTopWithPublisherByIsbn10AndIsbn13(isbn10, isbn13);
     }
 
+    public List<BookValue.Res.Simple> searchTemp(String search, KakaoBookTarget target, KakaoBookSort sort, int page, int size) {
+        return bookRepository.findAllWithPublisherBy(PageRequest.of(page, size, Sort.by(Sort.Order.desc("id")))).stream().map(book -> {
+            book.getBookAndAuthors().forEach(bookAndAuthor -> bookAndAuthor.getAuthor().getName());
+            return Book.createSimple(book);
+        }).collect(Collectors.toList());
+    }
 }
