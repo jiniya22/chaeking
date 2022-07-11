@@ -1,6 +1,7 @@
 package com.chaeking.api.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.resource.PathResourceResolver;
@@ -23,4 +24,13 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .addResolver(new PathResourceResolver());
     }
 
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("http://localhost:8080", "http://localhost:8081", "https://www.chaeking.com", "https://chaeking.com")
+                .allowedMethods("GET", "OPTIONS", "POST", "PUT", "DELETE", "PATCH")
+                .allowedHeaders("Access-Control-Allow-Origin", "X-Requested-With", "Origin", "Content-Type", "Accept",
+                        "Authorization", "X-Chaeking-User-Id", "X-Error-Code")
+                ;
+    }
 }
