@@ -60,7 +60,7 @@ public class BookshelfService {
         if (bookMemoryCompleteRepository.existsByUser(user)) {
             res.setBookAnalysis(getBookAnalysis(user, date, type));
         } else {
-            List<BestSeller> bestSellers = bestSellerRepository.findTop10ByOrderById();
+            List<BestSeller> bestSellers = bestSellerRepository.findTop10WithBookAndPublisherByOrderById();
             res.setBestSeller(bestSellers.stream()
                     .map(BestSeller::getBook)
                     .map(Book::createSimple).collect(Collectors.toList()));

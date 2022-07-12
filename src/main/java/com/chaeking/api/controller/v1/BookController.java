@@ -18,7 +18,7 @@ import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @RequiredArgsConstructor
-@Tag(name = "book", description = "책")
+@Tag(name = "book", description = "책, 베스트셀러, 신간")
 @RestController
 @RequestMapping("/v1/books")
 public class BookController {
