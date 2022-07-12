@@ -35,16 +35,16 @@ public class AuthController {
     }
 
     // Swagger 문서화를 위해 만든 껍데기 메서드
-    @Operation(summary = "로그인",
+    @Operation(summary = "토큰 발급",
             description = """
-                    email 과 password 를 이용하여 로그인합니다.<br>
-                    로그인 성공시, user_id 와 access_token, refresh_token 을 리턴해줍니다.<br>
+                    email 과 password 또는 refresh_token을 이용하여 토큰을 발급합니다.<br>
+                    발급 성공시 access_token, refresh_token 을 리턴해줍니다.<br>
                     <ul>
                         <li>secret_key: uuid 나 32자 이상의 난수값</li>
                         <li>password: secret_key 를 이용하여 비밀번호를 AES 암호화한 값</li>
                     </ul>
                     """)
-    @PostMapping("/login")
+    @PostMapping("/token")
     public DataResponse<TokenValue.Token> login(
             @RequestHeader(value = "X-Refresh-Token", required = false) String refreshToken,
             @RequestBody(required = false) UserValue.Req.Login req) {

@@ -35,7 +35,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         super(authenticationManager);
         this.userService = userService;
         setAuthenticationFailureHandler(SecurityConfig.authenticationFailureHandler());
-        setFilterProcessesUrl("/v1/auth/login");
+        setFilterProcessesUrl("/v1/auth/token");
     }
 
     @Transactional
@@ -57,7 +57,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
                 User user = userService.loadUserByUsername(verify.username());
                 return new UsernamePasswordAuthenticationToken(user, user.getAuthorities());
             } else {
-                throw new TokenExpiredException("refresh_token was expired");
+                throw new AuthenticationServiceException("refresh_token was expired");
             }
         }
     }
