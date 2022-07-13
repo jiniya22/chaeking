@@ -12,3 +12,8 @@ chaeking:
 
     kakao:
       api-url: https://dapi.kakao.com
+
+  image:
+    url: ${chaeking.url}/etc
+    upload-path: C:/jini/chaeking_images
+    
