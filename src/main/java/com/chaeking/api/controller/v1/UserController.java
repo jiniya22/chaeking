@@ -6,12 +6,15 @@ import com.chaeking.api.domain.value.response.BaseResponse;
 import com.chaeking.api.domain.value.response.DataResponse;
 import com.chaeking.api.service.UserService;
 import com.chaeking.api.util.BasicUtils;
+import com.chaeking.api.util.FileUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 
@@ -60,6 +63,18 @@ public class UserController {
     @PatchMapping("/password")
     public BaseResponse patchUserPassword(@RequestBody @Valid UserValue.Req.PasswordModification req) {
         userService.patchPassword(BasicUtils.getUserId(), req);
+        return BaseResponse.of();
+    }
+
+    @Operation(summary = "회원 정보 수정 - 프로필 사진",
+            description = """
+                    프로필 사진을 설정합니다.
+                    """)
+    @PatchMapping(value = "/profile-image")
+    public BaseResponse patchProfileImage(MultipartFile profile) {
+        String fileName = FileUtils.uploadImageFile(profile);
+        String oldImageUrl = userService.patchImageUrl(BasicUtils.getUserId(), fileName);
+        FileUtils.removeImageFile(oldImageUrl);
         return BaseResponse.of();
     }
 }

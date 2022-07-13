@@ -4,6 +4,7 @@ import com.chaeking.api.config.SecurityConfig;
 import com.chaeking.api.config.exception.InvalidInputException;
 import com.chaeking.api.domain.entity.User;
 import com.chaeking.api.domain.entity.UserAuthority;
+import com.chaeking.api.domain.value.ChaekingProperties;
 import com.chaeking.api.domain.value.TokenValue;
 import com.chaeking.api.domain.value.UserValue;
 import com.chaeking.api.domain.value.response.BaseResponse;
@@ -18,6 +19,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Slf4j
 @Transactional(readOnly = true)
@@ -77,6 +80,15 @@ public class UserService implements UserDetailsService {
         user.setSecretKey(req.secretKey());
         user.setPassword(SecurityConfig.passwordEncoder.encode(AESCipher.decrypt(req.password(), req.secretKey())));
         userRepository.save(user);
+    }
+
+    @Transactional
+    public String patchImageUrl(Long userId, String fileName) {
+        User user = select(userId);
+        String oldImage = user.getImageUrl();
+        user.setImageUrl(Optional.ofNullable(fileName).map(m -> ChaekingProperties.getImageUrlPrefix() + m).orElse(null));
+        userRepository.save(user);
+        return oldImage;
     }
 
     public UserValue.Res.Detail selectDetail(long userId) {
