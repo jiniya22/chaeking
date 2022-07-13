@@ -6,12 +6,14 @@ import com.chaeking.api.domain.value.response.BaseResponse;
 import com.chaeking.api.domain.value.response.DataResponse;
 import com.chaeking.api.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+@SecurityRequirements
 @RequiredArgsConstructor
 @Tag(name = "auth", description = "인증(로그인, 회원 가입)")
 @RestController

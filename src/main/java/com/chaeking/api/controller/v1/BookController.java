@@ -8,6 +8,7 @@ import com.chaeking.api.service.BookService;
 import com.chaeking.api.util.BasicUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,7 @@ public class BookController {
 
     private final BookService bookService;
 
+    @SecurityRequirements
     @Operation(summary = "책 목록 조회",
             description = """
                     카카오 API 를 이용하여 책 목록을 조회합니다.

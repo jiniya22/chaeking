@@ -5,6 +5,7 @@ import com.chaeking.api.util.DescriptionUtils;
 import com.chaeking.api.util.cipher.AESCipher;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+@SecurityRequirements
 @Tag(name = "temp", description = "(테스트용) 암호화, 네이버 책검색")
 @RestController
 @RequestMapping("/temp/cipher")

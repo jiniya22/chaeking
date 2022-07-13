@@ -5,6 +5,7 @@ import com.chaeking.api.domain.value.response.DataResponse;
 import com.chaeking.api.service.NoticeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@SecurityRequirements
 @RequiredArgsConstructor
 @Tag(name = "setting-system", description = "설정-시스템(공지사항, FAQ, 이용약관 등)")
 @RestController
