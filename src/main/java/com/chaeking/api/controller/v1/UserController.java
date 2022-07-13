@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -69,12 +70,11 @@ public class UserController {
     @Operation(summary = "회원 정보 수정 - 프로필 사진",
             description = """
                     프로필 사진을 설정합니다.
+                    프로필 사진을 지우고 싶은 경우, profile을 비워서 api를 실행하면 됩니다.
                     """)
-    @PatchMapping(value = "/profile-image")
-    public BaseResponse patchProfileImage(MultipartFile profile) {
-        String fileName = FileUtils.uploadImageFile(profile);
-        String oldImageUrl = userService.patchImageUrl(BasicUtils.getUserId(), fileName);
-        FileUtils.removeImageFile(oldImageUrl);
+    @PatchMapping(value = "/profile-image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public BaseResponse patchProfileImage(@RequestPart(required = false) MultipartFile profile) {
+        userService.patchImageUrl(BasicUtils.getUserId(), profile);
         return BaseResponse.of();
     }
 }

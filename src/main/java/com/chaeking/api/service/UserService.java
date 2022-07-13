@@ -9,6 +9,7 @@ import com.chaeking.api.domain.value.TokenValue;
 import com.chaeking.api.domain.value.UserValue;
 import com.chaeking.api.domain.value.response.BaseResponse;
 import com.chaeking.api.repository.UserRepository;
+import com.chaeking.api.util.FileUtils;
 import com.chaeking.api.util.MessageUtils;
 import com.chaeking.api.util.cipher.AESCipher;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Optional;
 
@@ -83,11 +85,13 @@ public class UserService implements UserDetailsService {
     }
 
     @Transactional
-    public String patchImageUrl(Long userId, String fileName) {
+    public String patchImageUrl(Long userId, MultipartFile profile) {
         User user = select(userId);
+        String fileName = FileUtils.uploadImageFile(profile);
         String oldImage = user.getImageUrl();
         user.setImageUrl(Optional.ofNullable(fileName).map(m -> ChaekingProperties.getImageUrlPrefix() + m).orElse(null));
         userRepository.save(user);
+        FileUtils.removeImageFile(oldImage);
         return oldImage;
     }
 
