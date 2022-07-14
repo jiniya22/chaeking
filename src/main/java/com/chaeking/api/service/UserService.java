@@ -85,9 +85,9 @@ public class UserService implements UserDetailsService {
     }
 
     @Transactional
-    public String patchImageUrl(Long userId, MultipartFile profile) {
+    public String patchImageUrl(Long userId, MultipartFile image) {
         User user = select(userId);
-        String fileName = FileUtils.uploadImageFile(profile);
+        String fileName = FileUtils.uploadImageFile(image);
         String oldImage = user.getImageUrl();
         user.setImageUrl(Optional.ofNullable(fileName).map(m -> ChaekingProperties.getImageUrlPrefix() + m).orElse(null));
         userRepository.save(user);
@@ -106,4 +106,9 @@ public class UserService implements UserDetailsService {
         return user;
     }
 
+    public User loadUserById(Long id) throws UsernameNotFoundException {
+        User user = userRepository.findById(id).orElseThrow(() -> new InvalidInputException("일치하는 사용자가 없습니다"));
+        user.getAuthorities().forEach(UserAuthority::getAuthority);
+        return user;
+    }
 }

@@ -41,7 +41,7 @@ public class AccessTokenCheckFilter extends BasicAuthenticationFilter {
         try {
             TokenValue.Verify result = JWTUtils.verify(token);
             if(result.success()) {
-                User user = userService.loadUserByUsername(result.username());
+                User user = userService.loadUserById(result.uid());
                 UsernamePasswordAuthenticationToken userToken = new UsernamePasswordAuthenticationToken(
                         user.getUsername(), null, user.getAuthorities()
                 );

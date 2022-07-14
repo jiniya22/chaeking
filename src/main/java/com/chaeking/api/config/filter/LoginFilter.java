@@ -1,6 +1,5 @@
 package com.chaeking.api.config.filter;
 
-import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.chaeking.api.config.SecurityConfig;
 import com.chaeking.api.config.WebConfig;
 import com.chaeking.api.domain.entity.User;
@@ -13,8 +12,6 @@ import com.chaeking.api.util.MessageUtils;
 import com.chaeking.api.util.ResponseWriterUtil;
 import com.chaeking.api.util.cipher.AESCipher;
 import org.apache.logging.log4j.util.Strings;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -54,7 +51,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         } else {
             TokenValue.Verify verify = JWTUtils.verify(refreshToken);
             if (verify.success()) {
-                User user = userService.loadUserByUsername(verify.username());
+                User user = userService.loadUserById(verify.uid());
                 return new UsernamePasswordAuthenticationToken(user, user.getAuthorities());
             } else {
                 throw new AuthenticationServiceException("refresh_token was expired");
