@@ -1,5 +1,7 @@
 package com.chaeking.api.domain.entity;
 
+import com.chaeking.api.domain.value.BaseValue;
+import com.chaeking.api.domain.value.BookValue;
 import com.chaeking.api.util.BasicUtils;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -42,6 +44,10 @@ public class Author {
         this();
         this.name = name;
         this.simpleName = BasicUtils.getSimpleName(name);
+    }
+
+    public static BaseValue createSimple(Author a) {
+        return new BaseValue(a.getId(), a.getName());
     }
 
 }

@@ -17,7 +17,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.Table;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @ToString
@@ -74,6 +76,13 @@ public class User extends BaseEntity implements UserDetails {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "FK__USER__USER_AUTHORITY"))
     private Set<UserAuthority> authorities;
+
+    @Setter
+    @OneToMany(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "user_id")
+    @ToString.Exclude
+    @Where(clause = "user_id IS NOT NULL")
+    private List<UserAndAuthor> userAndAuthors = new ArrayList<>();
 
     @Builder
     private User(String email, String password, String nickname, Sex sex, String secretKey, boolean push, boolean nightPush, String imageUrl) {

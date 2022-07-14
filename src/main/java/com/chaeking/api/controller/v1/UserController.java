@@ -1,5 +1,6 @@
 package com.chaeking.api.controller.v1;
 
+import com.chaeking.api.domain.value.BaseValue;
 import com.chaeking.api.domain.value.TokenValue;
 import com.chaeking.api.domain.value.UserValue;
 import com.chaeking.api.domain.value.response.BaseResponse;
@@ -16,9 +17,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RequiredArgsConstructor
-@Tag(name = "user", description = "회원")
+@Tag(name = "user", description = "사용자")
 @RestController
 @RequestMapping("/v1/users")
 public class UserController {
@@ -26,13 +28,13 @@ public class UserController {
     private final UserService userService;
 
     @PreAuthorize("isAuthenticated()")
-    @Operation(summary = "회원 정보 조회")
+    @Operation(summary = "사용자 정보 조회")
     @GetMapping("")
     public DataResponse<UserValue.Res.Detail> selectOne() {
         return DataResponse.of(userService.selectDetail(BasicUtils.getUserId()));
     }
 
-    @Operation(summary = "회원 정보 수정 - 이메일 or 닉네임 or 푸시 동의 or 야간 푸시 동의",
+    @Operation(summary = "사용자 정보 수정 - 이메일 or 닉네임 or 푸시 동의 or 야간 푸시 동의",
             description = """
                     <ul>
                         <li>email, nickname, push, night_push 를 수정합니다.</li>
@@ -52,7 +54,7 @@ public class UserController {
         return builder.body(BaseResponse.of());
     }
 
-    @Operation(summary = "회원 정보 수정 - 비밀번호",
+    @Operation(summary = "사용자 정보 수정 - 비밀번호",
             description = """
                     <ul>
                         <li>secret_key: uuid 나 32자 이상의 난수값</li>
@@ -65,7 +67,7 @@ public class UserController {
         return BaseResponse.of();
     }
 
-    @Operation(summary = "회원 정보 수정 - 프로필 사진",
+    @Operation(summary = "사용자 정보 수정 - 프로필 사진",
             description = """
                     프로필 사진을 설정합니다.
                     프로필 사진을 지우고 싶은 경우, image 를 비워서 api 를 실행하면 됩니다.
@@ -75,4 +77,11 @@ public class UserController {
         userService.patchImageUrl(BasicUtils.getUserId(), image);
         return BaseResponse.of();
     }
+
+    @Operation(summary = "사용자가 좋아하는 작가 목록 조회")
+    @GetMapping("/favorite-authors")
+    public DataResponse<List<BaseValue>> userAuthors() {
+        return DataResponse.of(userService.selectAllUserAndAuthor(BasicUtils.getUserId()));
+    }
+
 }

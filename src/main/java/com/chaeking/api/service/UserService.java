@@ -2,8 +2,11 @@ package com.chaeking.api.service;
 
 import com.chaeking.api.config.SecurityConfig;
 import com.chaeking.api.config.exception.InvalidInputException;
+import com.chaeking.api.domain.entity.Author;
 import com.chaeking.api.domain.entity.User;
+import com.chaeking.api.domain.entity.UserAndAuthor;
 import com.chaeking.api.domain.entity.UserAuthority;
+import com.chaeking.api.domain.value.BaseValue;
 import com.chaeking.api.domain.value.ChaekingProperties;
 import com.chaeking.api.domain.value.TokenValue;
 import com.chaeking.api.domain.value.UserValue;
@@ -22,7 +25,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Transactional(readOnly = true)
@@ -99,6 +104,14 @@ public class UserService implements UserDetailsService {
         return User.createDetail(select(userId));
     }
 
+    public List<BaseValue> selectAllUserAndAuthor(Long userId) {
+        User user = select(userId);
+        return user.getUserAndAuthors().stream().map(userAndAuthor -> {
+            userAndAuthor.getAuthor().getName();
+            return Author.createSimple(userAndAuthor.getAuthor());
+        }).collect(Collectors.toList());
+    }
+
     @Override
     public User loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(username).orElseThrow(() -> new InvalidInputException("일치하는 사용자가 없습니다"));
@@ -111,4 +124,5 @@ public class UserService implements UserDetailsService {
         user.getAuthorities().forEach(UserAuthority::getAuthority);
         return user;
     }
+
 }
