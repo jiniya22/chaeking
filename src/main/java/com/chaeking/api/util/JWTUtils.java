@@ -9,9 +9,13 @@ import com.chaeking.api.domain.value.TokenValue;
 import java.time.Instant;
 
 public class JWTUtils {
-    private static final Algorithm ALGORITHM = Algorithm.HMAC256("PUDJbD7yJvS7xNNsvXuZGRMhueBbTrYb");
+    private static Algorithm ALGORITHM;
     private static final long ACCESS_TIME = 60 * 60 * 6; // 6 hours
     private static final long REFRESH_TIME = 60 * 60 * 24 * 7; // 7 days
+
+    static {
+        JWTUtils.ALGORITHM = Algorithm.HMAC256(System.getenv("CHAEKING_SECRET"));
+    }
 
     public static String createAccessToken(User user) {
         return JWT.create()
