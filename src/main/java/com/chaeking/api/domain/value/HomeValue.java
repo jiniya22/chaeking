@@ -10,6 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 public class HomeValue {
+    private String nickname;
     private BookAnalysis bookAnalysis;
     private List<BookValue.Res.Simple> bestSeller;
 

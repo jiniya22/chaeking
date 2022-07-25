@@ -57,6 +57,7 @@ public class BookshelfService {
         HomeValue res = new HomeValue();
         LocalDate date = LocalDate.now();
         User user = userService.select(userId);
+        res.setNickname(user.getNickname());
         if (bookMemoryCompleteRepository.existsByUser(user)) {
             res.setBookAnalysis(getBookAnalysis(user, date, type));
         } else {
