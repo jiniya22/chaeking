@@ -60,12 +60,11 @@ public class BookshelfService {
         res.setNickname(user.getNickname());
         if (bookMemoryCompleteRepository.existsByUser(user)) {
             res.setBookAnalysis(getBookAnalysis(user, date, type));
-        } else {
-            List<BestSeller> bestSellers = bestSellerRepository.findTop10WithBookAndPublisherByOrderById();
-            res.setBestSeller(bestSellers.stream()
-                    .map(BestSeller::getBook)
-                    .map(Book::createSimple).collect(Collectors.toList()));
         }
+        List<BestSeller> bestSellers = bestSellerRepository.findTop3WithBookAndPublisherByOrderById();
+        res.setBestSeller(bestSellers.stream()
+                .map(BestSeller::getBook)
+                .map(Book::createSimple).collect(Collectors.toList()));
         return res;
     }
 

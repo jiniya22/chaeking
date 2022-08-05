@@ -10,4 +10,6 @@ public interface BestSellerRepository extends JpaRepository<BestSeller, Long> {
 
     @EntityGraph(attributePaths = {"book", "book.publisher"})
     List<BestSeller> findTop10WithBookAndPublisherByOrderById();
+    @EntityGraph(attributePaths = {"book", "book.publisher"})
+    List<BestSeller> findTop3WithBookAndPublisherByOrderById();
 }
