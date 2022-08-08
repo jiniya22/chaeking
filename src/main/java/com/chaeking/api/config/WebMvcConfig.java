@@ -1,16 +1,15 @@
 package com.chaeking.api.config;
 
 import com.chaeking.api.domain.value.ChaekingProperties;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.resource.PathResourceResolver;
 
-import java.nio.charset.StandardCharsets;
+import javax.servlet.annotation.MultipartConfig;
 
+@MultipartConfig(maxFileSize = 1024 * 1024 * 2)
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
     private static final String[] RESOURCE_LOCATIONS = {
@@ -43,15 +42,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .allowedHeaders("Access-Control-Allow-Origin", "X-Requested-With", "Origin", "Content-Type", "Accept",
                         "Authorization", "X-Chaeking-User-Id", "X-Error-Code")
                 ;
-    }
-
-    @Bean
-    public CommonsMultipartResolver multipartResolver() {
-        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-        multipartResolver.setResolveLazily(true);
-        multipartResolver.setMaxUploadSize(1024 * 1024 * 20);
-        multipartResolver.setDefaultEncoding(StandardCharsets.UTF_8.displayName());
-        return multipartResolver;
     }
 
 }

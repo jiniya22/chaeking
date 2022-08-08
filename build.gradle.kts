@@ -25,7 +25,7 @@ sourceSets {
 }
 
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 dependencies {
@@ -38,7 +38,6 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-ui:1.6.9")
     implementation("org.jsoup:jsoup:1.15.2")
     implementation("com.auth0:java-jwt:4.0.0")
-    implementation("commons-fileupload:commons-fileupload:1.4")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
