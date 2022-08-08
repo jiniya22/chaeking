@@ -4,7 +4,7 @@ spring:
   profiles:
     active: prod
   config:
-    import: classpath:/chaeking.yml
+    import: chaeking.yml
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://applebox.xyz:3306/book?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&tinyInt1isBit=false

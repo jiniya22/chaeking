@@ -1,5 +1,4 @@
 chaeking:
-  version: '@project.version@'
   url: http://localhost:${server.port}
 
   flag:

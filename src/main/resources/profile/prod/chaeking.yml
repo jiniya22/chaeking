@@ -1,5 +1,4 @@
 chaeking:
-  version: '@project.version@'
   url: https://api.chaeking.com
 
   flag:
