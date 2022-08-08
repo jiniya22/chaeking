@@ -40,9 +40,9 @@ public class BookshelfService {
         if(Strings.isBlank(month))
             month = LocalDate.now().format(DateTimeUtils.FORMATTER_MONTH_SIMPLE);
 
-        LocalDate date = LocalDate.of(Integer.parseInt(month.substring(0, 4)), Integer.parseInt(month.substring(4, 6)), 1);
-        LocalDateTime time1 = LocalDateTime.of(date, DateTimeUtils.LOCALTIME_START);
-        LocalDateTime time2 = LocalDateTime.of(date.with(TemporalAdjusters.lastDayOfMonth()), DateTimeUtils.LOCALTIME_END);
+        LocalDate date = DateTimeUtils.getFirstDate(month);
+        LocalDateTime time1 = DateTimeUtils.getFirstDateTime(date);
+        LocalDateTime time2 = DateTimeUtils.getLastDateTime(date);
 
         User user = userService.select(userId);
         Page<BookMemoryComplete> bookMemoryCompletePage = bookMemoryCompleteRepository.findAllByUserAndCreatedAtBetween(user, time1, time2, pageable);

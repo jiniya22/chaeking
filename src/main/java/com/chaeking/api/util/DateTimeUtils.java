@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Optional;
 
 public final class DateTimeUtils {
@@ -28,5 +29,17 @@ public final class DateTimeUtils {
 
     public static String toString(LocalDateTime localDateTime) {
         return Optional.ofNullable(localDateTime).map(m -> m.format(DateTimeUtils.FORMATTER_DATE)).orElse(null);
+    }
+
+    public static LocalDate getFirstDate(String month) {
+        return LocalDate.of(Integer.parseInt(month.substring(0, 4)), Integer.parseInt(month.substring(4, 6)), 1);
+    }
+
+    public static LocalDateTime getFirstDateTime(LocalDate date) {
+        return LocalDateTime.of(date, LOCALTIME_START);
+    }
+
+    public static LocalDateTime getLastDateTime(LocalDate date) {
+        return LocalDateTime.of(date.with(TemporalAdjusters.lastDayOfMonth()), LOCALTIME_END);
     }
 }
