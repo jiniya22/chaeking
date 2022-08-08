@@ -7,7 +7,6 @@ plugins {
 group = 'com.chaeking.api'
 version = '1.0.7'
 sourceCompatibility = '17'
-archivesBaseName = 'chaeking-api'
 ext.profile = project.hasProperty("profile") ? project.property("profile").toString() : "local"
 
 configurations {
@@ -53,3 +52,5 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+bootJar.archiveFileName = "chaeking-api.jar"
