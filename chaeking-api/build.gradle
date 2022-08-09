@@ -1,0 +1,21 @@
+archivesBaseName = "chaeking-api"
+
+sourceSets {
+    main {
+        resources {
+            srcDirs("src/main/resources/profile/${profile}")
+        }
+    }
+}
+
+dependencies {
+    implementation "$boot:spring-boot-starter-data-jpa"
+    implementation "$boot:spring-boot-starter-security"
+    implementation "$boot:spring-boot-starter-thymeleaf"
+    implementation "$boot:spring-boot-starter-validation"
+    implementation "org.thymeleaf.extras:thymeleaf-extras-springsecurity5"
+    implementation "org.jsoup:jsoup:1.15.2"
+    implementation "com.auth0:java-jwt:4.0.0"
+    runtimeOnly "org.mariadb.jdbc:mariadb-java-client"
+    testImplementation "org.springframework.security:spring-security-test"
+}
