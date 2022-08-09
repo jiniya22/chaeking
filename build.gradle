@@ -1,6 +1,7 @@
 buildscript {
     ext {
         spring = "2.7.2"
+        appVersion = "1.0.8"
         boot = "org.springframework.boot"
         lombok = "org.projectlombok:lombok"
         profile = project.hasProperty("profile") ? project.property("profile").toString() : "local"
@@ -23,7 +24,7 @@ allprojects {
     apply plugin: "org.springframework.boot"
     apply plugin: "io.spring.dependency-management"
     group = "com.chaeking.api"
-    version = "1.0.7"
+    version = appVersion
     sourceCompatibility = 17
 }
 
