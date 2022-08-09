@@ -1,5 +1,3 @@
-archivesBaseName = "chaeking-api"
-
 sourceSets {
     main {
         resources {
@@ -18,4 +16,8 @@ dependencies {
     implementation "com.auth0:java-jwt:4.0.0"
     runtimeOnly "org.mariadb.jdbc:mariadb-java-client"
     testImplementation "org.springframework.security:spring-security-test"
+}
+
+tasks.bootJar {
+    archiveFileName.set("chaeking-api")
 }
