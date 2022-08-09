@@ -19,7 +19,7 @@ Chaeking API with Spring Boot 2
 - JDK 17
 - Build Tools
   - Gradle
-  - Kotlin DSL
+  - Groovy DSL
 - Spring Data JPA
 - Spring Security
   - stateless 
