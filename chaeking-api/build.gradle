@@ -19,5 +19,5 @@ dependencies {
 }
 
 tasks.bootJar {
-    archiveFileName.set("chaeking-api")
+    archiveFileName.set("chaeking-api.jar")
 }
