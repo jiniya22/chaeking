@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: chaeking-config
+  cloud:
+    vault:
+      host: test.applebox.xyz
+      scheme: https
+      port: 443
+#      url: https://test.applebox.xyz
+      token: "hvs.4ExSwM1e6URZYqrkvRbmO2Fp"
+      authentication: token
+      kv:
+        enabled: true
+#        application-name: chaeking-config
+#        backend: secret
+    #  kv.enabled: true
+

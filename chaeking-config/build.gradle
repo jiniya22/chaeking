@@ -1,0 +1,23 @@
+sourceSets {
+    main {
+        resources {
+            srcDirs("src/main/resources/profile/${profile}")
+        }
+    }
+}
+
+dependencies {
+    implementation "$cloud:spring-cloud-starter-vault-config"
+    implementation "$cloud:spring-cloud-starter-bootstrap"
+    implementation "$boot:spring-boot-starter-validation"
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "$cloud:spring-cloud-dependencies:2020.0.1"
+    }
+}
+
+tasks.bootJar {
+    archiveFileName.set("chaeking-config.jar")
+}

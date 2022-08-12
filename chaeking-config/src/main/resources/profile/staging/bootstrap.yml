@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: chaeking-config
+
+spring.cloud.vault:
+  host: localhost
+  port: 8200
+  token: b6e956ae-cfa6-46da-bacf-6ba4e529dcec
+  scheme: http
+  kv.enabled: true
+

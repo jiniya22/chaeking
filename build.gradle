@@ -4,6 +4,7 @@ buildscript {
         appVersion = "1.0.8"
         boot = "org.springframework.boot"
         lombok = "org.projectlombok:lombok"
+        cloud = "org.springframework.cloud"
         profile = project.hasProperty("profile") ? project.property("profile").toString() : "local"
     }
     repositories {
@@ -54,8 +55,3 @@ subprojects {
         useJUnitPlatform()
     }
 }
-
-
-
-
-
