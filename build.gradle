@@ -40,7 +40,6 @@ subprojects {
     }
 
     dependencies {
-        implementation "$boot:spring-boot-starter-web"
         developmentOnly "$boot:spring-boot-devtools"
         annotationProcessor "$boot:spring-boot-configuration-processor"
         testImplementation "$boot:spring-boot-starter-test"
