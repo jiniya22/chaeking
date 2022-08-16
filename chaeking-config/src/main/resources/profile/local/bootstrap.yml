@@ -11,7 +11,8 @@ spring:
       authentication: token
       kv:
         enabled: true
+        default-context: chaeking-config
 #        application-name: chaeking-config
-#        backend: secret
+    #        backend: secret
     #  kv.enabled: true
 

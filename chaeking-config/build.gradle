@@ -14,7 +14,7 @@ dependencies {
 
 dependencyManagement {
     imports {
-        mavenBom "$cloud:spring-cloud-dependencies:2020.0.1"
+        mavenBom "$cloud:spring-cloud-dependencies:2021.0.3"
     }
 }
 
