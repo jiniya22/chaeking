@@ -2,5 +2,5 @@ rootProject.name = "chaeking"
 
 include(
     ":chaeking-api",
-    ":chaeking-config"
+    ":chaeking-test"
 )
