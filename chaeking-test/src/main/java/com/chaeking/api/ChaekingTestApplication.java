@@ -10,10 +10,10 @@ import javax.annotation.PostConstruct;
 
 @EnableConfigurationProperties(DatasourceConfig.class)
 @SpringBootApplication
-public class ChaekingConfigApplication {
+public class ChaekingTestApplication {
 
     public static void main(String ar[]) {
-        SpringApplication.run(ChaekingConfigApplication.class, ar);
+        SpringApplication.run(ChaekingTestApplication.class, ar);
     }
 
     static String username;
@@ -22,12 +22,12 @@ public class ChaekingConfigApplication {
 
     @Value("${datasource.username}")
     public void setUsername(String username) {
-        ChaekingConfigApplication.username = username;
+        ChaekingTestApplication.username = username;
     }
 
     @Value("${datasource.password}")
     public void setPassword(String password) {
-        ChaekingConfigApplication.password = password;
+        ChaekingTestApplication.password = password;
     }
 
     @PostConstruct

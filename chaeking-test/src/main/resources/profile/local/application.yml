@@ -1,8 +1,8 @@
 spring:
   profiles:
     active: local
-  main:
-    web-application-type: none
+#  main:
+#    web-application-type: none
 
 server:
   port: 9080
