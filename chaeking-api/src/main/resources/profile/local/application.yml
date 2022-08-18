@@ -36,12 +36,13 @@ server:
   port: 8080
   tomcat:
     basedir: .
-    remote-ip-header: X-Forwarded-For
-    protocol-header: X-Forwarded-Proto
     accesslog:
       enabled: true
       directory: logs
       pattern: "%{yyyy-MM-dd HH:mm:ss}t %{X-Forwarded-For}i(%h) %l %u \"%r\" %s %b"
+    remoteip:
+      protocol-header: X-Forwarded-Proto
+      remote-ip-header: X-Forwarded-For
 
 springdoc:
   api-docs:

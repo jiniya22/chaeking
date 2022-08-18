@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: chaeking
+  cloud:
+    vault:
+      host: vault.chaeking.com
+      scheme: https
+      port: 443
+      token: "hvs.CAESIO5VENruhirjurPVttzBDzPKzMpKHafaWwcoMotIKLnnGh4KHGh2cy5nMEFNc0d1WXVra0RMd3VmMDNtZ2V1Qmc"
+      authentication: token
+      kv:
+        enabled: true
+        default-context: chaeking
+

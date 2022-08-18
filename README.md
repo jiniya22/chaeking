@@ -9,6 +9,7 @@ Chaeking API with Spring Boot 2
     <img src="https://img.shields.io/static/v1?label=Spring%20Boot&message=2.7.2&color=6DB33F&logo=springboot&logoColor=fff" alt="Spring Boot">
     <img src="https://img.shields.io/static/v1?label=Gradle&message=7.5.1&color=02303A&logo=Gradle&logoColor=fff" alt="Gradle">
     <img src="https://img.shields.io/static/v1?label=MariaDB&message=10.5.5&color=003545&logo=MariaDB" alt="MariaDB">
+    <img src="https://img.shields.io/static/v1?label=Spring%20Vault&message=2.3.1&color=ffd814&logo=Vault&logoColor=ffffff" alt="Spring Vault">
     <img src="https://img.shields.io/static/v1?label=java-jwt&message=4.0.0&color=000000&logo=Auth0&logoColor=fff" alt="java-jwt">
 </p>
 
@@ -24,6 +25,10 @@ Chaeking API with Spring Boot 2
 - Spring Security
   - stateless 
   - UsernamePasswordAuthenticationFilter
+- Spring Cloud
+  - Release Train 2021.0.3
+  - Vault Config
+  - OpenFeign
 - Thymeleaf
   - 약관 웹 페이지
 - MariaDB

@@ -1,15 +1,16 @@
 package com.chaeking.api.service;
 
 import com.chaeking.api.config.exception.InvalidInputException;
+import com.chaeking.api.config.vault.BookSearchConfig;
 import com.chaeking.api.domain.entity.*;
 import com.chaeking.api.domain.enumerate.KakaoBookSort;
 import com.chaeking.api.domain.enumerate.KakaoBookTarget;
 import com.chaeking.api.domain.value.BookValue;
 import com.chaeking.api.domain.value.naver.KakaoBookValue;
 import com.chaeking.api.domain.value.naver.NaverBookValue;
+import com.chaeking.api.feignclient.KakaoApiClient;
+import com.chaeking.api.feignclient.NaverApiClient;
 import com.chaeking.api.repository.*;
-import com.chaeking.api.util.resttemplate.KakaoApiRestTemplate;
-import com.chaeking.api.util.resttemplate.NaverApiRestTemplate;
 import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.data.domain.PageRequest;
@@ -31,8 +32,8 @@ public class BookService {
     private final PublisherRepository publisherRepository;
     private final BookAndAuthorRepository bookAndAuthorRepository;
     private final BookRepository bookRepository;
-    private final NaverApiRestTemplate naverApiRestTemplate;
-    private final KakaoApiRestTemplate kakaoApiRestTemplate;
+    private final NaverApiClient naverApiClient;
+    private final KakaoApiClient kakaoApiClient;
 
     public Book select(Long bookId) {
         return bookRepository.findById(bookId)
@@ -52,9 +53,9 @@ public class BookService {
     }
 
     @Transactional
-    public List<Long> searchNaverBookBasic(String name, String sort, int page, int size) {
-        String query = "?query=" + name + "&sort=" + sort + "&start=" + page + "&display=" + size;
-        ResponseEntity<NaverBookValue.Res.BookBasic> responseEntity = naverApiRestTemplate.get("/v1/search/book.json" + query, null, NaverBookValue.Res.BookBasic.class);
+    public List<Long> searchNaverBookBasic(NaverBookValue.Req.Search naverBookSearch) {
+        ResponseEntity<NaverBookValue.Res.BookBasic> responseEntity
+                = naverApiClient.searchBooks(BookSearchConfig.Naver.getClientId(), BookSearchConfig.Naver.getClientSecret(), naverBookSearch);
         if (HttpStatus.OK.equals(responseEntity.getStatusCode())) {
             List<Book> books = new ArrayList<>();
             List<BookAndAuthor> bookAndAuthors = new ArrayList<>();
@@ -86,10 +87,9 @@ public class BookService {
     }
 
     @Transactional
-    public List<Long> searchKakaoBook(String search, KakaoBookTarget target, KakaoBookSort sort, int page, int size) {
-        String query = "?query=" + search + "&target=" + Optional.ofNullable(target).map(KakaoBookTarget::name).orElse("")
-                + "&sort=" + Optional.ofNullable(sort).map(KakaoBookSort::name).orElse("accuracy") + "&page=" + page + "&size=" + size;
-        ResponseEntity<KakaoBookValue.Res.BookBasic> responseEntity = kakaoApiRestTemplate.get("/v3/search/book" + query, null, KakaoBookValue.Res.BookBasic.class);
+    public List<Long> searchKakaoBook(KakaoBookValue.Req.Search kakaoBookSearch) {
+        ResponseEntity<KakaoBookValue.Res.BookBasic> responseEntity
+                = kakaoApiClient.searchBooks("KakaoAK " + BookSearchConfig.Kakao.getApiKey(), kakaoBookSearch);
         if (HttpStatus.OK.equals(responseEntity.getStatusCode())) {
             List<Long> bookIds = new ArrayList<>();
             List<BookAndAuthor> bookAndAuthors = new ArrayList<>();

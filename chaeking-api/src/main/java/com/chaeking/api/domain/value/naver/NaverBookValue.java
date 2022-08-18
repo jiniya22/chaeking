@@ -3,6 +3,7 @@ package com.chaeking.api.domain.value.naver;
 import com.chaeking.api.domain.entity.Book;
 import com.chaeking.api.util.DateTimeUtils;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -11,6 +12,19 @@ import java.util.List;
 import java.util.Optional;
 
 public class NaverBookValue {
+
+    public static class Req {
+
+        @Builder
+        @Data
+        @Schema(name = "KakaoBookSearch")
+        public static class Search {
+            private String query;
+            private String sort;
+            private int start;
+            private int display;
+        }
+    }
 
     public static class Res {
 

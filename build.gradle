@@ -1,21 +1,23 @@
 buildscript {
     ext {
         spring = "2.7.2"
-        appVersion = "1.0.8"
+        springCloudVersion = "2021.0.3"
+        appVersion = "1.0.9"
         boot = "org.springframework.boot"
         lombok = "org.projectlombok:lombok"
+        cloud = "org.springframework.cloud"
         profile = project.hasProperty("profile") ? project.property("profile").toString() : "local"
     }
     repositories {
         mavenCentral()
     }
     dependencies {
-        classpath("$boot:spring-boot-gradle-plugin:$spring")
+        classpath("$boot:spring-boot-gradle-plugin:${spring}")
     }
 }
 
 plugins {
-    id "org.springframework.boot" version "2.7.2" apply false
+    id "org.springframework.boot" version "${spring}" apply false
     id "io.spring.dependency-management" version "1.0.12.RELEASE" apply false
 }
 
@@ -39,7 +41,6 @@ subprojects {
     }
 
     dependencies {
-        implementation "$boot:spring-boot-starter-web"
         developmentOnly "$boot:spring-boot-devtools"
         annotationProcessor "$boot:spring-boot-configuration-processor"
         testImplementation "$boot:spring-boot-starter-test"
@@ -54,8 +55,3 @@ subprojects {
         useJUnitPlatform()
     }
 }
-
-
-
-
-

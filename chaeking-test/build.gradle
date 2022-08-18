@@ -1,0 +1,24 @@
+sourceSets {
+    main {
+        resources {
+            srcDirs("src/main/resources/profile/${profile}")
+        }
+    }
+}
+
+dependencies {
+    implementation "${cloud}:spring-cloud-config-server"
+    implementation "${cloud}:spring-cloud-starter-vault-config"
+    implementation "${cloud}:spring-cloud-starter-bootstrap"
+    implementation "${boot}:spring-boot-starter-validation"
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "${cloud}:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+tasks.bootJar {
+    archiveFileName.set("chaeking-test.jar")
+}

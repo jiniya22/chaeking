@@ -1,0 +1,4 @@
+spring:
+  profiles:
+    active: staging
+server.port: 9080
