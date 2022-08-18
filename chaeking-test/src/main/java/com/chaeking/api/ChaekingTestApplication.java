@@ -20,12 +20,12 @@ public class ChaekingTestApplication {
 
     static String password;
 
-    @Value("${datasource.username}")
+    @Value("${spring.datasource.username}")
     public void setUsername(String username) {
         ChaekingTestApplication.username = username;
     }
 
-    @Value("${datasource.password}")
+    @Value("${spring.datasource.password}")
     public void setPassword(String password) {
         ChaekingTestApplication.password = password;
     }
