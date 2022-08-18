@@ -1,6 +1,7 @@
 buildscript {
     ext {
         spring = "2.7.2"
+        springCloudVersion = "2021.0.3"
         appVersion = "1.0.8"
         boot = "org.springframework.boot"
         lombok = "org.projectlombok:lombok"
@@ -11,12 +12,12 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("$boot:spring-boot-gradle-plugin:$spring")
+        classpath("$boot:spring-boot-gradle-plugin:${spring}")
     }
 }
 
 plugins {
-    id "org.springframework.boot" version "2.7.2" apply false
+    id "org.springframework.boot" version "${spring}" apply false
     id "io.spring.dependency-management" version "1.0.12.RELEASE" apply false
 }
 

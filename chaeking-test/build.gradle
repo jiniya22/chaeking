@@ -7,15 +7,15 @@ sourceSets {
 }
 
 dependencies {
-    implementation "$cloud:spring-cloud-config-server"
-    implementation "$cloud:spring-cloud-starter-vault-config"
-    implementation "$cloud:spring-cloud-starter-bootstrap"
-    implementation "$boot:spring-boot-starter-validation"
+    implementation "${cloud}:spring-cloud-config-server"
+    implementation "${cloud}:spring-cloud-starter-vault-config"
+    implementation "${cloud}:spring-cloud-starter-bootstrap"
+    implementation "${boot}:spring-boot-starter-validation"
 }
 
 dependencyManagement {
     imports {
-        mavenBom "$cloud:spring-cloud-dependencies:2021.0.3"
+        mavenBom "${cloud}:spring-cloud-dependencies:${springCloudVersion}"
     }
 }
 
