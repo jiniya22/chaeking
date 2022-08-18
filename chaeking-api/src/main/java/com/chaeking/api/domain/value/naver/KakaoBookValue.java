@@ -4,6 +4,7 @@ import com.chaeking.api.domain.entity.Book;
 import com.chaeking.api.util.DateTimeUtils;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Builder;
 import lombok.Data;
 import lombok.Setter;
 
@@ -13,6 +14,21 @@ import java.util.List;
 import java.util.Optional;
 
 public class KakaoBookValue {
+
+    public static class Req {
+
+        @Builder
+        @Data
+        @Schema(name = "KakaoBookSearch")
+        public static class Search {
+            private String query;
+            private String target;
+            private String sort;
+            private int page;
+            private int size;
+        }
+
+    }
 
     public static class Res {
 

@@ -3,6 +3,7 @@ package com.chaeking.api.controller.temp;
 import com.chaeking.api.domain.enumerate.KakaoBookSort;
 import com.chaeking.api.domain.enumerate.KakaoBookTarget;
 import com.chaeking.api.domain.value.BookValue;
+import com.chaeking.api.domain.value.naver.NaverBookValue;
 import com.chaeking.api.domain.value.response.DataResponse;
 import com.chaeking.api.service.BookService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -50,7 +51,9 @@ public class BookSearchController {
             @Parameter(description = "정렬 옵션") @RequestParam(defaultValue = "sim") String sort,
             @RequestParam(required = false, defaultValue = "0") @Min(0) @Max(999) int page,
             @RequestParam(required = false, defaultValue = "10") @Min(1) @Max(100) int size) {
-        List<Long> bookIds = bookService.searchNaverBookBasic(name, sort, page + 1, size);
+        NaverBookValue.Req.Search naverBookSearch = NaverBookValue.Req.Search.builder()
+                .query(name).sort(sort).start(page + 1).display(size).build();
+        List<Long> bookIds = bookService.searchNaverBookBasic(naverBookSearch);
         return DataResponse.of(bookService.selectAll(bookIds));
     }
 

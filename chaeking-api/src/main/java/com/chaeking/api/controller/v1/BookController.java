@@ -3,6 +3,7 @@ package com.chaeking.api.controller.v1;
 import com.chaeking.api.domain.enumerate.KakaoBookSort;
 import com.chaeking.api.domain.enumerate.KakaoBookTarget;
 import com.chaeking.api.domain.value.BookValue;
+import com.chaeking.api.domain.value.naver.KakaoBookValue;
 import com.chaeking.api.domain.value.response.DataResponse;
 import com.chaeking.api.service.BookService;
 import com.chaeking.api.util.BasicUtils;
@@ -17,6 +18,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Tag(name = "book", description = "책, 베스트셀러, 신간")
@@ -57,7 +59,13 @@ public class BookController {
             @Parameter(description = "정렬 옵션") @RequestParam(defaultValue = "accuracy") KakaoBookSort sort,
             @RequestParam(value = "page", required = false, defaultValue = "0") @Min(0) @Max(100) int page,
             @RequestParam(value = "size", required = false, defaultValue = "10") @Min(1) @Max(50) int size) {
-        List<Long> bookIds = bookService.searchKakaoBook(query, target, sort, page + 1, size);
+        KakaoBookValue.Req.Search kakaoBookSearch = KakaoBookValue.Req.Search.builder()
+                .query(query)
+                .target(Optional.ofNullable(target).map(KakaoBookTarget::name).orElse(""))
+                .sort(Optional.ofNullable(sort).map(KakaoBookSort::name).orElse("accuracy"))
+                .page(page + 1)
+                .size(size).build();
+        List<Long> bookIds = bookService.searchKakaoBook(kakaoBookSearch);
         return DataResponse.of(bookService.selectAll(bookIds));
     }
 
