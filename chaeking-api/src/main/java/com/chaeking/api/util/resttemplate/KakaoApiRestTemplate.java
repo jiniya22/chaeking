@@ -1,5 +1,6 @@
 package com.chaeking.api.util.resttemplate;
 
+import com.chaeking.api.config.vault.BookSearchConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -13,12 +14,6 @@ import org.springframework.web.client.RestTemplate;
 @Component
 public class KakaoApiRestTemplate extends RestTemplate {
     static String apiUrl;
-    static String restApiKey;
-
-    static {
-        KakaoApiRestTemplate.restApiKey = System.getenv("KAKAO_REST_API_KEY");
-    }
-
 
     public <T> ResponseEntity<T> get(String url, HttpHeaders httpHeaders, Class<T> clazz) {
         return this.exchange(url, HttpMethod.GET, null, httpHeaders, clazz);
@@ -44,7 +39,7 @@ public class KakaoApiRestTemplate extends RestTemplate {
         if(headers == null) headers = new HttpHeaders();
         headers.set("Accept", "application/json; charset=utf-8");
         headers.set("Content-Type", "application/json; charset=utf-8");
-        headers.set("Authorization", "KakaoAK " + restApiKey);
+        headers.set("Authorization", "KakaoAK " + BookSearchConfig.Kakao.getApiKey());
         return this.exchange(url, method, new HttpEntity<>(body, headers), clazz);
     }
 

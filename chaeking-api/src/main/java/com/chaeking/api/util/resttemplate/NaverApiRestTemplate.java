@@ -1,6 +1,6 @@
 package com.chaeking.api.util.resttemplate;
 
-import org.springframework.beans.factory.annotation.Value;
+import com.chaeking.api.config.vault.BookSearchConfig;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -14,11 +14,6 @@ import org.springframework.web.client.RestTemplate;
 public class NaverApiRestTemplate extends RestTemplate {
     static String apiUrl;
     static String clientId;
-    static String clientSecret;
-
-    static {
-        NaverApiRestTemplate.clientSecret = System.getenv("NAVER_CLIENT_SECRET");
-    }
 
     public <T> ResponseEntity<T> get(String url, HttpHeaders httpHeaders, Class<T> clazz) {
         return this.exchange(url, HttpMethod.GET, null, httpHeaders, clazz);
@@ -44,24 +39,14 @@ public class NaverApiRestTemplate extends RestTemplate {
         if(headers == null) headers = new HttpHeaders();
         headers.set("Accept", "application/json; charset=utf-8");
         headers.set("Content-Type", "application/json; charset=utf-8");
-        headers.set("X-Naver-Client-Id", clientId);
-        headers.set("X-Naver-Client-Secret", clientSecret);
+        headers.set("X-Naver-Client-Id", BookSearchConfig.Naver.getClientId());
+        headers.set("X-Naver-Client-Secret", BookSearchConfig.Naver.getClientSecret());
         return this.exchange(url, method, new HttpEntity<>(body, headers), clazz);
     }
 
     @Override
     public <T> ResponseEntity<T> exchange(String url, HttpMethod method, @Nullable HttpEntity<?> entity, Class<T> responseType, Object... uriVariables) throws RestClientException {
         return super.exchange(apiUrl + url, method, entity, responseType, uriVariables);
-    }
-
-    @Value("${chaeking.book-search.naver.api-url}")
-    public void setApiUrl(String apiUrl) {
-        NaverApiRestTemplate.apiUrl = apiUrl;
-    }
-
-    @Value("${chaeking.book-search.naver.client-id}")
-    public void setClientId(String clientId) {
-        NaverApiRestTemplate.clientId = clientId;
     }
 
 }
