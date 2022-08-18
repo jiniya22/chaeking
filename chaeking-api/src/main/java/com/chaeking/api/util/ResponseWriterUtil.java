@@ -24,6 +24,6 @@ public class ResponseWriterUtil {
     }
 
     public static void writeBaseResponse(HttpServletResponse response, int statusCode, String message) {
-        ResponseWriterUtil.writeResponse(response, statusCode, BaseResponse.of(message));
+        ResponseWriterUtil.writeResponse(response, statusCode, BaseResponse.create(message));
     }
 }

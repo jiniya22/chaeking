@@ -51,7 +51,7 @@ public class UserController {
             builder.header("X-Access-Token", token.accessToken());
             builder.header("X-Refresh-Token", token.refreshToken());
         }
-        return builder.body(BaseResponse.of());
+        return builder.body(BaseResponse.SUCCESS_INSTANCE);
     }
 
     @Operation(summary = "사용자 정보 수정 - 비밀번호",
@@ -64,7 +64,7 @@ public class UserController {
     @PatchMapping("/password")
     public BaseResponse patchUserPassword(@RequestBody @Valid UserValue.Req.PasswordModification req) {
         userService.patchPassword(BasicUtils.getUserId(), req);
-        return BaseResponse.of();
+        return BaseResponse.SUCCESS_INSTANCE;
     }
 
     @Operation(summary = "사용자 정보 수정 - 프로필 사진",
@@ -75,7 +75,7 @@ public class UserController {
     @PatchMapping(value = "/profile-image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public BaseResponse patchProfileImage(@RequestPart(required = false) MultipartFile image) {
         userService.patchImageUrl(BasicUtils.getUserId(), image);
-        return BaseResponse.of();
+        return BaseResponse.SUCCESS_INSTANCE;
     }
 
     @Operation(summary = "사용자가 좋아하는 작가 목록 조회")

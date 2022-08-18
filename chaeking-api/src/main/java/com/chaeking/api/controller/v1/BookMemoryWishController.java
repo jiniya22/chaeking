@@ -36,7 +36,7 @@ public class BookMemoryWishController {
             @RequestBody BookMemoryWishValue.Req.Creation req) {
         Long userId = BasicUtils.getUserId();
         bookMemoryWishService.insert(userId, req);
-        return BaseResponse.of();
+        return BaseResponse.SUCCESS_INSTANCE;
     }
 
     @Operation(summary = "읽고 싶은 책 수정")
@@ -46,7 +46,7 @@ public class BookMemoryWishController {
             @RequestBody BookMemoryWishValue.Req.Modification req) {
         Long userId = BasicUtils.getUserId();
         bookMemoryWishService.modify(userId, bookMemoryWishId, req);
-        return BaseResponse.of();
+        return BaseResponse.SUCCESS_INSTANCE;
     }
 
     @Operation(summary = "읽고 싶은 책 삭제")
@@ -55,6 +55,6 @@ public class BookMemoryWishController {
             @Parameter(description = DescriptionUtils.ID_BOOK_MEMORY_WISH) @PathVariable(name = "book_memory_wish_id") Long bookMemoryWishId) {
         Long userId = BasicUtils.getUserId();
         bookMemoryWishService.delete(userId, bookMemoryWishId);
-        return BaseResponse.of();
+        return BaseResponse.SUCCESS_INSTANCE;
     }
 }

@@ -40,7 +40,7 @@ public class BookMemoryCompleteController {
             @RequestBody BookMemoryCompleteValue.Req.Creation req) {
         Long userId = BasicUtils.getUserId();
         bookMemoryCompleteService.insert(userId, req);
-        return BaseResponse.of();
+        return BaseResponse.SUCCESS_INSTANCE;
     }
 
     @Operation(summary = "이미 읽은 책 수정")
@@ -50,7 +50,7 @@ public class BookMemoryCompleteController {
             @RequestBody BookMemoryCompleteValue.Req.Modification req) {
         Long userId = BasicUtils.getUserId();
         bookMemoryCompleteService.modify(userId, bookMemoryCompleteId, req);
-        return BaseResponse.of();
+        return BaseResponse.SUCCESS_INSTANCE;
     }
 
     @Operation(summary = "이미 읽은 책 삭제")
@@ -59,7 +59,7 @@ public class BookMemoryCompleteController {
             @Parameter(description = DescriptionUtils.ID_BOOK_MEMORY_COMPLETE) @PathVariable(name = "book_memory_complete_id") Long bookMemoryCompleteId) {
         Long userId = BasicUtils.getUserId();
         bookMemoryCompleteService.delete(userId, bookMemoryCompleteId);
-        return BaseResponse.of();
+        return BaseResponse.SUCCESS_INSTANCE;
     }
 
 }

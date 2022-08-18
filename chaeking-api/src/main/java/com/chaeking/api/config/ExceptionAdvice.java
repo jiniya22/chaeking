@@ -32,7 +32,7 @@ public class ExceptionAdvice {
                             .map(Object::toString).collect(Collectors.joining(", ")));
         }
         return ResponseEntity.badRequest()
-                .body(BaseResponse.of(message));
+                .body(BaseResponse.create(message));
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -44,7 +44,7 @@ public class ExceptionAdvice {
     @ExceptionHandler(ServerErrorException.class)
     protected ResponseEntity<BaseResponse> handleException(ServerErrorException e) {
         return ResponseEntity.internalServerError()
-                .body(BaseResponse.of(e.getMessage()));
+                .body(BaseResponse.create(e.getMessage()));
     }
 
     @ExceptionHandler(AccessDeniedException.class)
@@ -52,10 +52,10 @@ public class ExceptionAdvice {
         Long userId = BasicUtils.getUserId();
         if (userId == null)
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body(BaseResponse.of(MessageUtils.UNAUTHORIZED_AUTHORIZATION_EMPTY));
+                    .body(BaseResponse.create(MessageUtils.UNAUTHORIZED_AUTHORIZATION_EMPTY));
 
         return ResponseEntity.status(HttpStatus.FORBIDDEN)
-                .body(BaseResponse.of(MessageUtils.FORBIDDEN));
+                .body(BaseResponse.create(MessageUtils.FORBIDDEN));
     }
 
 }

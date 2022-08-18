@@ -16,7 +16,7 @@ import java.util.List;
 
 @SecurityRequirements
 @RequiredArgsConstructor
-@Tag(name = "setting-system", description = "설정-시스템(공지사항, FAQ, 이용약관 등)")
+@Tag(name = "setting-system", description = "설정-시스템(공지사항, FAQ, 이용약관, 메타정보 등)")
 @RestController
 @RequestMapping("/v1/notices")
 public class NoticeController {

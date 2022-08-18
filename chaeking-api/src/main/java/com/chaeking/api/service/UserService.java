@@ -50,7 +50,7 @@ public class UserService implements UserDetailsService {
         User user = userRepository.save(User.of(req));
         user.initializeAuthorities();
         userRepository.save(user);
-        return BaseResponse.of();
+        return BaseResponse.SUCCESS_INSTANCE;
     }
 
     @Transactional
