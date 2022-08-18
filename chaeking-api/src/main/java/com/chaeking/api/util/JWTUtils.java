@@ -10,31 +10,26 @@ import com.chaeking.api.domain.value.TokenValue;
 import java.time.Instant;
 
 public class JWTUtils {
-    private static Algorithm ALGORITHM;
     private static final long ACCESS_TIME = 60 * 60 * 6; // 6 hours
     private static final long REFRESH_TIME = 60 * 60 * 24 * 7; // 7 days
-
-    static {
-        JWTUtils.ALGORITHM = Algorithm.HMAC256(ChaekingConfig.getSecret());
-    }
 
     public static String createAccessToken(User user) {
         return JWT.create()
                 .withClaim("uid", user.getId())
                 .withClaim("exp", Instant.now().getEpochSecond() + ACCESS_TIME)
-                .sign(ALGORITHM);
+                .sign(getAlgorithm());
     }
 
     public static String createRefreshToken(User user) {
         return JWT.create()
                 .withClaim("uid", user.getId())
                 .withClaim("exp", Instant.now().getEpochSecond() + REFRESH_TIME)
-                .sign(ALGORITHM);
+                .sign(getAlgorithm());
     }
 
     public static TokenValue.Verify verify(String token){
         try {
-            DecodedJWT verify = JWT.require(ALGORITHM).build().verify(token);
+            DecodedJWT verify = JWT.require(getAlgorithm()).build().verify(token);
             return TokenValue.Verify.builder().success(true)
                     .uid(verify.getClaim("uid").asLong()).build();
         } catch(Exception ex){
@@ -44,4 +39,7 @@ public class JWTUtils {
         }
     }
 
+    public static Algorithm getAlgorithm() {
+        return Algorithm.HMAC256(ChaekingConfig.getSecret());
+    }
 }

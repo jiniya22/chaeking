@@ -8,5 +8,5 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class ChaekingConfig {
     @Getter private static String secret;
 
-    public void setSecret(String secret) { if (Strings.isBlank(secret)) ChaekingConfig.secret = secret; }
+    public void setSecret(String secret) { if (ChaekingConfig.secret == null) ChaekingConfig.secret = secret; }
 }
