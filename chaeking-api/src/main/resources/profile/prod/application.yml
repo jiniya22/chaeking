@@ -4,7 +4,9 @@ spring:
   profiles:
     active: prod
   config:
-    import: chaeking.yml
+    import:
+      - chaeking.yml
+      - vault://secret/chaeking
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://applebox.xyz:3306/book?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&tinyInt1isBit=false
@@ -31,6 +33,17 @@ spring:
 
   devtools:
     add-properties: false
+
+  cloud:
+    vault:
+      host: vault.chaeking.com
+      scheme: https
+      port: 443
+      token: "hvs.CAESIO5VENruhirjurPVttzBDzPKzMpKHafaWwcoMotIKLnnGh4KHGh2cy5nMEFNc0d1WXVra0RMd3VmMDNtZ2V1Qmc"
+      authentication: token
+      kv:
+        enabled: true
+        default-context: chaeking
 
 server:
   port: 8080

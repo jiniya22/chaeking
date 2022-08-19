@@ -13,7 +13,6 @@ dependencies {
     implementation "${boot}:spring-boot-starter-thymeleaf"
     implementation "${boot}:spring-boot-starter-validation"
     implementation "${cloud}:spring-cloud-starter-vault-config"
-    implementation "${cloud}:spring-cloud-starter-bootstrap"
     implementation "${cloud}:spring-cloud-starter-openfeign"
     implementation "org.thymeleaf.extras:thymeleaf-extras-springsecurity5"
     implementation "org.jsoup:jsoup:1.15.2"
