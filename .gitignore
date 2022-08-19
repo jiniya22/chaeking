@@ -44,3 +44,4 @@ bin/
 ### VS Code ###
 .vscode/
 logs/
+.sass-cache/
