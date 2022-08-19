@@ -44,7 +44,6 @@ subprojects {
         developmentOnly "$boot:spring-boot-devtools"
         annotationProcessor "$boot:spring-boot-configuration-processor"
         testImplementation "$boot:spring-boot-starter-test"
-        implementation "org.springdoc:springdoc-openapi-ui:1.6.9"
         compileOnly lombok
         annotationProcessor lombok
         testImplementation lombok
