@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="cmm/layout">
+
+<th:block layout:fragment="f-title">main</th:block>
+
+<section layout:fragment="f-content">
+	<div class="container">
+		<div class="d-title">
+			<h2>chaeking demo</h2>
+		</div>
+		<div class="d-content">
+			<div class="row">
+				<ul>
+					<li>샘플 페이지 추가</li>
+					<li>layout 다듬기</li>
+					<li>security 적용</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+
+<th:block layout:fragment="f-script">>
+</th:block>

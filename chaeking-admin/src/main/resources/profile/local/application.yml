@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: chaeking
+  profiles:
+    active: local
+
+  thymeleaf:
+    check-template-location: true
+    cache: false
+
+  web:
+    resources:
+      static-locations:
+        - classpath:/static/
+      cache:
+        period: 0
+
+  mvc:
+    static-path-pattern: /static/**
+    log-resolved-exception: true
+
+  security:
+    user:
+      name: admin
+      password: admin
+      roles:
+        - ADMIN
+        - VIEW
+
+server:
+  port: 8082
+  tomcat:
+    basedir: .
+#    accesslog:
+#      enabled: true
+#      directory: logs
+#      pattern: "%{yyyy-MM-dd HH:mm:ss}t %{X-Forwarded-For}i(%h) %l %u \"%r\" %s %b"
+    remoteip:
+      protocol-header: X-Forwarded-Proto
+      remote-ip-header: X-Forwarded-For

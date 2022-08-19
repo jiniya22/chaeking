@@ -1,0 +1,18 @@
+sourceSets {
+    main {
+        resources {
+            srcDirs("src/main/resources/profile/${profile}")
+        }
+    }
+}
+
+dependencies {
+    implementation "${boot}:spring-boot-starter-web"
+    implementation "${boot}:spring-boot-starter-thymeleaf"
+    implementation "${boot}:spring-boot-starter-security"
+    implementation "nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.1.0"
+}
+
+tasks.bootJar {
+    archiveFileName.set("chaeking-admin.jar")
+}

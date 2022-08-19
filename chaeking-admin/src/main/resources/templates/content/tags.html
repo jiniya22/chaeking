@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="cmm/layout">
+
+<th:block layout:fragment="f-title">tag 조회</th:block>
+
+<section layout:fragment="f-content">
+	<div class="container">
+		<div class="d-title">
+			<h2>tag 조회</h2>
+		</div>
+		<div class="d-content">
+			<div class="row">
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead>
+							<tr class="text-center">
+								<th width="10%">id</th>
+								<th width="35%">태그명</th>
+								<th width="35%">생성일</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>test</td>
+								<td>test</td>
+								<td>test</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<th:block layout:fragment="f-script">
+
+</th:block>
