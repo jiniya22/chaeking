@@ -9,7 +9,6 @@ import com.chaeking.api.domain.value.BaseValue;
 import com.chaeking.api.domain.value.ChaekingProperties;
 import com.chaeking.api.domain.value.TokenValue;
 import com.chaeking.api.domain.value.UserValue;
-import com.chaeking.api.domain.value.response.BaseResponse;
 import com.chaeking.api.repository.UserRepository;
 import com.chaeking.api.util.FileUtils;
 import com.chaeking.api.util.MessageUtils;
@@ -44,13 +43,12 @@ public class UserService implements UserDetailsService {
     }
 
     @Transactional
-    public BaseResponse save(UserValue.Req.Creation req) {
+    public void save(UserValue.Req.Creation req) {
         if(userRepository.existsByEmail(req.email()))
             throw new InvalidInputException(MessageUtils.DUPLICATE_USER_EMAIL);
         User user = userRepository.save(User.of(req));
         user.initializeAuthorities();
         userRepository.save(user);
-        return BaseResponse.SUCCESS_INSTANCE;
     }
 
     @Transactional

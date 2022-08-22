@@ -9,11 +9,16 @@ import com.chaeking.api.util.DescriptionUtils;
 import com.chaeking.api.util.RegexpUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.constraints.Pattern;
 
@@ -34,13 +39,16 @@ public class BookMemoryWishController {
         return bookMemoryWishService.selectAll(userId, month, PageRequest.of(page, size, Sort.by(Sort.Order.desc("id"))));
     }
 
-    @Operation(summary = "읽고 싶은 책 등록")
+    @Operation(summary = "읽고 싶은 책 등록", responses = @ApiResponse(responseCode = "201"))
     @PostMapping("")
-    public BaseResponse insert(
+    public ResponseEntity<BaseResponse> insert(
             @RequestBody BookMemoryWishValue.Req.Creation req) {
         Long userId = BasicUtils.getUserId();
-        bookMemoryWishService.insert(userId, req);
-        return BaseResponse.SUCCESS_INSTANCE;
+        Long bookMemoryWishId = bookMemoryWishService.insert(userId, req);
+        return ResponseEntity
+                .created(ServletUriComponentsBuilder.fromCurrentRequest()
+                        .path("/{book_memory_wish_id}").buildAndExpand(bookMemoryWishId).toUri())
+                .body(BaseResponse.SUCCESS_INSTANCE);
     }
 
     @Operation(summary = "읽고 싶은 책 수정")

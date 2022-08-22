@@ -6,10 +6,13 @@ import com.chaeking.api.domain.value.response.BaseResponse;
 import com.chaeking.api.domain.value.response.DataResponse;
 import com.chaeking.api.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 
@@ -30,10 +33,15 @@ public class AuthController {
                         <li>push, night_push: 푸시 동의, 야간 푸시 동의. 옵션값으로, 미설정시 false 로 간주합니다.</li>
                     </ul>
                     <b>※ 필수 약관은 반드시 동의해야 가입할 수 있으므로, Request Body 로 별도로 받지 않습니다.</b>
-                    """)
+                    """,
+            responses = @ApiResponse(responseCode = "201"))
     @PostMapping("/join")
-    public BaseResponse save(@RequestBody @Valid UserValue.Req.Creation req) {
-        return userService.save(req);
+    public ResponseEntity<BaseResponse> save(@RequestBody @Valid UserValue.Req.Creation req) {
+        userService.save(req);
+        return ResponseEntity
+                .created(ServletUriComponentsBuilder.fromCurrentContextPath()
+                        .pathSegment("v1", "users").build().toUri())
+                .body(BaseResponse.SUCCESS_INSTANCE);
     }
 
     // Swagger 문서화를 위해 만든 껍데기 메서드

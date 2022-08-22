@@ -9,12 +9,15 @@ import com.chaeking.api.util.DescriptionUtils;
 import com.chaeking.api.util.RegexpUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.constraints.Pattern;
 
@@ -36,13 +39,17 @@ public class BookMemoryCompleteController {
         return bookMemoryCompleteService.selectAll(userId, month, PageRequest.of(page, size, Sort.by(Sort.Order.desc("id"))));
     }
 
-    @Operation(summary = "이미 읽은 책 등록")
+    @Operation(summary = "이미 읽은 책 등록", responses = @ApiResponse(responseCode = "201"))
     @PostMapping("")
-    public BaseResponse insertBookMemoryComplete(
+    public ResponseEntity<BaseResponse> insertBookMemoryComplete(
             @RequestBody BookMemoryCompleteValue.Req.Creation req) {
         Long userId = BasicUtils.getUserId();
-        bookMemoryCompleteService.insert(userId, req);
-        return BaseResponse.SUCCESS_INSTANCE;
+        Long bookMemoryCompleteId = bookMemoryCompleteService.insert(userId, req);
+
+        return ResponseEntity
+                .created(ServletUriComponentsBuilder.fromCurrentRequest()
+                        .path("/{book_memory_complete_id}").buildAndExpand(bookMemoryCompleteId).toUri())
+                .body(BaseResponse.SUCCESS_INSTANCE);
     }
 
     @Operation(summary = "이미 읽은 책 수정")

@@ -51,7 +51,7 @@ public class BookMemoryWishService {
     }
 
     @Transactional
-    public void insert(Long userId, BookMemoryWishValue.Req.Creation value) {
+    public Long insert(Long userId, BookMemoryWishValue.Req.Creation value) {
         User user = userService.select(userId);
         Book book = bookService.select(value.bookId());
 
@@ -60,6 +60,8 @@ public class BookMemoryWishService {
         bookMemoryWish.setMemo(value.memo());
         bookMemoryCompleteRepository.deleteByBookAndUser(book, user);
         bookMemoryWishRepository.save(bookMemoryWish);
+
+        return bookMemoryWish.getId();
     }
 
     @Transactional

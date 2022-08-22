@@ -55,13 +55,14 @@ public class BookMemoryCompleteService {
     }
 
     @Transactional
-    public void insert(Long userId, BookMemoryCompleteValue.Req.Creation req) {
+    public Long insert(Long userId, BookMemoryCompleteValue.Req.Creation req) {
         User user = userService.select(userId);
         Book book = bookService.select(req.bookId());
         BookMemoryComplete bookMemoryComplete = bookMemoryCompleteRepository.findByBookAndUser(book, user)
                 .orElse(new BookMemoryComplete(book, user));
 
         mergeBookMemoryComplete(bookMemoryComplete, BookMemoryCompleteValue.Req.Modification.of(req));
+        return bookMemoryComplete.getId();
     }
 
     @Transactional
