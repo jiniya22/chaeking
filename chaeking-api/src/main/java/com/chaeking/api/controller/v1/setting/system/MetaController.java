@@ -1,4 +1,4 @@
-package com.chaeking.api.controller.v1;
+package com.chaeking.api.controller.v1.setting.system;
 
 import com.chaeking.api.domain.enumerate.MetaType;
 import com.chaeking.api.domain.value.response.DataResponse;
