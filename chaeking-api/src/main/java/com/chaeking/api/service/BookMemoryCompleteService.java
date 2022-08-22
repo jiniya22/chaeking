@@ -1,7 +1,6 @@
 package com.chaeking.api.service;
 
 import com.chaeking.api.config.exception.InvalidInputException;
-import com.chaeking.api.domain.entity.Book;
 import com.chaeking.api.domain.entity.BookMemoryComplete;
 import com.chaeking.api.domain.entity.BookMemoryCompleteTag;
 import com.chaeking.api.domain.entity.User;
@@ -56,9 +55,9 @@ public class BookMemoryCompleteService {
 
     @Transactional
     public Long insert(Long userId, BookMemoryCompleteValue.Req.Creation req) {
-        User user = userService.select(userId);
-        Book book = bookService.select(req.bookId());
-        BookMemoryComplete bookMemoryComplete = bookMemoryCompleteRepository.findByBookAndUser(book, user)
+        var user = userService.select(userId);
+        var book = bookService.select(req.bookId());
+        var bookMemoryComplete = bookMemoryCompleteRepository.findByBookAndUser(book, user)
                 .orElse(new BookMemoryComplete(book, user));
 
         mergeBookMemoryComplete(bookMemoryComplete, BookMemoryCompleteValue.Req.Modification.of(req));
@@ -67,7 +66,7 @@ public class BookMemoryCompleteService {
 
     @Transactional
     public void modify(Long userId, Long bookMemoryCompleteId, BookMemoryCompleteValue.Req.Modification req) {
-        BookMemoryComplete bookMemoryComplete = bookMemoryCompleteRepository.findWithUserById(bookMemoryCompleteId)
+        var bookMemoryComplete = bookMemoryCompleteRepository.findWithUserById(bookMemoryCompleteId)
                 .orElseThrow(() -> new InvalidInputException(MessageUtils.NOT_FOUND_BOOK_MEMORY_COMPLETE));
         if(!userId.equals(bookMemoryComplete.getUser().getId()))
             throw new InvalidInputException(MessageUtils.NOT_FOUND_BOOK_MEMORY_COMPLETE);
@@ -77,7 +76,7 @@ public class BookMemoryCompleteService {
 
     @Transactional
     public void delete(Long userId, Long bookMemoryCompleteId) {
-        BookMemoryComplete bookMemoryComplete = bookMemoryCompleteRepository.findWithUserById(bookMemoryCompleteId)
+        var bookMemoryComplete = bookMemoryCompleteRepository.findWithUserById(bookMemoryCompleteId)
                 .orElseThrow(() -> new InvalidInputException(MessageUtils.NOT_FOUND_BOOK_MEMORY_COMPLETE));
         if(!userId.equals(bookMemoryComplete.getUser().getId()))
             throw new InvalidInputException(MessageUtils.NOT_FOUND_BOOK_MEMORY_COMPLETE);
@@ -94,10 +93,10 @@ public class BookMemoryCompleteService {
     }
 
     private void mergeBookMemoryCompleteTags(BookMemoryComplete bookMemoryComplete, List<Long> tagIds) {
-        List<BookMemoryCompleteTag> bookMemoryCompleteTags = bookMemoryComplete.getTags();
+        var bookMemoryCompleteTags = bookMemoryComplete.getTags();
         if(!CollectionUtils.isEmpty(tagIds)) {
             bookMemoryComplete.removeTags(bookMemoryCompleteTags.stream().filter(f -> !tagIds.contains(f.getTag().getId())).collect(Collectors.toList()));
-            List<Long> existIds = bookMemoryCompleteTags.stream().mapToLong(m -> m.getTag().getId()).boxed().toList();
+            var existIds = bookMemoryCompleteTags.stream().mapToLong(m -> m.getTag().getId()).boxed().toList();
             tagIds.stream().filter(tagId -> !existIds.contains(tagId)).forEach(tagId -> tagRepository.findById(tagId).ifPresent(tag -> bookMemoryComplete.addTag(new BookMemoryCompleteTag(tag))));
         } else if (!CollectionUtils.isEmpty(bookMemoryCompleteTags)) {
             bookMemoryComplete.removeTags(bookMemoryCompleteTags);

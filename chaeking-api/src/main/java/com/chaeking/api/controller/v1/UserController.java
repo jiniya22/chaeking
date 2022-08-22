@@ -45,8 +45,8 @@ public class UserController {
                     """)
     @PatchMapping("")
     public ResponseEntity<BaseResponse> patchUser(@RequestBody @Valid UserValue.Req.Modification req) {
-        TokenValue.Token token = userService.patch(BasicUtils.getUserId(), req);
-        ResponseEntity.BodyBuilder builder = ResponseEntity.ok();
+        var token = userService.patch(BasicUtils.getUserId(), req);
+        var builder = ResponseEntity.ok();
         if(token != null) {
             builder.header("X-Access-Token", token.accessToken());
             builder.header("X-Refresh-Token", token.refreshToken());

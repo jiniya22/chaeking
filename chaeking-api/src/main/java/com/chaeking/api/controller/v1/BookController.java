@@ -65,7 +65,7 @@ public class BookController {
                 .sort(Optional.ofNullable(sort).map(KakaoBookSort::name).orElse("accuracy"))
                 .page(page + 1)
                 .size(size).build();
-        List<Long> bookIds = bookService.searchKakaoBook(kakaoBookSearch);
+        var bookIds = bookService.searchKakaoBook(kakaoBookSearch);
         return DataResponse.of(bookService.selectAll(bookIds));
     }
 

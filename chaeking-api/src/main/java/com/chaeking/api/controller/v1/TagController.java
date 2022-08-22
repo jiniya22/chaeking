@@ -25,7 +25,6 @@ public class TagController {
     @Operation(summary = "태그 목록")
     @GetMapping("")
     public DataResponse<List<BaseValue>> tags() {
-        List<BaseValue> data = tagService.tags();
-        return DataResponse.of(data);
+        return DataResponse.of(tagService.tags());
     }
 }

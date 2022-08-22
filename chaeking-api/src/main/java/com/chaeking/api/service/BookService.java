@@ -48,16 +48,16 @@ public class BookService {
     }
 
     public BookValue.Res.Detail book(Long bookId, Long userId) {
-        User user = userId == null ? null : userRepository.findById(userId).orElse(null);
+        var user = userId == null ? null : userRepository.findById(userId).orElse(null);
         return Book.createDetail(select(bookId), user);
     }
 
     @Transactional
     public List<Long> searchNaverBookBasic(NaverBookValue.Req.Search naverBookSearch) {
-        ResponseEntity<NaverBookValue.Res.BookBasic> responseEntity
+        var responseEntity
                 = naverApiClient.searchBooks(BookSearchConfig.Naver.getClientId(), BookSearchConfig.Naver.getClientSecret(), naverBookSearch);
         if (HttpStatus.OK.equals(responseEntity.getStatusCode())) {
-            List<Book> books = new ArrayList<>();
+            List<Book> books = new ArrayList<Book>();
             List<BookAndAuthor> bookAndAuthors = new ArrayList<>();
             Map<String, Author> authorMap = new HashMap<>();
             Map<String, Publisher> publisherMap = new HashMap<>();
@@ -88,7 +88,7 @@ public class BookService {
 
     @Transactional
     public List<Long> searchKakaoBook(KakaoBookValue.Req.Search kakaoBookSearch) {
-        ResponseEntity<KakaoBookValue.Res.BookBasic> responseEntity
+        var responseEntity
                 = kakaoApiClient.searchBooks("KakaoAK " + BookSearchConfig.Kakao.getApiKey(), kakaoBookSearch);
         if (HttpStatus.OK.equals(responseEntity.getStatusCode())) {
             List<Long> bookIds = new ArrayList<>();

@@ -28,8 +28,7 @@ public class NoticeController {
     public DataResponse<List<BoardValue.Res.Simple>> notices(
             @RequestParam(value = "page", required = false, defaultValue = "0") int page,
             @RequestParam(value = "size", required = false, defaultValue = "10") int size) {
-        List<BoardValue.Res.Simple> data = noticeService.notices(PageRequest.of(page, size, Sort.by(Sort.Order.desc("id"))));
-        return DataResponse.of(data);
+        return DataResponse.of(noticeService.notices(PageRequest.of(page, size, Sort.by(Sort.Order.desc("id")))));
     }
 
     @Operation(summary = "공지사항 상세보기")

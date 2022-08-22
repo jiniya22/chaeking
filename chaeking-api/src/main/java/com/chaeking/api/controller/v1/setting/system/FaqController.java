@@ -27,7 +27,7 @@ public class FaqController {
     public DataResponse<List<BoardValue.Res.Simple>> faqs(
             @RequestParam(value = "page", required = false, defaultValue = "0") int page,
             @RequestParam(value = "size", required = false, defaultValue = "10") int size) {
-        List<BoardValue.Res.Simple> data = faqService.faqs(PageRequest.of(page, size, Sort.by(Sort.Order.desc("id"))));
+        var data = faqService.faqs(PageRequest.of(page, size, Sort.by(Sort.Order.desc("id"))));
         return DataResponse.of(data);
     }
 
