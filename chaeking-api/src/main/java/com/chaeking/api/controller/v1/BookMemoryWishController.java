@@ -6,6 +6,7 @@ import com.chaeking.api.domain.value.response.PageResponse;
 import com.chaeking.api.service.BookMemoryWishService;
 import com.chaeking.api.util.BasicUtils;
 import com.chaeking.api.util.DescriptionUtils;
+import com.chaeking.api.util.RegexpUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -13,6 +14,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.constraints.Pattern;
 
 @RequiredArgsConstructor
 @Tag(name = "book-memory-wish", description = "북 메모리(읽고 싶은책)")
@@ -24,10 +27,11 @@ public class BookMemoryWishController {
     @Operation(summary = "읽고 싶은 책 목록")
     @GetMapping("")
     public PageResponse<BookMemoryWishValue.Res.Simple> selectAll(
+            @Parameter(description = DescriptionUtils.MONTH) @RequestParam(required = false) @Pattern(regexp = RegexpUtils.MONTH) String month,
             @RequestParam(value = "page", required = false, defaultValue = "0") int page,
             @RequestParam(value = "size", required = false, defaultValue = "10") int size) {
         Long userId = BasicUtils.getUserId();
-        return bookMemoryWishService.selectAll(userId, PageRequest.of(page, size, Sort.by(Sort.Order.desc("id"))));
+        return bookMemoryWishService.selectAll(userId, month, PageRequest.of(page, size, Sort.by(Sort.Order.desc("id"))));
     }
 
     @Operation(summary = "읽고 싶은 책 등록")

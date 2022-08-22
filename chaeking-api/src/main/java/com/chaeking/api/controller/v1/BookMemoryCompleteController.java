@@ -2,10 +2,11 @@ package com.chaeking.api.controller.v1;
 
 import com.chaeking.api.domain.value.BookMemoryCompleteValue;
 import com.chaeking.api.domain.value.response.BaseResponse;
-import com.chaeking.api.domain.value.response.DataResponse;
+import com.chaeking.api.domain.value.response.PageResponse;
 import com.chaeking.api.service.BookMemoryCompleteService;
 import com.chaeking.api.util.BasicUtils;
 import com.chaeking.api.util.DescriptionUtils;
+import com.chaeking.api.util.RegexpUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -15,7 +16,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.validation.constraints.Pattern;
 
 @PreAuthorize("isAuthenticated()")
 @RequiredArgsConstructor
@@ -27,11 +28,12 @@ public class BookMemoryCompleteController {
 
     @Operation(summary = "이미 읽은 책 목록")
     @GetMapping("")
-    public DataResponse<List<BookMemoryCompleteValue.Res.Simple>> selectAll(
+    public PageResponse<BookMemoryCompleteValue.Res.Simple> selectAll(
+            @Parameter(description = DescriptionUtils.MONTH) @RequestParam(required = false) @Pattern(regexp = RegexpUtils.MONTH) String month,
             @RequestParam(value = "page", required = false, defaultValue = "0") int page,
             @RequestParam(value = "size", required = false, defaultValue = "10") int size) {
         Long userId = BasicUtils.getUserId();
-        return DataResponse.of(bookMemoryCompleteService.selectAll(userId, PageRequest.of(page, size, Sort.by(Sort.Order.desc("id")))));
+        return bookMemoryCompleteService.selectAll(userId, month, PageRequest.of(page, size, Sort.by(Sort.Order.desc("id"))));
     }
 
     @Operation(summary = "이미 읽은 책 등록")

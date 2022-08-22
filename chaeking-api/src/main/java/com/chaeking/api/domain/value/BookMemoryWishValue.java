@@ -19,7 +19,7 @@ public final class BookMemoryWishValue {
 
     public static final class Res {
         @Schema(name = "BookMemoryWishSimple")
-        public record Simple(long id, Long bookId, String bookName) { }
+        public record Simple(long id, Long bookId, String bookName, String imageUrl) { }
 
         @Schema(name = "BookMemoryWishContent")
         public record Content(
