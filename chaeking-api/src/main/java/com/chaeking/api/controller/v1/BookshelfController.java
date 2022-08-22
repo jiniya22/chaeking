@@ -4,6 +4,7 @@ import com.chaeking.api.domain.value.BookMemoryCompleteValue;
 import com.chaeking.api.domain.value.response.PageResponse;
 import com.chaeking.api.service.BookshelfService;
 import com.chaeking.api.util.BasicUtils;
+import com.chaeking.api.util.DescriptionUtils;
 import com.chaeking.api.util.RegexpUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -38,7 +39,7 @@ public class BookshelfController {
                     - **Authorization 헤더 필수**
                     """)
     public PageResponse<BookMemoryCompleteValue.Res.Bookshelf> bookshelf(
-            @Parameter(description = "조회할 월(yyyyMM)") @RequestParam(required = false) @Pattern(regexp = RegexpUtils.MONTH) String month,
+            @Parameter(description = DescriptionUtils.MONTH) @RequestParam(required = false) @Pattern(regexp = RegexpUtils.MONTH) String month,
             @RequestParam(value = "page", required = false, defaultValue = "0") @Min(0) @Max(999) int page
     ) {
         Long userId = BasicUtils.getUserId();

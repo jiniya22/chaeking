@@ -67,7 +67,8 @@ public class BookMemoryComplete extends BaseEntity {
     public static BookMemoryCompleteValue.Res.Simple createSimple(BookMemoryComplete c) {
         return new BookMemoryCompleteValue.Res.Simple(c.getId(),
                 Optional.ofNullable(c.getBook()).map(Book::getId).orElse(0L),
-                Optional.ofNullable(c.getBook()).map(Book::getName).orElse(""));
+                Optional.ofNullable(c.getBook()).map(Book::getName).orElse(""),
+                Optional.ofNullable(c.getBook()).map(Book::getImageUrl).orElse(""));
     }
 
     public static BookMemoryCompleteValue.Res.Bookshelf createBookshelf(BookMemoryComplete c) {

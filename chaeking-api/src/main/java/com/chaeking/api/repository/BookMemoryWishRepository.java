@@ -9,12 +9,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 public interface BookMemoryWishRepository extends JpaRepository<BookMemoryWish, Long> {
     Optional<BookMemoryWish> findByBookAndUser(Book book, User user);
     Optional<BookMemoryWish> findWithUserById(Long bookMemoryWishId);
     Page<BookMemoryWish> findAllByUser(User user, Pageable pageable);
+    Page<BookMemoryWish> findAllByUserAndCreatedAtBetween(User user, LocalDateTime createdAt1, LocalDateTime createdAt2, Pageable pageable);
 
     @Modifying
     @Query(value = "delete from BookMemoryWish b where b.book = ?1 and b.user = ?2")

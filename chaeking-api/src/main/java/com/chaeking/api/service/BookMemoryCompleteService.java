@@ -6,16 +6,22 @@ import com.chaeking.api.domain.entity.BookMemoryComplete;
 import com.chaeking.api.domain.entity.BookMemoryCompleteTag;
 import com.chaeking.api.domain.entity.User;
 import com.chaeking.api.domain.value.BookMemoryCompleteValue;
+import com.chaeking.api.domain.value.response.PageResponse;
 import com.chaeking.api.repository.BookMemoryCompleteRepository;
 import com.chaeking.api.repository.BookMemoryWishRepository;
 import com.chaeking.api.repository.TagRepository;
+import com.chaeking.api.util.DateTimeUtils;
 import com.chaeking.api.util.MessageUtils;
 import lombok.RequiredArgsConstructor;
+import org.apache.logging.log4j.util.Strings;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,12 +35,23 @@ public class BookMemoryCompleteService {
     private final BookMemoryCompleteRepository bookMemoryCompleteRepository;
     private final BookMemoryWishRepository bookMemoryWishRepository;
 
-    public List<BookMemoryCompleteValue.Res.Simple> selectAll(Long userId, Pageable pageable) {
+    public PageResponse<BookMemoryCompleteValue.Res.Simple> selectAll(Long userId, String month, Pageable pageable) {
         User user = userService.select(userId);
-        return bookMemoryCompleteRepository.findAllByUser(user, pageable)
-                .stream()
-                .map(BookMemoryComplete::createSimple)
-                .collect(Collectors.toList());
+
+        Page<BookMemoryComplete> bookMemoryCompletePage;
+        if(Strings.isBlank(month)) {
+            bookMemoryCompletePage = bookMemoryCompleteRepository.findAllByUser(user, pageable);
+        } else {
+            LocalDate date = DateTimeUtils.getFirstDate(month);
+            LocalDateTime time1 = DateTimeUtils.getFirstDateTime(date);
+            LocalDateTime time2 = DateTimeUtils.getLastDateTime(date);
+            bookMemoryCompletePage = bookMemoryCompleteRepository.findAllByUserAndCreatedAtBetween(user, time1, time2, pageable);
+        }
+
+        return PageResponse.create(
+                bookMemoryCompletePage.stream().map(BookMemoryComplete::createSimple).collect(Collectors.toList()),
+                bookMemoryCompletePage.getTotalElements(),
+                !bookMemoryCompletePage.isLast());
     }
 
     @Transactional
@@ -79,12 +96,8 @@ public class BookMemoryCompleteService {
         List<BookMemoryCompleteTag> bookMemoryCompleteTags = bookMemoryComplete.getTags();
         if(!CollectionUtils.isEmpty(tagIds)) {
             bookMemoryComplete.removeTags(bookMemoryCompleteTags.stream().filter(f -> !tagIds.contains(f.getTag().getId())).collect(Collectors.toList()));
-            List<Long> existIds = bookMemoryCompleteTags.stream().mapToLong(m -> m.getTag().getId()).boxed().collect(Collectors.toList());
-            tagIds.stream().filter(tagId -> !existIds.contains(tagId)).forEach(tagId -> {
-                tagRepository.findById(tagId).ifPresent(tag -> {
-                    bookMemoryComplete.addTag(new BookMemoryCompleteTag(tag));
-                });
-            });
+            List<Long> existIds = bookMemoryCompleteTags.stream().mapToLong(m -> m.getTag().getId()).boxed().toList();
+            tagIds.stream().filter(tagId -> !existIds.contains(tagId)).forEach(tagId -> tagRepository.findById(tagId).ifPresent(tag -> bookMemoryComplete.addTag(new BookMemoryCompleteTag(tag))));
         } else if (!CollectionUtils.isEmpty(bookMemoryCompleteTags)) {
             bookMemoryComplete.removeTags(bookMemoryCompleteTags);
         }
