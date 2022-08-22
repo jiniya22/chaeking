@@ -47,8 +47,8 @@ public class BookService {
         }).collect(Collectors.toList());
     }
 
-    public BookValue.Res.Detail book(long bookId, Long userId) {
-        User user = userRepository.findById(userId).orElse(null);
+    public BookValue.Res.Detail book(Long bookId, Long userId) {
+        User user = userId == null ? null : userRepository.findById(userId).orElse(null);
         return Book.createDetail(select(bookId), user);
     }
 
