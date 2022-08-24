@@ -41,17 +41,11 @@ public class UserController {
                         <li>수정하고자 하는 값만 설정하면 됩니다.</li>
                         <li>email 은 email 형식에 맞지 않을 경우 Exception 을 발생시킵니다.</li>
                     </ul>
-                    <b>※ email 을 수정했을 경우, header 에 담긴 토큰 값(X-Access-Token, X-Refresh-Token)을 이용하여 기존 토큰을 갱신해야합니다.</b>
                     """)
     @PatchMapping("")
-    public ResponseEntity<BaseResponse> patchUser(@RequestBody @Valid UserValue.Req.Modification req) {
-        var token = userService.patch(BasicUtils.getUserId(), req);
-        var builder = ResponseEntity.ok();
-        if(token != null) {
-            builder.header("X-Access-Token", token.accessToken());
-            builder.header("X-Refresh-Token", token.refreshToken());
-        }
-        return builder.body(BaseResponse.SUCCESS_INSTANCE);
+    public BaseResponse patchUser(@RequestBody @Valid UserValue.Req.Modification req) {
+        userService.patch(BasicUtils.getUserId(), req);
+        return BaseResponse.SUCCESS_INSTANCE;
     }
 
     @Operation(summary = "사용자 정보 수정 - 비밀번호",

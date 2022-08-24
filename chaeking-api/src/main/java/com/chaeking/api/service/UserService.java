@@ -57,7 +57,7 @@ public class UserService implements UserDetailsService {
     }
 
     @Transactional
-    public TokenValue.Token patch(long userId, UserValue.Req.Modification req) {
+    public void patch(long userId, UserValue.Req.Modification req) {
         User user = select(userId);
         if (Strings.isBlank(req.email()) && Strings.isBlank(req.nickname()) && req.push() == null && req.nightPush() == null) {
             log.info(">>>>> email, nickname, push, nightPush 모두 값이 없습니다.");
@@ -67,8 +67,6 @@ public class UserService implements UserDetailsService {
                     throw new InvalidInputException(MessageUtils.DUPLICATE_USER_EMAIL);
                 }
                 user.setEmail(req.email());
-                userRepository.save(user);
-                return User.createToken(user);
             }
             if (Strings.isNotBlank(req.nickname())) {
                 user.setNickname(req.nickname());
@@ -79,8 +77,8 @@ public class UserService implements UserDetailsService {
             if (req.nightPush() != null) {
                 user.setNightPush(req.nightPush());
             }
+            userRepository.save(user);
         }
-        return null;
     }
 
     @Transactional
