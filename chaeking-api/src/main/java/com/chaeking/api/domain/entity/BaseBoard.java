@@ -2,7 +2,9 @@ package com.chaeking.api.domain.entity;
 
 import com.chaeking.api.domain.value.BoardValue;
 import com.chaeking.api.util.DateTimeUtils;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -10,6 +12,7 @@ import javax.persistence.*;
 @MappedSuperclass
 @Getter
 @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public abstract class BaseBoard extends BaseEntity {
 
     @Id
@@ -21,6 +24,11 @@ public abstract class BaseBoard extends BaseEntity {
 
     @Column(columnDefinition = "TEXT")
     private String content;
+
+    public BaseBoard(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 
     public static BoardValue.Res.Simple createSimple(BaseBoard b) {
         return new BoardValue.Res.Simple(b.getId(), b.getTitle(), DateTimeUtils.toString(b.getCreatedAt()));
