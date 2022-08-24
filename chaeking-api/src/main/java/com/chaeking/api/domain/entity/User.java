@@ -152,4 +152,9 @@ public class User extends BaseEntity implements UserDetails {
     public String getImageUrl() {
         return Strings.isBlank(this.imageUrl) ? ChaekingProperties.getUrl() + "/static/img/user.png" : this.imageUrl;
     }
+
+    public void deactivate() {
+        setActive(false);
+        this.refreshKey = null;
+    }
 }

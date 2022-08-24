@@ -11,7 +11,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.models.security.SecurityScheme;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -67,7 +66,7 @@ public class AuthController {
     @SecurityRequirement(name = "access_token")
     @Operation(summary = "토큰 철회",
             description = "refresh_token을 폐기합니다.<br>")
-    @PostMapping("/revoke")
+    @DeleteMapping("/revoke")
     public BaseResponse revoke() {
         Long userId = BasicUtils.getUserId();
         userService.revoke(userId);

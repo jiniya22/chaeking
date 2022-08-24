@@ -48,6 +48,13 @@ public class UserController {
         return BaseResponse.SUCCESS_INSTANCE;
     }
 
+    @Operation(summary = "사용자 탈퇴")
+    @DeleteMapping("")
+    public BaseResponse deactivate() {
+        userService.deativate(BasicUtils.getUserId());
+        return BaseResponse.SUCCESS_INSTANCE;
+    }
+
     @Operation(summary = "사용자 정보 수정 - 비밀번호",
             description = """
                     <ul>
