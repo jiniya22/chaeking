@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+@Transactional(readOnly = true)
 public class LoginFilter extends UsernamePasswordAuthenticationFilter {
     private final UserService userService;
 
@@ -35,7 +36,6 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         setFilterProcessesUrl("/v1/auth/token");
     }
 
-    @Transactional
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         String refreshToken = request.getHeader("X-Refresh-Token");
@@ -52,17 +52,23 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
             TokenValue.Verify verify = JWTUtils.verify(refreshToken);
             if (verify.success()) {
                 User user = userService.loadUserById(verify.uid());
-                return new UsernamePasswordAuthenticationToken(user, user.getAuthorities());
-            } else {
-                throw new AuthenticationServiceException("refresh_token was expired");
+                if (verify.key().equals(user.getRefreshKey())) {
+                    return new UsernamePasswordAuthenticationToken(user, user.getAuthorities());
+                }
             }
+            throw new AuthenticationServiceException("refresh_token was expired");
         }
     }
 
+    @Transactional
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException {
         User user = (User) authResult.getPrincipal();
-        DataResponse<TokenValue.Token> body = DataResponse.of(User.createToken(user));
+        TokenValue.Token token = User.createToken(user);
+        user.setRefreshKey(JWTUtils.getKey(token.refreshToken()));
+        userService.save(user);
+
+        DataResponse<TokenValue.Token> body = DataResponse.of(token);
         ResponseWriterUtil.writeResponse(response, HttpServletResponse.SC_OK, body);
     }
 

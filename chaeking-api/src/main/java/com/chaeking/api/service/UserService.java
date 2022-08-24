@@ -52,6 +52,11 @@ public class UserService implements UserDetailsService {
     }
 
     @Transactional
+    public void save(User user) {
+        userRepository.save(user);
+    }
+
+    @Transactional
     public TokenValue.Token patch(long userId, UserValue.Req.Modification req) {
         User user = select(userId);
         if (Strings.isBlank(req.email()) && Strings.isBlank(req.nickname()) && req.push() == null && req.nightPush() == null) {

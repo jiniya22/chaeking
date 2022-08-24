@@ -1,4 +1,4 @@
-package com.chaeking.api.controller.v1;
+package com.chaeking.api.controller.v1.setting.user;
 
 import com.chaeking.api.domain.value.BaseValue;
 import com.chaeking.api.domain.value.TokenValue;

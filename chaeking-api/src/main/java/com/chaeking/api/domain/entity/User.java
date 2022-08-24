@@ -73,6 +73,10 @@ public class User extends BaseEntity implements UserDetails {
     @Column(columnDefinition = "TINYINT(1)")
     private boolean nightPush;
 
+    @Setter
+    @Column(length = 40)
+    private String refreshKey;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "FK__USER__USER_AUTHORITY"))
     private Set<UserAuthority> authorities;
