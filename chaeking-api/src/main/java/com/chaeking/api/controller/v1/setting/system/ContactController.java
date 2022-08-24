@@ -4,6 +4,7 @@ import com.chaeking.api.domain.value.BoardValue;
 import com.chaeking.api.domain.value.ContactValue;
 import com.chaeking.api.domain.value.response.BaseResponse;
 import com.chaeking.api.domain.value.response.DataResponse;
+import com.chaeking.api.domain.value.response.PageResponse;
 import com.chaeking.api.service.ContactService;
 import com.chaeking.api.util.BasicUtils;
 import io.swagger.v3.oas.annotations.Operation;
@@ -11,9 +12,13 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @Tag(name = "setting-system", description = "설정-시스템(공지사항, FAQ, 이용약관, 문의, 메타정보 등)")
@@ -23,6 +28,15 @@ public class ContactController {
 
     private final ContactService contactService;
 
+    @Operation(summary = "문의 목록 조회")
+    @GetMapping("")
+    public PageResponse<BoardValue.Res.Simple> selectAll(
+            @RequestParam(value = "page", required = false, defaultValue = "0") int page,
+            @RequestParam(value = "size", required = false, defaultValue = "10") int size) {
+        Long userId = BasicUtils.getUserId();
+        return contactService.selectAll(userId, PageRequest.of(page, size, Sort.by(Sort.Order.desc("id"))));
+    }
+    
     @Operation(summary = "문의하기(= 문의 추가)", responses = @ApiResponse(responseCode = "201"))
     @PostMapping("")
     public ResponseEntity<BaseResponse> insert(
