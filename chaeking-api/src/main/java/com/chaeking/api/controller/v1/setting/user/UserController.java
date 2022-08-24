@@ -20,7 +20,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RequiredArgsConstructor
-@Tag(name = "user", description = "사용자")
+@Tag(name = "setting-user", description = "설정-사용자")
 @RestController
 @RequestMapping("/v1/users")
 public class UserController {

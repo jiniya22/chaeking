@@ -28,21 +28,21 @@ import javax.validation.constraints.Pattern;
 public class BookshelfController {
 
     private final BookshelfService bookshelfService;
-    private static final int BOOKSHELF_SIZE = 9;
 
     @GetMapping("")
     @Operation(summary = "사용자별 책장 조회",
             description = """
                     - month: yyyyMM 형태로 입력. 입력하지 않은 경우 오늘 날짜를 이용합니다
                     - page: 0 ~ 999 사이의 값. 기본값은 0
-                    - **size 는 9로 고정**
+                    - size: 1 ~ 999 사이의 값. 기본값은 12
                     - **Authorization 헤더 필수**
                     """)
     public PageResponse<BookMemoryCompleteValue.Res.Bookshelf> bookshelf(
             @Parameter(description = DescriptionUtils.MONTH) @RequestParam(required = false) @Pattern(regexp = RegexpUtils.MONTH) String month,
-            @RequestParam(value = "page", required = false, defaultValue = "0") @Min(0) @Max(999) int page
+            @RequestParam(value = "page", required = false, defaultValue = "0") @Min(0) @Max(999) int page,
+            @RequestParam(value = "size", required = false, defaultValue = "12") @Min(1) @Min(999) int size
     ) {
         Long userId = BasicUtils.getUserId();
-        return bookshelfService.bookshelf(userId, month, PageRequest.of(page, BOOKSHELF_SIZE, Sort.by(Sort.Order.desc("id"))));
+        return bookshelfService.bookshelf(userId, month, PageRequest.of(page, size, Sort.by(Sort.Order.desc("id"))));
     }
 }
