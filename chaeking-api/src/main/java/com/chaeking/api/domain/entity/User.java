@@ -17,10 +17,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.Table;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @ToString
 @Getter
@@ -117,7 +114,8 @@ public class User extends BaseEntity implements UserDetails {
     }
 
     public static TokenValue.Token createToken(User u) {
-        return new TokenValue.Token(JWTUtils.createAccessToken(u), JWTUtils.createRefreshToken(u));
+        String key = UUID.randomUUID().toString();
+        return new TokenValue.Token(JWTUtils.createAccessToken(u, key), JWTUtils.createRefreshToken(u, key));
     }
 
     public void initializeAuthorities() {

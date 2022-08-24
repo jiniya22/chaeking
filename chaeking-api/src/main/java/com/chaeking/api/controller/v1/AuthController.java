@@ -5,10 +5,13 @@ import com.chaeking.api.domain.value.UserValue;
 import com.chaeking.api.domain.value.response.BaseResponse;
 import com.chaeking.api.domain.value.response.DataResponse;
 import com.chaeking.api.service.UserService;
+import com.chaeking.api.util.BasicUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.models.security.SecurityScheme;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +21,7 @@ import javax.validation.Valid;
 
 @SecurityRequirements
 @RequiredArgsConstructor
-@Tag(name = "auth", description = "인증(로그인, 회원 가입)")
+@Tag(name = "auth", description = "인증(토큰, 회원 가입)")
 @RestController
 @RequestMapping("/v1/auth")
 public class AuthController {
@@ -61,4 +64,13 @@ public class AuthController {
         return DataResponse.of(new TokenValue.Token(req.email(), refreshToken));
     }
 
+    @SecurityRequirement(name = "access_token")
+    @Operation(summary = "토큰 철회",
+            description = "refresh_token을 폐기합니다.<br>")
+    @PostMapping("/revoke")
+    public BaseResponse revoke() {
+        Long userId = BasicUtils.getUserId();
+        userService.revoke(userId);
+        return BaseResponse.SUCCESS_INSTANCE;
+    }
 }

@@ -16,18 +16,19 @@ public class JWTUtils {
     private static final long ACCESS_TIME = 60 * 60 * 6; // 6 hours
     private static final long REFRESH_TIME = 60 * 60 * 24 * 7; // 7 days
 
-    public static String createAccessToken(User user) {
+    public static String createAccessToken(User user, String key) {
         return JWT.create()
                 .withClaim("uid", user.getId())
                 .withClaim("exp", Instant.now().getEpochSecond() + ACCESS_TIME)
+                .withClaim("key", key)
                 .sign(getAlgorithm());
     }
 
-    public static String createRefreshToken(User user) {
+    public static String createRefreshToken(User user, String key) {
         return JWT.create()
                 .withClaim("uid", user.getId())
                 .withClaim("exp", Instant.now().getEpochSecond() + REFRESH_TIME)
-                .withClaim("key", UUID.randomUUID().toString())
+                .withClaim("key", key)
                 .sign(getAlgorithm());
     }
 

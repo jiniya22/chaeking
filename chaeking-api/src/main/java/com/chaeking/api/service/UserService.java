@@ -114,6 +114,13 @@ public class UserService implements UserDetailsService {
         }).collect(Collectors.toList());
     }
 
+    @Transactional
+    public void revoke(Long userId) {
+        User user = select(userId);
+        user.setRefreshKey(null);
+        userRepository.save(user);
+    }
+
     @Override
     public User loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(username).orElseThrow(() -> new InvalidInputException("일치하는 사용자가 없습니다"));

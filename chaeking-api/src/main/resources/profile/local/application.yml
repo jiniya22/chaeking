@@ -45,6 +45,14 @@ spring:
         enabled: true
         default-context: chaeking-local
 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    protocol: smtp
+    default-encoding: UTF-8
+    username: bankq@bankq.co.kr
+    password: "Qldysem123!"
+
 server:
   port: 8080
   tomcat:
