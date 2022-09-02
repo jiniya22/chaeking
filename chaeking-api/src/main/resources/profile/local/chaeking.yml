@@ -14,4 +14,6 @@ chaeking:
   image:
     url: ${chaeking.url}/etc
     upload-path: C:/jini/chaeking_images
-    
+
+  data4library:
+    api-url: https://data4library.kr/api

@@ -79,6 +79,7 @@ springdoc:
   paths-to-match:
     - /v1/**
     - /temp/**
+    - /data4library/**
 
 logging:
   file:
