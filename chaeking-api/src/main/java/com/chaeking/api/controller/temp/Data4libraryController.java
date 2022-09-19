@@ -21,7 +21,7 @@ public class Data4libraryController {
     @Operation(summary = "도서관 조회",
             description = "정보나루 API를 이용하여 도서관을 조회합니다.")
     @GetMapping("")
-    public void bestSellerTop10(@RequestParam(defaultValue = "11") String region) {
-        libraryService.mergeLibrary(region);
+    public Object bestSellerTop10(@RequestParam(defaultValue = "11") String region) {
+        return libraryService.mergeLibrary(region);
     }
 }

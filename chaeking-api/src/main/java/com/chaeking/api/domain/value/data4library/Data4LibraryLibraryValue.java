@@ -1,7 +1,9 @@
 package com.chaeking.api.domain.value.data4library;
 
-import com.chaeking.api.domain.entity.Library;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
 import lombok.Data;
@@ -37,6 +39,7 @@ public class Data4LibraryLibraryValue {
         private Response response;
 
         @Data
+        @JsonNaming(value = PropertyNamingStrategies.LowerCamelCaseStrategy.class)
         public static class Response {
             // private int pageNo;
             // private int pageSize;
@@ -55,6 +58,17 @@ public class Data4LibraryLibraryValue {
             @Data
             public static class Lib {
                 private Library lib;
+
+                @Data
+                @JsonNaming(value = PropertyNamingStrategies.LowerCamelCaseStrategy.class)
+                public static class Library {
+                    private String libCode;
+                    private String libName;
+                    private String address;
+                    private String tel;
+                    private double latitude;
+                    private double longitude;
+                }
             }
         }
 

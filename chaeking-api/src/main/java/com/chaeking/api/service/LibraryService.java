@@ -12,7 +12,7 @@ public class LibraryService {
 
     private final Data4libraryApiClient data4libraryApiClient;
 
-    public void mergeLibrary(String region) {
+    public Object mergeLibrary(String region) {
         System.out.println(">>>>");
         Data4LibraryLibraryValue.Req req = Data4LibraryLibraryValue.Req.builder()
                 .pageNo(1).pageSize(10).region(region).build();
@@ -20,5 +20,6 @@ public class LibraryService {
         Data4LibraryLibraryValue.Res res = entity.getBody();
         System.out.println(">>>>");
 //        return res.getLibs();
+        return res.getResponse();
     }
 }
