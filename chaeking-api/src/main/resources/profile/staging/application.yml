@@ -10,8 +10,6 @@ spring:
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://localhost:3306/book?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&tinyInt1isBit=false
-    username: test
-    password: test
     hikari:
       auto-commit: false
       connection-test-query: SELECT 1
@@ -39,7 +37,7 @@ spring:
       host: vault.chaeking.com
       scheme: https
       port: 443
-      token: "hvs.CAESIO5VENruhirjurPVttzBDzPKzMpKHafaWwcoMotIKLnnGh4KHGh2cy5nMEFNc0d1WXVra0RMd3VmMDNtZ2V1Qmc"
+      token: "hvs.CAESIPlpw7-PdZ6EDDI2Er0CSLMVYuHHjTSTe77_NIF6A_ICGh4KHGh2cy5QaXZyVGtzYkR1TnE1Z2JYcmhBSHQzYlA"
       authentication: token
       kv:
         enabled: true
