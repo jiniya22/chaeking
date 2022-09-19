@@ -1,7 +1,6 @@
 package com.chaeking.api.domain.value.data4library;
 
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -31,16 +30,12 @@ public class Data4LibraryLibraryValue {
 
     @Data
     @Schema(name = "Data4LibraryLibrary")
-    public static class Res { // extends BaseData4LibraryRes {
+    public static class Res {
         private Response response;
 
         @Data
         @JsonNaming(value = PropertyNamingStrategies.LowerCamelCaseStrategy.class)
-        public static class Response {
-            private int pageNo;
-            private int pageSize;
-            private int numFound;
-            private int resultNum;
+        public static class Response extends BaseData4LibraryResponse {
             private List<Lib> libs;
 
             @Data
