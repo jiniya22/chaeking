@@ -30,30 +30,18 @@ public class Data4LibraryLibraryValue {
     }
 
     @Data
-//    @EqualsAndHashCode(callSuper = true)
-//    @ToString(callSuper = true)
     @Schema(name = "Data4LibraryLibrary")
     public static class Res { // extends BaseData4LibraryRes {
-//        private List<Lib> libs;
-
         private Response response;
 
         @Data
         @JsonNaming(value = PropertyNamingStrategies.LowerCamelCaseStrategy.class)
         public static class Response {
-            // private int pageNo;
-            // private int pageSize;
-            private List<Lib> libs;
-            @JsonProperty("num_found")
+            private int pageNo;
+            private int pageSize;
             private int numFound;
             private int resultNum;
-            private BaseData4LibraryRes.Response.Request request;
-
-            @Data
-            public static class Request {
-                private int pageNo;
-                private int pageSize;
-            }
+            private List<Lib> libs;
 
             @Data
             public static class Lib {
@@ -71,7 +59,6 @@ public class Data4LibraryLibraryValue {
                 }
             }
         }
-
 
     }
 }
