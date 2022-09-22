@@ -11,51 +11,55 @@ import lombok.ToString;
 
 import java.util.List;
 
-public class Data4LibraryLibraryValue {
+public class Data4LibraryLoanItemValue {
+    @JsonNaming(value = PropertyNamingStrategies.LowerCamelCaseStrategy.class)
     @Data
     @EqualsAndHashCode(callSuper = true)
     @ToString(callSuper = true)
-    @Schema(name = "Data4LibraryLibrarySearch")
+    @Schema(name = "Data4LibraryLoanItemSearch")
     public static class Req extends BaseData4LibraryReq {
-        private String region;
+        private String startDt;
+        private String endDt;
 
         @Builder
-        public Req(String region, int pageNo, int pageSize) {
+        public Req(String startDt, String endDt, int pageNo, int pageSize) {
             super();
-            this.region = region;
+            this.startDt = startDt;
+            this.endDt = endDt;
             setPageNo(pageNo);
             setPageSize(pageSize);
         }
     }
 
     @Data
-    @Schema(name = "Data4LibraryLibrary")
+    @Schema(name = "Data4LibraryLoanItem")
     public static class Res {
         private Response response;
 
         @Data
         @JsonNaming(value = PropertyNamingStrategies.LowerCamelCaseStrategy.class)
         public static class Response {
-            private int pageNo;
-            private int pageSize;
-            private int numFound;
             private int resultNum;
 
-            private List<Lib> libs;
+            private List<Doc> docs;
 
             @Data
-            public static class Lib {
-                private Library lib;
+            public static class Doc {
+                private Document doc;
 
                 @Data
                 @JsonNaming(value = PropertyNamingStrategies.LowerCamelCaseStrategy.class)
-                public static class Library {
-                    private String libCode;
-                    private String libName;
-                    private String address;
-                    private String tel;
-                    private double latitude;
-                    private double longitude;
+                public static class Document {
+                    private int ranking;
+                    private String bookname;
+                    private String authors;
+                    private String publisher;
+                    private String publicagtion_year;
+                    private String isbn13;
+                    private String addition_symbol;
+                    private String class_nm;
+                    private String loan_count;
+                    private String bookImageURL;
                 }
             }
         }
