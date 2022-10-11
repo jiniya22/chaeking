@@ -56,6 +56,18 @@ public class Data4LibraryLibraryValue {
                     private String tel;
                     private double latitude;
                     private double longitude;
+
+
+                    public com.chaeking.api.domain.entity.Library convertLibrary(String region) {
+                        return com.chaeking.api.domain.entity.Library.builder()
+                                .code(this.libCode)
+                                .regionCode(region)
+                                .name(this.libName)
+                                .tel(this.tel)
+                                .latitude(this.latitude)
+                                .longitude(this.longitude)
+                                .address(this.address).build();
+                    }
                 }
             }
         }
