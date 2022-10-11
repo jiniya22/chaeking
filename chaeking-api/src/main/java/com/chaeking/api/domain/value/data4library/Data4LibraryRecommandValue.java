@@ -44,6 +44,20 @@ public class Data4LibraryRecommandValue {
             public static class Doc {
                 private Book book;
             }
+
+            @Data
+            @JsonNaming(value = PropertyNamingStrategies.LowerCamelCaseStrategy.class)
+            public static class Book {
+                private String bookname;
+                private String authors;
+                private String publisher;
+                private String publicagtion_year;
+                private String isbn13;
+                private String addition_symbol;
+                private String class_nm;
+                private String loan_count;
+                private String bookImageURL;
+            }
         }
 
     }
