@@ -24,7 +24,7 @@ public class MetaController {
     @Operation(summary = "메타 정보(앱 버전)")
     @GetMapping("")
     public DataResponse<String> notices(
-            @RequestParam(value = "page", required = false, defaultValue = "0") MetaType type) {
+            @RequestParam(value = "메타 타입", required = false, defaultValue = "AOS_APP_VERSION") MetaType type) {
         return DataResponse.of(metaService.meta(type));
     }
 
