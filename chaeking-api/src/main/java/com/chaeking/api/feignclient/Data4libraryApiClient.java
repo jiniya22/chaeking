@@ -1,5 +1,6 @@
 package com.chaeking.api.feignclient;
 
+import com.chaeking.api.domain.value.data4library.Data4LibraryHotTrendValue;
 import com.chaeking.api.domain.value.data4library.Data4LibraryLibraryValue;
 import com.chaeking.api.domain.value.data4library.Data4LibraryRecommandValue;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -15,4 +16,7 @@ public interface Data4libraryApiClient {
 
     @GetMapping("/recommandList")
     ResponseEntity<Data4LibraryRecommandValue.Res> searchRecommends(@SpringQueryMap Data4LibraryRecommandValue.Req recommend);
+
+    @GetMapping("/hotTrend")
+    ResponseEntity<Data4LibraryHotTrendValue.Res> hotTrend(@SpringQueryMap Data4LibraryHotTrendValue.Req req);
 }

@@ -1,9 +1,10 @@
 package com.chaeking.api.controller.temp;
 
+import com.chaeking.api.domain.value.data4library.Data4LibraryHotTrendValue;
 import com.chaeking.api.domain.value.data4library.Data4LibraryLibraryValue;
 import com.chaeking.api.domain.value.data4library.Data4LibraryRecommandValue;
 import com.chaeking.api.domain.value.response.DataResponse;
-import com.chaeking.api.service.LibraryService;
+import com.chaeking.api.service.data4library.LibraryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -46,5 +47,12 @@ public class Data4libraryController {
     @GetMapping("/recommends")
     public List<Data4LibraryRecommandValue.Res.Response.Doc> recommends() {
         return libraryService.recommends();
+    }
+
+    @Operation(summary = "대출 급상승 도서 조회",
+            description = "정보나루 API를 이용하여 대출 급상승 도서를 조회합니다.")
+    @GetMapping("/hotTrend")
+    public List<Data4LibraryHotTrendValue.Res.Response.Results> hotTrend() {
+        return libraryService.hotTrend();
     }
 }
