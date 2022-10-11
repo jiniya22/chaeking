@@ -17,7 +17,7 @@ public class Data4LibraryLoanItemValue {
     @EqualsAndHashCode(callSuper = true)
     @ToString(callSuper = true)
     @Schema(name = "Data4LibraryLoanItemSearch")
-    public static class Req extends BaseData4LibraryReq {
+    public static class Req extends BaseData4LibraryPagingReq {
         private String startDt;
         private String endDt;
 

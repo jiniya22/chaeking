@@ -16,7 +16,7 @@ public class Data4LibraryLibraryValue {
     @EqualsAndHashCode(callSuper = true)
     @ToString(callSuper = true)
     @Schema(name = "Data4LibraryLibrarySearch")
-    public static class Req extends BaseData4LibraryReq {
+    public static class Req extends BaseData4LibraryPagingReq {
         private String region;
 
         @Builder
