@@ -37,7 +37,7 @@ spring:
       host: vault.chaeking.com
       scheme: https
       port: 443
-      token: "hvs.CAESIPlpw7-PdZ6EDDI2Er0CSLMVYuHHjTSTe77_NIF6A_ICGh4KHGh2cy5QaXZyVGtzYkR1TnE1Z2JYcmhBSHQzYlA"
+      token: "hvs.CAESIO4DEGw52eKb-ke_DTYZ0JAwJaH6lGqpatVTwNwbN6K2Gh4KHGh2cy5aWjBjaTlBckpGRHY3SEJjVVE0cEhVTG4"
       authentication: token
       kv:
         enabled: true
