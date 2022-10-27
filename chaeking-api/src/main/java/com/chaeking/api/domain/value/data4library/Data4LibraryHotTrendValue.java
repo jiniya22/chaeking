@@ -1,6 +1,7 @@
 package com.chaeking.api.domain.value.data4library;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -61,6 +62,7 @@ public class Data4LibraryHotTrendValue {
                             private String publication_year;
                             private String isbn13;
                             private String class_nm;
+                            @JsonProperty("bookImageURL")
                             private String bookImageURL;
                         }
                     }

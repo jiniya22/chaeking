@@ -51,7 +51,7 @@ public class Data4LibraryRecommandValue {
                 private String bookname;
                 private String authors;
                 private String publisher;
-                private String publicagtion_year;
+                private String publication_year;
                 private String isbn13;
                 private String addition_symbol;
                 private String class_nm;
