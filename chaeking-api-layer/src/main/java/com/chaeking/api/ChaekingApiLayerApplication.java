@@ -6,11 +6,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.Locale;
 
 @SpringBootApplication
-public class ChaekingApiLayeredApplication {
+public class ChaekingApiLayerApplication {
 
     public static void main(String[] args) {
         Locale.setDefault(Locale.KOREA);
-        SpringApplication.run(ChaekingApiLayeredApplication.class, args);
+        SpringApplication.run(ChaekingApiLayerApplication.class, args);
     }
 
 }
