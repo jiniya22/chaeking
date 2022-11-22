@@ -1,6 +1,6 @@
 rootProject.name = "chaeking"
 
 include(
-    ":chaeking-api",
+    ":chaeking-api-layered",
     ":chaeking-test"
 )
