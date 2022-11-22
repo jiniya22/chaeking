@@ -1,0 +1,19 @@
+chaeking:
+  url: https://book.applebox.xyz
+
+  flag:
+    common-request-logging-filter: true
+
+  book-search:
+    naver:
+      api-url: https://openapi.naver.com
+
+    kakao:
+      api-url: https://dapi.kakao.com
+
+  image:
+    url: ${chaeking.url}/etc
+    upload-path: /usr/local/abc/chaeking_images
+
+  data4library:
+    api-url: https://data4library.kr/api

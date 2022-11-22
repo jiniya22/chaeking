@@ -1,0 +1,7 @@
+
+ +-+-+-+-+-+-+-+-+-+-+-+-+-+
+ |c|h|e|c|k|-|h|e|x|a|g|o|n|
+ +-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+${Ansi.GREEN}:: Spring Boot ::         ${Ansi.NORMAL}${spring-boot.formatted-version}${Ansi.NORMAL}
+${application.title}${application.formatted-version}

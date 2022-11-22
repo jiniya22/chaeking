@@ -1,0 +1,33 @@
+sourceSets {
+    main {
+        resources {
+            srcDirs("src/main/resources/profile/${profile}")
+        }
+    }
+}
+
+dependencies {
+    implementation "${boot}:spring-boot-starter-web"
+    implementation "${boot}:spring-boot-starter-data-jpa"
+    implementation "${boot}:spring-boot-starter-security"
+    implementation "${boot}:spring-boot-starter-thymeleaf"
+    implementation "${boot}:spring-boot-starter-validation"
+    implementation "${cloud}:spring-cloud-starter-vault-config"
+    implementation "${cloud}:spring-cloud-starter-openfeign"
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.12'
+    implementation "org.thymeleaf.extras:thymeleaf-extras-springsecurity5"
+    implementation 'org.jsoup:jsoup:1.15.3'
+    implementation 'com.auth0:java-jwt:4.2.1'
+    runtimeOnly "org.mariadb.jdbc:mariadb-java-client"
+    testImplementation "org.springframework.security:spring-security-test"
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "${cloud}:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+tasks.bootJar {
+    archiveFileName.set("chaeking-api.jar")
+}
