@@ -51,6 +51,11 @@ spring:
     protocol: smtp
     default-encoding: UTF-8
 
+  security:
+    user:
+      name: admin
+      password: admin
+
 server:
   port: 8081
   tomcat:
@@ -71,7 +76,7 @@ springdoc:
   swagger-ui:
     operations-sorter: alpha
     tags-sorter: alpha
-    path: /swagger-ui.html
+    path: /
     disable-swagger-default-url: true
     doc-expansion: none
     syntax-highlight:
