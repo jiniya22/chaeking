@@ -1,7 +1,7 @@
 package com.chaeking.api.notice.adapter.out.persistence;
 
 import com.chaeking.api.common.BaseEntity;
-import com.chaeking.api.common.DateTimeUtils;
+import com.chaeking.api.common.util.DateTimeUtils;
 import com.chaeking.api.notice.application.port.out.NoticeDetail;
 import com.chaeking.api.notice.application.port.out.NoticeSimple;
 import com.chaeking.api.notice.domain.Notice;

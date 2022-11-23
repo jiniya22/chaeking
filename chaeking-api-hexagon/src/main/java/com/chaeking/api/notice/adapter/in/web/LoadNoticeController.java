@@ -1,6 +1,7 @@
 package com.chaeking.api.notice.adapter.in.web;
 
 import com.chaeking.api.common.DataResponse;
+import com.chaeking.api.common.annotation.WebAdapter;
 import com.chaeking.api.notice.application.port.out.NoticeDetail;
 import com.chaeking.api.notice.application.port.in.GetNoticeQuery;
 import com.chaeking.api.notice.application.port.out.NoticeSimple;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@WebAdapter
 @SecurityRequirements
 @RequiredArgsConstructor
 @Tag(name = "setting-system", description = "설정-시스템(공지사항, FAQ, 이용약관, 메타정보 등)")

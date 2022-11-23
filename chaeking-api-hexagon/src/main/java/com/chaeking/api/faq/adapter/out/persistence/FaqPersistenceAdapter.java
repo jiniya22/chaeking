@@ -1,5 +1,6 @@
 package com.chaeking.api.faq.adapter.out.persistence;
 
+import com.chaeking.api.common.annotation.PersistenceAdapter;
 import com.chaeking.api.config.exception.NotFoundException;
 import com.chaeking.api.faq.application.port.out.FaqDetail;
 import com.chaeking.api.faq.application.port.out.FaqSimple;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @RequiredArgsConstructor
-@Component
+@PersistenceAdapter
 class FaqPersistenceAdapter implements LoadFaqPort {
 
     private final FaqRepository faqRepository;

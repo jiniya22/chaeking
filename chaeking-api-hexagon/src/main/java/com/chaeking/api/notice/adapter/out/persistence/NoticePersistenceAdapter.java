@@ -1,5 +1,6 @@
 package com.chaeking.api.notice.adapter.out.persistence;
 
+import com.chaeking.api.common.annotation.PersistenceAdapter;
 import com.chaeking.api.config.exception.NotFoundException;
 import com.chaeking.api.notice.application.port.out.LoadNoticePort;
 import com.chaeking.api.notice.application.port.out.NoticeDetail;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @RequiredArgsConstructor
-@Component
+@PersistenceAdapter
 class NoticePersistenceAdapter implements LoadNoticePort {
 
     private final NoticeRepository noticeRepository;
