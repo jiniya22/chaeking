@@ -1,6 +1,6 @@
 package com.chaeking.api.config;
 
-import com.chaeking.api.common.DateTimeUtils;
+import com.chaeking.api.common.util.DateTimeUtils;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.BeanDescription;

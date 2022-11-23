@@ -1,14 +1,17 @@
 package com.chaeking.api.config;
 
+import com.chaeking.api.config.property.ChaekingConfig;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import io.swagger.v3.core.jackson.ModelResolver;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
+@EnableConfigurationProperties({ChaekingConfig.class})
 @Component
-class WebConfig {
+public class WebConfig {
     @Bean
     public static ObjectMapper jsonMapper() {
         return JsonMapper.builder()
