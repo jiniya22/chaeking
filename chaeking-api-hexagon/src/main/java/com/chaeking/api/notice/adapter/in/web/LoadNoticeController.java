@@ -1,18 +1,17 @@
 package com.chaeking.api.notice.adapter.in.web;
 
 import com.chaeking.api.common.DataResponse;
+import com.chaeking.api.notice.application.port.out.NoticeDetail;
 import com.chaeking.api.notice.application.port.in.GetNoticeQuery;
 import com.chaeking.api.notice.application.port.out.NoticeSimple;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,5 +32,12 @@ class LoadNoticeController {
 
         return DataResponse.create(
                 getNoticeQuery.getNotices(PageRequest.of(page, size, Sort.by(Sort.Order.desc("id")))));
+    }
+
+    @Operation(summary = "공지사항 상세보기")
+    @GetMapping("/{notice_id}")
+    public DataResponse<NoticeDetail> notice(
+            @Parameter(description = "공지사항 id") @PathVariable(name = "notice_id") long noticeId) {
+        return DataResponse.create(getNoticeQuery.getNotice(noticeId));
     }
 }

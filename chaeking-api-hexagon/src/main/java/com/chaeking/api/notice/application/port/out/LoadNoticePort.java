@@ -10,4 +10,6 @@ public interface LoadNoticePort {
 
     List<NoticeSimple> loadNoticeSimples(Pageable pageable);
 
+    NoticeDetail loadNoticeDetail(long id);
+
 }

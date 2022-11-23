@@ -9,5 +9,6 @@ import java.util.List;
 public interface LoadFaqPort {
 
     List<FaqSimple> loadFaqSimples(Pageable pageable);
+    FaqDetail loadFaqDetail(long id);
 
 }

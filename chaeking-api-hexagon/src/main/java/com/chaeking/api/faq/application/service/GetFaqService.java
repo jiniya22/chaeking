@@ -1,6 +1,7 @@
 package com.chaeking.api.faq.application.service;
 
 import com.chaeking.api.faq.application.port.in.GetFaqQuery;
+import com.chaeking.api.faq.application.port.out.FaqDetail;
 import com.chaeking.api.faq.application.port.out.FaqSimple;
 import com.chaeking.api.faq.application.port.out.LoadFaqPort;
 import lombok.RequiredArgsConstructor;
@@ -21,4 +22,8 @@ class GetFaqService implements GetFaqQuery {
         return loadFaqPort.loadFaqSimples(pageable);
     }
 
+    @Override
+    public FaqDetail getFaq(long id) {
+        return loadFaqPort.loadFaqDetail(id);
+    }
 }

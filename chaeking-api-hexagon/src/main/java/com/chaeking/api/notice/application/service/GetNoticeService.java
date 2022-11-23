@@ -2,6 +2,7 @@ package com.chaeking.api.notice.application.service;
 
 import com.chaeking.api.notice.application.port.in.GetNoticeQuery;
 import com.chaeking.api.notice.application.port.out.LoadNoticePort;
+import com.chaeking.api.notice.application.port.out.NoticeDetail;
 import com.chaeking.api.notice.application.port.out.NoticeSimple;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -21,4 +22,8 @@ class GetNoticeService implements GetNoticeQuery {
         return loadNoticePort.loadNoticeSimples(pageable);
     }
 
+    @Override
+    public NoticeDetail getNotice(long id) {
+        return loadNoticePort.loadNoticeDetail(id);
+    }
 }
