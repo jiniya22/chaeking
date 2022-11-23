@@ -31,10 +31,10 @@ public abstract class BaseBoard extends BaseEntity {
     }
 
     public static BoardValue.Res.Simple createSimple(BaseBoard b) {
-        return new BoardValue.Res.Simple(b.getId(), b.getTitle(), DateTimeUtils.toString(b.getCreatedAt()));
+        return new BoardValue.Res.Simple(b.getId(), b.getTitle(), DateTimeUtils.toDateString(b.getCreatedAt()));
     }
 
     public static BoardValue.Res.Detail createDetail(BaseBoard b) {
-        return new BoardValue.Res.Detail(b.getId(), b.getTitle(), DateTimeUtils.toString(b.getCreatedAt()), b.getContent());
+        return new BoardValue.Res.Detail(b.getId(), b.getTitle(), DateTimeUtils.toDateString(b.getCreatedAt()), b.getContent());
     }
 }

@@ -31,6 +31,10 @@ public final class DateTimeUtils {
         return Optional.ofNullable(localDateTime).map(m -> m.format(DateTimeUtils.FORMATTER_DATETIME)).orElse(null);
     }
 
+    public static String toDateString(LocalDateTime localDateTime) {
+        return Optional.ofNullable(localDateTime).map(m -> m.format(DateTimeUtils.FORMATTER_DATE)).orElse(null);
+    }
+
     public static LocalDate getFirstDate(String month) {
         return LocalDate.of(Integer.parseInt(month.substring(0, 4)), Integer.parseInt(month.substring(4, 6)), 1);
     }
