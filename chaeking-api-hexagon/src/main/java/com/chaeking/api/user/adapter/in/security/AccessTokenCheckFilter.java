@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class AccessTokenCheckFilter extends BasicAuthenticationFilter {
+class AccessTokenCheckFilter extends BasicAuthenticationFilter {
     private static final String UNAUTHORIZED_AUTHORIZATION_INVALID = "access_token 이 유효하지 않습니다.";
     private static final String UNAUTHORIZED_AUTHORIZATION_FORMAT_ERROR = "access_token 의 형식이 올바르지 않습니다.";
 

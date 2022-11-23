@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Transactional(readOnly = true)
-public class LoginFilter extends UsernamePasswordAuthenticationFilter {
+class LoginFilter extends UsernamePasswordAuthenticationFilter {
     private final GetUserQuery getUserQuery;
     private final IssueTokenUseCase issueTokenUseCase;
 
