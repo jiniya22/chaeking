@@ -15,6 +15,18 @@ Chaeking API with Spring Boot 2
 
 ***
 
+### 서브 프로젝트 구성
+
+chaeking-api-layer, chaeking-api-hexagon은 같은 기능의 api입니다.<br>
+서로 다른 아키텍처로 구성하여 개발하였습니다.
+
+- chaeking-api-layer
+  - 계층형 아키텍처 구조로 구성한 책킹 api
+- chaeking-api-hexagon
+  - 헥사고날 아키텍처 구조로 구성한 책킹 api
+
+***
+
 ### Tech Stacks
 
 - JDK 17
