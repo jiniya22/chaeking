@@ -44,8 +44,8 @@ class AccessTokenCheckFilter extends BasicAuthenticationFilter {
         try {
             TokenVerify result = JWTUtils.verify(token);
             if (result.success()) {
-                User user = getUserQuery.getUser(GetUserCommand.builder().userId(result.uid()).build());
-                if (result.key().equals(user.getRefreshKey())) {
+                User user = getUserQuery.getUser(result.uid());
+//                if (result.key().equals(user.getRefreshKey())) {
                     UsernamePasswordAuthenticationToken userToken = new UsernamePasswordAuthenticationToken(
                             user.getUsername(), null, user.getAuthorities()
                     );
@@ -53,7 +53,7 @@ class AccessTokenCheckFilter extends BasicAuthenticationFilter {
                     response.setHeader("X-Chaeking-User-Id", user.getId().toString());
                     chain.doFilter(request, response);
                     return;
-                }
+//                }
             }
             reason = UNAUTHORIZED_AUTHORIZATION_INVALID;
         } catch (JWTDecodeException e) {

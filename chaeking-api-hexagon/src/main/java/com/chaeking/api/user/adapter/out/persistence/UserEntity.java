@@ -95,7 +95,7 @@ class UserEntity extends BaseEntity {
 
     public User mapToUser() {
         return User.builder().id(id).email(email).nickname(nickname).nightPush(nightPush).push(push).imageUrl(imageUrl)
-                .authorities(authorities)
+                .authorities(authorities).refreshKey(refreshKey)
                 .secretKey(secretKey).build();
     }
 

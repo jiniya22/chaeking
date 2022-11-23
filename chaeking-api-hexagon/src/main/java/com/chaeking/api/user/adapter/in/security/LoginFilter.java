@@ -55,7 +55,7 @@ class LoginFilter extends UsernamePasswordAuthenticationFilter {
         } else {
             TokenVerify verify = JWTUtils.verify(refreshToken);
             if (verify.success()) {
-                User user = getUserQuery.getUser(GetUserCommand.builder().userId(verify.uid()).build());
+                User user = getUserQuery.getUser(verify.uid());
                 if (verify.key().equals(user.getRefreshKey())) {
                     return new UsernamePasswordAuthenticationToken(user, user.getAuthorities());
                 }
