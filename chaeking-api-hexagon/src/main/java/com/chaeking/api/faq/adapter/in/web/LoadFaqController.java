@@ -1,7 +1,8 @@
 package com.chaeking.api.faq.adapter.in.web;
 
+import com.chaeking.api.common.DataResponse;
 import com.chaeking.api.faq.application.port.in.GetFaqQuery;
-import com.chaeking.api.faq.domain.Faq;
+import com.chaeking.api.faq.application.port.out.FaqSimple;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -26,10 +27,11 @@ class LoadFaqController {
 
     @Operation(summary = "FAQ 목록")
     @GetMapping("")
-    public List<Faq> notices(
+    public DataResponse<List<FaqSimple>> notices(
             @RequestParam(value = "page", required = false, defaultValue = "0") int page,
             @RequestParam(value = "size", required = false, defaultValue = "10") int size) {
 
-        return getFaqQuery.getFaqs(PageRequest.of(page, size, Sort.by(Sort.Order.desc("id"))));
+        return DataResponse.create(
+                getFaqQuery.getFaqs(PageRequest.of(page, size, Sort.by(Sort.Order.desc("id")))));
     }
 }

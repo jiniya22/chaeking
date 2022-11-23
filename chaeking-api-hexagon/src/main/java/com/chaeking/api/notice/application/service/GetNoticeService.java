@@ -2,7 +2,7 @@ package com.chaeking.api.notice.application.service;
 
 import com.chaeking.api.notice.application.port.in.GetNoticeQuery;
 import com.chaeking.api.notice.application.port.out.LoadNoticePort;
-import com.chaeking.api.notice.domain.Notice;
+import com.chaeking.api.notice.application.port.out.NoticeSimple;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -17,11 +17,8 @@ class GetNoticeService implements GetNoticeQuery {
     private final LoadNoticePort loadNoticePort;
 
     @Override
-    public List<Notice> getNotices(Pageable pageable) {
-        return loadNoticePort.loadNotices(pageable);
+    public List<NoticeSimple> getNotices(Pageable pageable) {
+        return loadNoticePort.loadNoticeSimples(pageable);
     }
 
-//    public BoardValue.Res.Detail notice(long id) {
-//        return noticeRepository.findById(id).map(BaseBoard::createDetail).orElse(null);
-//    }
 }

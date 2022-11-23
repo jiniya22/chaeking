@@ -1,6 +1,8 @@
 package com.chaeking.api.faq.adapter.out.persistence;
 
 import com.chaeking.api.common.BaseEntity;
+import com.chaeking.api.common.DateTimeUtils;
+import com.chaeking.api.faq.application.port.out.FaqSimple;
 import com.chaeking.api.faq.domain.Faq;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -29,4 +31,9 @@ class FaqEntity extends BaseEntity {
     public Faq mapToFaq() {
         return new Faq(id, title, content, getCreatedAt());
     }
+
+    public FaqSimple mapToFaqSimple() {
+        return new FaqSimple(id, title, DateTimeUtils.toDateString(getCreatedAt()));
+    }
+
 }

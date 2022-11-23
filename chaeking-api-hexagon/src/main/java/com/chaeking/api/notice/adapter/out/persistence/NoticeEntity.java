@@ -1,7 +1,9 @@
 package com.chaeking.api.notice.adapter.out.persistence;
 
-import com.chaeking.api.notice.domain.Notice;
 import com.chaeking.api.common.BaseEntity;
+import com.chaeking.api.common.DateTimeUtils;
+import com.chaeking.api.notice.application.port.out.NoticeSimple;
+import com.chaeking.api.notice.domain.Notice;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,5 +30,9 @@ class NoticeEntity extends BaseEntity {
 
     public Notice mapToNotice() {
         return new Notice(id, title, content, getCreatedAt());
+    }
+
+    public NoticeSimple mapToNoticeSimple() {
+        return new NoticeSimple(id, title, DateTimeUtils.toDateString(getCreatedAt()));
     }
 }
