@@ -1,5 +1,6 @@
 package com.chaeking.api.notice.application.port.out;
 
+import com.chaeking.api.notice.domain.Notice;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
@@ -8,8 +9,8 @@ import java.util.List;
 @Component
 public interface LoadNoticePort {
 
-    List<NoticeSimple> loadNoticeSimples(Pageable pageable);
+    List<Notice> loadNotices(Pageable pageable);
 
-    NoticeDetail loadNoticeDetail(long id);
+    Notice loadNotice(long id);
 
 }

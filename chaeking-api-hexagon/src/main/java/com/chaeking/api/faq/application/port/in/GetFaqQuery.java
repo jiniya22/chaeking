@@ -10,7 +10,7 @@ import java.util.List;
 @Component
 public interface GetFaqQuery {
 
-    List<FaqSimple> getFaqs(Pageable pageable);
+    List<FaqSimple> getFaqSimples(Pageable pageable);
 
-    FaqDetail getFaq(long id);
+    FaqDetail getFaqDetail(long id);
 }

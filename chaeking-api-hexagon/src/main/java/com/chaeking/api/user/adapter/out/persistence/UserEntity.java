@@ -2,7 +2,6 @@ package com.chaeking.api.user.adapter.out.persistence;
 
 import com.chaeking.api.common.BaseEntity;
 import com.chaeking.api.common.enumerate.Sex;
-import com.chaeking.api.user.application.port.out.UserDetail;
 import com.chaeking.api.user.domain.User;
 import lombok.*;
 import org.hibernate.annotations.*;
@@ -98,10 +97,5 @@ class UserEntity extends BaseEntity {
                 .authorities(authorities).refreshKey(refreshKey)
                 .secretKey(secretKey).build();
     }
-
-    public UserDetail mapToUserDetail() {
-        return new UserDetail(email, nickname, imageUrl, push, nightPush);
-    }
-
 
 }

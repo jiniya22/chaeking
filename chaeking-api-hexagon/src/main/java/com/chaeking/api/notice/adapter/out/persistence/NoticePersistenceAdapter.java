@@ -3,11 +3,9 @@ package com.chaeking.api.notice.adapter.out.persistence;
 import com.chaeking.api.common.annotation.PersistenceAdapter;
 import com.chaeking.api.config.exception.NotFoundException;
 import com.chaeking.api.notice.application.port.out.LoadNoticePort;
-import com.chaeking.api.notice.application.port.out.NoticeDetail;
-import com.chaeking.api.notice.application.port.out.NoticeSimple;
+import com.chaeking.api.notice.domain.Notice;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -19,17 +17,17 @@ class NoticePersistenceAdapter implements LoadNoticePort {
     public static final String MESSAGE_404 = "존재하지 않는 공지사항입니다.";
 
     @Override
-    public List<NoticeSimple> loadNoticeSimples(Pageable pageable) {
+    public List<Notice> loadNotices(Pageable pageable) {
         return noticeRepository.findAll(pageable)
                 .stream()
-                .map(NoticeEntity::mapToNoticeSimple)
+                .map(NoticeEntity::mapToNotice)
                 .toList();
     }
 
     @Override
-    public NoticeDetail loadNoticeDetail(long id) {
+    public Notice loadNotice(long id) {
         return noticeRepository.findById(id)
-                .map(NoticeEntity::mapToNoticeDetail)
+                .map(NoticeEntity::mapToNotice)
                 .orElseThrow(() -> new NotFoundException(MESSAGE_404));
     }
 }

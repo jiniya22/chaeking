@@ -33,11 +33,4 @@ class NoticeEntity extends BaseEntity {
         return new Notice(id, title, content, getCreatedAt());
     }
 
-    public NoticeSimple mapToNoticeSimple() {
-        return new NoticeSimple(id, title, DateTimeUtils.toDateString(getCreatedAt()));
-    }
-
-    public NoticeDetail mapToNoticeDetail() {
-        return new NoticeDetail(id, title, content, DateTimeUtils.toString(getCreatedAt()));
-    }
 }

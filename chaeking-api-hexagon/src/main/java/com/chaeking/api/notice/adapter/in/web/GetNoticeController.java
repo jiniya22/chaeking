@@ -33,13 +33,13 @@ class GetNoticeController {
             @RequestParam(value = "size", required = false, defaultValue = "10") int size) {
 
         return DataResponse.create(
-                getNoticeQuery.getNotices(PageRequest.of(page, size, Sort.by(Sort.Order.desc("id")))));
+                getNoticeQuery.getNoticeSimples(PageRequest.of(page, size, Sort.by(Sort.Order.desc("id")))));
     }
 
     @Operation(summary = "공지사항 상세보기")
     @GetMapping("/{notice_id}")
     public DataResponse<NoticeDetail> notice(
             @Parameter(description = "공지사항 id") @PathVariable(name = "notice_id") long noticeId) {
-        return DataResponse.create(getNoticeQuery.getNotice(noticeId));
+        return DataResponse.create(getNoticeQuery.getNoticeDetail(noticeId));
     }
 }

@@ -33,14 +33,14 @@ class GetFaqController {
             @RequestParam(value = "size", required = false, defaultValue = "10") int size) {
 
         return DataResponse.create(
-                getFaqQuery.getFaqs(PageRequest.of(page, size, Sort.by(Sort.Order.desc("id")))));
+                getFaqQuery.getFaqSimples(PageRequest.of(page, size, Sort.by(Sort.Order.desc("id")))));
     }
 
     @Operation(summary = "FAQ(자주묻는 질문) 상세보기")
     @GetMapping("/{faq_id}")
     public DataResponse<FaqDetail> faq(
             @Parameter(description = "FAQ id") @PathVariable(name = "faq_id") long faqId) {
-        return DataResponse.create(getFaqQuery.getFaq(faqId));
+        return DataResponse.create(getFaqQuery.getFaqDetail(faqId));
     }
 
 }

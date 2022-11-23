@@ -5,9 +5,9 @@ import com.chaeking.api.notice.application.port.in.GetNoticeQuery;
 import com.chaeking.api.notice.application.port.out.LoadNoticePort;
 import com.chaeking.api.notice.application.port.out.NoticeDetail;
 import com.chaeking.api.notice.application.port.out.NoticeSimple;
+import com.chaeking.api.notice.domain.Notice;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -19,12 +19,12 @@ class GetNoticeService implements GetNoticeQuery {
     private final LoadNoticePort loadNoticePort;
 
     @Override
-    public List<NoticeSimple> getNotices(Pageable pageable) {
-        return loadNoticePort.loadNoticeSimples(pageable);
+    public List<NoticeSimple> getNoticeSimples(Pageable pageable) {
+        return loadNoticePort.loadNotices(pageable).stream().map(Notice::mapToNoticeSimple).toList();
     }
 
     @Override
-    public NoticeDetail getNotice(long id) {
-        return loadNoticePort.loadNoticeDetail(id);
+    public NoticeDetail getNoticeDetail(long id) {
+        return loadNoticePort.loadNotice(id).mapToNoticeDetail();
     }
 }

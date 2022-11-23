@@ -10,7 +10,7 @@ import java.util.List;
 @Component
 public interface GetNoticeQuery {
 
-    List<NoticeSimple> getNotices(Pageable pageable);
+    List<NoticeSimple> getNoticeSimples(Pageable pageable);
 
-    NoticeDetail getNotice(long noticeId);
+    NoticeDetail getNoticeDetail(long noticeId);
 }

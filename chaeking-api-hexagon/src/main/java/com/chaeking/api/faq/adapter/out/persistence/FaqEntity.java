@@ -33,12 +33,4 @@ class FaqEntity extends BaseEntity {
         return new Faq(id, title, content, getCreatedAt());
     }
 
-    public FaqSimple mapToFaqSimple() {
-        return new FaqSimple(id, title, DateTimeUtils.toDateString(getCreatedAt()));
-    }
-
-    public FaqDetail mapToFaqDetail() {
-        return new FaqDetail(id, title, content, DateTimeUtils.toString(getCreatedAt()));
-    }
-
 }

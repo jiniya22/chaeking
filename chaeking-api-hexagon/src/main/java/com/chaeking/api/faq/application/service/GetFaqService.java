@@ -5,6 +5,7 @@ import com.chaeking.api.faq.application.port.in.GetFaqQuery;
 import com.chaeking.api.faq.application.port.out.FaqDetail;
 import com.chaeking.api.faq.application.port.out.FaqSimple;
 import com.chaeking.api.faq.application.port.out.LoadFaqPort;
+import com.chaeking.api.faq.domain.Faq;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,12 +19,12 @@ class GetFaqService implements GetFaqQuery {
     private final LoadFaqPort loadFaqPort;
 
     @Override
-    public List<FaqSimple> getFaqs(Pageable pageable) {
-        return loadFaqPort.loadFaqSimples(pageable);
+    public List<FaqSimple> getFaqSimples(Pageable pageable) {
+        return loadFaqPort.loadFaqs(pageable).stream().map(Faq::mapToFaqSimple).toList();
     }
 
     @Override
-    public FaqDetail getFaq(long id) {
-        return loadFaqPort.loadFaqDetail(id);
+    public FaqDetail getFaqDetail(long id) {
+        return loadFaqPort.loadFaq(id).mapToFaqDetail();
     }
 }
