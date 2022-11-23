@@ -1,4 +1,4 @@
-package com.chaeking.api.common;
+package com.chaeking.api.common.util;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
