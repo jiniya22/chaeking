@@ -2,7 +2,6 @@ package com.chaeking.api.user.application.service;
 
 import com.chaeking.api.common.annotation.UseCase;
 import com.chaeking.api.config.exception.BadRequestException;
-import com.chaeking.api.user.application.port.in.GetUserCommand;
 import com.chaeking.api.user.application.port.in.GetUserQuery;
 import com.chaeking.api.user.application.port.out.LoadUserPort;
 import com.chaeking.api.user.application.port.out.UserDetail;

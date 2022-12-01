@@ -19,7 +19,7 @@ import java.util.Set;
 @DynamicInsert
 @DynamicUpdate
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "user")
+@Table(name = "`user`")
 @Entity
 @Where(clause = "active = 1")
 class UserEntity extends BaseEntity {
@@ -31,10 +31,6 @@ class UserEntity extends BaseEntity {
     @Setter
     @Column(nullable = false, length = 100)
     private String email;
-
-    @Setter
-    @Column(nullable = false, length = 500)
-    private String password;
 
     @Setter
     @Column(nullable = false, length = 100)
@@ -56,13 +52,13 @@ class UserEntity extends BaseEntity {
     @Setter
     @ColumnDefault("false")
     @Type(type = "org.hibernate.type.NumericBooleanType")
-    @Column(columnDefinition = "TINYINT(1)")
+//    @Column(columnDefinition = "TINYINT(1)")
     private boolean push;
 
     @Setter
     @ColumnDefault("false")
     @Type(type = "org.hibernate.type.NumericBooleanType")
-    @Column(columnDefinition = "TINYINT(1)")
+//    @Column(columnDefinition = "TINYINT(1)")
     private boolean nightPush;
 
     @Setter
@@ -74,10 +70,9 @@ class UserEntity extends BaseEntity {
     private Set<UserAuthorityEntity> authorities;
 
     @Builder
-    private UserEntity(String email, String password, String nickname, Sex sex, String secretKey, boolean push,
+    private UserEntity(String email, String nickname, Sex sex, String secretKey, boolean push,
                        boolean nightPush, String imageUrl) {
         this.email = email;
-        this.password = password;
         this.nickname = nickname;
         this.sex = sex;
         this.secretKey = secretKey;
