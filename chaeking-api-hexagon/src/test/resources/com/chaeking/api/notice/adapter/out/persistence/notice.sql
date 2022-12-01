@@ -1,2 +1,14 @@
-insert into notice(`id`, `title`, `content`) values (1, 'demo-hexagonal', 'hexagonal architecture 구조로 만든 코프링 웹 애플리케이션을 만들었습니다');
-insert into notice(`id`, `title`, `content`) values (2, 'demo-app 서브 모듈 프로젝트', '이번 프로젝트는 서브 모듈로 구성되어있습니다.');
+insert into notice(`title`, `content`, `created_at`) values ('notice1', 'content1', now());
+insert into notice(`title`, `content`, `created_at`) values ('notice2', 'content2', now());
+insert into notice(`title`, `content`, `created_at`) values ('notice3', 'content3', now());
+insert into notice(`title`, `content`, `created_at`) values ('notice4', 'content4', now());
+insert into notice(`title`, `content`, `created_at`) values ('notice5', 'content5', now());
+insert into notice(`title`, `content`, `created_at`) values ('notice6', 'content6', now());
+insert into notice(`title`, `content`, `created_at`) values ('notice7', 'content7', now());
+insert into notice(`title`, `content`, `created_at`) values ('notice8', 'content8', now());
+insert into notice(`title`, `content`, `created_at`) values ('notice9', 'content9', now());
+insert into notice(`title`, `content`, `created_at`) values ('notice10', 'content10', now());
+insert into notice(`title`, `content`, `created_at`) values ('notice11', 'content11', now());
+insert into notice(`title`, `content`, `created_at`) values ('notice12', 'content12', now());
+insert into notice(`title`, `content`, `created_at`) values ('notice13', 'content13', now());
+insert into notice(`title`, `content`, `created_at`) values ('notice14', 'content14', now());

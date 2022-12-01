@@ -1,0 +1,14 @@
+insert into faq(`title`, `content`, `created_at`) values ('faq1', 'content1', now());
+insert into faq(`title`, `content`, `created_at`) values ('faq2', 'content2', now());
+insert into faq(`title`, `content`, `created_at`) values ('faq3', 'content3', now());
+insert into faq(`title`, `content`, `created_at`) values ('faq4', 'content4', now());
+insert into faq(`title`, `content`, `created_at`) values ('faq5', 'content5', now());
+insert into faq(`title`, `content`, `created_at`) values ('faq6', 'content6', now());
+insert into faq(`title`, `content`, `created_at`) values ('faq7', 'content7', now());
+insert into faq(`title`, `content`, `created_at`) values ('faq8', 'content8', now());
+insert into faq(`title`, `content`, `created_at`) values ('faq9', 'content9', now());
+insert into faq(`title`, `content`, `created_at`) values ('faq10', 'content10', now());
+insert into faq(`title`, `content`, `created_at`) values ('faq11', 'content11', now());
+insert into faq(`title`, `content`, `created_at`) values ('faq12', 'content12', now());
+insert into faq(`title`, `content`, `created_at`) values ('faq13', 'content13', now());
+insert into faq(`title`, `content`, `created_at`) values ('faq14', 'content14', now());

@@ -9,12 +9,14 @@ import org.springframework.context.annotation.Import;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.context.jdbc.Sql;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+@Transactional(readOnly = true)
 @DataJpaTest
 //@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Import(NoticePersistenceAdapter.class)
@@ -30,9 +32,10 @@ class NoticePersistenceAdapterTest {
     @Sql("notice.sql")
     void loadNotices() {
         List<Notice> notices = noticePersistenceAdapter.loadNotices(
-                PageRequest.of(0, 10, Sort.by(Sort.Order.desc("id"))));
+                PageRequest.of(1, 3, Sort.by(Sort.Order.desc("id"))));
         notices.forEach(System.out::println);
-        assertEquals(notices.size(), 2);
+        assertEquals(notices.size(), 3);
+        assertEquals(notices.get(0).id(), 11);
     }
 
     @Test
