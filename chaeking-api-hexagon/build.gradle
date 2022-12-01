@@ -19,6 +19,7 @@ dependencies {
     implementation 'org.jsoup:jsoup:1.15.3'
     implementation 'com.auth0:java-jwt:4.2.1'
     runtimeOnly "org.mariadb.jdbc:mariadb-java-client"
+    runtimeOnly 'com.h2database:h2'
     testImplementation "org.springframework.security:spring-security-test"
 }
 
