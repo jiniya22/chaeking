@@ -44,6 +44,8 @@ subprojects {
         developmentOnly "$boot:spring-boot-devtools"
         annotationProcessor "$boot:spring-boot-configuration-processor"
         testImplementation "$boot:spring-boot-starter-test"
+        testImplementation "org.mockito:mockito-inline"
+
         compileOnly lombok
         annotationProcessor lombok
         testImplementation lombok
