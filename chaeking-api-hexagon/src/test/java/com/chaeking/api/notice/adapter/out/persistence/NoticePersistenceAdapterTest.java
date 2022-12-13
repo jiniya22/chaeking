@@ -1,5 +1,6 @@
 package com.chaeking.api.notice.adapter.out.persistence;
 
+import com.chaeking.api.config.exception.NotFoundException;
 import com.chaeking.api.notice.application.port.out.NoticeDetail;
 import com.chaeking.api.notice.domain.Notice;
 import org.junit.jupiter.api.Test;
@@ -13,8 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @Transactional(readOnly = true)
 @DataJpaTest
@@ -44,5 +44,17 @@ class NoticePersistenceAdapterTest {
         NoticeDetail noticeDetail = noticePersistenceAdapter.loadNotice(1L).mapToNoticeDetail();
         System.out.println(noticeDetail);
         assertNotNull(noticeDetail);
+    }
+
+    @Test
+    @Sql("notice.sql")
+    void loadNotice_exception() {
+        Throwable ex = assertThrows(NotFoundException.class, () -> {
+            NoticeDetail noticeDetail = noticePersistenceAdapter.loadNotice(111L).mapToNoticeDetail();
+            System.out.println(noticeDetail);
+            assertNotNull(noticeDetail);
+        });
+
+        assertEquals(ex.getMessage(), NoticePersistenceAdapter.MESSAGE_404);
     }
 }
