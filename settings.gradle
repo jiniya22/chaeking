@@ -2,8 +2,7 @@ rootProject.name = "chaeking"
 
 include(
     ":chaeking-api-layer",
-    ":chaeking-api-hexagon",
-    ":chaeking-test"
+    ":chaeking-api-hexagon"
 )
 include 'chaeking-api-hexagonal'
 
