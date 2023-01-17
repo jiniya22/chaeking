@@ -1,6 +1,6 @@
 package com.chaeking.api.config;
 
-import com.chaeking.api.domain.value.ChaekingProperties;
+import com.chaeking.api.value.ChaekingProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;

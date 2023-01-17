@@ -1,8 +1,8 @@
 package com.chaeking.api.service;
 
 import com.chaeking.api.domain.entity.BaseBoard;
-import com.chaeking.api.domain.value.BoardValue;
-import com.chaeking.api.repository.NoticeRepository;
+import com.chaeking.api.value.BoardValue;
+import com.chaeking.api.domain.repository.NoticeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

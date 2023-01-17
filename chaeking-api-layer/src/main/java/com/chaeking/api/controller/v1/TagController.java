@@ -1,7 +1,7 @@
 package com.chaeking.api.controller.v1;
 
-import com.chaeking.api.domain.value.BaseValue;
-import com.chaeking.api.domain.value.response.DataResponse;
+import com.chaeking.api.value.BaseValue;
+import com.chaeking.api.value.response.DataResponse;
 import com.chaeking.api.service.TagService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirements;

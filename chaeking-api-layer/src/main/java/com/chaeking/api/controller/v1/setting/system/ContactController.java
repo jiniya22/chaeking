@@ -1,10 +1,10 @@
 package com.chaeking.api.controller.v1.setting.system;
 
-import com.chaeking.api.domain.value.BoardValue;
-import com.chaeking.api.domain.value.ContactValue;
-import com.chaeking.api.domain.value.response.BaseResponse;
-import com.chaeking.api.domain.value.response.DataResponse;
-import com.chaeking.api.domain.value.response.PageResponse;
+import com.chaeking.api.value.BoardValue;
+import com.chaeking.api.value.ContactValue;
+import com.chaeking.api.value.response.BaseResponse;
+import com.chaeking.api.value.response.DataResponse;
+import com.chaeking.api.value.response.PageResponse;
 import com.chaeking.api.service.ContactService;
 import com.chaeking.api.util.BasicUtils;
 import io.swagger.v3.oas.annotations.Operation;
@@ -17,8 +17,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @Tag(name = "setting-system", description = "설정-시스템(공지사항, FAQ, 이용약관, 문의, 메타정보 등)")

@@ -1,6 +1,6 @@
 package com.chaeking.api.domain.entity;
 
-import com.chaeking.api.domain.value.TermsValue;
+import com.chaeking.api.value.TermsValue;
 import com.chaeking.api.util.DateTimeUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;

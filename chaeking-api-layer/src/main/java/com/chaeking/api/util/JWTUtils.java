@@ -6,11 +6,10 @@ import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.chaeking.api.config.vault.ChaekingConfig;
 import com.chaeking.api.domain.entity.User;
-import com.chaeking.api.domain.value.TokenValue;
+import com.chaeking.api.value.TokenValue;
 
 import java.time.Instant;
 import java.util.Optional;
-import java.util.UUID;
 
 public class JWTUtils {
     private static final long ACCESS_TIME = 60 * 60 * 6; // 6 hours

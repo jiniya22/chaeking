@@ -1,8 +1,8 @@
 package com.chaeking.api.service;
 
 import com.chaeking.api.domain.entity.Book;
-import com.chaeking.api.domain.value.BookValue;
-import com.chaeking.api.repository.NewBookRepository;
+import com.chaeking.api.value.BookValue;
+import com.chaeking.api.domain.repository.NewBookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,7 +1,7 @@
 package com.chaeking.api.service;
 
-import com.chaeking.api.domain.value.BaseValue;
-import com.chaeking.api.repository.TagRepository;
+import com.chaeking.api.value.BaseValue;
+import com.chaeking.api.domain.repository.TagRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

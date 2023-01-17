@@ -1,6 +1,6 @@
 package com.chaeking.api.controller.temp;
 
-import com.chaeking.api.domain.value.UserValue;
+import com.chaeking.api.value.UserValue;
 import com.chaeking.api.util.DescriptionUtils;
 import com.chaeking.api.util.cipher.AESCipher;
 import io.swagger.v3.oas.annotations.Operation;

@@ -1,6 +1,6 @@
 package com.chaeking.api.feignclient;
 
-import com.chaeking.api.domain.value.naver.KakaoBookValue;
+import com.chaeking.api.value.naver.KakaoBookValue;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.cloud.openfeign.SpringQueryMap;
 import org.springframework.http.ResponseEntity;

@@ -2,13 +2,11 @@ package com.chaeking.api.service;
 
 import com.chaeking.api.config.exception.InvalidInputException;
 import com.chaeking.api.domain.entity.Book;
-import com.chaeking.api.domain.entity.BookMemoryComplete;
 import com.chaeking.api.domain.entity.BookMemoryWish;
-import com.chaeking.api.domain.entity.User;
-import com.chaeking.api.domain.value.BookMemoryWishValue;
-import com.chaeking.api.domain.value.response.PageResponse;
-import com.chaeking.api.repository.BookMemoryCompleteRepository;
-import com.chaeking.api.repository.BookMemoryWishRepository;
+import com.chaeking.api.value.BookMemoryWishValue;
+import com.chaeking.api.value.response.PageResponse;
+import com.chaeking.api.domain.repository.BookMemoryCompleteRepository;
+import com.chaeking.api.domain.repository.BookMemoryWishRepository;
 import com.chaeking.api.util.DateTimeUtils;
 import com.chaeking.api.util.MessageUtils;
 import lombok.RequiredArgsConstructor;

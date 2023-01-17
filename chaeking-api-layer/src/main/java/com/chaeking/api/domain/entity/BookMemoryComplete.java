@@ -1,7 +1,7 @@
 package com.chaeking.api.domain.entity;
 
-import com.chaeking.api.domain.value.BookMemoryCompleteValue;
-import com.chaeking.api.domain.value.ChaekingProperties;
+import com.chaeking.api.value.BookMemoryCompleteValue;
+import com.chaeking.api.value.ChaekingProperties;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.Getter;

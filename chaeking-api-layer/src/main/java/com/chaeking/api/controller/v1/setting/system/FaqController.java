@@ -1,7 +1,7 @@
 package com.chaeking.api.controller.v1.setting.system;
 
-import com.chaeking.api.domain.value.BoardValue;
-import com.chaeking.api.domain.value.response.DataResponse;
+import com.chaeking.api.value.BoardValue;
+import com.chaeking.api.value.response.DataResponse;
 import com.chaeking.api.service.FaqService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

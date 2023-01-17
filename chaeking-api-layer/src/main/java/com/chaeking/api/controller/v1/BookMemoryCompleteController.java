@@ -1,8 +1,8 @@
 package com.chaeking.api.controller.v1;
 
-import com.chaeking.api.domain.value.BookMemoryCompleteValue;
-import com.chaeking.api.domain.value.response.BaseResponse;
-import com.chaeking.api.domain.value.response.PageResponse;
+import com.chaeking.api.value.BookMemoryCompleteValue;
+import com.chaeking.api.value.response.BaseResponse;
+import com.chaeking.api.value.response.PageResponse;
 import com.chaeking.api.service.BookMemoryCompleteService;
 import com.chaeking.api.util.BasicUtils;
 import com.chaeking.api.util.DescriptionUtils;

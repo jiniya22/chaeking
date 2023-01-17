@@ -1,7 +1,7 @@
 package com.chaeking.api.controller.v1.setting.system;
 
-import com.chaeking.api.domain.value.TermsValue;
-import com.chaeking.api.domain.value.response.DataResponse;
+import com.chaeking.api.value.TermsValue;
+import com.chaeking.api.value.response.DataResponse;
 import com.chaeking.api.service.TermsService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirements;

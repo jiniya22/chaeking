@@ -1,8 +1,8 @@
 package com.chaeking.api.service;
 
 import com.chaeking.api.domain.entity.Terms;
-import com.chaeking.api.domain.value.TermsValue;
-import com.chaeking.api.repository.TermsRepository;
+import com.chaeking.api.value.TermsValue;
+import com.chaeking.api.domain.repository.TermsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

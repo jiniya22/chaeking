@@ -1,17 +1,15 @@
 package com.chaeking.api.controller.v1.setting.user;
 
-import com.chaeking.api.domain.value.BaseValue;
-import com.chaeking.api.domain.value.TokenValue;
-import com.chaeking.api.domain.value.UserValue;
-import com.chaeking.api.domain.value.response.BaseResponse;
-import com.chaeking.api.domain.value.response.DataResponse;
+import com.chaeking.api.value.BaseValue;
+import com.chaeking.api.value.UserValue;
+import com.chaeking.api.value.response.BaseResponse;
+import com.chaeking.api.value.response.DataResponse;
 import com.chaeking.api.service.UserService;
 import com.chaeking.api.util.BasicUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;

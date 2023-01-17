@@ -1,16 +1,14 @@
 package com.chaeking.api.controller.v1;
 
-import com.chaeking.api.domain.value.BookMemoryWishValue;
-import com.chaeking.api.domain.value.response.BaseResponse;
-import com.chaeking.api.domain.value.response.PageResponse;
+import com.chaeking.api.value.BookMemoryWishValue;
+import com.chaeking.api.value.response.BaseResponse;
+import com.chaeking.api.value.response.PageResponse;
 import com.chaeking.api.service.BookMemoryWishService;
 import com.chaeking.api.util.BasicUtils;
 import com.chaeking.api.util.DescriptionUtils;
 import com.chaeking.api.util.RegexpUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

@@ -1,6 +1,6 @@
 package com.chaeking.api.domain.entity;
 
-import com.chaeking.api.domain.enumerate.MetaType;
+import com.chaeking.api.value.enumerate.MetaType;
 import lombok.Getter;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Type;
