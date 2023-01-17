@@ -1,6 +1,6 @@
 package com.chaeking.api.util;
 
-import com.chaeking.api.value.ChaekingProperties;
+import com.chaeking.api.model.ChaekingProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.web.multipart.MultipartFile;

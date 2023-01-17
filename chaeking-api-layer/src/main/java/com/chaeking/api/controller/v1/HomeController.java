@@ -1,8 +1,8 @@
 package com.chaeking.api.controller.v1;
 
-import com.chaeking.api.value.enumerate.AnalysisType;
-import com.chaeking.api.value.HomeValue;
-import com.chaeking.api.value.response.DataResponse;
+import com.chaeking.api.model.enumerate.AnalysisType;
+import com.chaeking.api.model.HomeValue;
+import com.chaeking.api.model.response.DataResponse;
 import com.chaeking.api.service.BookshelfService;
 import com.chaeking.api.util.BasicUtils;
 import io.swagger.v3.oas.annotations.Operation;

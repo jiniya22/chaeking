@@ -1,9 +1,9 @@
 package com.chaeking.api.service.data4library;
 
 import com.chaeking.api.domain.entity.Library;
-import com.chaeking.api.value.data4library.Data4LibraryHotTrendValue;
-import com.chaeking.api.value.data4library.Data4LibraryLibraryValue;
-import com.chaeking.api.value.data4library.Data4LibraryRecommandValue;
+import com.chaeking.api.model.data4library.Data4LibraryHotTrendValue;
+import com.chaeking.api.model.data4library.Data4LibraryLibraryValue;
+import com.chaeking.api.model.data4library.Data4LibraryRecommandValue;
 import com.chaeking.api.feignclient.Data4libraryApiClient;
 import com.chaeking.api.domain.repository.LibraryRepository;
 import com.chaeking.api.util.DateTimeUtils;

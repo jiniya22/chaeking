@@ -1,6 +1,6 @@
 package com.chaeking.api.config;
 
-import com.chaeking.api.value.UserValue;
+import com.chaeking.api.model.UserValue;
 import com.chaeking.api.util.cipher.AESCipher;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

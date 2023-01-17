@@ -1,6 +1,6 @@
 package com.chaeking.api.domain.entity;
 
-import com.chaeking.api.value.BookMemoryWishValue;
+import com.chaeking.api.model.BookMemoryWishValue;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.Getter;

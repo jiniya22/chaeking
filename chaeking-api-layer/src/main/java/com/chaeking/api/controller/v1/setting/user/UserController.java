@@ -1,9 +1,9 @@
 package com.chaeking.api.controller.v1.setting.user;
 
-import com.chaeking.api.value.BaseValue;
-import com.chaeking.api.value.UserValue;
-import com.chaeking.api.value.response.BaseResponse;
-import com.chaeking.api.value.response.DataResponse;
+import com.chaeking.api.model.BaseValue;
+import com.chaeking.api.model.UserValue;
+import com.chaeking.api.model.response.BaseResponse;
+import com.chaeking.api.model.response.DataResponse;
 import com.chaeking.api.service.UserService;
 import com.chaeking.api.util.BasicUtils;
 import io.swagger.v3.oas.annotations.Operation;

@@ -1,8 +1,8 @@
 package com.chaeking.api.controller.v1;
 
-import com.chaeking.api.value.BookMemoryWishValue;
-import com.chaeking.api.value.response.BaseResponse;
-import com.chaeking.api.value.response.PageResponse;
+import com.chaeking.api.model.BookMemoryWishValue;
+import com.chaeking.api.model.response.BaseResponse;
+import com.chaeking.api.model.response.PageResponse;
 import com.chaeking.api.service.BookMemoryWishService;
 import com.chaeking.api.util.BasicUtils;
 import com.chaeking.api.util.DescriptionUtils;

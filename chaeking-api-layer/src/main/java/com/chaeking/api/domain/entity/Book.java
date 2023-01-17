@@ -1,9 +1,9 @@
 package com.chaeking.api.domain.entity;
 
-import com.chaeking.api.value.BookMemoryCompleteValue;
-import com.chaeking.api.value.BookMemoryWishValue;
-import com.chaeking.api.value.BookValue;
-import com.chaeking.api.value.ChaekingProperties;
+import com.chaeking.api.model.BookMemoryCompleteValue;
+import com.chaeking.api.model.BookMemoryWishValue;
+import com.chaeking.api.model.BookValue;
+import com.chaeking.api.model.ChaekingProperties;
 import com.chaeking.api.util.DateTimeUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;

@@ -1,7 +1,7 @@
 package com.chaeking.api.controller.v1;
 
-import com.chaeking.api.value.BookMemoryCompleteValue;
-import com.chaeking.api.value.response.PageResponse;
+import com.chaeking.api.model.BookMemoryCompleteValue;
+import com.chaeking.api.model.response.PageResponse;
 import com.chaeking.api.service.BookshelfService;
 import com.chaeking.api.util.BasicUtils;
 import com.chaeking.api.util.DescriptionUtils;

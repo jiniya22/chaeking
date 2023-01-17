@@ -1,7 +1,7 @@
 package com.chaeking.api.service;
 
 import com.chaeking.api.domain.entity.BaseBoard;
-import com.chaeking.api.value.BoardValue;
+import com.chaeking.api.model.BoardValue;
 import com.chaeking.api.domain.repository.FaqRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;

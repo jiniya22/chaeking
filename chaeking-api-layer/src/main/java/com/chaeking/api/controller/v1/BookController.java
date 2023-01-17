@@ -1,10 +1,10 @@
 package com.chaeking.api.controller.v1;
 
-import com.chaeking.api.value.enumerate.KakaoBookSort;
-import com.chaeking.api.value.enumerate.KakaoBookTarget;
-import com.chaeking.api.value.BookValue;
-import com.chaeking.api.value.naver.KakaoBookValue;
-import com.chaeking.api.value.response.DataResponse;
+import com.chaeking.api.model.enumerate.KakaoBookSort;
+import com.chaeking.api.model.enumerate.KakaoBookTarget;
+import com.chaeking.api.model.BookValue;
+import com.chaeking.api.model.naver.KakaoBookValue;
+import com.chaeking.api.model.response.DataResponse;
 import com.chaeking.api.service.BookService;
 import com.chaeking.api.util.BasicUtils;
 import io.swagger.v3.oas.annotations.Operation;

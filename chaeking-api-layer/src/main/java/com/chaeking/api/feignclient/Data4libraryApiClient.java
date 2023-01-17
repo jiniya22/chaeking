@@ -1,8 +1,8 @@
 package com.chaeking.api.feignclient;
 
-import com.chaeking.api.value.data4library.Data4LibraryHotTrendValue;
-import com.chaeking.api.value.data4library.Data4LibraryLibraryValue;
-import com.chaeking.api.value.data4library.Data4LibraryRecommandValue;
+import com.chaeking.api.model.data4library.Data4LibraryHotTrendValue;
+import com.chaeking.api.model.data4library.Data4LibraryLibraryValue;
+import com.chaeking.api.model.data4library.Data4LibraryRecommandValue;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.cloud.openfeign.SpringQueryMap;
 import org.springframework.http.ResponseEntity;

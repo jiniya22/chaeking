@@ -1,6 +1,6 @@
 package com.chaeking.api.domain.entity;
 
-import com.chaeking.api.value.BaseValue;
+import com.chaeking.api.model.BaseValue;
 import com.chaeking.api.util.BasicUtils;
 import lombok.AccessLevel;
 import lombok.Getter;

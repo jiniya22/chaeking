@@ -1,6 +1,6 @@
 package com.chaeking.api.domain.entity;
 
-import com.chaeking.api.value.BoardValue;
+import com.chaeking.api.model.BoardValue;
 import com.chaeking.api.util.DateTimeUtils;
 import lombok.AccessLevel;
 import lombok.Getter;

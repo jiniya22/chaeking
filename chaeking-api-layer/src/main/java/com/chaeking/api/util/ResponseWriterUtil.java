@@ -1,7 +1,7 @@
 package com.chaeking.api.util;
 
 import com.chaeking.api.config.WebConfig;
-import com.chaeking.api.value.response.BaseResponse;
+import com.chaeking.api.model.response.BaseResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 

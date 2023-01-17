@@ -1,10 +1,10 @@
 package com.chaeking.api.controller.v1.setting.system;
 
-import com.chaeking.api.value.BoardValue;
-import com.chaeking.api.value.ContactValue;
-import com.chaeking.api.value.response.BaseResponse;
-import com.chaeking.api.value.response.DataResponse;
-import com.chaeking.api.value.response.PageResponse;
+import com.chaeking.api.model.BoardValue;
+import com.chaeking.api.model.ContactValue;
+import com.chaeking.api.model.response.BaseResponse;
+import com.chaeking.api.model.response.DataResponse;
+import com.chaeking.api.model.response.PageResponse;
 import com.chaeking.api.service.ContactService;
 import com.chaeking.api.util.BasicUtils;
 import io.swagger.v3.oas.annotations.Operation;

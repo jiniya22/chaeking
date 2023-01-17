@@ -1,10 +1,10 @@
 package com.chaeking.api.domain.entity;
 
 import com.chaeking.api.config.SecurityConfig;
-import com.chaeking.api.value.enumerate.Sex;
-import com.chaeking.api.value.ChaekingProperties;
-import com.chaeking.api.value.TokenValue;
-import com.chaeking.api.value.UserValue;
+import com.chaeking.api.model.enumerate.Sex;
+import com.chaeking.api.model.ChaekingProperties;
+import com.chaeking.api.model.TokenValue;
+import com.chaeking.api.model.UserValue;
 import com.chaeking.api.util.JWTUtils;
 import com.chaeking.api.util.cipher.AESCipher;
 import lombok.*;

@@ -2,7 +2,7 @@ package com.chaeking.api.config.filter;
 
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.chaeking.api.domain.entity.User;
-import com.chaeking.api.value.TokenValue;
+import com.chaeking.api.model.TokenValue;
 import com.chaeking.api.service.UserService;
 import com.chaeking.api.util.JWTUtils;
 import com.chaeking.api.util.MessageUtils;

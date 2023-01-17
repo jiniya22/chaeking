@@ -1,9 +1,9 @@
 package com.chaeking.api.controller.temp;
 
-import com.chaeking.api.value.data4library.Data4LibraryHotTrendValue;
-import com.chaeking.api.value.data4library.Data4LibraryLibraryValue;
-import com.chaeking.api.value.data4library.Data4LibraryRecommandValue;
-import com.chaeking.api.value.response.DataResponse;
+import com.chaeking.api.model.data4library.Data4LibraryHotTrendValue;
+import com.chaeking.api.model.data4library.Data4LibraryLibraryValue;
+import com.chaeking.api.model.data4library.Data4LibraryRecommandValue;
+import com.chaeking.api.model.response.DataResponse;
 import com.chaeking.api.service.data4library.LibraryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirements;

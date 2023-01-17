@@ -6,7 +6,7 @@ import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.chaeking.api.config.vault.ChaekingConfig;
 import com.chaeking.api.domain.entity.User;
-import com.chaeking.api.value.TokenValue;
+import com.chaeking.api.model.TokenValue;
 
 import java.time.Instant;
 import java.util.Optional;
