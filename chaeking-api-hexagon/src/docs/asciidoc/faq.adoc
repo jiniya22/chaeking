@@ -1,0 +1,54 @@
+= FAQ
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toc-title: API 명세서
+:toclevels: 4
+
+== FAQ 조회 : `GET /v1/faqs`
+
+FAQ를 조회하는 api입니다.
+
+include::{snippets}/faqs-get/http-request.adoc[]
+
+=== Request Message
+
+include::{snippets}/faqs-get/request-parameters.adoc[]
+
+=== 코드 예제
+
+.httpie 요청
+include::{snippets}/faqs-get/httpie-request.adoc[]
+
+.curl 요청
+include::{snippets}/faqs-get/curl-request.adoc[]
+
+=== Response Message
+
+.response
+include::{snippets}/faqs-get/response-body.adoc[]
+
+
+== FAQ 단건 조회
+
+FAQ id를 이용하여 FAQ 단건을 조회하는 api입니다.
+
+include::{snippets}/faq-get/http-request.adoc[]
+
+=== Request Message
+
+include::{snippets}/faq-get/path-parameters.adoc[]
+
+=== 코드 예제
+
+.httpie 요청
+include::{snippets}/faq-get/httpie-request.adoc[]
+
+.curl 요청
+include::{snippets}/faq-get/curl-request.adoc[]
+
+=== Response Message
+
+.response body
+include::{snippets}/faq-get/response-body.adoc[]
