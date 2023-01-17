@@ -1,0 +1,27 @@
+= 공지사항
+
+== 공지사항 조회
+
+공지사항을 조회하는 api입니다.
+
+include::{snippets}/notices-get/http-request.adoc[]
+
+=== Request Message
+
+.request parameters
+include::{snippets}/notices-get/request-parameters.adoc[]
+
+=== 코드 예제
+
+.httpie 요청
+include::{snippets}/notices-get/httpie-request.adoc[]
+
+.curl 요청
+include::{snippets}/notices-get/curl-request.adoc[]
+
+=== Response Message
+
+.response
+include::{snippets}/notices-get/response-body.adoc[]
+
+***
