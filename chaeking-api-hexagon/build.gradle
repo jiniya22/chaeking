@@ -22,7 +22,7 @@ dependencies {
     implementation "${boot}:spring-boot-starter-validation"
     implementation "${cloud}:spring-cloud-starter-vault-config"
     implementation "${cloud}:spring-cloud-starter-openfeign"
-    implementation 'org.springdoc:springdoc-openapi-ui:1.6.12'
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.14'
     implementation "org.thymeleaf.extras:thymeleaf-extras-springsecurity5"
     implementation 'org.jsoup:jsoup:1.15.3'
     implementation 'com.auth0:java-jwt:4.2.1'
@@ -31,7 +31,7 @@ dependencies {
     testImplementation "org.springframework.security:spring-security-test"
 
     asciidoctorExtensions "org.springframework.restdocs:spring-restdocs-asciidoctor"
-    asciidoctorExtensions "io.spring.asciidoctor:spring-asciidoctor-extensions-block-switch:0.6.0"
+    asciidoctorExtensions 'io.spring.asciidoctor:spring-asciidoctor-extensions-block-switch:0.6.1'
     testImplementation "org.springframework.restdocs:spring-restdocs-mockmvc"
 
 }
@@ -61,8 +61,8 @@ bootJar {
         into "static/docs"
     }
     archiveFileName.set("chaeking-api.jar")
-//    copy {
-//        from "${asciidoctor.outputDir}"
-//        into "src/main/resources/static/docs"
-//    }
+    copy {
+        from "${asciidoctor.outputDir}"
+        into "src/main/resources/static/docs"
+    }
 }
