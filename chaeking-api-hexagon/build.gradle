@@ -62,7 +62,7 @@ asciidoctor {
         delete file('src/main/resources/static/docs')
     }
     doLast {
-        println(">>>> End of asciidoctor html files deletion!")
+        println(">>>> End of asciidoctor html files have been deleted!")
         copy {
             from "${asciidoctor.outputDir}"
             into "src/main/resources/static/docs"
@@ -70,14 +70,19 @@ asciidoctor {
     }
 }
 
-build {
+task copyDocument(type: Copy) {
     dependsOn asciidoctor
+    from file("${asciidoctor.outputDir}")
+    into file("src/main/resources/static/docs")
 }
 
+// build 의 의존작업 명시
+build {
+    dependsOn copyDocument
+}
+
+
 bootJar {
-    dependsOn asciidoctor
-    from("${asciidoctor.outputDir}") {
-        into "static/docs"
-    }
+    dependsOn copyDocument
     archiveFileName.set("chaeking-api.jar")
 }
