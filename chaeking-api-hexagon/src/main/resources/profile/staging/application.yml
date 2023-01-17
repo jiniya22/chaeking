@@ -23,7 +23,6 @@ spring:
 #      transaction-isolation: TRANSACTION_READ_UNCOMMITTED
       pool-name: pool-book
   jpa:
-    database-platform: org.hibernate.dialect.MariaDB103Dialect
     properties:
       hibernate:
         format_sql: true
