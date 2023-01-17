@@ -4,6 +4,7 @@ import com.chaeking.api.notice.application.port.in.GetNoticeQuery;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.restdocs.RestDocumentationContextProvider;
@@ -38,16 +39,6 @@ class GetNoticeControllerTest {
                 .standaloneSetup(new GetNoticeController(getNoticeQuery))
                 .apply(documentationConfiguration(restDocumentation))
                 .build();
-    }
-
-    @Test
-    void test() throws Exception {
-        mockMvc.perform(
-                        MockMvcRequestBuilders.get("/v1/notices/test")
-                                .header("Content-Type", "application/json")
-                )
-                .andDo(print())
-                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
