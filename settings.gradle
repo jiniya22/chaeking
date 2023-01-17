@@ -4,5 +4,4 @@ include(
     ":chaeking-api-layer",
     ":chaeking-api-hexagon"
 )
-include 'chaeking-api-hexagonal'
 
