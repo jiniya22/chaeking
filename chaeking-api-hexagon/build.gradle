@@ -59,14 +59,8 @@ asciidoctor {
     baseDirFollowsSourceFile()
     doFirst {
         println(">>>> Start deleting asciidoctor html files")
-        delete file('src/main/resources/static/docs')
-    }
-    doLast {
+        delete "src/main/resources/static/docs"
         println(">>>> End of asciidoctor html files have been deleted!")
-        copy {
-            from "${asciidoctor.outputDir}"
-            into "src/main/resources/static/docs"
-        }
     }
 }
 
