@@ -1,3 +1,6 @@
+plugins {
+    id 'org.asciidoctor.jvm.convert' version "3.3.2"
+}
 sourceSets {
     main {
         resources {
@@ -5,7 +8,12 @@ sourceSets {
         }
     }
 }
-
+configurations {
+    asciidoctorExtensions
+}
+ext {
+    snippetsDir = file("build/generated-snippets")
+}
 dependencies {
     implementation "${boot}:spring-boot-starter-web"
     implementation "${boot}:spring-boot-starter-data-jpa"
@@ -21,6 +29,11 @@ dependencies {
     runtimeOnly "org.mariadb.jdbc:mariadb-java-client"
     runtimeOnly 'com.h2database:h2'
     testImplementation "org.springframework.security:spring-security-test"
+
+    asciidoctorExtensions "org.springframework.restdocs:spring-restdocs-asciidoctor"
+    asciidoctorExtensions "io.spring.asciidoctor:spring-asciidoctor-extensions-block-switch:0.6.0"
+    testImplementation "org.springframework.restdocs:spring-restdocs-mockmvc"
+
 }
 
 dependencyManagement {
@@ -29,6 +42,27 @@ dependencyManagement {
     }
 }
 
-tasks.bootJar {
+test {
+    outputs.dir snippetsDir
+    useJUnitPlatform()
+//    systemProperty 'spring.profiles.active', 'local'
+}
+
+asciidoctor {
+    configurations 'asciidoctorExtensions'
+    inputs.dir snippetsDir
+    dependsOn test
+    baseDirFollowsSourceFile()
+}
+
+bootJar {
+    dependsOn asciidoctor
+    from("${asciidoctor.outputDir}") {
+        into "static/docs"
+    }
     archiveFileName.set("chaeking-api.jar")
+//    copy {
+//        from "${asciidoctor.outputDir}"
+//        into "src/main/resources/static/docs"
+//    }
 }
