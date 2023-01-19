@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+body {
+    font-family: 'Pretendard', '돋움', Dotum, Helvetica, sans-serif; font-size:13px;
+    font-weight: 400;
+    background: #f2f2f2;
+}
+.d__container {
+    position: relative;
+    width: 360px;
+    margin: 0 auto;
+}
+.d-title, .d-subtitle {
+    font-weight: 700; letter-spacing: -.5px;
+}
+.d-summary:not(.d-summary-agree) .d-content {
+    margin-top: 8px;
+}
+.d__container .d-summary-head:first-child {
+    margin: 20px 16px;
+}
+.d__container .d-summary-head .d-title {
+    font-size: 15px; margin-bottom: 8px;
+}
+.d__container .d-summary-main {
+    background: #fff; margin: 10px 0;
+}
+
+.d__container .d-summary-main .d-summary {
+    position: relative; padding: 20px 16px;
+}
+.d__container .d-summary-main .d-content:not(:last-child):after  {
+    display: block;
+    position: absolute;
+    content: '';
+    height: 1px;
+    background-color: #f2f2f2;
+    border: transparent;
+    bottom: 0px;
+    width: calc(100% - 32px);
+}
+
+.d__container .d-summary-main .d-content {
+    position: relative;
+    padding: 14px 16px;
+    font-family: 'Noto Serif KR', 'Noto Sans KR', Dotum, Gulim, Helvetica, serif;
+}
+.d__container .d-summary-main .d-content:last-child {
+    padding-bottom: 20px;
+}
+
+.d-link, .d-content {
+    cursor: pointer;
+}

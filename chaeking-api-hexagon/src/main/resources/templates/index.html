@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>책킹API 문서 링크 목록</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/check.css}"/>
+    <style>
+
+    </style>
+</head>
+<body>
+<div class="d__container">
+    <div class="d-summary-head">
+        <div class="d-title">
+            책킹 API 명세 링크 목록
+        </div>
+    </div>
+
+    <div class="d-summary-main">
+        <div class="d-summary">
+            <div class="d-subtitle d-link" th:attr="data-link=@{/swagger-ui.html}">
+                Swagger 문서 - Open API 3.0
+            </div>
+        </div>
+    </div>
+
+    <div class="d-summary-main">
+        <div class="d-summary">
+            <div class="d-subtitle">
+                API Docs - asciidoctor
+            </div>
+        </div>
+        <th:block th:each="apiDoc : ${apiDocs}">
+            <div class="d-content" th:attr="data-link=@{/api-docs/__${apiDoc}__}" th:text="${apiDoc}">
+            </div>
+        </th:block>
+    </div>
+</div>
+</div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $(document).on("click", ".d-link, .d-content", function() {
+            const link = $(this).data("link");
+            window.open(link);
+        });
+    });
+</script>
+</html>
