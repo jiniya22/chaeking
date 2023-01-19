@@ -1,38 +1,37 @@
 package com.chaeking.api;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.io.ClassPathResource;
+import org.apache.logging.log4j.util.Strings;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 @Slf4j
+@RequiredArgsConstructor
 @RestController
 public class IndexController {
 
-    @GetMapping("")
-    public ModelAndView index() throws IOException {
-        ModelAndView mv = new ModelAndView("index");
-        List<String> apiDocNames = getApiDocs();
-        mv.addObject("apiDocs", apiDocNames);
-        return mv;
-    }
+    private final ResourcePatternResolver resourcePatternResolver;
 
-    private List<String> getApiDocs() {
+    @GetMapping("")
+    public ModelAndView index() {
+        ModelAndView mv = new ModelAndView("index");
         try {
-            InputStream inputStream = new ClassPathResource("static/docs").getInputStream();
-            String files = new String(inputStream.readAllBytes());
-            return Arrays.asList(files.split("\n"));
+            List<String> apiDocNames = Arrays.stream(resourcePatternResolver.getResources("classpath:static/docs/*.html"))
+                    .map(Resource::getFilename)
+                    .filter(Strings::isNotEmpty).toList();
+            mv.addObject("apiDocs", apiDocNames);
         } catch (Exception e) {
             log.error(e.getMessage());
         }
-        return Collections.emptyList();
+
+        return mv;
     }
 
 }
