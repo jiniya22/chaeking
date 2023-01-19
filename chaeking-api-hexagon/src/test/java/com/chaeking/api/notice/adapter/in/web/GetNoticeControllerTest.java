@@ -34,10 +34,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 @WebMvcTest(controllers = GetNoticeController.class)
 class GetNoticeControllerTest {
 
-    MockMvc mockMvc;
+    private MockMvc mockMvc;
 
     @MockBean
-    GetNoticeQuery getNoticeQuery;
+    private GetNoticeQuery getNoticeQuery;
 
     @BeforeEach
     void setUp(RestDocumentationContextProvider restDocumentation) {
@@ -57,6 +57,8 @@ class GetNoticeControllerTest {
         ResultActions resultActions = mockMvc.perform(
                         MockMvcRequestBuilders.get("/v1/notices")
                                 .header("Content-Type", "application/json")
+                                .param("page", "0")
+                                .param("size", "3")
                 )
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isOk());
