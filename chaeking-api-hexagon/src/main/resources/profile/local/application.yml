@@ -60,8 +60,22 @@ spring:
       name: admin
       password: admin
 
+  thymeleaf:
+    mode: HTML
+    encoding: UTF-8
+    check-template-location: true
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+  web:
+    resources:
+      static-locations:
+        - classpath:/static/
+      cache:
+        period: 0
+
 server:
-  port: 8081
+  port: 8080
   tomcat:
     basedir: .
 #    accesslog:
@@ -80,7 +94,7 @@ springdoc:
   swagger-ui:
     operations-sorter: alpha
     tags-sorter: alpha
-    path: /
+    path: /swagger-ui.html
     disable-swagger-default-url: true
     doc-expansion: none
     syntax-highlight:

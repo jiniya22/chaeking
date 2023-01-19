@@ -47,6 +47,20 @@ spring:
         enabled: true
         default-context: chaeking
 
+  thymeleaf:
+    mode: HTML
+    encoding: UTF-8
+    check-template-location: true
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+  web:
+    resources:
+      static-locations:
+        - classpath:/static/
+      cache:
+        period: 0
+
 server:
   port: 8080
   tomcat:
