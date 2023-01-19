@@ -43,3 +43,4 @@ bin/
 logs/
 ttt/
 Ttt*
+/chaeking-api-hexagon/src/main/resources/static/docs/
