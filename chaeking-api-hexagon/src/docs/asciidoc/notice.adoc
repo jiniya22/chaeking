@@ -6,17 +6,17 @@
 :toc-title: 공지사항 API
 :toclevels: 4
 
-== 공지사항 목록 조회
+== 1. 공지사항 목록 조회
 
 공지사항 목록을 조회하는 api입니다.
 
 include::{snippets}/notices-get/http-request.adoc[]
 
-=== Request Message
+=== 1.1. Request Message
 
 include::{snippets}/notices-get/request-parameters.adoc[]
 
-=== 코드 예제
+=== 1.2. 호출 예제
 
 .httpie 요청
 include::{snippets}/notices-get/httpie-request.adoc[]
@@ -24,23 +24,23 @@ include::{snippets}/notices-get/httpie-request.adoc[]
 .curl 요청
 include::{snippets}/notices-get/curl-request.adoc[]
 
-=== Response Message
+=== 1.3. Response Message
 
 .response body
 include::{snippets}/notices-get/response-body.adoc[]
 
-== 공지사항 단건 조회
+== 2. 공지사항 단건 조회
 
 공지사항 id를 이용하여 공지사항 단건을 조회하는 api입니다.
 
 include::{snippets}/notice-get/http-request.adoc[]
 
-=== Request Message
+=== 2.1. Request Message
 
 .path parameters
 include::{snippets}/notice-get/path-parameters.adoc[]
 
-=== 코드 예제
+=== 2.2. 호출 예제
 
 .httpie 요청
 include::{snippets}/notice-get/httpie-request.adoc[]
@@ -48,7 +48,7 @@ include::{snippets}/notice-get/httpie-request.adoc[]
 .curl 요청
 include::{snippets}/notice-get/curl-request.adoc[]
 
-=== Response Message
+=== 2.3. Response Message
 
 .response body
 include::{snippets}/notice-get/response-body.adoc[]

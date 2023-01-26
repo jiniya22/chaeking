@@ -6,17 +6,17 @@
 :toc-title: FAQ API
 :toclevels: 4
 
-== FAQ 목록 조회
+== 1. FAQ 목록 조회
 
 FAQ를 조회하는 api입니다.
 
 include::{snippets}/faqs-get/http-request.adoc[]
 
-=== Request Message
+=== 1.1. Request Message
 
 include::{snippets}/faqs-get/request-parameters.adoc[]
 
-=== 코드 예제
+=== 1.2. 호출 예제
 
 .httpie 요청
 include::{snippets}/faqs-get/httpie-request.adoc[]
@@ -24,23 +24,23 @@ include::{snippets}/faqs-get/httpie-request.adoc[]
 .curl 요청
 include::{snippets}/faqs-get/curl-request.adoc[]
 
-=== Response Message
+=== 1.3. Response Message
 
 .response
 include::{snippets}/faqs-get/response-body.adoc[]
 
 
-== FAQ 단건 조회
+== 2. FAQ 단건 조회
 
 FAQ id를 이용하여 FAQ 단건을 조회하는 api입니다.
 
 include::{snippets}/faq-get/http-request.adoc[]
 
-=== Request Message
+=== 2.1. Request Message
 
 include::{snippets}/faq-get/path-parameters.adoc[]
 
-=== 코드 예제
+=== 2.2. 호출 예제
 
 .httpie 요청
 include::{snippets}/faq-get/httpie-request.adoc[]
@@ -48,7 +48,7 @@ include::{snippets}/faq-get/httpie-request.adoc[]
 .curl 요청
 include::{snippets}/faq-get/curl-request.adoc[]
 
-=== Response Message
+=== 2.3. Response Message
 
 .response body
 include::{snippets}/faq-get/response-body.adoc[]
