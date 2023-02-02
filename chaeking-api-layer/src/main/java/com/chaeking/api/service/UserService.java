@@ -99,6 +99,14 @@ public class UserService implements UserDetailsService {
         return oldImage;
     }
 
+    public String checkNickname(Long userId, UserValue.Req.Nickname req) {
+        if((userId == null && userRepository.existsByNickname(req.nickname()))
+                || userRepository.existsByIdNotAndNickname(userId, req.nickname())) {
+            return "중복된 닉네임 입니다";
+        }
+        return "";
+    }
+
     public UserValue.Res.Detail selectDetail(long userId) {
         return User.createDetail(select(userId));
     }
@@ -137,5 +145,4 @@ public class UserService implements UserDetailsService {
         user.getAuthorities().forEach(UserAuthority::getAuthority);
         return user;
     }
-
 }

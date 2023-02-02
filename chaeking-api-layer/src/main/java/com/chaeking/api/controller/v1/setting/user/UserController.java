@@ -46,6 +46,22 @@ public class UserController {
         return BaseResponse.SUCCESS_INSTANCE;
     }
 
+    @Operation(summary = "닉네임 유효성 검사",
+            description = """
+                    <ul>
+                        <li>닉네임이 유효할 경우 success, 유효하지 않을 경우 fail을 리턴합니다</li>
+                        <li>닉네임이 중복일 경우 유효하지 않음</li>
+                        <li>닉네임이 들어있지 않을 경우 유효하지 않음</li>
+                    </ul>
+                    """)
+    @PostMapping("/nickname-check")
+    public BaseResponse checkNickname(@RequestBody @Valid UserValue.Req.Nickname req) {
+        String message = userService.checkNickname(BasicUtils.getUserId(), req);
+        if(message.isBlank())
+            return BaseResponse.SUCCESS_INSTANCE;
+        return BaseResponse.create(message);
+    }
+
     @Operation(summary = "사용자 탈퇴")
     @DeleteMapping("")
     public BaseResponse deactivate() {

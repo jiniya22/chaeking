@@ -36,6 +36,10 @@ public final class UserValue {
                 @Schema(description = "푸시 동의") Boolean push,
                 @Schema(description = "야간 푸시 동의") Boolean nightPush) { }
 
+        @Schema(name = "UserNickname")
+        public record Nickname(
+                @Schema(description = "닉네임") @NotBlank String nickname) { }
+
         @Schema(name = "UserPasswordModification")
         public record PasswordModification(
                 @Schema(description = DescriptionUtils.PASSWORD) @NotBlank String password,
