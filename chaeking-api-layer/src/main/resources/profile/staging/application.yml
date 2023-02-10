@@ -43,6 +43,14 @@ spring:
         enabled: true
         default-context: chaeking
 
+  mail:
+    host: smtp.daum.net
+    port: 465
+    username: coco.2222
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.ssl.enable: true
+
 server:
   port: 8080
   tomcat:
@@ -81,3 +89,7 @@ logging:
     console: '%d{yyyy-MM-dd HH:mm:ss.SSS} %clr(${LOG_LEVEL_PATTERN:%-5p}){green} %clr([%22thread]){magenta} %clr(%-40.40logger{39}){cyan} %clr(: %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}){faint}'
   level:
     web: debug
+  logback:
+    rollingpolicy:
+      file-name-pattern: ${LOG_FILE}.%d{yyyy-MM-dd}-%i.log
+      max-history: 10
