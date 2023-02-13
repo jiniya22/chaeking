@@ -102,11 +102,4 @@ public class UserController {
         return DataResponse.of(userService.selectAllUserAndAuthor(BasicUtils.getUserId()));
     }
 
-    @Operation(summary = "비밀번호 변경 이메일 전송")
-    @PostMapping("/password-issue")
-    public BaseResponse sendTemporaryPasswordMail(@RequestBody @Valid MailValue.MailTemporaryPasswordRequest req) {
-        mailService.sendTemporaryPassword(req);
-        return BaseResponse.SUCCESS_INSTANCE;
-    }
-
 }

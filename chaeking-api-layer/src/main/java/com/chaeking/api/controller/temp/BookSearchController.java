@@ -22,7 +22,7 @@ import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @SecurityRequirements
-@Tag(name = "temp", description = "(테스트용) 암호화, 네이버 책검색, 메일 전송")
+@Tag(name = "temp", description = "(테스트용) 암호화, 네이버 책검색")
 @RequiredArgsConstructor
 @RequestMapping("/temp")
 @RestController
