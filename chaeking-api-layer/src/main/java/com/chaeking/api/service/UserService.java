@@ -7,9 +7,11 @@ import com.chaeking.api.domain.entity.User;
 import com.chaeking.api.domain.entity.UserAuthority;
 import com.chaeking.api.model.BaseValue;
 import com.chaeking.api.model.ChaekingProperties;
+import com.chaeking.api.model.TokenValue;
 import com.chaeking.api.model.UserValue;
 import com.chaeking.api.domain.repository.UserRepository;
 import com.chaeking.api.util.FileUtils;
+import com.chaeking.api.util.JWTUtils;
 import com.chaeking.api.util.MessageUtils;
 import com.chaeking.api.util.cipher.AESCipher;
 import lombok.RequiredArgsConstructor;
@@ -42,12 +44,16 @@ public class UserService implements UserDetailsService {
     }
 
     @Transactional
-    public void save(UserValue.Req.Creation req) {
+    public TokenValue.Token save(UserValue.Req.Creation req) {
         if(userRepository.existsByEmail(req.email()))
             throw new InvalidInputException(MessageUtils.DUPLICATE_USER_EMAIL);
         User user = userRepository.save(User.of(req));
         user.initializeAuthorities();
         userRepository.save(user);
+        TokenValue.Token token = User.createToken(user);
+        user.setRefreshKey(JWTUtils.getKey(token.refreshToken()));
+        userRepository.save(user);
+        return token;
     }
 
     @Transactional
