@@ -1,9 +1,11 @@
 package com.chaeking.api.controller.v1.setting.user;
 
 import com.chaeking.api.model.BaseValue;
+import com.chaeking.api.model.MailValue;
 import com.chaeking.api.model.UserValue;
 import com.chaeking.api.model.response.BaseResponse;
 import com.chaeking.api.model.response.DataResponse;
+import com.chaeking.api.service.MailService;
 import com.chaeking.api.service.UserService;
 import com.chaeking.api.util.BasicUtils;
 import io.swagger.v3.oas.annotations.Operation;
@@ -24,6 +26,7 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private final MailService mailService;
 
     @PreAuthorize("isAuthenticated()")
     @Operation(summary = "사용자 정보 조회")
@@ -97,6 +100,13 @@ public class UserController {
     @GetMapping("/favorite-authors")
     public DataResponse<List<BaseValue>> userAuthors() {
         return DataResponse.of(userService.selectAllUserAndAuthor(BasicUtils.getUserId()));
+    }
+
+    @Operation(summary = "비밀번호 변경 이메일 전송")
+    @PostMapping("/password-issue")
+    public BaseResponse sendTemporaryPasswordMail(@RequestBody @Valid MailValue.MailTemporaryPasswordRequest req) {
+        mailService.sendTemporaryPassword(req);
+        return BaseResponse.SUCCESS_INSTANCE;
     }
 
 }
