@@ -114,7 +114,7 @@ public class Book extends BaseEntity {
     }
 
     public static BookValue.Res.Detail createDetail(Book b, User user) {
-        String isbn = b.getIsbn10().isEmpty() ? b.getIsbn13() : String.format("%s(%s)", b.getIsbn13(), b.getIsbn10());
+        String isbn = b.getIsbn10() == null ? b.getIsbn13() : String.format("%s(%s)", b.getIsbn13(), b.getIsbn10());
         BookMemoryCompleteValue.Res.Content bookMemoryComplete = user == null ? null :
                 b.getBookMemoryCompletes().stream().filter(f -> user.equals(f.getUser())).findFirst().map(BookMemoryComplete::createContent).orElse(null);
         BookMemoryWishValue.Res.Content bookMemoryWish = user == null || bookMemoryComplete != null ? null :
