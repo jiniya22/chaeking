@@ -1,7 +1,8 @@
 package com.chaeking.api.config;
 
 import com.chaeking.api.config.exception.InvalidInputException;
-import com.chaeking.api.config.exception.ServerErrorException;
+import com.chaeking.api.config.exception.ServerException;
+import com.chaeking.api.config.exception.UnauthorizedException;
 import com.chaeking.api.model.response.BaseResponse;
 import com.chaeking.api.model.response.ErrorResponse;
 import com.chaeking.api.util.BasicUtils;
@@ -41,14 +42,14 @@ public class ExceptionAdvice {
                 .body(ErrorResponse.of(e.getBindingResult().getFieldErrors().stream().map(ErrorResponse.ErrorMessage::new).collect(Collectors.toList())));
     }
 
-    @ExceptionHandler(ServerErrorException.class)
-    protected ResponseEntity<BaseResponse> handleException(ServerErrorException e) {
-        return ResponseEntity.internalServerError()
+    @ExceptionHandler(ServerException.class)
+    protected ResponseEntity<BaseResponse> handleException(ServerException e) {
+        return ResponseEntity.status(e.getCode())
                 .body(BaseResponse.create(e.getMessage()));
     }
 
     @ExceptionHandler(AccessDeniedException.class)
-    protected ResponseEntity<BaseResponse> handleException(AccessDeniedException e) {
+    protected ResponseEntity<BaseResponse> handleAccessDeniedException(RuntimeException e) {
         Long userId = BasicUtils.getUserId();
         if (userId == null)
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)

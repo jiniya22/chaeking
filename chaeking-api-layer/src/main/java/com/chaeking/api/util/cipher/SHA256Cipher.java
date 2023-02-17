@@ -1,6 +1,6 @@
 package com.chaeking.api.util.cipher;
 
-import com.chaeking.api.config.exception.ServerErrorException;
+import com.chaeking.api.config.exception.ServerException;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -14,7 +14,7 @@ public class SHA256Cipher {
             mDigest.update(input.getBytes());
             return bytesToHex(mDigest.digest());
         } catch (NoSuchAlgorithmException e) {
-            throw new ServerErrorException(String.format("현재 서버에서 %s 알고리즘을 지원하지 않습니다.", ALGORITHM));
+            throw new ServerException(String.format("현재 서버에서 %s 알고리즘을 지원하지 않습니다.", ALGORITHM));
         }
     }
 

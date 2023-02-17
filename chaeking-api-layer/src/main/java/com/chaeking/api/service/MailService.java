@@ -2,7 +2,7 @@ package com.chaeking.api.service;
 
 import com.chaeking.api.config.SecurityConfig;
 import com.chaeking.api.config.exception.InvalidInputException;
-import com.chaeking.api.config.exception.ServerErrorException;
+import com.chaeking.api.config.exception.ServerException;
 import com.chaeking.api.domain.entity.User;
 import com.chaeking.api.domain.repository.UserRepository;
 import com.chaeking.api.model.MailValue;
@@ -30,7 +30,7 @@ public class MailService {
             MimeMessagePreparator mimeMessage = getMimeMessage(request);
             javaMailSender.send(mimeMessage);
         } catch (MailException me) {
-            throw new ServerErrorException("이메일 전송 중 에러 발생");
+            throw new ServerException("이메일 전송 중 에러 발생");
         }
     }
 
@@ -47,7 +47,7 @@ public class MailService {
             javaMailSender.send(mimeMessage);
             userRepository.save(user);
         } catch (MailException me) {
-            throw new ServerErrorException("이메일 전송 중 에러 발생");
+            throw new ServerException("이메일 전송 중 에러 발생");
         }
     }
 
