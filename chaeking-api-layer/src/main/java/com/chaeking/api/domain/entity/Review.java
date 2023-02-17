@@ -18,9 +18,8 @@ public class Review extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "FK__REVIEW__USER"))
-    private User user;
+    @Column(name = "user_id")
+    private long userId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "book_id", foreignKey = @ForeignKey(name = "FK__REVIEW__BOOK"))

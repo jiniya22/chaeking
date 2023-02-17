@@ -17,10 +17,7 @@ import javax.persistence.*;
 @Where(clause = "active = 1")
 public class Contact extends BaseBoard {
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "FK__CONTACT__USER"))
-    private User user;
+    private long userId;
 
     @Column(length = 100)
     private String answerTitle;
@@ -29,9 +26,9 @@ public class Contact extends BaseBoard {
     private String answerContent;
 
     @Builder
-    public Contact(String title, String content, User user) {
+    public Contact(String title, String content, long userId) {
         super(title, content);
-        this.user = user;
+        this.userId = userId;
     }
 
     public static ContactValue.Res.Detail createDetail(Contact c) {
