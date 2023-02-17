@@ -3,10 +3,10 @@ package com.chaeking.api.service;
 import com.chaeking.api.config.exception.InvalidInputException;
 import com.chaeking.api.domain.entity.Book;
 import com.chaeking.api.domain.entity.BookMemoryWish;
-import com.chaeking.api.model.BookMemoryWishValue;
-import com.chaeking.api.model.response.PageResponse;
 import com.chaeking.api.domain.repository.BookMemoryCompleteRepository;
 import com.chaeking.api.domain.repository.BookMemoryWishRepository;
+import com.chaeking.api.model.BookMemoryWishValue;
+import com.chaeking.api.model.response.PageResponse;
 import com.chaeking.api.util.DateTimeUtils;
 import com.chaeking.api.util.MessageUtils;
 import lombok.RequiredArgsConstructor;
@@ -25,21 +25,18 @@ import java.util.stream.Collectors;
 @Service
 public class BookMemoryWishService {
     private final BookService bookService;
-    private final UserService userService;
     private final BookMemoryCompleteRepository bookMemoryCompleteRepository;
     private final BookMemoryWishRepository bookMemoryWishRepository;
 
     public PageResponse<BookMemoryWishValue.Res.Simple> selectAll(Long userId, String month, Pageable pageable) {
-        var user = userService.select(userId);
-
         Page<BookMemoryWish> bookMemoryWishPage;
         if(Strings.isBlank(month)) {
-            bookMemoryWishPage = bookMemoryWishRepository.findAllByUser(user, pageable);
+            bookMemoryWishPage = bookMemoryWishRepository.findAllByUserId(userId, pageable);
         } else {
             LocalDate date = DateTimeUtils.getFirstDate(month);
             LocalDateTime time1 = DateTimeUtils.getFirstDateTime(date);
             LocalDateTime time2 = DateTimeUtils.getLastDateTime(date);
-            bookMemoryWishPage = bookMemoryWishRepository.findAllByUserAndCreatedAtBetween(user, time1, time2, pageable);
+            bookMemoryWishPage = bookMemoryWishRepository.findAllByUserIdAndCreatedAtBetween(userId, time1, time2, pageable);
         }
 
         return PageResponse.create(
@@ -50,13 +47,12 @@ public class BookMemoryWishService {
 
     @Transactional
     public Long insert(Long userId, BookMemoryWishValue.Req.Creation value) {
-        var user = userService.select(userId);
         var book = bookService.select(value.bookId());
 
-        var bookMemoryWish = bookMemoryWishRepository.findByBookAndUser(book, user)
-                .orElse(new BookMemoryWish(book, user));
+        var bookMemoryWish = bookMemoryWishRepository.findByBookAndUserId(book, userId)
+                .orElse(new BookMemoryWish(book, userId));
         bookMemoryWish.setMemo(value.memo());
-        bookMemoryCompleteRepository.deleteByBookAndUser(book, user);
+        bookMemoryCompleteRepository.deleteByBookAndUserId(book, userId);
         bookMemoryWishRepository.save(bookMemoryWish);
 
         return bookMemoryWish.getId();
@@ -64,27 +60,22 @@ public class BookMemoryWishService {
 
     @Transactional
     public void modify(Long userId, Long bookMemoryWishId, BookMemoryWishValue.Req.Modification value) {
-        var bookMemoryWish = bookMemoryWishRepository.findWithUserById(bookMemoryWishId)
+        var bookMemoryWish = bookMemoryWishRepository.findByIdAndUserId(bookMemoryWishId, userId)
                 .orElseThrow(() -> new InvalidInputException(MessageUtils.NOT_FOUND_BOOK_MEMORY_WISH));
-        if(!userId.equals(bookMemoryWish.getUser().getId()))
-            throw new InvalidInputException(MessageUtils.NOT_FOUND_BOOK_MEMORY_WISH);
         bookMemoryWish.setMemo(value.memo());
         bookMemoryWishRepository.save(bookMemoryWish);
     }
 
     @Transactional
     public void delete(Long userId, Long bookMemoryWishId) {
-        var bookMemoryWish = bookMemoryWishRepository.findWithUserById(bookMemoryWishId)
+        var bookMemoryWish = bookMemoryWishRepository.findByIdAndUserId(bookMemoryWishId, userId)
                 .orElseThrow(() -> new InvalidInputException(MessageUtils.NOT_FOUND_BOOK_MEMORY_WISH));
-        if(!userId.equals(bookMemoryWish.getUser().getId()))
-            throw new InvalidInputException(MessageUtils.NOT_FOUND_BOOK_MEMORY_WISH);
         bookMemoryWish.setActive(false);
         bookMemoryWishRepository.save(bookMemoryWish);
     }
 
     public BookMemoryWishValue.Res.Content selectContent(Long userId, Book book) {
-        var user = userService.select(userId);
-        return bookMemoryWishRepository.findByBookAndUser(book, user).map(BookMemoryWish::createContent).orElse(null);
+        return bookMemoryWishRepository.findByBookAndUserId(book, userId).map(BookMemoryWish::createContent).orElse(null);
     }
 
 }

@@ -27,18 +27,16 @@ public class BookMemoryWish extends BaseEntity {
     @JoinColumn(foreignKey = @ForeignKey(name = "FK__BOOK_MEMORY_WISH__BOOK"))
     private Book book;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK__BOOK_MEMORY_WISH__USER"))
-    private User user;
+    @Column(name = "user_id")
+    private long userId;
 
     @Setter
     @Column(length = 1000)
     private String memo;
 
-    public BookMemoryWish(Book book, User user) {
+    public BookMemoryWish(Book book, long userId) {
         this.book = book;
-        this.user = user;
+        this.userId = userId;
     }
 
     public static BookMemoryWishValue.Res.Simple createSimple(BookMemoryWish w) {

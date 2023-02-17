@@ -44,8 +44,7 @@ public class BookshelfService {
         LocalDateTime time1 = DateTimeUtils.getFirstDateTime(date);
         LocalDateTime time2 = DateTimeUtils.getLastDateTime(date);
 
-        User user = userService.select(userId);
-        Page<BookMemoryComplete> bookMemoryCompletePage = bookMemoryCompleteRepository.findAllByUserAndCreatedAtBetween(user, time1, time2, pageable);
+        Page<BookMemoryComplete> bookMemoryCompletePage = bookMemoryCompleteRepository.findAllWithByUserIdAndCreatedAtBetween(userId, time1, time2, pageable);
 
         return PageResponse.create(
                 bookMemoryCompletePage.stream().map(BookMemoryComplete::createBookshelf).collect(Collectors.toList()),
@@ -58,8 +57,8 @@ public class BookshelfService {
         LocalDate date = LocalDate.now();
         User user = userService.select(userId);
         res.setNickname(user.getNickname());
-        if (bookMemoryCompleteRepository.existsByUser(user)) {
-            res.setBookAnalysis(getBookAnalysis(user, date, type));
+        if (bookMemoryCompleteRepository.existsByUserId(userId)) {
+            res.setBookAnalysis(getBookAnalysis(user.getId(), date, type));
         }
         List<BestSeller> bestSellers = bestSellerRepository.findTop3WithBookAndPublisherByOrderById();
         res.setBestSeller(bestSellers.stream()
@@ -68,7 +67,7 @@ public class BookshelfService {
         return res;
     }
 
-    private HomeValue.BookAnalysis getBookAnalysis(User user, LocalDate date, AnalysisType type) {
+    private HomeValue.BookAnalysis getBookAnalysis(long userId, LocalDate date, AnalysisType type) {
         HomeValue.BookAnalysis res = new HomeValue.BookAnalysis(type);
         LocalDateTime time1 = switch(type) {
             case weekly -> LocalDateTime.of(date.minusDays(date.get(ChronoField.DAY_OF_WEEK) - 1).minusWeeks(6), DateTimeUtils.LOCALTIME_START);
@@ -82,7 +81,7 @@ public class BookshelfService {
         LocalDateTime[] periodArr = createPeriodArr(type, time1);
         int[] cntArr = {0, 0, 0, 0, 0, 0, 0};
 
-        List<BookMemoryComplete> bookMemoryCompletes = bookMemoryCompleteRepository.findAllByUserAndCreatedAtBetween(user, time1, time2);
+        List<BookMemoryComplete> bookMemoryCompletes = bookMemoryCompleteRepository.findAllByUserIdAndCreatedAtBetween(userId, time1, time2);
 
         bookMemoryCompletes.forEach(b -> {
             if (b.getCreatedAt().isAfter(periodArr[6])) {

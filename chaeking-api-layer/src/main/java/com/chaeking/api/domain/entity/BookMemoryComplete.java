@@ -31,10 +31,8 @@ public class BookMemoryComplete extends BaseEntity {
     @JoinColumn(foreignKey = @ForeignKey(name = "FK__BOOK_MEMORY_COMPLETE__BOOK"))
     private Book book;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "FK__BOOK_MEMORY_COMPLETE__USER"))
-    private User user;
+    @Column(name = "user_id")
+    private long userId;
 
     @Setter
     @Column(length = 1000)
@@ -49,9 +47,9 @@ public class BookMemoryComplete extends BaseEntity {
     @JoinColumn(name = "book_memory_complete_id")
     private List<BookMemoryCompleteTag> tags = new ArrayList<>();
 
-    public BookMemoryComplete(Book book, User user) {
+    public BookMemoryComplete(Book book, long userId) {
         this.book = book;
-        this.user = user;
+        this.userId = userId;
     }
 
     public void addTag(BookMemoryCompleteTag tag) {
@@ -60,7 +58,7 @@ public class BookMemoryComplete extends BaseEntity {
     }
 
     public void removeTags(List<BookMemoryCompleteTag> tags) {
-        tags.stream().forEach(tag -> tag.setBookMemoryComplete(null));
+        tags.forEach(tag -> tag.setBookMemoryComplete(null));
         this.tags.removeAll(tags);
     }
 

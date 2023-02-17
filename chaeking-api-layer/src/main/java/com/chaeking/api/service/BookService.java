@@ -4,13 +4,13 @@ import com.chaeking.api.config.exception.InvalidInputException;
 import com.chaeking.api.config.vault.BookSearchConfig;
 import com.chaeking.api.domain.entity.*;
 import com.chaeking.api.domain.repository.*;
-import com.chaeking.api.model.enumerate.KakaoBookSort;
-import com.chaeking.api.model.enumerate.KakaoBookTarget;
-import com.chaeking.api.model.BookValue;
-import com.chaeking.api.model.naver.KakaoBookValue;
-import com.chaeking.api.model.naver.NaverBookValue;
 import com.chaeking.api.feignclient.KakaoApiClient;
 import com.chaeking.api.feignclient.NaverApiClient;
+import com.chaeking.api.model.BookValue;
+import com.chaeking.api.model.enumerate.KakaoBookSort;
+import com.chaeking.api.model.enumerate.KakaoBookTarget;
+import com.chaeking.api.model.naver.KakaoBookValue;
+import com.chaeking.api.model.naver.NaverBookValue;
 import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.data.domain.PageRequest;
@@ -26,10 +26,11 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Service
 public class BookService {
-    private final UserRepository userRepository;
     private final AuthorRepository authorRepository;
     private final PublisherRepository publisherRepository;
     private final BookAndAuthorRepository bookAndAuthorRepository;
+    private final BookMemoryCompleteRepository bookMemoryCompleteRepository;
+    private final BookMemoryWishRepository bookMemoryWishRepository;
     private final BookRepository bookRepository;
     private final NaverApiClient naverApiClient;
     private final KakaoApiClient kakaoApiClient;
@@ -47,8 +48,10 @@ public class BookService {
     }
 
     public BookValue.Res.Detail book(Long bookId, Long userId) {
-        var user = userId == null ? null : userRepository.findById(userId).orElse(null);
-        return Book.createDetail(select(bookId), user);
+        Book book = select(bookId);
+        BookMemoryComplete bookMemoryComplete = bookMemoryCompleteRepository.findByBookAndUserId(book, userId).orElse(null);
+        BookMemoryWish bookMemoryWish = bookMemoryWishRepository.findByBookAndUserId(book, userId).orElse(null);
+        return Book.createDetail(select(bookId), bookMemoryComplete, bookMemoryWish);
     }
 
     @Transactional

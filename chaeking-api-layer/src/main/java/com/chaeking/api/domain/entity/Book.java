@@ -66,17 +66,17 @@ public class Book extends BaseEntity {
     @Where(clause = "author_id IS NOT NULL")
     private List<BookAndAuthor> bookAndAuthors = new ArrayList<>();
 
-    @ToString.Exclude
-    @OneToMany(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "book_id")
-    @Where(clause = "user_id IS NOT NULL")
-    private List<BookMemoryComplete> bookMemoryCompletes = new ArrayList<>();
+//    @ToString.Exclude
+//    @OneToMany(cascade = CascadeType.REMOVE)
+//    @JoinColumn(name = "book_id")
+//    @Where(clause = "user_id IS NOT NULL")
+//    private List<BookMemoryComplete> bookMemoryCompletes = new ArrayList<>();
 
-    @ToString.Exclude
-    @OneToMany(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "book_id")
-    @Where(clause = "user_id IS NOT NULL")
-    private List<BookMemoryWish> bookMemoryWishes = new ArrayList<>();
+//    @ToString.Exclude
+//    @OneToMany(cascade = CascadeType.REMOVE)
+//    @JoinColumn(name = "book_id")
+//    @Where(clause = "user_id IS NOT NULL")
+//    private List<BookMemoryWish> bookMemoryWishes = new ArrayList<>();
 
     @Builder
     public Book(String name, int price, String isbn, String imageUrl, String link,
@@ -113,12 +113,11 @@ public class Book extends BaseEntity {
         return new BookValue.Res.Simple(b.getId(), b.getName(), b.getAuthorNames(), b.getPublisherName(), b.getImageUrl());
     }
 
-    public static BookValue.Res.Detail createDetail(Book b, User user) {
+    public static BookValue.Res.Detail createDetail(Book b, BookMemoryComplete bookMemoryComplete, BookMemoryWish bookMemoryWish) {
         String isbn = b.getIsbn10() == null ? b.getIsbn13() : String.format("%s(%s)", b.getIsbn13(), b.getIsbn10());
-        BookMemoryCompleteValue.Res.Content bookMemoryComplete = user == null ? null :
-                b.getBookMemoryCompletes().stream().filter(f -> user.equals(f.getUser())).findFirst().map(BookMemoryComplete::createContent).orElse(null);
-        BookMemoryWishValue.Res.Content bookMemoryWish = user == null || bookMemoryComplete != null ? null :
-                b.getBookMemoryWishes().stream().filter(f -> user.equals(f.getUser())).findFirst().map(BookMemoryWish::createContent).orElse(null);
+
+        BookMemoryCompleteValue.Res.Content bookMemoryCompleteContent = bookMemoryComplete == null ? null : BookMemoryComplete.createContent(bookMemoryComplete);
+        BookMemoryWishValue.Res.Content bookMemoryWishContent = bookMemoryWish == null ? null : BookMemoryWish.createContent(bookMemoryWish);
 
         return new BookValue.Res.Detail(b.getId(), b.getName(), b.getPrice(), Optional.ofNullable(b.getPublisher()).map(Publisher::getName).orElse(null),
                 DateTimeUtils.toString(b.getPublicationDate()),
@@ -126,7 +125,7 @@ public class Book extends BaseEntity {
                 b.getBookAndAuthors().stream()
                         .map(m -> Optional.ofNullable(m.getAuthor())
                                 .map(Author::getName).orElse(null)).collect(Collectors.toList()),
-                bookMemoryComplete, bookMemoryWish);
+                bookMemoryCompleteContent, bookMemoryWishContent);
     }
 
     public String getImageUrl() {

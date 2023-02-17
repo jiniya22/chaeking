@@ -13,12 +13,12 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 public interface BookMemoryWishRepository extends JpaRepository<BookMemoryWish, Long> {
-    Optional<BookMemoryWish> findByBookAndUser(Book book, User user);
-    Optional<BookMemoryWish> findWithUserById(Long bookMemoryWishId);
-    Page<BookMemoryWish> findAllByUser(User user, Pageable pageable);
-    Page<BookMemoryWish> findAllByUserAndCreatedAtBetween(User user, LocalDateTime createdAt1, LocalDateTime createdAt2, Pageable pageable);
+    Optional<BookMemoryWish> findByBookAndUserId(Book book, long userId);
+    Optional<BookMemoryWish> findByIdAndUserId(Long id, long userId);
+    Page<BookMemoryWish> findAllByUserId(long userId, Pageable pageable);
+    Page<BookMemoryWish> findAllByUserIdAndCreatedAtBetween(long userId, LocalDateTime createdAt1, LocalDateTime createdAt2, Pageable pageable);
 
     @Modifying
-    @Query(value = "delete from BookMemoryWish b where b.book = ?1 and b.user = ?2")
-    void deleteByBookAndUser(Book book, User user);
+    @Query(value = "delete from BookMemoryWish b where b.book = ?1 and b.userId = ?2")
+    void deleteByBookAndUserId(Book book, long userId);
 }

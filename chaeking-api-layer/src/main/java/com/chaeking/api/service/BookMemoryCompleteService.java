@@ -4,11 +4,11 @@ import com.chaeking.api.config.exception.InvalidInputException;
 import com.chaeking.api.domain.entity.BookMemoryComplete;
 import com.chaeking.api.domain.entity.BookMemoryCompleteTag;
 import com.chaeking.api.domain.entity.User;
-import com.chaeking.api.model.BookMemoryCompleteValue;
-import com.chaeking.api.model.response.PageResponse;
 import com.chaeking.api.domain.repository.BookMemoryCompleteRepository;
 import com.chaeking.api.domain.repository.BookMemoryWishRepository;
 import com.chaeking.api.domain.repository.TagRepository;
+import com.chaeking.api.model.BookMemoryCompleteValue;
+import com.chaeking.api.model.response.PageResponse;
 import com.chaeking.api.util.DateTimeUtils;
 import com.chaeking.api.util.MessageUtils;
 import lombok.RequiredArgsConstructor;
@@ -35,16 +35,14 @@ public class BookMemoryCompleteService {
     private final BookMemoryWishRepository bookMemoryWishRepository;
 
     public PageResponse<BookMemoryCompleteValue.Res.Simple> selectAll(Long userId, String month, Pageable pageable) {
-        User user = userService.select(userId);
-
         Page<BookMemoryComplete> bookMemoryCompletePage;
         if(Strings.isBlank(month)) {
-            bookMemoryCompletePage = bookMemoryCompleteRepository.findAllByUser(user, pageable);
+            bookMemoryCompletePage = bookMemoryCompleteRepository.findAllWithBookByUserId(userId, pageable);
         } else {
             LocalDate date = DateTimeUtils.getFirstDate(month);
             LocalDateTime time1 = DateTimeUtils.getFirstDateTime(date);
             LocalDateTime time2 = DateTimeUtils.getLastDateTime(date);
-            bookMemoryCompletePage = bookMemoryCompleteRepository.findAllByUserAndCreatedAtBetween(user, time1, time2, pageable);
+            bookMemoryCompletePage = bookMemoryCompleteRepository.findAllWithByUserIdAndCreatedAtBetween(userId, time1, time2, pageable);
         }
 
         return PageResponse.create(
@@ -55,10 +53,9 @@ public class BookMemoryCompleteService {
 
     @Transactional
     public Long insert(Long userId, BookMemoryCompleteValue.Req.Creation req) {
-        var user = userService.select(userId);
         var book = bookService.select(req.bookId());
-        var bookMemoryComplete = bookMemoryCompleteRepository.findByBookAndUser(book, user)
-                .orElse(new BookMemoryComplete(book, user));
+        var bookMemoryComplete = bookMemoryCompleteRepository.findByBookAndUserId(book, userId)
+                .orElse(new BookMemoryComplete(book, userId));
 
         mergeBookMemoryComplete(bookMemoryComplete, BookMemoryCompleteValue.Req.Modification.of(req));
         return bookMemoryComplete.getId();
@@ -66,20 +63,16 @@ public class BookMemoryCompleteService {
 
     @Transactional
     public void modify(Long userId, Long bookMemoryCompleteId, BookMemoryCompleteValue.Req.Modification req) {
-        var bookMemoryComplete = bookMemoryCompleteRepository.findWithUserById(bookMemoryCompleteId)
+        var bookMemoryComplete = bookMemoryCompleteRepository.findByIdAndUserId(bookMemoryCompleteId, userId)
                 .orElseThrow(() -> new InvalidInputException(MessageUtils.NOT_FOUND_BOOK_MEMORY_COMPLETE));
-        if(!userId.equals(bookMemoryComplete.getUser().getId()))
-            throw new InvalidInputException(MessageUtils.NOT_FOUND_BOOK_MEMORY_COMPLETE);
 
         mergeBookMemoryComplete(bookMemoryComplete, req);
     }
 
     @Transactional
     public void delete(Long userId, Long bookMemoryCompleteId) {
-        var bookMemoryComplete = bookMemoryCompleteRepository.findWithUserById(bookMemoryCompleteId)
+        var bookMemoryComplete = bookMemoryCompleteRepository.findByIdAndUserId(bookMemoryCompleteId, userId)
                 .orElseThrow(() -> new InvalidInputException(MessageUtils.NOT_FOUND_BOOK_MEMORY_COMPLETE));
-        if(!userId.equals(bookMemoryComplete.getUser().getId()))
-            throw new InvalidInputException(MessageUtils.NOT_FOUND_BOOK_MEMORY_COMPLETE);
         bookMemoryComplete.setActive(false);
         bookMemoryCompleteRepository.save(bookMemoryComplete);
     }
@@ -88,7 +81,7 @@ public class BookMemoryCompleteService {
         bookMemoryComplete.setMemo(req.memo());
         bookMemoryComplete.setRate(req.rate());
         mergeBookMemoryCompleteTags(bookMemoryComplete, req.tagIds());
-        bookMemoryWishRepository.deleteByBookAndUser(bookMemoryComplete.getBook(), bookMemoryComplete.getUser());
+        bookMemoryWishRepository.deleteByBookAndUserId(bookMemoryComplete.getBook(), bookMemoryComplete.getUserId());
         bookMemoryCompleteRepository.save(bookMemoryComplete);
     }
 
