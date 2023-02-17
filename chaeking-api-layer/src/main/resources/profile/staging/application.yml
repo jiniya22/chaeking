@@ -14,8 +14,7 @@ spring:
       auto-commit: false
       connection-test-query: SELECT 1
       minimum-idle: 10
-      maximum-pool-size: 50
-#      transaction-isolation: TRANSACTION_READ_UNCOMMITTED
+      maximum-pool-size: 10
       pool-name: pool-book
   jpa:
     database-platform: org.hibernate.dialect.MariaDB103Dialect
