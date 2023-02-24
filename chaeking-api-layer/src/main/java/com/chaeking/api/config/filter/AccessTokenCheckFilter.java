@@ -42,15 +42,13 @@ public class AccessTokenCheckFilter extends BasicAuthenticationFilter {
             TokenValue.Verify result = JWTUtils.verify(token);
             if (result.success()) {
                 User user = userService.loadUserById(result.uid());
-                if (result.key().equals(user.getRefreshKey())) {
-                    UsernamePasswordAuthenticationToken userToken = new UsernamePasswordAuthenticationToken(
-                            user.getUsername(), null, user.getAuthorities()
-                    );
-                    SecurityContextHolder.getContext().setAuthentication(userToken);
-                    response.setHeader("X-Chaeking-User-Id", user.getId().toString());
-                    chain.doFilter(request, response);
-                    return;
-                }
+                UsernamePasswordAuthenticationToken userToken = new UsernamePasswordAuthenticationToken(
+                        user.getUsername(), null, user.getAuthorities()
+                );
+                SecurityContextHolder.getContext().setAuthentication(userToken);
+                response.setHeader("X-Chaeking-User-Id", user.getId().toString());
+                chain.doFilter(request, response);
+                return;
             }
             reason = MessageUtils.UNAUTHORIZED_AUTHORIZATION_INVALID;
         } catch (JWTDecodeException e) {
