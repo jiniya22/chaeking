@@ -43,7 +43,9 @@ public class BookMemoryWish extends BaseEntity {
         return new BookMemoryWishValue.Res.Simple(w.getId(),
                 Optional.ofNullable(w.getBook()).map(Book::getId).orElse(0L),
                 Optional.ofNullable(w.getBook()).map(Book::getName).orElse(""),
-                Optional.ofNullable(w.getBook()).map(Book::getImageUrl).orElse(""));
+                Optional.ofNullable(w.getBook()).map(Book::getImageUrl).orElse(""),
+                Optional.ofNullable(w.getBook()).map(Book::getAuthorNames).orElse(""),
+                Optional.ofNullable(w.getBook()).map(Book::getPublisherName).orElse(""));
     }
 
     public static BookMemoryWishValue.Res.Content createContent(BookMemoryWish w) {

@@ -66,7 +66,9 @@ public class BookMemoryComplete extends BaseEntity {
         return new BookMemoryCompleteValue.Res.Simple(c.getId(),
                 Optional.ofNullable(c.getBook()).map(Book::getId).orElse(0L),
                 Optional.ofNullable(c.getBook()).map(Book::getName).orElse(""),
-                Optional.ofNullable(c.getBook()).map(Book::getImageUrl).orElse(""));
+                Optional.ofNullable(c.getBook()).map(Book::getImageUrl).orElse(""),
+                Optional.ofNullable(c.getBook()).map(Book::getAuthorNames).orElse(""),
+                Optional.ofNullable(c.getBook()).map(Book::getPublisherName).orElse(""));
     }
 
     public static BookMemoryCompleteValue.Res.Bookshelf createBookshelf(BookMemoryComplete c) {
