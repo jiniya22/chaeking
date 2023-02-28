@@ -7,9 +7,13 @@ import com.chaeking.api.model.response.DataResponse;
 import com.chaeking.api.service.UserService;
 import com.chaeking.api.util.BasicUtils;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -54,12 +58,15 @@ public class UserController {
                         <li>닉네임이 들어있지 않을 경우 유효하지 않음</li>
                     </ul>
                     """)
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "423", description = "유효하지 않음") })
     @PostMapping("/nickname-check")
-    public BaseResponse checkNickname(@RequestBody @Valid UserValue.Req.Nickname req) {
+    public ResponseEntity<BaseResponse> checkNickname(@RequestBody @Valid UserValue.Req.Nickname req) {
         String message = userService.checkNickname(BasicUtils.getUserId(), req);
         if(message.isBlank())
-            return BaseResponse.SUCCESS_INSTANCE;
-        return BaseResponse.create(message);
+            return ResponseEntity.ok(BaseResponse.SUCCESS_INSTANCE);
+        return ResponseEntity.status(HttpStatus.LOCKED).body(BaseResponse.create(message));
     }
 
     @Operation(summary = "사용자 탈퇴")

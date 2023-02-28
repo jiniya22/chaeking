@@ -22,6 +22,7 @@ public class WebConfig {
                 .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
                 .addModule(SerializeModule.dateTimeModule)
                 .addModule(SerializeModule.recordNamingStrategyPatchModule)
+                .enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
                 .build();
     }
 
