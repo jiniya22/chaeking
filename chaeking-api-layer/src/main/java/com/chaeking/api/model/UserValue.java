@@ -1,5 +1,6 @@
 package com.chaeking.api.model;
 
+import com.chaeking.api.model.enumerate.ReasonCode;
 import com.chaeking.api.util.DescriptionUtils;
 import com.chaeking.api.util.RegexpUtils;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -39,6 +40,14 @@ public final class UserValue {
         @Schema(name = "UserNickname")
         public record Nickname(
                 @Schema(description = "닉네임") @NotBlank String nickname) { }
+
+
+        @Schema(name = "UserDeativate")
+        public record Deativate(
+                @Schema(description = "탈퇴 사유 코드", example = "R001") ReasonCode reasonCode,
+                @Schema(description = "탈퇴 사유") String reason,
+                @Schema(description = DescriptionUtils.PASSWORD) @NotBlank String password,
+                @Schema(description = DescriptionUtils.SECRET_KEY) @Length(min = 32) String secretKey) { }
 
         @Schema(name = "UserPasswordModification")
         public record PasswordModification(

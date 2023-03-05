@@ -69,10 +69,20 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.LOCKED).body(BaseResponse.create(message));
     }
 
-    @Operation(summary = "사용자 탈퇴")
-    @DeleteMapping("")
-    public BaseResponse deactivate() {
-        userService.deativate(BasicUtils.getUserId());
+    @Operation(summary = "사용자 탈퇴",
+            description = """
+                    <ul>
+                        <li>R001: 콘텐츠가 만족스럽지 않아요</li>
+                        <li>R002: 이용이 불편해요</li>
+                        <li>R003: 자주 사용하지 않아요</li>
+                        <li>R004: 다른 어플을 사용할래요</li>
+                        <li>R005: 직접 입력</li>
+                    </ul>
+                    R001~R004 의 경우 reason을 생략해도 됩니다.
+                    """)
+    @PostMapping("/deactivate")
+    public BaseResponse deactivate(@RequestBody @Valid UserValue.Req.Deativate req) {
+        userService.deativate(BasicUtils.getUserId(), req);
         return BaseResponse.SUCCESS_INSTANCE;
     }
 

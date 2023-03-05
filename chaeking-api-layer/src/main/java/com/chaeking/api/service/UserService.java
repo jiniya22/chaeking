@@ -5,6 +5,8 @@ import com.chaeking.api.config.exception.InvalidInputException;
 import com.chaeking.api.domain.entity.Author;
 import com.chaeking.api.domain.entity.User;
 import com.chaeking.api.domain.entity.UserAuthority;
+import com.chaeking.api.domain.entity.UserInactiveLog;
+import com.chaeking.api.domain.repository.UserInactiveLogRepository;
 import com.chaeking.api.model.BaseValue;
 import com.chaeking.api.model.ChaekingProperties;
 import com.chaeking.api.model.TokenValue;
@@ -34,6 +36,7 @@ import java.util.stream.Collectors;
 @Service
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
+    private final UserInactiveLogRepository userInactiveLogRepository;
 
     User select(Long userId) {
         if(userId == null)
@@ -133,10 +136,17 @@ public class UserService implements UserDetailsService {
     }
 
     @Transactional
-    public void deativate(Long userId) {
+    public void deativate(Long userId, UserValue.Req.Deativate req) {
         User user = select(userId);
+        if(!SecurityConfig.passwordEncoder.matches(AESCipher.decrypt(req.password(), req.secretKey()), user.getPassword())) {
+            throw new InvalidInputException(MessageUtils.INVALID_PASSWORD);
+        }
+
         user.deactivate();
         userRepository.save(user);
+        UserInactiveLog userInactiveLog = UserInactiveLog.builder().userId(userId).reasonCode(req.reasonCode())
+                        .reason(req.reason()).build();
+        userInactiveLogRepository.save(userInactiveLog);
     }
 
     @Override
