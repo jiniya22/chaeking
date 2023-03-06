@@ -73,8 +73,7 @@ public class BookMemoryCompleteService {
     public void delete(Long userId, Long bookMemoryCompleteId) {
         var bookMemoryComplete = bookMemoryCompleteRepository.findByIdAndUserId(bookMemoryCompleteId, userId)
                 .orElseThrow(() -> new InvalidInputException(MessageUtils.NOT_FOUND_BOOK_MEMORY_COMPLETE));
-        bookMemoryComplete.setActive(false);
-        bookMemoryCompleteRepository.save(bookMemoryComplete);
+        bookMemoryCompleteRepository.delete(bookMemoryComplete);
     }
 
     private void mergeBookMemoryComplete(BookMemoryComplete bookMemoryComplete, BookMemoryCompleteValue.Req.Modification req) {

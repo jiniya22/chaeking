@@ -70,8 +70,7 @@ public class BookMemoryWishService {
     public void delete(Long userId, Long bookMemoryWishId) {
         var bookMemoryWish = bookMemoryWishRepository.findByIdAndUserId(bookMemoryWishId, userId)
                 .orElseThrow(() -> new InvalidInputException(MessageUtils.NOT_FOUND_BOOK_MEMORY_WISH));
-        bookMemoryWish.setActive(false);
-        bookMemoryWishRepository.save(bookMemoryWish);
+        bookMemoryWishRepository.delete(bookMemoryWish);
     }
 
     public BookMemoryWishValue.Res.Content selectContent(Long userId, Book book) {
