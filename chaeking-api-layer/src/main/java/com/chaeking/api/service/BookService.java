@@ -47,11 +47,54 @@ public class BookService {
         }).collect(Collectors.toList());
     }
 
-    public BookValue.Res.Detail book(Long bookId, Long userId) {
-        Book book = select(bookId);
+    public BookValue.Res.Detail book(String isbn13, Long userId) {
+        Optional<Book> oBook = bookRepository.findTopWithPublisherByIsbn13(isbn13);
+        if(oBook.isPresent()) {
+            return getBookDetail(oBook.get(), userId);
+        } else {
+            KakaoBookValue.Req.Search kakaoBookSearch = KakaoBookValue.Req.Search.builder()
+                    .query(isbn13)
+                    .target("isbn")
+                    .sort("accuracy")
+                    .page(1)
+                    .size(1).build();
+            var responseEntity
+                    = kakaoApiClient.searchBooks("KakaoAK " + BookSearchConfig.Kakao.getApiKey(), kakaoBookSearch);
+            if (HttpStatus.OK.equals(responseEntity.getStatusCode())) {
+                return getBookDetail(Objects.requireNonNull(responseEntity.getBody()).getDocuments().stream().findFirst().map(i -> {
+                    Book b = i.toBook();
+                    Publisher publisher = publisherRepository.findByName(i.getPublisher()).orElse(new Publisher(i.getPublisher()));
+                    b.setPublisher(publisher);
+                    List<Author> authors = new ArrayList<>();
+                    List<BookAndAuthor> bookAndAuthors = new ArrayList<>();
+                    i.getAuthors().forEach(authorName -> {
+                        Author author = authorRepository.findByName(authorName).orElse(new Author(authorName));
+                        authors.add(author);
+                        bookAndAuthors.add(BookAndAuthor.of(b, author));
+                    });
+                    authorRepository.saveAll(authors);
+                    b.setBookAndAuthors(bookAndAuthors);
+                    bookRepository.save(b);
+                    bookAndAuthorRepository.saveAll(bookAndAuthors);
+                    return b;
+                }).orElse(null), userId);
+            }
+        }
+        return null;
+    }
+
+    private BookValue.Res.Detail getBookDetail(Book book, Long userId) {
+        if(book == null)
+            return null;
+        if(userId == null)
+            return Book.createDetail(book, null, null);
         BookMemoryComplete bookMemoryComplete = bookMemoryCompleteRepository.findByBookAndUserId(book, userId).orElse(null);
         BookMemoryWish bookMemoryWish = bookMemoryWishRepository.findByBookAndUserId(book, userId).orElse(null);
-        return Book.createDetail(select(bookId), bookMemoryComplete, bookMemoryWish);
+        return Book.createDetail(book, bookMemoryComplete, bookMemoryWish);
+    }
+
+    public BookValue.Res.Detail book(Long bookId, Long userId) {
+        return getBookDetail(select(bookId), userId);
     }
 
     @Transactional
@@ -88,40 +131,14 @@ public class BookService {
         return null;
     }
 
-    @Transactional
-    public List<Long> searchKakaoBook(KakaoBookValue.Req.Search kakaoBookSearch) {
+    public List<BookValue.Res.Kakao> searchKakaoBook(KakaoBookValue.Req.Search kakaoBookSearch) {
         var responseEntity
                 = kakaoApiClient.searchBooks("KakaoAK " + BookSearchConfig.Kakao.getApiKey(), kakaoBookSearch);
         if (HttpStatus.OK.equals(responseEntity.getStatusCode())) {
-            List<Long> bookIds = new ArrayList<>();
-            List<BookAndAuthor> bookAndAuthors = new ArrayList<>();
-            Map<String, Author> authorMap = new HashMap<>();
-            Map<String, Publisher> publisherMap = new HashMap<>();
-            Objects.requireNonNull(responseEntity.getBody()).getDocuments().forEach(i -> {
-                Book b = findByIsbn(i.getIsbn()).orElse(i.toBook());
-                if (b.getId() != null) {
-                    bookIds.add(b.getId());
-                    b.getBookAndAuthors().forEach(bookAndAuthor -> authorMap.put(bookAndAuthor.getAuthor().getName(), bookAndAuthor.getAuthor()));
-                    Optional.ofNullable(b.getPublisher()).ifPresent(publisher -> publisherMap.put(publisher.getName(), publisher));
-                    return;
-                }
-
-                if (!publisherMap.containsKey(i.getPublisher()))
-                    publisherMap.put(i.getPublisher(), publisherRepository.findByName(i.getPublisher()).orElse(new Publisher(i.getPublisher())));
-                b.setPublisher(publisherMap.get(i.getPublisher()));
-                i.getAuthors().forEach(author -> {
-                    if (!authorMap.containsKey(author))
-                        authorMap.put(author, authorRepository.findByName(author).orElse(new Author(author)));
-                    bookAndAuthors.add(BookAndAuthor.of(b, authorMap.get(author)));
-                });
-                bookRepository.save(b);
-                bookIds.add(b.getId());
-            });
-            authorRepository.saveAll(authorMap.values());
-            bookAndAuthorRepository.saveAll(bookAndAuthors);
-            return bookIds;
+            return Objects.requireNonNull(responseEntity.getBody()).getDocuments().stream()
+                    .map(KakaoBookValue.Res.BookBasic.Document::toKakaoBook).toList();
         }
-        return null;
+        return new ArrayList<>();
     }
 
     private Optional<Book> findByIsbn(String isbn) {
@@ -135,7 +152,7 @@ public class BookService {
             }
         }
         if (Strings.isBlank(isbn10)) {
-            return bookRepository.findTopWithPublisherByIsbn10NullAndIsbn13(isbn13);
+            return bookRepository.findTopWithPublisherByIsbn13(isbn13);
         }
         return bookRepository.findTopWithPublisherByIsbn10AndIsbn13(isbn10, isbn13);
     }

@@ -12,7 +12,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     @EntityGraph(attributePaths = "publisher")
     Optional<Book> findTopWithPublisherByIsbn10AndIsbn13(String isbn10, String isbn13);
     @EntityGraph(attributePaths = "publisher")
-    Optional<Book> findTopWithPublisherByIsbn10NullAndIsbn13(String isbn13);
+    Optional<Book> findTopWithPublisherByIsbn13(String isbn13);
     @EntityGraph(attributePaths = "publisher")
     List<Book> findAllWithPublisherByIdIn(Iterable<Long> ids);
     @EntityGraph(attributePaths = "publisher")

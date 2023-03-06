@@ -53,7 +53,7 @@ public class BookController {
                     """
     )
     @GetMapping("")
-    public DataResponse<List<BookValue.Res.Simple>> searchKakaoBook(
+    public DataResponse<List<BookValue.Res.Kakao>> searchKakaoBook(
             @Parameter(description = "검색어") @RequestParam @NotBlank String query,
             @Parameter(description = "검색 필드 제한") @RequestParam(required = false) KakaoBookTarget target,
             @Parameter(description = "정렬 옵션") @RequestParam(defaultValue = "accuracy") KakaoBookSort sort,
@@ -65,14 +65,23 @@ public class BookController {
                 .sort(Optional.ofNullable(sort).map(KakaoBookSort::name).orElse("accuracy"))
                 .page(page + 1)
                 .size(size).build();
-        var bookIds = bookService.searchKakaoBook(kakaoBookSearch);
-        return DataResponse.of(bookService.selectAll(bookIds));
+        return DataResponse.of(bookService.searchKakaoBook(kakaoBookSearch));
     }
 
-    @Operation(summary = "책 상세조회",
+    @Operation(summary = "책 상세조회 (isbn13을 이용)",
+            description = "isbn13을 이용하여 책을 상세조회 합니다.<br>" +
+                    "Authorization 헤더 설정시, 사용자가 설정한 이미 읽은 책, 읽고 싶은 책 정보를 확인할 수 있습니다.")
+    @GetMapping("/isbn13/{isbn13}")
+    public DataResponse<BookValue.Res.Detail> select(
+            @Parameter(description = "isbn13") @PathVariable(name = "isbn13") String isbn13) {
+        Long userId = BasicUtils.getUserId();
+        return DataResponse.of(bookService.book(isbn13, userId));
+    }
+
+    @Operation(summary = "책 상세조회 (book id 이용)",
             description = "Authorization 헤더 설정시, 사용자가 설정한 이미 읽은 책, 읽고 싶은 책 정보를 확인할 수 있습니다.")
     @GetMapping("/{book_id}")
-    public DataResponse<BookValue.Res.Detail> selectAll(
+    public DataResponse<BookValue.Res.Detail> select(
             @Parameter(description = "책 id") @PathVariable(name = "book_id") long bookId) {
         Long userId = BasicUtils.getUserId();
         return DataResponse.of(bookService.book(bookId, userId));

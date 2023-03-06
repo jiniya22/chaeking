@@ -8,6 +8,15 @@ public final class BookValue {
 
     public final static class Res {
 
+        @Schema(name = "BookKakao")
+        public record Kakao(
+                String isbn,
+                String name,
+                String authors,
+                String publisher,
+                String imageUrl
+        ) { }
+
         @Schema(name = "BookSimple")
         public record Simple(
                 long id,

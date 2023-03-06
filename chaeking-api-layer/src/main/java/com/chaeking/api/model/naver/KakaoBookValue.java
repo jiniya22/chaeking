@@ -1,12 +1,14 @@
 package com.chaeking.api.model.naver;
 
 import com.chaeking.api.domain.entity.Book;
+import com.chaeking.api.model.BookValue;
 import com.chaeking.api.util.DateTimeUtils;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Setter;
+import org.apache.logging.log4j.util.Strings;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -62,6 +64,10 @@ public class KakaoBookValue {
                             .imageUrl(thumbnail)
                             .link(url)
                             .detailInfo(contents).build();
+                }
+
+                public BookValue.Res.Kakao toKakaoBook() {
+                    return new BookValue.Res.Kakao(isbn, title, Strings.join(authors, ','), publisher, thumbnail);
                 }
             }
 
