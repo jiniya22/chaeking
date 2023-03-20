@@ -69,6 +69,26 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.LOCKED).body(BaseResponse.create(message));
     }
 
+    @Operation(summary = "이메일 유효성 검사",
+            description = """
+                    <ul>
+                        <li>이메일 유효할 경우 success, 유효하지 않을 경우 fail을 리턴합니다</li>
+                        <li>이메일이 중복일 경우 유효하지 않음</li>
+                        <li>이메일이 들어있지 않을 경우 유효하지 않음</li>
+                        <li>토큰이 들어있을 경우, 본인 이메일이라면 유효하다고 간주합니다.</li>
+                    </ul>
+                    """)
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "423", description = "유효하지 않음") })
+    @PostMapping("/email-check")
+    public ResponseEntity<BaseResponse> checkEmail(@RequestBody @Valid UserValue.Req.UserEmail req) {
+        String message = userService.checkEmail(BasicUtils.getUserId(), req);
+        if(message.isBlank())
+            return ResponseEntity.ok(BaseResponse.SUCCESS_INSTANCE);
+        return ResponseEntity.status(HttpStatus.LOCKED).body(BaseResponse.create(message));
+    }
+
     @Operation(summary = "사용자 탈퇴",
             description = """
                     <ul>

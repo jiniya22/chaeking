@@ -41,6 +41,9 @@ public final class UserValue {
         public record Nickname(
                 @Schema(description = "닉네임") @NotBlank String nickname) { }
 
+        @Schema(name = "UserEmail")
+        public record UserEmail(
+                @Schema(description = "닉네임") @NotBlank @Email String email) { }
 
         @Schema(name = "UserDeativate")
         public record Deativate(

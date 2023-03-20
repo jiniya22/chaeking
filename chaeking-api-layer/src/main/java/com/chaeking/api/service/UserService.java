@@ -116,6 +116,14 @@ public class UserService implements UserDetailsService {
         return "";
     }
 
+    public String checkEmail(Long userId, UserValue.Req.UserEmail req) {
+        if((userId == null && userRepository.existsByEmail(req.email()))
+                || userRepository.existsByIdNotAndEmail(userId, req.email())) {
+            return "중복된 이메일 입니다";
+        }
+        return "";
+    }
+
     public UserValue.Res.Detail selectDetail(long userId) {
         return User.createDetail(select(userId));
     }
