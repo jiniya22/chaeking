@@ -2,7 +2,7 @@
 
 Chaeking API with Spring Boot 2
 
-<a href="https://api.chaeking.com" target="_blank">Go To Site - Chaeking API</a>
+<a href="https://api.chaeking.com/swagger-ui/index.html" target="_blank">Go To Site - Chaeking API</a>
 
 <p>
     <img src="https://img.shields.io/static/v1?label=OpenJDK&message=17.0.2&color=007396&logo=openjdk" alt="OpenJDK">
