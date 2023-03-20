@@ -129,6 +129,6 @@ public class Book extends BaseEntity {
     }
 
     public String getImageUrl() {
-        return Strings.isBlank(this.imageUrl) ? ChaekingProperties.getUrl() + "/static/img/books.png" : this.imageUrl;
+        return Strings.isBlank(this.imageUrl) ? ChaekingProperties.getUrl() + "/static/img/book.png" : this.imageUrl;
     }
 }

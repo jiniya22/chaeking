@@ -77,7 +77,7 @@ public class BookMemoryComplete extends BaseEntity {
                 Optional.ofNullable(c.getBook()).map(Book::getName).orElse(""),
                 c.getMemo(),
                 c.getRate(),
-                Optional.ofNullable(c.getBook()).map(Book::getImageUrl).orElse(ChaekingProperties.getUrl() + "/static/img/books.png"));
+                Optional.ofNullable(c.getBook()).map(Book::getImageUrl).orElse(ChaekingProperties.getUrl() + "/static/img/book.png"));
     }
 
     public static BookMemoryCompleteValue.Res.Content createContent(BookMemoryComplete c) {
