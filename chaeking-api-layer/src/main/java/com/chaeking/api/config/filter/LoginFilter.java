@@ -43,18 +43,16 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
             try {
                 UserValue.Req.Login userLogin = WebConfig.jsonMapper().readValue(request.getInputStream(), UserValue.Req.Login.class);
                 String pw = AESCipher.decrypt(userLogin.password(), userLogin.secretKey());
-                UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userLogin.email(), pw, null);
+                UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userLogin.email(), pw);
                 return getAuthenticationManager().authenticate(token);
             } catch (Exception e) {
                 throw new AuthenticationServiceException(MessageUtils.INVALID_USER_EMAIL_OR_PASSWORD);
             }
         } else {
-            TokenValue.Verify verify = JWTUtils.verify(refreshToken);
+            TokenValue.Verify verify = JWTUtils.verifyRefreshToken(refreshToken);
             if (verify.success()) {
-                User user = userService.loadUserById(verify.uid());
-                if (verify.key().equals(user.getRefreshKey())) {
-                    return new UsernamePasswordAuthenticationToken(user, user.getAuthorities());
-                }
+                User user = userService.loadUserByIdAndKey(verify.uid(), verify.key());
+                return new UsernamePasswordAuthenticationToken(user, user.getAuthorities());
             }
             throw new AuthenticationServiceException("refresh_token was expired");
         }
@@ -65,7 +63,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException {
         User user = (User) authResult.getPrincipal();
         TokenValue.Token token = User.createToken(user);
-        user.setRefreshKey(JWTUtils.getKey(token.refreshToken()));
+        user.setSecretKey(JWTUtils.getKey(token.refreshToken()));
         userService.save(user);
 
         DataResponse<TokenValue.Token> body = DataResponse.of(token);

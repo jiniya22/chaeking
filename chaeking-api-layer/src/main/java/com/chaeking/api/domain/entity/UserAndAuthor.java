@@ -16,8 +16,10 @@ public class UserAndAuthor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_id")
-    private long userId;
+    @ManyToOne
+    @ToString.Exclude
+    @JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "FK__USER_AND_AUTHOR__USER"))
+    private User user;
 
     @ManyToOne
     @ToString.Exclude

@@ -20,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -54,7 +55,7 @@ public class UserService implements UserDetailsService {
         user.initializeAuthorities();
         userRepository.save(user);
         TokenValue.Token token = User.createToken(user);
-        user.setRefreshKey(JWTUtils.getKey(token.refreshToken()));
+        user.setSecretKey(JWTUtils.getKey(token.refreshToken()));
         userRepository.save(user);
         return token;
     }
@@ -139,7 +140,7 @@ public class UserService implements UserDetailsService {
     @Transactional
     public void revoke(Long userId) {
         User user = select(userId);
-        user.setRefreshKey(null);
+        user.setSecretKey(null);
         userRepository.save(user);
     }
 
@@ -164,8 +165,9 @@ public class UserService implements UserDetailsService {
         return user;
     }
 
-    public User loadUserById(Long id) throws UsernameNotFoundException {
-        User user = userRepository.findById(id).orElseThrow(() -> new InvalidInputException("일치하는 사용자가 없습니다"));
+    public User loadUserByIdAndKey(Long id, String secretKey) throws UsernameNotFoundException {
+        User user = userRepository.findByIdAndSecretKey(id, secretKey)
+                .orElseThrow(() -> new AuthenticationServiceException("refresh_token 이 유효하지 않습니다."));
         user.getAuthorities().forEach(UserAuthority::getAuthority);
         return user;
     }

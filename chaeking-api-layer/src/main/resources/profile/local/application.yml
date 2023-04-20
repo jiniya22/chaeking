@@ -22,7 +22,7 @@ spring:
     database-platform: org.hibernate.dialect.MariaDB103Dialect
     properties:
       hibernate:
-        format_sql: true
+        format_sql: false
         hbm2ddl.auto: update
         implicit_naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
         physical_naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy

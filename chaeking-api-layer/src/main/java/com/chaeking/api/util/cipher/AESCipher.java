@@ -6,12 +6,27 @@ import org.apache.logging.log4j.util.Strings;
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 public class AESCipher {
     static String ALGORITHM = "AES";
     static String TRANSFORMATION = ALGORITHM + "/CBC/PKCS5Padding";
     private static String PREFIX_SECRET_KEY = "chaeking";
+    private static final String SECRET_KEY = "3C2vOgisHYZZPliCnKCV1Ko6LzXlqdg5x";
+
+    public static String encrypt(String data) {
+        if(Strings.isBlank(data)) return data;
+        try {
+            SecretKeySpec key = new SecretKeySpec((SECRET_KEY).substring(0,32).getBytes(), ALGORITHM);
+            IvParameterSpec iv = new IvParameterSpec(SECRET_KEY.substring(0, 16).getBytes());
+            final Cipher c = Cipher.getInstance(TRANSFORMATION);
+            c.init(Cipher.ENCRYPT_MODE, key, iv);
+            return new String(Base64.getEncoder().encode(c.doFinal(data.getBytes())), StandardCharsets.UTF_8);
+        } catch (Exception e) {
+            throw new InvalidInputException(String.format("AES 암호화 중 에러가 발생되었습니다. : %s", e.getMessage()));
+        }
+    }
 
     public static String encrypt(String data, String secretKey) {
         if(Strings.isBlank(data)) return data;
@@ -27,6 +42,21 @@ public class AESCipher {
             return encryptedData;
         } catch (Exception e) {
             throw new InvalidInputException(String.format("AES 암호화 중 에러가 발생되었습니다. : %s", e.getMessage()));
+        }
+    }
+
+    public static String decrypt(String data) throws InvalidInputException {
+        if(Strings.isBlank(data))
+            throw new InvalidInputException("AES 복호화 대상은 null 또는 빈문자열을 허용하지 않습니다.");
+
+        try {
+            SecretKeySpec key = new SecretKeySpec((SECRET_KEY).substring(0,32).getBytes(), ALGORITHM);
+            IvParameterSpec iv = new IvParameterSpec(SECRET_KEY.substring(0, 16).getBytes());
+            final Cipher c = Cipher.getInstance(TRANSFORMATION);
+            c.init(Cipher.DECRYPT_MODE, key, iv);
+            return new String(c.doFinal(Base64.getDecoder().decode(data.getBytes(StandardCharsets.UTF_8))));
+        } catch (Exception e) {
+            throw new InvalidInputException(String.format("AES 복호화 중 에러가 발생되었습니다. : %s", e.getMessage()));
         }
     }
 
@@ -47,6 +77,5 @@ public class AESCipher {
             throw new InvalidInputException(String.format("AES 복호화 중 에러가 발생되었습니다. : %s", e.getMessage()));
         }
     }
-
 
 }

@@ -7,8 +7,7 @@ public class TokenValue {
 
     @Builder
     @Schema(name = "TokenVerify")
-    public record Verify(Long uid, String key, boolean success) {}
-
+    public record Verify(Long uid, String key, String username, String scope, boolean success) {}
 
     @Schema(name = "Token")
     public record Token(

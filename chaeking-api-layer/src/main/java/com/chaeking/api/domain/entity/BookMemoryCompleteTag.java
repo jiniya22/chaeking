@@ -17,7 +17,7 @@ public class BookMemoryCompleteTag {
 
     @Setter
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey(name = "FK__BOOK_MEMORY_COMPLETE_TAG__BOOK_MEMORY_COMPLETE"))
     private BookMemoryComplete bookMemoryComplete;
 

@@ -43,8 +43,7 @@ public class BookMemoryComplete extends BaseEntity {
 
     @Setter
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "book_memory_complete_id")
+    @OneToMany(mappedBy = "bookMemoryComplete", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BookMemoryCompleteTag> tags = new ArrayList<>();
 
     public BookMemoryComplete(Book book, long userId) {

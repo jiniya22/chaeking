@@ -1,7 +1,7 @@
 package com.chaeking.api.config.filter;
 
 import com.auth0.jwt.exceptions.JWTDecodeException;
-import com.chaeking.api.domain.entity.User;
+import com.chaeking.api.domain.entity.UserAuthority;
 import com.chaeking.api.model.TokenValue;
 import com.chaeking.api.service.UserService;
 import com.chaeking.api.util.JWTUtils;
@@ -19,6 +19,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class AccessTokenCheckFilter extends BasicAuthenticationFilter {
     private final UserService userService;
@@ -39,14 +42,15 @@ public class AccessTokenCheckFilter extends BasicAuthenticationFilter {
         String token = bearer.substring("Bearer ".length());
         String reason;
         try {
-            TokenValue.Verify result = JWTUtils.verify(token);
+            TokenValue.Verify result = JWTUtils.verifyAccessToken(token);
             if (result.success()) {
-                User user = userService.loadUserById(result.uid());
+                List<UserAuthority> authorities = Arrays.stream(result.scope().split(" "))
+                        .map(m -> new UserAuthority(result.uid(), m)).collect(Collectors.toList());
                 UsernamePasswordAuthenticationToken userToken = new UsernamePasswordAuthenticationToken(
-                        user.getUsername(), null, user.getAuthorities()
+                        result.username(), null, authorities
                 );
                 SecurityContextHolder.getContext().setAuthentication(userToken);
-                response.setHeader("X-Chaeking-User-Id", user.getId().toString());
+                response.setHeader("X-Chaeking-User-Id", String.valueOf(result.uid()));
                 chain.doFilter(request, response);
                 return;
             }

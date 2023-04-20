@@ -13,7 +13,7 @@ class CipherTest {
     void aesCipherTest() {
         PasswordEncoder passwordEncoder = new Pbkdf2PasswordEncoder();
         String secretKey = "A37aXdxH6gwTySajLe8eZWNvyC2yuZVB";
-        String password = AESCipher.encrypt("222", secretKey);
+        String password = AESCipher.encrypt("CX34668FVC", secretKey);
         System.out.println(password);         // 99kOO+SV6fqcGIJVjVuBsA==
 
         String s2 = AESCipher.decrypt(password, secretKey);

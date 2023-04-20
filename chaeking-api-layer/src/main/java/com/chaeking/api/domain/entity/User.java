@@ -1,10 +1,10 @@
 package com.chaeking.api.domain.entity;
 
 import com.chaeking.api.config.SecurityConfig;
-import com.chaeking.api.model.enumerate.Sex;
 import com.chaeking.api.model.ChaekingProperties;
 import com.chaeking.api.model.TokenValue;
 import com.chaeking.api.model.UserValue;
+import com.chaeking.api.model.enumerate.Sex;
 import com.chaeking.api.util.JWTUtils;
 import com.chaeking.api.util.cipher.AESCipher;
 import lombok.*;
@@ -12,12 +12,13 @@ import org.apache.logging.log4j.util.Strings;
 import org.hibernate.annotations.*;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.*;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @ToString
 @Getter
@@ -70,17 +71,12 @@ public class User extends BaseEntity implements UserDetails {
     @Column(columnDefinition = "TINYINT(1)")
     private boolean nightPush;
 
-    @Setter
-    @Column(length = 40)
-    private String refreshKey;
-
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "FK__USER__USER_AUTHORITY"))
     private Set<UserAuthority> authorities;
 
     @Setter
-    @OneToMany(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "user_id")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     @ToString.Exclude
     @Where(clause = "user_id IS NOT NULL")
     private List<UserAndAuthor> userAndAuthors = new ArrayList<>();
@@ -115,7 +111,7 @@ public class User extends BaseEntity implements UserDetails {
 
     public static TokenValue.Token createToken(User u) {
         String key = UUID.randomUUID().toString();
-        return new TokenValue.Token(JWTUtils.createAccessToken(u, key), JWTUtils.createRefreshToken(u, key));
+        return new TokenValue.Token(JWTUtils.createAccessToken(u.getId(), u.getUsername(), key, u.getScope()), JWTUtils.createRefreshToken(u.getId(), key));
     }
 
     public void initializeAuthorities() {
@@ -155,6 +151,10 @@ public class User extends BaseEntity implements UserDetails {
 
     public void deactivate() {
         setActive(false);
-        this.refreshKey = null;
+        this.secretKey = null;
+    }
+
+    public String getScope() {
+        return this.authorities.stream().map(UserAuthority::getAuthority).collect(Collectors.joining(" "));
     }
 }
