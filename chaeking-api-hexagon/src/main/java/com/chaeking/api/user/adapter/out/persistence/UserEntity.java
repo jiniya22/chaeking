@@ -83,7 +83,7 @@ class UserEntity extends BaseEntity {
 
     public void initializeAuthorities() {
         Set<UserAuthorityEntity> authorities = new HashSet<>();
-        authorities.add(new UserAuthorityEntity(this.id, "ROLE_USER"));
+        authorities.add(new UserAuthorityEntity(this.id, "user"));
         this.authorities = authorities;
     }
 

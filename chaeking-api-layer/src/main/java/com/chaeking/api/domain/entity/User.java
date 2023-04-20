@@ -116,7 +116,7 @@ public class User extends BaseEntity implements UserDetails {
 
     public void initializeAuthorities() {
         Set<UserAuthority> authorities = new HashSet<>();
-        authorities.add(UserAuthority.builder().userId(this.id).authority("ROLE_USER").build());
+        authorities.add(UserAuthority.builder().userId(this.id).authority("user").build());
         this.authorities = authorities;
     }
 
