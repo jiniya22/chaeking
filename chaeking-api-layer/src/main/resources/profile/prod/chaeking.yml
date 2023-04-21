@@ -2,7 +2,7 @@ chaeking:
   url: https://api.chaeking.com
 
   flag:
-    common-request-logging-filter: false
+    common-request-logging-filter: true
 
   book-search:
     naver:
