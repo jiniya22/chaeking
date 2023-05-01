@@ -57,9 +57,7 @@ public class BookshelfService {
         LocalDate date = LocalDate.now();
         User user = userService.select(userId);
         res.setNickname(user.getNickname());
-        if (bookMemoryCompleteRepository.existsByUserId(userId)) {
-            res.setBookAnalysis(getBookAnalysis(user.getId(), date, type));
-        }
+        res.setBookAnalysis(getBookAnalysis(user.getId(), date, type));
         List<BestSeller> bestSellers = bestSellerRepository.findTop3WithBookAndPublisherByOrderById();
         res.setBestSeller(bestSellers.stream()
                 .map(BestSeller::getBook)

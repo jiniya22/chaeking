@@ -18,6 +18,7 @@ public class LoggingFilterConfig {
             commonsRequestLoggingFilter.setIncludeClientInfo(true);
             commonsRequestLoggingFilter.setIncludeQueryString(true);
             commonsRequestLoggingFilter.setIncludePayload(true);
+            commonsRequestLoggingFilter.setIncludeHeaders(true);
             commonsRequestLoggingFilter.setMaxPayloadLength(100000);
         }
         return commonsRequestLoggingFilter;
