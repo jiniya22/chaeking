@@ -8,8 +8,8 @@ spring:
       - chaeking.yml
       - vault://secret/chaeking
   datasource:
-    driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://applebox.xyz:3306/book?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&tinyInt1isBit=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://jiniworld.me:3306/book?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&tinyInt1isBit=false
     hikari:
       auto-commit: false
       connection-test-query: SELECT 1
@@ -17,7 +17,7 @@ spring:
       maximum-pool-size: 10
       pool-name: pool-book
   jpa:
-    database-platform: org.hibernate.dialect.MariaDB103Dialect
+    database-platform: org.hibernate.dialect.MySQL8Dialect
     properties:
       hibernate:
         format_sql: true
