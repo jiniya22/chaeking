@@ -20,6 +20,7 @@ dependencies {
     implementation 'org.jsoup:jsoup:1.15.3'
     implementation 'com.auth0:java-jwt:4.2.1'
     runtimeOnly "org.mariadb.jdbc:mariadb-java-client"
+    implementation "com.mysql:mysql-connector-j:8.0.33"
     testImplementation "org.springframework.security:spring-security-test"
 }
 
