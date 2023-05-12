@@ -47,6 +47,7 @@ public class BookService {
         }).collect(Collectors.toList());
     }
 
+    @Transactional
     public BookValue.Res.Detail book(String isbn13, Long userId) {
         Optional<Book> oBook = bookRepository.findTopWithPublisherByIsbn13(isbn13);
         if(oBook.isPresent()) {
