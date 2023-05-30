@@ -35,7 +35,7 @@ spring:
 
   cloud:
     vault:
-      host: vault.chaeking.com
+      host: v.applebox.xyz
       scheme: https
       port: 443
       token: "hvs.CAESIO4DEGw52eKb-ke_DTYZ0JAwJaH6lGqpatVTwNwbN6K2Gh4KHGh2cy5aWjBjaTlBckpGRHY3SEJjVVE0cEhVTG4"

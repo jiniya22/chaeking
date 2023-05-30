@@ -9,7 +9,7 @@ spring:
       - vault://secret/chaeking
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://jiniworld.me:3306/book?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&tinyInt1isBit=false
+    url: jdbc:mysql://localhost:3306/book?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&tinyInt1isBit=false
     hikari:
       auto-commit: false
       connection-test-query: SELECT 1
@@ -33,7 +33,7 @@ spring:
 
   cloud:
     vault:
-      host: vault.chaeking.com
+      host: v.applebox.xyz
       scheme: https
       port: 443
       token: "hvs.CAESIO4DEGw52eKb-ke_DTYZ0JAwJaH6lGqpatVTwNwbN6K2Gh4KHGh2cy5aWjBjaTlBckpGRHY3SEJjVVE0cEhVTG4"
