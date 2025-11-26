@@ -37,7 +37,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:8080", "http://localhost:8081", "https://www.chaeking.com", "https://chaeking.com")
+                .allowedOrigins("http://localhost:8080", "http://localhost:28080", "https://www.chaeking.com",
+                        "https://chaeking.com", "https://book.jiniworld.me")
                 .allowedMethods("GET", "OPTIONS", "POST", "PUT", "DELETE", "PATCH")
                 .allowedHeaders("Access-Control-Allow-Origin", "X-Requested-With", "Origin", "Content-Type", "Accept",
                         "Authorization", "X-Chaeking-User-Id", "X-Error-Code")
