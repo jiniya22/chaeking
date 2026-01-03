@@ -18,13 +18,13 @@ import java.util.List;
 @Component
 public class OpenApiConfig {
     @Bean
-    public OpenAPI openAPI(@Value("${chaeking.url}") String url, @Value("${spring.profiles.active}") String active) {
+    public OpenAPI openAPI(@Value("${spring.profiles.active}") String active) {
         Info info = new Info().title("Chaeking API - " + active)
                 .description("책킹 API입니다.")
                 .contact(new Contact().name("jini").url("https://blog.jiniworld.me/").email("jini@chaeking.com"))
                 .license(new License().name("MIT License").url("https://github.com/jiniya22/chaeking-api/blob/master/LICENSE"));
 
-        List<Server> servers = Arrays.asList(new Server().url(url).description("chaeking-api (" + active +")"));
+        List<Server> servers = Arrays.asList(new Server().url("/").description("chaeking-api (" + active +")"));
 
         return new OpenAPI()
                 .components(new Components()
